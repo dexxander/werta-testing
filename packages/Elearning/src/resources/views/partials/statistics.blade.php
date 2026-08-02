@@ -1,3 +1,26 @@
+{{-- ============================================================
+     TEMP DUMMY DATA — FOR PREVIEW ONLY
+     This @php block overrides $statistics with fake numbers so you
+     can see the count-up animation actually count up to something.
+     It only exists in this file — your controller's zeroed-out
+     'statistics' array is untouched.
+
+     TO REMOVE: delete the entire @php ... @endphp block below
+     (from "TEMP DUMMY DATA START" to "TEMP DUMMY DATA END").
+     Once deleted, $statistics goes back to whatever the controller
+     actually passes in (currently all zeros).
+     ============================================================ --}}
+@php
+    // TEMP DUMMY DATA START
+    $statistics = [
+        'total_students' => 85400,
+        'courses_available' => 1240,
+        'expert_instructors' => 96,
+        'certificates_issued' => 62800,
+    ];
+    // TEMP DUMMY DATA END
+@endphp
+
 {{-- Learning Statistics Section --}}
 <section class="el-section bg-cream-light">
     <div class="el-container">
