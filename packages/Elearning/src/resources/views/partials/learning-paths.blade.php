@@ -1,10 +1,8 @@
 {{-- ============================================================
      TEMP DUMMY DATA — FOR PREVIEW ONLY
      This @php block overrides $learning_paths with fake data so
-     you can see the UI (including the journey-line + waypoint
-     bobbing animation, which need at least a few items to look
-     right). It only exists in this file — your controller's
-     'learning_paths' => [] empty state is untouched.
+     you can see the UI. It only exists in this file — your
+     controller's 'learning_paths' => [] empty state is untouched.
 
      TO REMOVE: delete the entire @php ... @endphp block below
      (from "TEMP DUMMY DATA START" to "TEMP DUMMY DATA END").
@@ -29,26 +27,40 @@
         <div class="text-center mb-5 position-relative z-1">
             <div class="el-pill">Career Tracks</div>
             <h2 class="el-heading el-heading--light">Learning Paths</h2>
-            <p class="el-subtext el-subtext--light mx-auto">Structured career tracks designed to take you from beginner to industry-ready professional.</p>
+            <p class="el-subtext el-subtext--light mx-auto">Structured, stage-by-stage career tracks that take you from beginner to industry-ready professional — follow the path from left to right.</p>
         </div>
 
         @if(!empty($learning_paths) && count($learning_paths) > 0)
-            <div class="row g-4 el-path-grid position-relative">
+            <div class="row g-3 g-lg-2 align-items-stretch el-path-grid">
                 @foreach($learning_paths as $path)
-                    <div class="col-12 col-md-6 col-lg z-1">
+                    <div class="col-12 col-lg el-path-col">
                         <a href="{{ $path['url'] ?? '#' }}" class="el-path-card text-decoration-none d-block h-100">
-                            
-                            {{-- Waypoint Icon: matches the hero's floating badges & stat icons --}}
-                            <div class="el-feature-icon mx-auto mb-4 el-path-waypoint">
-                                <i class="bi bi-{{ $path['icon'] ?? 'signpost-2' }}"></i>
+
+                            <div class="el-path-icon-wrap">
+                                <div class="el-feature-icon el-path-waypoint" style="animation-delay: -{{ $loop->index * 0.7 }}s;">
+                                    <i class="bi bi-{{ $path['icon'] ?? 'signpost-2' }}"></i>
+                                </div>
+                                <span class="el-path-stage-badge">{{ $loop->iteration }}</span>
                             </div>
-                            
+
+                            <span class="el-path-stage-label">Stage {{ $loop->iteration }}</span>
                             <h5 class="text-white mb-2">{{ $path['name'] ?? '' }}</h5>
                             <p class="mb-0" style="color: var(--muted);">
                                 {{ $path['course_count'] ?? 0 }} courses
                             </p>
                         </a>
                     </div>
+
+                    @if(!$loop->last)
+                        {{-- Desktop: horizontal arrow between stages --}}
+                        <div class="col-lg-auto d-none d-lg-flex align-items-center justify-content-center el-path-arrow">
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+                        {{-- Mobile/tablet: vertical arrow between stacked stages --}}
+                        <div class="col-12 d-lg-none text-center el-path-arrow-vertical">
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         @else
@@ -63,47 +75,74 @@
 </section>
 
 <style>
-    /* Scoped styles for Learning Paths */
+    /* ─── LEARNING PATHS: STAGE CARDS ─────────────────────── */
     .el-path-card {
         background-color: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 1rem;
-        padding: 2.5rem 1.5rem;
+        padding: 2.25rem 1.25rem 2rem;
         text-align: center;
-        transition: transform 0.3s ease, border-color 0.3s ease;
+        transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
     }
 
     .el-path-card:hover {
         transform: translateY(-4px);
         border-color: var(--gold);
+        background-color: rgba(255, 255, 255, 0.06);
     }
 
-    /* The Journey Line (Desktop only) connecting the waypoints */
-    @media (min-width: 992px) {
-        .el-path-grid::before {
-            content: '';
-            position: absolute;
-            top: 4.25rem; /* Aligns with the center of the el-feature-icon */
-            left: 5%;
-            right: 5%;
-            border-top: 2px dashed var(--gold);
-            opacity: 0.25;
-            z-index: 0;
-        }
+    /* ─── STAGE NUMBER BADGE (overlaps the icon circle) ───── */
+    .el-path-icon-wrap {
+        position: relative;
+        width: fit-content;
+        margin: 0 auto 0.75rem;
     }
 
-    /* Waypoint floating animation */
+    .el-path-stage-badge {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: var(--dark);
+        font-family: 'IM Fell English', serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+        border: 2px solid var(--dark);
+    }
+
+    .el-path-stage-label {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.4rem;
+    }
+
+    /* ─── ARROWS BETWEEN STAGES ────────────────────────────── */
+    .el-path-arrow {
+        color: rgba(255,255,255,0.25);
+        font-size: 1.4rem;
+        padding: 0 0.25rem;
+    }
+
+    .el-path-arrow-vertical {
+        color: rgba(255,255,255,0.25);
+        font-size: 1.3rem;
+        padding: 0.1rem 0;
+    }
+
+    /* ─── WAYPOINT FLOATING ANIMATION ──────────────────────── */
     .el-path-waypoint {
         animation: el-float-waypoint 4s ease-in-out infinite;
-    }
-
-    /* Stagger the bobbing animation so the path feels organic, not robotic */
-    .el-path-grid > div:nth-child(even) .el-path-waypoint {
-        animation-delay: -2s;
-    }
-    
-    .el-path-grid > div:nth-child(3n) .el-path-waypoint {
-        animation-delay: -1s;
     }
 
     @keyframes el-float-waypoint {
@@ -113,7 +152,7 @@
 
     /* Accessibility: Respect user motion preferences */
     @media (prefers-reduced-motion: reduce) {
-        .el-path-card, 
+        .el-path-card,
         .el-path-waypoint {
             transition: none;
             animation: none;
