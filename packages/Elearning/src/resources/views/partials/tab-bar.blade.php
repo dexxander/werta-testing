@@ -25,12 +25,7 @@
                 Dashboard Preview
             </a>
         </li>
-        <li class="nav-item">
-            <a href="{{ route('elearning.instructors') }}"
-               class="nav-link {{ request()->routeIs('elearning.instructors') ? 'active' : '' }}">
-                Instructors
-            </a>
-        </li>
+
         <li class="nav-item">
             <a href="{{ route('elearning.pricing') }}"
                class="nav-link {{ request()->routeIs('elearning.pricing') ? 'active' : '' }}">

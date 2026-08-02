@@ -23,7 +23,7 @@
                                     <li><i class="bi bi-check-circle-fill"></i> {{ $feature }}</li>
                                 @endforeach
                             </ul>
-                            <a href="#" class="{{ !empty($plan['recommended']) ? 'el-btn-primary' : 'el-btn-outline' }}" style="width:100%;text-align:center;">
+                            <a href="{{ route('elearning.checkout') }}" class="{{ !empty($plan['recommended']) ? 'el-btn-primary' : 'el-btn-outline' }}" style="width:100%;text-align:center;">
                                 {{ $plan['name'] === 'Free' ? 'Get Started' : 'Subscribe Now' }}
                             </a>
                         </div>

@@ -100,16 +100,6 @@
                             </div>
                         </div>
                     @endif
-
-                    @if(!empty($statistics['expert_instructors']))
-                        <div class="el-hero-badge el-hero-badge--bottom">
-                            <i class="bi bi-mortarboard-fill"></i>
-                            <div>
-                                <strong>{{ $statistics['expert_instructors'] }}</strong>
-                                <span>Expert instructors</span>
-                            </div>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>

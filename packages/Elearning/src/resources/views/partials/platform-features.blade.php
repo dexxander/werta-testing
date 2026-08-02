@@ -36,15 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="el-feature-item">
-                            <div class="el-feature-icon"><i class="bi bi-person-check"></i></div>
-                            <div>
-                                <h6 style="font-weight:700;margin-bottom:0.3rem;">Expert Instructors</h6>
-                                <p style="font-size:0.85rem;color:var(--muted);margin:0;line-height:1.6;">Learn from industry professionals and academic experts.</p>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-md-6">
                         <div class="el-feature-item">
                             <div class="el-feature-icon"><i class="bi bi-phone"></i></div>

@@ -50,13 +50,13 @@
                         <div class="el-dash-panel h-100">
                             <div class="el-dash-panel-header">
                                 <h6>Active Courses</h6>
-                                <span class="el-dash-view-all">View All</span>
+                                <a href="{{ route('elearning.my-courses') }}" class="el-dash-view-all" style="text-decoration:none;">View All</a>
                             </div>
 
                             @if(!empty($dashboard_courses))
                                 <div class="el-dash-course-list">
-                                    @foreach($dashboard_courses as $course)
-                                        <div class="el-dash-course">
+                                    @foreach($dashboard_courses as $index => $course)
+                                        <div class="el-dash-course" style="cursor:pointer;" onclick="window.location.href='{{ route('elearning.course-content', ['id' => $index + 1]) }}'">
                                             <div class="el-feature-icon el-dash-course-icon">
                                                 <i class="bi bi-{{ $course['icon'] ?? 'journal-text' }}"></i>
                                             </div>

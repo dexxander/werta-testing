@@ -11,6 +11,22 @@
         .el-section.bg-cream-light { background-color: var(--cream-light); }
         .el-section.bg-dark { background-color: var(--dark); color: #fff; }
 
+        /* ─── DROPDOWN ANIMATION ─────────────────────────── */
+        .elearning-dropdown-menu {
+            display: block !important;
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease !important;
+            pointer-events: none;
+        }
+        .elearning-dropdown:hover .elearning-dropdown-menu {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
         .el-container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
         .el-pill {
@@ -258,6 +274,13 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            
+            // ─── Hide Instructors link from core navbar ───
+            document.querySelectorAll('.elearning-dropdown-menu a').forEach(function(link) {
+                if (link.getAttribute('href') && link.getAttribute('href').includes('/elearning/instructors')) {
+                    link.style.setProperty('display', 'none', 'important');
+                }
+            });
 
             // ─── FAQ accordion (delegated so it survives content swaps) ───
             document.addEventListener('click', function (e) {

@@ -12,14 +12,14 @@
 @php
     // TEMP DUMMY DATA START
     $categories = [
-        ['name' => 'Web Development', 'icon' => 'code-slash', 'course_count' => 128, 'url' => '#'],
-        ['name' => 'Data Science', 'icon' => 'bar-chart-line', 'course_count' => 94, 'url' => '#'],
-        ['name' => 'UI/UX Design', 'icon' => 'palette2', 'course_count' => 76, 'url' => '#'],
-        ['name' => 'Digital Marketing', 'icon' => 'megaphone', 'course_count' => 61, 'url' => '#'],
-        ['name' => 'Business', 'icon' => 'briefcase', 'course_count' => 88, 'url' => '#'],
-        ['name' => 'Photography', 'icon' => 'camera', 'course_count' => 42, 'url' => '#'],
-        ['name' => 'Mobile Development', 'icon' => 'phone', 'course_count' => 53, 'url' => '#'],
-        ['name' => 'Cybersecurity', 'icon' => 'shield-lock', 'course_count' => 37, 'url' => '#'],
+        ['name' => 'Web Development', 'icon' => 'code-slash', 'course_count' => 128, 'url' => route('elearning.category', ['slug' => 'web-development'])],
+        ['name' => 'Data Science', 'icon' => 'bar-chart-line', 'course_count' => 94, 'url' => route('elearning.category', ['slug' => 'data-science'])],
+        ['name' => 'UI/UX Design', 'icon' => 'palette2', 'course_count' => 76, 'url' => route('elearning.category', ['slug' => 'ui-ux-design'])],
+        ['name' => 'Digital Marketing', 'icon' => 'megaphone', 'course_count' => 61, 'url' => route('elearning.category', ['slug' => 'digital-marketing'])],
+        ['name' => 'Business', 'icon' => 'briefcase', 'course_count' => 88, 'url' => route('elearning.category', ['slug' => 'business'])],
+        ['name' => 'Photography', 'icon' => 'camera', 'course_count' => 42, 'url' => route('elearning.category', ['slug' => 'photography'])],
+        ['name' => 'Mobile Development', 'icon' => 'phone', 'course_count' => 53, 'url' => route('elearning.category', ['slug' => 'mobile-development'])],
+        ['name' => 'Cybersecurity', 'icon' => 'shield-lock', 'course_count' => 37, 'url' => route('elearning.category', ['slug' => 'cybersecurity'])],
     ];
     // TEMP DUMMY DATA END
 @endphp

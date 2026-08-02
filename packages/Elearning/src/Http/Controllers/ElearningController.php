@@ -31,9 +31,24 @@ class ElearningController extends Controller
         return view('elearning::pages.dashboard', $this->sharedData());
     }
 
-    public function instructors()
+    public function myCourses()
     {
-        return view('elearning::pages.instructors', $this->sharedData());
+        return view('elearning::pages.my-courses', $this->sharedData());
+    }
+
+    public function courseContent($id)
+    {
+        return view('elearning::pages.course-content', $this->sharedData() + ['course_id' => $id]);
+    }
+
+    public function categoryCourses($slug)
+    {
+        return view('elearning::pages.category-courses', $this->sharedData() + ['category_slug' => $slug]);
+    }
+
+    public function checkout()
+    {
+        return view('elearning::pages.checkout', $this->sharedData());
     }
 
     public function pricing()
@@ -60,14 +75,12 @@ class ElearningController extends Controller
             'statistics' => [
                 'total_students' => 0,
                 'courses_available' => 0,
-                'expert_instructors' => 0,
                 'certificates_issued' => 0,
             ],
             'categories' => [],
             'continue_course' => null,
             'featured_courses' => [],
             'learning_paths' => [],
-            'instructors' => [],
             'testimonials' => [],
             'certificates' => [],
             'pricing_plans' => [

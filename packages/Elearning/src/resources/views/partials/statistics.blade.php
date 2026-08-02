@@ -15,7 +15,6 @@
     $statistics = [
         'total_students' => 85400,
         'courses_available' => 1240,
-        'expert_instructors' => 96,
         'certificates_issued' => 62800,
     ];
     // TEMP DUMMY DATA END
@@ -29,7 +28,7 @@
             <h2 class="el-heading">Learning Statistics</h2>
         </div>
         <div class="row g-4 text-center">
-            <div class="col-6 col-md-3">
+            <div class="col-6 col-md-4">
                 <div class="el-card el-stat-card">
                     <div class="el-feature-icon el-stat-icon">
                         <i class="bi bi-people-fill"></i>
@@ -38,7 +37,7 @@
                     <div class="el-stat-label">Total Students</div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-6 col-md-4">
                 <div class="el-card el-stat-card">
                     <div class="el-feature-icon el-stat-icon">
                         <i class="bi bi-journal-bookmark-fill"></i>
@@ -47,16 +46,7 @@
                     <div class="el-stat-label">Courses Available</div>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="el-card el-stat-card">
-                    <div class="el-feature-icon el-stat-icon">
-                        <i class="bi bi-mortarboard-fill"></i>
-                    </div>
-                    <div class="el-stat-number" data-count-to="{{ $statistics['expert_instructors'] ?? 0 }}">0</div>
-                    <div class="el-stat-label">Expert Instructors</div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
+            <div class="col-6 col-md-4">
                 <div class="el-card el-stat-card">
                     <div class="el-feature-icon el-stat-icon">
                         <i class="bi bi-patch-check-fill"></i>

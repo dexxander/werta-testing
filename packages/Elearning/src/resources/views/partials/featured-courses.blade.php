@@ -102,7 +102,7 @@
                                 <span><i class="bi bi-people"></i> {{ $course['students'] ?? 0 }}</span>
                             </div>
                             <div style="margin-top:auto;">
-                                <a href="#" class="el-btn-primary" style="width:100%;text-align:center;">Enroll Now</a>
+                                <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
                             </div>
                         </div>
                     </div>
@@ -118,3 +118,52 @@
         @endif
     </div>
 </section>
+
+{{-- Custom Authentication Modal --}}
+<div id="elearningEnrollModal" class="el-modal-overlay">
+    <div class="el-modal-content el-card">
+        <button class="el-modal-close" onclick="closeElearningModal()"><i class="bi bi-x-lg"></i></button>
+        <div class="text-center">
+            <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+                <i class="bi bi-person-lock" style="font-size:2rem;color:var(--gold);"></i>
+            </div>
+            <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Authentication Required</h4>
+            <p style="color:var(--muted);font-size:0.95rem;margin-bottom:2rem;">Please log in using a client account to enroll in courses and track your progress.</p>
+            <div style="display:flex;gap:1rem;justify-content:center;">
+                <button onclick="closeElearningModal()" class="el-btn-outline" style="padding:0.75rem 1.5rem;">Cancel</button>
+                <a href="{{ url('/client/login') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Login Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Prevent duplicate styles if this modal is rendered multiple times */
+    .el-modal-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(44,36,22,0.6); z-index: 9999;
+        display: flex; align-items: center; justify-content: center;
+        opacity: 0; visibility: hidden; transition: all 0.3s ease;
+        backdrop-filter: blur(4px);
+    }
+    .el-modal-overlay.active { opacity: 1; visibility: visible; }
+    .el-modal-content {
+        max-width: 450px; width: 90%; position: relative;
+        transform: translateY(20px); transition: all 0.3s ease;
+        background: var(--cream-light);
+    }
+    .el-modal-overlay.active .el-modal-content { transform: translateY(0); }
+    .el-modal-close {
+        position: absolute; top: 15px; right: 15px; background: none;
+        border: none; color: var(--muted); font-size: 1.2rem; cursor: pointer;
+        transition: color 0.2s;
+    }
+    .el-modal-close:hover { color: var(--dark); }
+</style>
+
+<script>
+    if (typeof openElearningModal !== 'function') {
+        function openElearningModal() { document.getElementById('elearningEnrollModal').classList.add('active'); }
+        function closeElearningModal() { document.getElementById('elearningEnrollModal').classList.remove('active'); }
+    }
+</script>
