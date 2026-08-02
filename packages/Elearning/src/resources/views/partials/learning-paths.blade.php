@@ -1,8 +1,10 @@
 {{-- ============================================================
      TEMP DUMMY DATA — FOR PREVIEW ONLY
-     This @php block overrides $learning_paths with fake data so
-     you can see the UI. It only exists in this file — your
-     controller's 'learning_paths' => [] empty state is untouched.
+     This @php block overrides $learning_paths with fake data,
+     including a 'courses' list per path (ordered foundational →
+     advanced) so you can see the vertical roadmap ladder. It only
+     exists in this file — your controller's 'learning_paths' => []
+     empty state is untouched.
 
      TO REMOVE: delete the entire @php ... @endphp block below
      (from "TEMP DUMMY DATA START" to "TEMP DUMMY DATA END").
@@ -12,11 +14,31 @@
 @php
     // TEMP DUMMY DATA START
     $learning_paths = [
-        ['name' => 'Full-Stack Developer', 'icon' => 'laptop', 'course_count' => 14, 'url' => '#'],
-        ['name' => 'Data Analyst', 'icon' => 'bar-chart-line', 'course_count' => 9, 'url' => '#'],
-        ['name' => 'UX/UI Designer', 'icon' => 'palette2', 'course_count' => 11, 'url' => '#'],
-        ['name' => 'Digital Marketer', 'icon' => 'megaphone', 'course_count' => 8, 'url' => '#'],
-        ['name' => 'Cybersecurity Specialist', 'icon' => 'shield-lock', 'course_count' => 10, 'url' => '#'],
+        [
+            'name' => 'Full Stack Developer',
+            'url' => '#',
+            'courses' => ['Introduction to Programming', 'HTML', 'CSS', 'Responsive Design', 'JavaScript', 'React.js'],
+        ],
+        [
+            'name' => 'Data Analyst',
+            'url' => '#',
+            'courses' => ['Statistics Fundamentals', 'Excel for Analysts', 'SQL Basics', 'Data Visualization', 'Python for Data Analysis'],
+        ],
+        [
+            'name' => 'Cybersecurity Specialist',
+            'url' => '#',
+            'courses' => ['Networking Basics', 'Security Fundamentals', 'Ethical Hacking', 'Incident Response', 'Security Compliance'],
+        ],
+        [
+            'name' => 'UX/UI Designer',
+            'url' => '#',
+            'courses' => ['Design Thinking', 'Wireframing Basics', 'Figma Essentials', 'Design Systems'],
+        ],
+        [
+            'name' => 'Digital Marketer',
+            'url' => '#',
+            'courses' => ['Marketing Fundamentals', 'SEO Basics', 'Social Media Strategy'],
+        ],
     ];
     // TEMP DUMMY DATA END
 @endphp
@@ -24,43 +46,39 @@
 {{-- Learning Paths Section --}}
 <section class="el-section" style="background-color: var(--dark);" id="el-paths">
     <div class="el-container">
-        <div class="text-center mb-5 position-relative z-1">
+        <div class="text-center mb-5">
             <div class="el-pill">Career Tracks</div>
             <h2 class="el-heading el-heading--light">Learning Paths</h2>
-            <p class="el-subtext el-subtext--light mx-auto">Structured, stage-by-stage career tracks that take you from beginner to industry-ready professional — follow the path from left to right.</p>
+            <p class="el-subtext el-subtext--light mx-auto">Every track is a course-by-course climb — start at the bottom, build up one skill at a time, and graduate at the top.</p>
         </div>
 
         @if(!empty($learning_paths) && count($learning_paths) > 0)
-            <div class="row g-3 g-lg-2 align-items-stretch el-path-grid">
+            <div class="el-roadmap-columns">
                 @foreach($learning_paths as $path)
-                    <div class="col-12 col-lg el-path-col">
-                        <a href="{{ $path['url'] ?? '#' }}" class="el-path-card text-decoration-none d-block h-100">
-
-                            <div class="el-path-icon-wrap">
-                                <div class="el-feature-icon el-path-waypoint" style="animation-delay: -{{ $loop->index * 0.7 }}s;">
+                    <a href="{{ $path['url'] ?? '#' }}" class="el-roadmap-path">
+                        @if(!empty($path['courses']))
+                            <div class="el-roadmap-ladder">
+                                @foreach($path['courses'] as $course)
+                                    <div class="el-roadmap-course">{{ $course }}</div>
+                                    <div class="el-roadmap-arrow"><i class="bi bi-chevron-up"></i></div>
+                                @endforeach
+                                <div class="el-roadmap-summit">
+                                    <i class="bi bi-mortarboard-fill"></i> {{ $path['name'] ?? '' }}
+                                </div>
+                            </div>
+                        @else
+                            {{-- Graceful fallback for a path with no course breakdown yet --}}
+                            <div class="el-roadmap-fallback">
+                                <div class="el-feature-icon mx-auto mb-3">
                                     <i class="bi bi-{{ $path['icon'] ?? 'signpost-2' }}"></i>
                                 </div>
-                                <span class="el-path-stage-badge">{{ $loop->iteration }}</span>
+                                <h5 class="text-white mb-1">{{ $path['name'] ?? '' }}</h5>
+                                <p class="mb-0" style="color: var(--muted); font-size: 0.85rem;">
+                                    {{ $path['course_count'] ?? 0 }} courses
+                                </p>
                             </div>
-
-                            <span class="el-path-stage-label">Stage {{ $loop->iteration }}</span>
-                            <h5 class="text-white mb-2">{{ $path['name'] ?? '' }}</h5>
-                            <p class="mb-0" style="color: var(--muted);">
-                                {{ $path['course_count'] ?? 0 }} courses
-                            </p>
-                        </a>
-                    </div>
-
-                    @if(!$loop->last)
-                        {{-- Desktop: horizontal arrow between stages --}}
-                        <div class="col-lg-auto d-none d-lg-flex align-items-center justify-content-center el-path-arrow">
-                            <i class="bi bi-chevron-right"></i>
-                        </div>
-                        {{-- Mobile/tablet: vertical arrow between stacked stages --}}
-                        <div class="col-12 d-lg-none text-center el-path-arrow-vertical">
-                            <i class="bi bi-chevron-down"></i>
-                        </div>
-                    @endif
+                        @endif
+                    </a>
                 @endforeach
             </div>
         @else
@@ -75,88 +93,111 @@
 </section>
 
 <style>
-    /* ─── LEARNING PATHS: STAGE CARDS ─────────────────────── */
-    .el-path-card {
-        background-color: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 1rem;
-        padding: 2.25rem 1.25rem 2rem;
+    /* ─── ROADMAP: COLUMN GRID (uneven "skyline", bottom-aligned) ─ */
+    .el-roadmap-columns {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 2.5rem 1.25rem;
+        align-items: end;
+    }
+
+    .el-roadmap-path {
+        text-decoration: none;
+        display: block;
+    }
+
+    /* ─── LADDER: bottom-to-top course sequence ───────────── */
+    .el-roadmap-ladder {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .el-roadmap-course {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: rgba(255,255,255,0.85);
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.55rem 1rem;
+        border-radius: 8px;
         text-align: center;
-        transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+        width: 100%;
+        transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
 
-    .el-path-card:hover {
-        transform: translateY(-4px);
-        border-color: var(--gold);
-        background-color: rgba(255, 255, 255, 0.06);
+    .el-roadmap-arrow {
+        color: var(--gold);
+        opacity: 0.5;
+        font-size: 0.85rem;
+        line-height: 1;
+        transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    /* ─── STAGE NUMBER BADGE (overlaps the icon circle) ───── */
-    .el-path-icon-wrap {
-        position: relative;
-        width: fit-content;
-        margin: 0 auto 0.75rem;
-    }
-
-    .el-path-stage-badge {
-        position: absolute;
-        top: -6px;
-        right: -6px;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
+    .el-roadmap-summit {
         background: var(--gold);
         color: var(--dark);
         font-family: 'IM Fell English', serif;
-        font-size: 0.8rem;
         font-weight: 700;
+        font-size: 0.95rem;
+        padding: 0.75rem 1.1rem;
+        border-radius: 10px;
+        text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.35);
-        border: 2px solid var(--dark);
+        gap: 0.4rem;
+        width: 100%;
+        box-shadow: 0 8px 24px rgba(196,168,64,0.25);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .el-path-stage-label {
-        display: block;
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 0.4rem;
+    /* Hover: light up the whole climb, lift the summit */
+    .el-roadmap-path:hover .el-roadmap-course {
+        background: rgba(196,168,64,0.1);
+        border-color: var(--gold);
+        color: #fff;
     }
 
-    /* ─── ARROWS BETWEEN STAGES ────────────────────────────── */
-    .el-path-arrow {
-        color: rgba(255,255,255,0.25);
-        font-size: 1.4rem;
-        padding: 0 0.25rem;
+    .el-roadmap-path:hover .el-roadmap-arrow {
+        opacity: 1;
+        transform: translateY(-2px);
     }
 
-    .el-path-arrow-vertical {
-        color: rgba(255,255,255,0.25);
-        font-size: 1.3rem;
-        padding: 0.1rem 0;
+    .el-roadmap-path:hover .el-roadmap-summit {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(196,168,64,0.4);
     }
 
-    /* ─── WAYPOINT FLOATING ANIMATION ──────────────────────── */
-    .el-path-waypoint {
-        animation: el-float-waypoint 4s ease-in-out infinite;
+    /* ─── FALLBACK CARD (path with no course breakdown yet) ─ */
+    .el-roadmap-fallback {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+        padding: 2rem 1.25rem;
+        text-align: center;
+        transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
-    @keyframes el-float-waypoint {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-6px); }
+    .el-roadmap-path:hover .el-roadmap-fallback {
+        border-color: var(--gold);
+        transform: translateY(-4px);
     }
 
-    /* Accessibility: Respect user motion preferences */
+    @media (max-width: 767px) {
+        .el-roadmap-columns {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-        .el-path-card,
-        .el-path-waypoint {
+        .el-roadmap-course,
+        .el-roadmap-arrow,
+        .el-roadmap-summit,
+        .el-roadmap-fallback {
             transition: none;
-            animation: none;
-            transform: none !important;
         }
     }
 </style>
