@@ -16,8 +16,8 @@ Route::post('/client/login', function (Request $request) {
     $username = $request->input('username');
     $password = $request->input('password');
 
-    // Simple hardcoded auth: username "client", password "client"
     if ($username === 'client' && $password === 'client') {
+        session()->forget('parent_logged_in');
         session(['client_logged_in' => true]);
         session(['client_profile' => ['username' => 'Client User', 'picture' => 'bi-person-circle']]);
         return redirect('/');
@@ -57,13 +57,15 @@ Route::post('/auth/register', function (Request $request) {
             }
         }
         
+        session()->forget('parent_logged_in');
         session(['client_logged_in' => true]);
         session(['client_profile' => ['username' => 'New Client', 'picture' => 'bi-person']]);
-        return redirect('/client/dashboard');
+        return redirect('/');
     } else {
+        session()->forget('client_logged_in');
         session(['parent_logged_in' => true]);
         session(['parent_profile' => ['username' => 'New Parent', 'picture' => 'bi-person-heart']]);
-        return redirect('/parent/dashboard');
+        return redirect('/');
     }
 });
 

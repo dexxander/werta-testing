@@ -70,17 +70,39 @@
 
         <div class="nav-actions">
             <div class="account-dropdown">
-                <button class="btn-account">
-                    <i class="bi bi-person-circle"></i> Account <i class="bi bi-chevron-down" style="font-size:0.7rem;"></i>
-                </button>
-                <div class="account-dropdown-menu">
-                    <div class="account-dropdown-menu-inner">
-                        <a href="{{ url('/parent/login') }}"><i class="bi bi-person-heart"></i> Parent Sign In</a>
-                        <a href="{{ url('/client/login') }}"><i class="bi bi-person"></i> Client Sign In</a>
-                        <hr class="divider">
-                        <a href="#"><i class="bi bi-person-plus"></i> Register</a>
+                @if(session('client_logged_in') || session('parent_logged_in'))
+                    @php
+                        $role = session('client_logged_in') ? 'Client' : 'Parent';
+                        $dashboardUrl = session('client_logged_in') ? '/client/dashboard' : '/parent/dashboard';
+                        $logoutUrl = session('client_logged_in') ? '/client/logout' : '/parent/logout';
+                        $profile = session(strtolower($role) . '_profile', [
+                            'username' => $role . ' User',
+                            'picture' => 'bi-person-circle'
+                        ]);
+                    @endphp
+                    <button class="btn-account">
+                        <i class="bi {{ $profile['picture'] }}"></i> {{ $profile['username'] }} ({{ $role }}) <i class="bi bi-chevron-down" style="font-size:0.7rem;"></i>
+                    </button>
+                    <div class="account-dropdown-menu">
+                        <div class="account-dropdown-menu-inner">
+                            <a href="{{ $dashboardUrl }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                            <hr class="divider">
+                            <a href="{{ $logoutUrl }}"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <button class="btn-account">
+                        <i class="bi bi-person-circle"></i> Account <i class="bi bi-chevron-down" style="font-size:0.7rem;"></i>
+                    </button>
+                    <div class="account-dropdown-menu">
+                        <div class="account-dropdown-menu-inner">
+                            <a href="{{ url('/parent/login') }}"><i class="bi bi-person-heart"></i> Parent Sign In</a>
+                            <a href="{{ url('/client/login') }}"><i class="bi bi-person"></i> Client Sign In</a>
+                            <hr class="divider">
+                            <a href="{{ url('/auth/register') }}"><i class="bi bi-person-plus"></i> Register</a>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

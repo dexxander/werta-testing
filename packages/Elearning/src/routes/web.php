@@ -8,9 +8,22 @@ Route::get('/elearning/overview', [ElearningController::class, 'overview'])->nam
 Route::get('/elearning/courses', [ElearningController::class, 'courses'])->name('elearning.courses');
 Route::get('/elearning/category/{slug}', [ElearningController::class, 'categoryCourses'])->name('elearning.category');
 Route::get('/elearning/paths', [ElearningController::class, 'paths'])->name('elearning.paths');
-Route::get('/elearning/dashboard', [ElearningController::class, 'dashboard'])->name('elearning.dashboard');
-Route::get('/elearning/my-courses', [ElearningController::class, 'myCourses'])->name('elearning.my-courses');
-Route::get('/elearning/course/{id}/content', [ElearningController::class, 'courseContent'])->name('elearning.course-content');
+Route::middleware('web')->group(function () {
+    $clientGuard = function ($method) {
+        return function ($id = null) use ($method) {
+            if (!session('client_logged_in')) {
+                return redirect('/client/login')->with('error', 'Only clients can access this page.');
+            }
+            $controller = app(ElearningController::class);
+            return $id ? $controller->$method($id) : $controller->$method();
+        };
+    };
+
+    Route::get('/elearning/dashboard', $clientGuard('dashboard'))->name('elearning.dashboard');
+    Route::get('/elearning/my-courses', $clientGuard('myCourses'))->name('elearning.my-courses');
+    Route::get('/elearning/course/{id}/content', $clientGuard('courseContent'))->name('elearning.course-content');
+});
+
 Route::get('/elearning/instructors', function () { return redirect()->route('elearning.index'); })->name('elearning.instructors');
 Route::get('/elearning/pricing', [ElearningController::class, 'pricing'])->name('elearning.pricing');
 Route::get('/elearning/checkout', [ElearningController::class, 'checkout'])->name('elearning.checkout');

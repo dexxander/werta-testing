@@ -17,8 +17,8 @@ Route::post('/parent/login', function (Request $request) {
     $username = $request->input('username');
     $password = $request->input('password');
 
-    // Simple hardcoded auth: username "parent", password "parent"
     if ($username === 'parent' && $password === 'parent') {
+        session()->forget('client_logged_in');
         session(['parent_logged_in' => true]);
         session(['parent_profile' => ['username' => 'Parent User', 'picture' => 'bi-person-heart']]);
         return redirect('/');
