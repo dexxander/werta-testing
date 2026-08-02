@@ -102,7 +102,11 @@
                                 <span><i class="bi bi-people"></i> {{ $course['students'] ?? 0 }}</span>
                             </div>
                             <div style="margin-top:auto;">
-                                <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
+                                @if(session('client_logged_in'))
+                                    <button onclick="openElearningSuccessModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
+                                @else
+                                    <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -119,7 +123,7 @@
     </div>
 </section>
 
-{{-- Custom Authentication Modal --}}
+{{-- Authentication Modal (for non-clients) --}}
 <div id="elearningEnrollModal" class="el-modal-overlay">
     <div class="el-modal-content el-card">
         <button class="el-modal-close" onclick="closeElearningModal()"><i class="bi bi-x-lg"></i></button>
@@ -127,18 +131,35 @@
             <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
                 <i class="bi bi-person-lock" style="font-size:2rem;color:var(--gold);"></i>
             </div>
-            <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Authentication Required</h4>
-            <p style="color:var(--muted);font-size:0.95rem;margin-bottom:2rem;">Please log in using a client account to enroll in courses and track your progress.</p>
+            <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Client Access Only</h4>
+            <p style="color:var(--muted);font-size:0.95rem;margin-bottom:2rem;">Only Client accounts can enroll in courses. Please log in using a Client account to continue.</p>
             <div style="display:flex;gap:1rem;justify-content:center;">
                 <button onclick="closeElearningModal()" class="el-btn-outline" style="padding:0.75rem 1.5rem;">Cancel</button>
-                <a href="{{ url('/client/login') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Login Now</a>
+                <a href="{{ url('/client/login') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Client Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- Success Modal (for clients) --}}
+<div id="elearningSuccessModal" class="el-modal-overlay">
+    <div class="el-modal-content el-card">
+        <button class="el-modal-close" onclick="closeElearningSuccessModal()"><i class="bi bi-x-lg"></i></button>
+        <div class="text-center">
+            <div style="width:64px;height:64px;background:rgba(40,199,64,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+                <i class="bi bi-check-circle-fill" style="font-size:2rem;color:#28c740;"></i>
+            </div>
+            <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Enrolled Successfully!</h4>
+            <p style="color:var(--muted);font-size:0.95rem;margin-bottom:2rem;">You have been enrolled in this course. Head to your dashboard to start learning.</p>
+            <div style="display:flex;gap:1rem;justify-content:center;">
+                <button onclick="closeElearningSuccessModal()" class="el-btn-outline" style="padding:0.75rem 1.5rem;">Close</button>
+                <a href="{{ route('elearning.my-courses') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Go to My Courses</a>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    /* Prevent duplicate styles if this modal is rendered multiple times */
     .el-modal-overlay {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(44,36,22,0.6); z-index: 9999;
@@ -162,8 +183,8 @@
 </style>
 
 <script>
-    if (typeof openElearningModal !== 'function') {
-        function openElearningModal() { document.getElementById('elearningEnrollModal').classList.add('active'); }
-        function closeElearningModal() { document.getElementById('elearningEnrollModal').classList.remove('active'); }
-    }
+    function openElearningModal() { document.getElementById('elearningEnrollModal').classList.add('active'); }
+    function closeElearningModal() { document.getElementById('elearningEnrollModal').classList.remove('active'); }
+    function openElearningSuccessModal() { document.getElementById('elearningSuccessModal').classList.add('active'); }
+    function closeElearningSuccessModal() { document.getElementById('elearningSuccessModal').classList.remove('active'); }
 </script>

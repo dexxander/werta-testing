@@ -6,11 +6,16 @@
     <div class="mb-6 sm:mb-8 flex justify-between items-end">
         <div>
             <h1 class="text-2xl sm:text-3xl font-bold text-[#2C2416]">Parent Overview</h1>
-            <p class="text-sm text-gray-500 mt-1">Monitor your children's mental wellness and platform activity.</p>
+            <p class="text-sm text-gray-500 mt-1">Welcome back, {{ session('parent_profile.username', 'Parent User') }}. Monitor your children's mental wellness and platform activity.</p>
         </div>
-        <button @click="isModalOpen = true" class="hidden sm:flex items-center gap-2 bg-[#C4A840] hover:bg-[#7B6B35] text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
-            <i class="bi bi-plus-lg"></i> Register Child
-        </button>
+        <div class="flex gap-2">
+            <button onclick="openParentProfileModal()" class="hidden sm:flex items-center gap-2 bg-white hover:bg-gray-50 text-[#2C2416] px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm border border-[#C4A840]/20">
+                <i class="bi bi-pencil-square"></i> Edit Profile
+            </button>
+            <button @click="isModalOpen = true" class="hidden sm:flex items-center gap-2 bg-[#C4A840] hover:bg-[#7B6B35] text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
+                <i class="bi bi-plus-lg"></i> Register Child
+            </button>
+        </div>
     </div>
 
     <!-- KPI Cards -->
@@ -160,4 +165,38 @@
         </div>
     </div>
 </div>
+
+<!-- Parent Edit Profile Modal -->
+<div id="parentProfileModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(44,36,22,0.6); z-index:9999; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
+    <div style="background:#fff; width:90%; max-width:400px; border-radius:12px; padding:2rem; position:relative; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+        <button onclick="closeParentProfileModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.2rem; cursor:pointer; color:#6c757d;"><i class="bi bi-x-lg"></i></button>
+        
+        <h3 style="font-size:1.25rem; font-weight:700; color:#2c2416; margin-bottom:1.5rem; font-family:'IM Fell English',serif;">Edit Profile</h3>
+        
+        <form action="/parent/profile" method="POST">
+            @csrf
+            <div style="margin-bottom:1.2rem;">
+                <label style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.5rem; color:#2c2416;">Username</label>
+                <input type="text" name="username" value="{{ session('parent_profile.username', 'Parent User') }}" required style="width:100%; padding:0.75rem; border:1px solid #ddd; border-radius:6px;">
+            </div>
+            
+            <div style="margin-bottom:1.5rem;">
+                <label style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.5rem; color:#2c2416;">Profile Icon</label>
+                <select name="picture" style="width:100%; padding:0.75rem; border:1px solid #ddd; border-radius:6px; background:#fff;">
+                    <option value="bi-person-heart" {{ session('parent_profile.picture') === 'bi-person-heart' ? 'selected' : '' }}>Heart Person</option>
+                    <option value="bi-person-circle" {{ session('parent_profile.picture') === 'bi-person-circle' ? 'selected' : '' }}>Circle Person</option>
+                    <option value="bi-emoji-smile" {{ session('parent_profile.picture') === 'bi-emoji-smile' ? 'selected' : '' }}>Smiley</option>
+                    <option value="bi-emoji-sunglasses" {{ session('parent_profile.picture') === 'bi-emoji-sunglasses' ? 'selected' : '' }}>Sunglasses</option>
+                </select>
+            </div>
+            
+            <button type="submit" style="width:100%; padding:0.75rem; background:#c4a840; color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openParentProfileModal() { document.getElementById('parentProfileModal').style.display = 'flex'; }
+    function closeParentProfileModal() { document.getElementById('parentProfileModal').style.display = 'none'; }
+</script>
 @endsection

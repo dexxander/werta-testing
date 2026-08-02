@@ -20,6 +20,7 @@ Route::post('/parent/login', function (Request $request) {
     // Simple hardcoded auth: username "parent", password "parent"
     if ($username === 'parent' && $password === 'parent') {
         session(['parent_logged_in' => true]);
+        session(['parent_profile' => ['username' => 'Parent User', 'picture' => 'bi-person-heart']]);
         return redirect('/parent/dashboard');
     }
 
@@ -29,13 +30,26 @@ Route::post('/parent/login', function (Request $request) {
 // Logout
 Route::get('/parent/logout', function () {
     session()->forget('parent_logged_in');
+    session()->forget('parent_profile');
     return redirect('/');
+});
+
+// Handle Profile Update
+Route::post('/parent/profile', function (Request $request) {
+    session(['parent_profile' => [
+        'username' => $request->input('username', 'Parent User'),
+        'picture' => $request->input('picture', 'bi-person-heart')
+    ]]);
+    return redirect('/parent/dashboard');
 });
 
 // Protected dashboard routes — redirect to login if not authenticated
 Route::middleware('web')->group(function () {
     $guard = function ($view) {
         return function () use ($view) {
+            if (session('client_logged_in') && !session('parent_logged_in')) {
+                return redirect('/client/dashboard');
+            }
             if (!session('parent_logged_in')) {
                 return redirect('/parent/login');
             }

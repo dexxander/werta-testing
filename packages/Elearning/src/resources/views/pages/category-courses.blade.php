@@ -61,7 +61,11 @@
                                 <span><i class="bi bi-people"></i> {{ $course['students'] }}</span>
                             </div>
                             <div style="margin-top:auto;">
-                                <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
+                                @if(session('client_logged_in'))
+                                    <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
+                                @else
+                                    <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -82,15 +86,27 @@
     <div class="el-modal-content el-card">
         <button class="el-modal-close" onclick="closeElearningModal()"><i class="bi bi-x-lg"></i></button>
         <div class="text-center">
-            <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
-                <i class="bi bi-person-lock" style="font-size:2rem;color:var(--gold);"></i>
-            </div>
-            <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Authentication Required</h4>
-            <p style="color:var(--muted);font-size:0.95rem;margin-bottom:2rem;">Please log in using a client account to enroll in courses and track your progress.</p>
-            <div style="display:flex;gap:1rem;justify-content:center;">
-                <button onclick="closeElearningModal()" class="el-btn-outline" style="padding:0.75rem 1.5rem;">Cancel</button>
-                <a href="{{ url('/client/login') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Login Now</a>
-            </div>
+            @if(session('client_logged_in'))
+                <div style="width:64px;height:64px;background:rgba(40,199,64,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+                    <i class="bi bi-check-circle-fill" style="font-size:2rem;color:#28c740;"></i>
+                </div>
+                <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Enrolled Successfully!</h4>
+                <p style="color:var(--muted);font-size:0.95rem;margin-bottom:2rem;">You have been enrolled in this course. Head to your dashboard to start learning.</p>
+                <div style="display:flex;gap:1rem;justify-content:center;">
+                    <button onclick="closeElearningModal()" class="el-btn-outline" style="padding:0.75rem 1.5rem;">Close</button>
+                    <a href="{{ route('elearning.my-courses') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Go to My Courses</a>
+                </div>
+            @else
+                <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+                    <i class="bi bi-person-lock" style="font-size:2rem;color:var(--gold);"></i>
+                </div>
+                <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Client Access Only</h4>
+                <p style="color:var(--muted);font-size:0.95rem;margin-bottom:2rem;">Only Client accounts can enroll in courses. Please log in using a Client account to continue.</p>
+                <div style="display:flex;gap:1rem;justify-content:center;">
+                    <button onclick="closeElearningModal()" class="el-btn-outline" style="padding:0.75rem 1.5rem;">Cancel</button>
+                    <a href="{{ url('/client/login') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Client Login</a>
+                </div>
+            @endif
         </div>
     </div>
 </div>

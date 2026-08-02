@@ -5,7 +5,12 @@
     <div class="mb-6 sm:mb-8 flex justify-between items-end">
         <div>
             <h1 class="text-2xl sm:text-3xl font-bold text-[#2C2416]">Client Overview</h1>
-            <p class="text-sm text-gray-500 mt-1">Welcome back. Here's a summary of your mental wellness journey.</p>
+            <p class="text-sm text-gray-500 mt-1">Welcome back, {{ session('client_profile.username', 'Client User') }}. Here's a summary of your mental wellness journey.</p>
+        </div>
+        <div>
+            <button onclick="openProfileModal()" class="px-4 py-2 bg-[#C4A840] text-white rounded-lg hover:bg-[#b09638] transition font-bold shadow-sm">
+                <i class="bi bi-pencil-square"></i> Edit Profile
+            </button>
         </div>
     </div>
 
@@ -101,4 +106,38 @@
         </div>
     </div>
 </div>
+
+<!-- Edit Profile Modal -->
+<div id="profileModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(44,36,22,0.6); z-index:9999; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
+    <div style="background:#fff; width:90%; max-width:400px; border-radius:12px; padding:2rem; position:relative; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+        <button onclick="closeProfileModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.2rem; cursor:pointer; color:#6c757d;"><i class="bi bi-x-lg"></i></button>
+        
+        <h3 style="font-size:1.25rem; font-weight:700; color:#2c2416; margin-bottom:1.5rem; font-family:'IM Fell English',serif;">Edit Profile</h3>
+        
+        <form action="/client/profile" method="POST">
+            @csrf
+            <div style="margin-bottom:1.2rem;">
+                <label style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.5rem; color:#2c2416;">Username</label>
+                <input type="text" name="username" value="{{ session('client_profile.username', 'Client User') }}" required style="width:100%; padding:0.75rem; border:1px solid #ddd; border-radius:6px;">
+            </div>
+            
+            <div style="margin-bottom:1.5rem;">
+                <label style="display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.5rem; color:#2c2416;">Profile Icon</label>
+                <select name="picture" style="width:100%; padding:0.75rem; border:1px solid #ddd; border-radius:6px; background:#fff;">
+                    <option value="bi-person-circle" {{ session('client_profile.picture') === 'bi-person-circle' ? 'selected' : '' }}>Circle Person</option>
+                    <option value="bi-person-square" {{ session('client_profile.picture') === 'bi-person-square' ? 'selected' : '' }}>Square Person</option>
+                    <option value="bi-emoji-smile" {{ session('client_profile.picture') === 'bi-emoji-smile' ? 'selected' : '' }}>Smiley</option>
+                    <option value="bi-emoji-sunglasses" {{ session('client_profile.picture') === 'bi-emoji-sunglasses' ? 'selected' : '' }}>Sunglasses</option>
+                </select>
+            </div>
+            
+            <button type="submit" style="width:100%; padding:0.75rem; background:#c4a840; color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openProfileModal() { document.getElementById('profileModal').style.display = 'flex'; }
+    function closeProfileModal() { document.getElementById('profileModal').style.display = 'none'; }
+</script>
 @endsection
