@@ -20,7 +20,7 @@ Route::post('/client/login', function (Request $request) {
     if ($username === 'client' && $password === 'client') {
         session(['client_logged_in' => true]);
         session(['client_profile' => ['username' => 'Client User', 'picture' => 'bi-person-circle']]);
-        return redirect('/client/dashboard');
+        return redirect('/');
     }
 
     return redirect('/client/login')->with('error', 'Invalid username or password.');
@@ -33,10 +33,11 @@ Route::get('/client/logout', function () {
     return redirect('/');
 });
 
-// Registration routes
-Route::get('/auth/register', function () {
-    if (session('client_logged_in')) return redirect('/client/dashboard');
-    if (session('parent_logged_in')) return redirect('/parent/dashboard');
+// Custom Package Registration Route
+Route::get('/auth/register', function (\Illuminate\Http\Request $request) {
+    if (session('client_logged_in') || session('parent_logged_in')) {
+        return redirect('/');
+    }
     return view('clientdashboard::register');
 });
 

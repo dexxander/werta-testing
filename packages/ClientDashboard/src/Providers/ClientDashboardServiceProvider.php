@@ -16,8 +16,8 @@ class ClientDashboardServiceProvider extends ServiceProvider
         // Load Views (accessible via 'clientdashboard::viewname')
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'clientdashboard');
 
-        // Push inline global middleware to dynamically inject the authenticated navbar
-        $kernel->pushMiddleware(AuthNavbarInjector::class);
+        // Push middleware to the 'web' group so it runs AFTER session start
+        $this->app['router']->pushMiddlewareToGroup('web', AuthNavbarInjector::class);
     }
 
     public function register()

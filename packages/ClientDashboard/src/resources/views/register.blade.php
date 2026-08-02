@@ -1,4 +1,4 @@
-@extends('clientdashboard::layout')
+@extends('layouts.app')
 
 @section('content')
 <div style="min-height: 80vh; display: flex; align-items: center; justify-content: center; background: #fdfbf7;">
