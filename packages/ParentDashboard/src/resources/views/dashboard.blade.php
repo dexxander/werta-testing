@@ -1,6 +1,37 @@
 @extends('parentdashboard::layout')
 
 @section('content')
+@php
+    // Safe defaults keep the dashboard's empty states working without demo data.
+    $dashboard_stats = [];
+    $assessment_scores = [];
+    $weekly_activity = [];
+    $recent_activities = [];
+@endphp
+
+{{-- ============================================================
+     TEMP DUMMY DATA — FOR PREVIEW ONLY
+     Delete this entire block to return the dashboard to its empty states.
+     The safe defaults above ensure the view still works after removal.
+     ============================================================ --}}
+@php
+    // TEMP DUMMY DATA START
+    $dashboard_stats = [
+        'assessments_completed' => 12,
+        'modules_finished' => 7,
+        'upcoming_appointments' => 2,
+        'action_required' => 1,
+    ];
+    $assessment_scores = [68, 74, 79, 83, 87];
+    $weekly_activity = [3, 4.5, 2, 5, 6, 2.5, 1];
+    $recent_activities = [
+        ['date' => '01 Sep 2026', 'child' => 'Aiman', 'type' => 'Wellness Assessment', 'status' => 'Completed'],
+        ['date' => '30 Aug 2026', 'child' => 'Sofia', 'type' => 'E-Learning Module', 'status' => 'In Progress'],
+        ['date' => '29 Aug 2026', 'child' => 'Aiman', 'type' => 'Counselling Appointment', 'status' => 'Upcoming'],
+    ];
+    // TEMP DUMMY DATA END
+@endphp
+
 <div x-data="{ isModalOpen: false }" @open-add-child.window="isModalOpen = true">
     
     <div class="mb-6 sm:mb-8 flex justify-between items-end">
@@ -21,7 +52,7 @@
             </div>
             <div>
                 <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Assessments Completed</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">0</h3>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">{{ $dashboard_stats['assessments_completed'] ?? 0 }}</h3>
             </div>
         </div>
         
@@ -31,7 +62,7 @@
             </div>
             <div>
                 <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Modules Finished</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">0</h3>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">{{ $dashboard_stats['modules_finished'] ?? 0 }}</h3>
             </div>
         </div>
 
@@ -41,7 +72,7 @@
             </div>
             <div>
                 <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Upcoming Appointments</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">0</h3>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">{{ $dashboard_stats['upcoming_appointments'] ?? 0 }}</h3>
             </div>
         </div>
 
@@ -51,7 +82,7 @@
             </div>
             <div>
                 <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Action Required</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">0</h3>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">{{ $dashboard_stats['action_required'] ?? 0 }}</h3>
             </div>
         </div>
     </div>
@@ -61,20 +92,14 @@
         <div class="bg-white rounded-2xl p-6 border border-[#C4A840]/20 shadow-sm">
             <h2 class="text-lg font-bold text-[#2C2416] mb-6">Wellness Assessment Score Trend</h2>
             <div class="h-72 w-full flex items-center justify-center">
-                <div class="text-center text-gray-400">
-                    <i class="bi bi-bar-chart text-5xl"></i>
-                    <p class="text-sm mt-2">No assessment data available yet.</p>
-                </div>
+                @if(!empty($assessment_scores))<div class="w-full flex items-end justify-center gap-2 h-48">@foreach($assessment_scores as $score)<div class="w-8 bg-[#C4A840] rounded-t" style="height:{{ min(100, max(0, $score)) }}%;" title="{{ $score }}%"></div>@endforeach</div>@else<div class="text-center text-gray-400"><i class="bi bi-bar-chart text-5xl"></i><p class="text-sm mt-2">No assessment data available yet.</p></div>@endif
             </div>
         </div>
 
         <div class="bg-white rounded-2xl p-6 border border-[#C4A840]/20 shadow-sm">
             <h2 class="text-lg font-bold text-[#2C2416] mb-6">Platform Activity (Hours / Week)</h2>
             <div class="h-72 w-full flex items-center justify-center">
-                <div class="text-center text-gray-400">
-                    <i class="bi bi-graph-up text-5xl"></i>
-                    <p class="text-sm mt-2">No activity data available yet.</p>
-                </div>
+                @if(!empty($weekly_activity))<div class="w-full flex items-end justify-center gap-2 h-48">@foreach($weekly_activity as $hours)<div class="w-8 bg-[#7B6B35] rounded-t" style="height:{{ min(100, max(0, $hours * 15)) }}%;" title="{{ $hours }} hours"></div>@endforeach</div>@else<div class="text-center text-gray-400"><i class="bi bi-graph-up text-5xl"></i><p class="text-sm mt-2">No activity data available yet.</p></div>@endif
             </div>
         </div>
     </div>
@@ -95,12 +120,11 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    <tr>
-                        <td colspan="5" class="px-4 py-12 text-center text-gray-400">
-                            <i class="bi bi-inbox text-4xl block mb-2"></i>
-                            No activities recorded yet. Register a child account to get started.
-                        </td>
-                    </tr>
+                    @forelse($recent_activities as $activity)
+                        <tr><td class="px-4 py-3">{{ $activity['date'] ?? '' }}</td><td class="px-4 py-3">{{ $activity['child'] ?? '' }}</td><td class="px-4 py-3">{{ $activity['type'] ?? '' }}</td><td class="px-4 py-3">{{ $activity['status'] ?? '' }}</td><td class="px-4 py-3 text-right">View</td></tr>
+                    @empty
+                        <tr><td colspan="5" class="px-4 py-12 text-center text-gray-400"><i class="bi bi-inbox text-4xl block mb-2"></i>No activities recorded yet. Register a child account to get started.</td></tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
