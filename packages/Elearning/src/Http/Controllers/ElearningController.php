@@ -41,6 +41,11 @@ class ElearningController extends Controller
         return view('elearning::pages.course-content', $this->sharedData() + ['course_id' => $id]);
     }
 
+    public function coursePreview($id)
+    {
+        return view('elearning::pages.course-preview', $this->sharedData() + ['course_id' => $id]);
+    }
+
     public function categoryCourses($slug)
     {
         return view('elearning::pages.category-courses', $this->sharedData() + ['category_slug' => $slug]);

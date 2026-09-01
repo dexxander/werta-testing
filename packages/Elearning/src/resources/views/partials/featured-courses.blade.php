@@ -13,6 +13,7 @@
     // TEMP DUMMY DATA START
     $featured_courses = [
         [
+            'id' => 1,
             'title' => 'Complete Web Development Bootcamp',
             'instructor' => 'James Carter',
             'difficulty' => 'Beginner',
@@ -20,8 +21,10 @@
             'duration' => '32h',
             'students' => 4210,
             'image' => null,
+            'topics' => ['HTML5 Foundations', 'CSS Layouts and Flexbox', 'Responsive Web Design', 'JavaScript Essentials', 'Building a Final Project'],
         ],
         [
+            'id' => 2,
             'title' => 'Data Science & Machine Learning A-Z',
             'instructor' => 'Priya Nair',
             'difficulty' => 'Intermediate',
@@ -29,8 +32,10 @@
             'duration' => '28h',
             'students' => 3185,
             'image' => null,
+            'topics' => ['Python for Data Analysis', 'Statistics Fundamentals', 'Data Cleaning', 'Machine Learning Models', 'Model Evaluation'],
         ],
         [
+            'id' => 3,
             'title' => 'UI/UX Design Fundamentals',
             'instructor' => 'Sarah Chen',
             'difficulty' => 'Beginner',
@@ -38,8 +43,10 @@
             'duration' => '18h',
             'students' => 2674,
             'image' => null,
+            'topics' => ['User Research', 'Personas and User Flows', 'Wireframing', 'Figma Prototyping', 'Usability Testing'],
         ],
         [
+            'id' => 4,
             'title' => 'Digital Marketing Mastery',
             'instructor' => 'Ahmad Faiz',
             'difficulty' => 'Beginner',
@@ -47,8 +54,10 @@
             'duration' => '15h',
             'students' => 1932,
             'image' => null,
+            'topics' => ['Marketing Strategy', 'SEO Fundamentals', 'Content Marketing', 'Social Media Campaigns', 'Analytics and Reporting'],
         ],
         [
+            'id' => 5,
             'title' => 'Advanced React & Next.js',
             'instructor' => 'Elena Ruiz',
             'difficulty' => 'Advanced',
@@ -56,8 +65,10 @@
             'duration' => '24h',
             'students' => 1547,
             'image' => null,
+            'topics' => ['React Architecture', 'Next.js Routing', 'Server Components', 'Data Fetching', 'Deployment'],
         ],
         [
+            'id' => 6,
             'title' => 'Cybersecurity Essentials',
             'instructor' => 'Marcus Lee',
             'difficulty' => 'Intermediate',
@@ -65,6 +76,7 @@
             'duration' => '20h',
             'students' => 2098,
             'image' => null,
+            'topics' => ['Network Security', 'Threat Detection', 'Identity and Access', 'Incident Response', 'Security Best Practices'],
         ],
     ];
     // TEMP DUMMY DATA END
@@ -94,7 +106,7 @@
                             <div style="display:flex;align-items:center;gap:6px;margin-bottom:0.6rem;">
                                 <span style="font-size:0.75rem;font-weight:700;background:rgba(196,168,64,0.15);color:var(--primary);padding:3px 10px;border-radius:4px;">{{ $course['difficulty'] ?? 'Beginner' }}</span>
                             </div>
-                            <h5 style="font-weight:700;font-size:1.05rem;margin-bottom:0.5rem;">{{ $course['title'] }}</h5>
+                            <h5 style="font-weight:700;font-size:1.05rem;margin-bottom:0.5rem;"><a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" style="color:inherit;text-decoration:none;">{{ $course['title'] }}</a></h5>
                             <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.8rem;">{{ $course['instructor'] ?? 'Instructor' }}</p>
                             <div style="display:flex;align-items:center;gap:1rem;font-size:0.8rem;color:var(--muted);margin-bottom:1rem;">
                                 <span><i class="bi bi-star-fill" style="color:var(--gold);"></i> {{ $course['rating'] ?? '0.0' }}</span>
@@ -102,11 +114,14 @@
                                 <span><i class="bi bi-people"></i> {{ $course['students'] ?? 0 }}</span>
                             </div>
                             <div style="margin-top:auto;">
-                                @if(session('client_logged_in'))
-                                    <button onclick="openElearningSuccessModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
-                                @else
-                                    <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
-                                @endif
+                                <div style="display:flex;gap:0.6rem;align-items:center;">
+                                    <a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" class="el-btn-outline" style="width:100%;text-align:center;padding:0.65rem 0.8rem;">Preview Course</a>
+                                    @if(session('client_logged_in'))
+                                        <button onclick="openElearningSuccessModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;padding:0.8rem;">Enroll</button>
+                                    @else
+                                        <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;padding:0.8rem;">Enroll</button>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>

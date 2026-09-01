@@ -7,28 +7,34 @@
     
     $category_courses = [
         [
+            'id' => 101,
             'title' => 'Mastering ' . $category_name,
             'instructor' => 'James Carter',
             'difficulty' => 'Beginner',
             'rating' => '4.8',
             'duration' => '32h',
             'students' => 4210,
+            'topics' => ['Introduction to ' . $category_name, 'Core Concepts', 'Practical Techniques', 'Tools and Workflows', 'Final Project'],
         ],
         [
+            'id' => 102,
             'title' => 'Advanced Concepts in ' . $category_name,
             'instructor' => 'Priya Nair',
             'difficulty' => 'Advanced',
             'rating' => '4.9',
             'duration' => '28h',
             'students' => 3185,
+            'topics' => ['Advanced Foundations', 'Professional Workflows', 'Problem Solving', 'Industry Case Studies', 'Capstone Assessment'],
         ],
         [
+            'id' => 103,
             'title' => $category_name . ' for Professionals',
             'instructor' => 'Sarah Chen',
             'difficulty' => 'Intermediate',
             'rating' => '4.7',
             'duration' => '18h',
             'students' => 2674,
+            'topics' => ['Professional Essentials', 'Planning and Strategy', 'Collaboration', 'Quality Standards', 'Portfolio Project'],
         ]
     ];
     // TEMP DUMMY DATA END
@@ -53,14 +59,15 @@
                             <div style="display:flex;align-items:center;gap:6px;margin-bottom:0.6rem;">
                                 <span style="font-size:0.75rem;font-weight:700;background:rgba(196,168,64,0.15);color:var(--primary);padding:3px 10px;border-radius:4px;">{{ $course['difficulty'] }}</span>
                             </div>
-                            <h5 style="font-weight:700;font-size:1.05rem;margin-bottom:0.5rem;">{{ $course['title'] }}</h5>
+                            <h5 style="font-weight:700;font-size:1.05rem;margin-bottom:0.5rem;"><a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" style="color:inherit;text-decoration:none;">{{ $course['title'] }}</a></h5>
                             <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.8rem;">{{ $course['instructor'] }}</p>
                             <div style="display:flex;align-items:center;gap:1rem;font-size:0.8rem;color:var(--muted);margin-bottom:1rem;">
                                 <span><i class="bi bi-star-fill" style="color:var(--gold);"></i> {{ $course['rating'] }}</span>
                                 <span><i class="bi bi-clock"></i> {{ $course['duration'] }}</span>
                                 <span><i class="bi bi-people"></i> {{ $course['students'] }}</span>
                             </div>
-                            <div style="margin-top:auto;">
+                            <div style="margin-top:auto;display:flex;gap:0.6rem;">
+                                <a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" class="el-btn-outline" style="width:100%;text-align:center;padding:0.65rem 0.8rem;">Preview Course</a>
                                 @if(session('client_logged_in'))
                                     <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
                                 @else

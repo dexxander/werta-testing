@@ -8,6 +8,7 @@ Route::get('/elearning/overview', [ElearningController::class, 'overview'])->nam
 Route::get('/elearning/courses', [ElearningController::class, 'courses'])->name('elearning.courses');
 Route::get('/elearning/category/{slug}', [ElearningController::class, 'categoryCourses'])->name('elearning.category');
 Route::get('/elearning/paths', [ElearningController::class, 'paths'])->name('elearning.paths');
+Route::get('/elearning/course/{id}', [ElearningController::class, 'coursePreview'])->name('elearning.course-preview');
 Route::middleware('web')->group(function () {
     $clientGuard = function ($method) {
         return function ($id = null) use ($method) {
