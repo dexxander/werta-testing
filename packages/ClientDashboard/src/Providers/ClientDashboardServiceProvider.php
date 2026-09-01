@@ -20,6 +20,23 @@ class ClientDashboardServiceProvider extends ServiceProvider
 
     public function register()
     {
-        //
+        // Package-local PSR-4 bridge for the imported AdminDashboard package.
+        // This keeps the package usable before the root autoloader is updated.
+        spl_autoload_register(function ($class) {
+            $prefix = 'AdminDashboard\\';
+            if (strncmp($class, $prefix, strlen($prefix)) !== 0) {
+                return;
+            }
+
+            $relative = substr($class, strlen($prefix));
+            $path = __DIR__ . '/../../../AdminDashboard/src/' . str_replace('\\', '/', $relative) . '.php';
+
+            if (is_file($path)) {
+                require_once $path;
+            }
+        });
+
+        // Bootstrap AdminDashboard without edits outside the packages folder.
+        $this->app->register(\AdminDashboard\Providers\AdminDashboardServiceProvider::class);
     }
 }

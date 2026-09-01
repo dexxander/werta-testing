@@ -65,19 +65,24 @@
                 </div>
             </li>
 
-            <li><a href="#">About</a></li>
+            <li><a href="{{ url('/about') }}">About</a></li>
         </ul>
 
         <div class="nav-actions">
             <div class="account-dropdown">
-                @if(session('client_logged_in') || session('parent_logged_in'))
+                @if(session('staff_role') || session('client_logged_in') || session('parent_logged_in'))
                     @php
-                        $role = session('client_logged_in') ? 'Client' : 'Parent';
-                        $dashboardUrl = session('client_logged_in') ? '/client/dashboard' : '/parent/dashboard';
-                        $logoutUrl = session('client_logged_in') ? '/client/logout' : '/parent/logout';
-                        $profile = session(strtolower($role) . '_profile', [
+                        $staffRole = session('staff_role');
+                        $role = $staffRole ? ucfirst($staffRole) : (session('client_logged_in') ? 'Client' : 'Parent');
+                        $dashboardUrl = $staffRole
+                            ? ($staffRole === 'superadmin' ? '/superadmin/dashboard' : '/admin/dashboard')
+                            : (session('client_logged_in') ? '/client/dashboard' : '/parent/dashboard');
+                        $logoutUrl = $staffRole
+                            ? ($staffRole === 'superadmin' ? '/superadmin/logout' : '/admin/logout')
+                            : (session('client_logged_in') ? '/client/logout' : '/parent/logout');
+                        $profile = session($staffRole ? 'staff_profile' : strtolower($role) . '_profile', [
                             'username' => $role . ' User',
-                            'picture' => 'bi-person-circle'
+                            'picture' => $staffRole === 'superadmin' ? 'bi-shield-check' : ($staffRole ? 'bi-shield-lock' : 'bi-person-circle')
                         ]);
                     @endphp
                     <button class="btn-account">
@@ -98,6 +103,8 @@
                         <div class="account-dropdown-menu-inner">
                             <a href="{{ url('/parent/login') }}"><i class="bi bi-person-heart"></i> Parent Sign In</a>
                             <a href="{{ url('/client/login') }}"><i class="bi bi-person"></i> Client Sign In</a>
+                            <a href="{{ url('/admin/login') }}"><i class="bi bi-shield-lock"></i> Admin Sign In</a>
+                            <a href="{{ url('/superadmin/login') }}"><i class="bi bi-shield-check"></i> Superadmin Sign In</a>
                             <hr class="divider">
                             <a href="{{ url('/auth/register') }}"><i class="bi bi-person-plus"></i> Register</a>
                         </div>
