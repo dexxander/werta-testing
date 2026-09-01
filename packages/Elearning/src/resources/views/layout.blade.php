@@ -239,8 +239,27 @@
             opacity: 0;
             transform: translateY(12px);
         }
+
+        /* ─── CONTENT REVEAL ANIMATION ────────────────────── */
+        .el-animate-target {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+            transition-delay: calc(var(--el-animation-order, 0) * 70ms);
+        }
+        .el-animate-target.el-animate-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .el-hero-copy.el-animate-target { transform: translateX(-24px); }
+        .el-hero-visual.el-animate-target { transform: translateX(24px); }
+        .el-hero-copy.el-animate-target.el-animate-visible,
+        .el-hero-visual.el-animate-target.el-animate-visible { transform: translateX(0); }
         @media (prefers-reduced-motion: reduce) {
-            #elearning-body { transition: none; }
+            #elearning-body,
+            .el-animate-target,
+            .el-hero-copy.el-animate-target,
+            .el-hero-visual.el-animate-target { transition: none; transform: none; opacity: 1; }
         }
 
         /* ─── RESPONSIVE ──────────────────────────────────── */
@@ -325,6 +344,45 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+
+            // ─── Scroll reveal animations ───
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let animationObserver = null;
+
+            function initElearningAnimations() {
+                const animationTargets = document.querySelectorAll(
+                    '#elearning-body .el-section, #elearning-body .el-card, #elearning-body .el-pricing-card, ' +
+                    '#elearning-body .el-feature-item, #elearning-body .el-faq-item, #elearning-body .el-roadmap-path, ' +
+                    '.el-hero-copy, .el-hero-visual'
+                );
+
+                if (animationObserver) animationObserver.disconnect();
+
+                animationTargets.forEach(function (element, index) {
+                    element.classList.add('el-animate-target');
+                    element.style.setProperty('--el-animation-order', Math.min(index % 6, 5));
+                });
+
+                if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+                    animationTargets.forEach(function (element) { element.classList.add('el-animate-visible'); });
+                    return;
+                }
+
+                animationObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('el-animate-visible');
+                            animationObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+                animationTargets.forEach(function (element) {
+                    if (!element.classList.contains('el-animate-visible')) animationObserver.observe(element);
+                });
+            }
+
+            initElearningAnimations();
             
             // ─── Hide Instructors link from core navbar ───
             document.querySelectorAll('.elearning-dropdown-menu a').forEach(function(link) {
@@ -352,7 +410,6 @@
 
             // ─── Smooth page-to-page transitions between elearning pages ───
             const body = document.getElementById('elearning-body');
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             let isNavigating = false;
 
             async function navigate(url, pushState) {
@@ -390,6 +447,8 @@
 
                     if (newTitle) document.title = newTitle.textContent;
                     if (pushState) window.history.pushState({}, '', url);
+
+                    initElearningAnimations();
 
                     const freshBody = document.getElementById('elearning-body');
                     if (!prefersReducedMotion) {
