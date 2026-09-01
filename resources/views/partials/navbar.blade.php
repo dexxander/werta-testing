@@ -47,7 +47,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">Counselors</a></li>
             <li><a href="{{ url('/assessment') }}">Assessments</a></li>
-            <li><a href="#">Articles</a></li>
+            <li><a href="{{ route('public.articles') }}">Articles</a></li>
 
             {{-- Replaced E-Learning Link with Hover Dropdown --}}
             <li class="elearning-dropdown">
@@ -70,19 +70,21 @@
 
         <div class="nav-actions">
             <div class="account-dropdown">
-                @if(session('staff_role') || session('client_logged_in') || session('parent_logged_in'))
+                @if(session('staff_role') || session('counselor_logged_in') || session('client_logged_in') || session('parent_logged_in'))
                     @php
                         $staffRole = session('staff_role');
-                        $role = $staffRole ? ucfirst($staffRole) : (session('client_logged_in') ? 'Client' : 'Parent');
+                        $role = $staffRole
+                            ? ucfirst($staffRole)
+                            : (session('counselor_logged_in') ? 'Counselor' : (session('client_logged_in') ? 'Client' : 'Parent'));
                         $dashboardUrl = $staffRole
                             ? ($staffRole === 'superadmin' ? '/superadmin/dashboard' : '/admin/dashboard')
-                            : (session('client_logged_in') ? '/client/dashboard' : '/parent/dashboard');
+                            : (session('counselor_logged_in') ? route('counselor.dashboard') : (session('client_logged_in') ? '/client/dashboard' : '/parent/dashboard'));
                         $logoutUrl = $staffRole
                             ? ($staffRole === 'superadmin' ? '/superadmin/logout' : '/admin/logout')
-                            : (session('client_logged_in') ? '/client/logout' : '/parent/logout');
+                            : (session('counselor_logged_in') ? route('counselor.logout') : (session('client_logged_in') ? '/client/logout' : '/parent/logout'));
                         $profile = session($staffRole ? 'staff_profile' : strtolower($role) . '_profile', [
-                            'username' => $role . ' User',
-                            'picture' => $staffRole === 'superadmin' ? 'bi-shield-check' : ($staffRole ? 'bi-shield-lock' : 'bi-person-circle')
+                            'username' => session('counselor_logged_in') ? session('counselor_name', 'Counselor') : $role . ' User',
+                            'picture' => $staffRole === 'superadmin' ? 'bi-shield-check' : ($staffRole ? 'bi-shield-lock' : (session('counselor_logged_in') ? 'bi-person-badge' : 'bi-person-circle'))
                         ]);
                     @endphp
                     <button class="btn-account">
@@ -103,6 +105,7 @@
                         <div class="account-dropdown-menu-inner">
                             <a href="{{ url('/parent/login') }}"><i class="bi bi-person-heart"></i> Parent Sign In</a>
                             <a href="{{ url('/client/login') }}"><i class="bi bi-person"></i> Client Sign In</a>
+                            <a href="{{ route('counselor.login') }}"><i class="bi bi-person-badge"></i> Counselor Sign In</a>
                             <a href="{{ url('/admin/login') }}"><i class="bi bi-shield-lock"></i> Admin Sign In</a>
                             <a href="{{ url('/superadmin/login') }}"><i class="bi bi-shield-check"></i> Superadmin Sign In</a>
                             <hr class="divider">

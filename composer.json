@@ -26,7 +26,9 @@
             "Database\\Seeders\\": "database/seeders/",
             "Elearning\\": "packages/Elearning/src/",
             "ParentDashboard\\": "packages/ParentDashboard/src/",
-            "ClientDashboard\\": "packages/ClientDashboard/src/"
+            "ClientDashboard\\": "packages/ClientDashboard/src/",
+            "Articles\\": "packages/Articles/src/",
+            "CounselorDashboard\\": "packages/CounselorDashboard/src/"
         }
     },
     "autoload-dev": {
