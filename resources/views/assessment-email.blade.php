@@ -33,7 +33,7 @@
                         View My Results <i class="bi bi-arrow-right"></i>
                     </button>
 
-                    <p class="email-note" id="emailError" style="display:none; color:#c0392b; font-size:0.82rem; margin-top:0.5rem;">
+                    <p class="email-note" id="emailError" style="display:none; color:#c0392b; font-size:var(--text-sm); margin-top:0.5rem;">
                         Please enter a valid email and tick the agreement.
                     </p>
                 </div>
@@ -99,7 +99,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.95rem;
+            font-size: var(--text-base-lg);
             font-weight: 700;
             color: var(--primary);
         }
@@ -109,8 +109,8 @@
         /* ── Container ── */
         .email-container {
             background: var(--cream-light);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
             border: 1px solid rgba(123,107,53,0.1);
             max-width: 820px;
             width: 100%;
@@ -127,13 +127,13 @@
 
         .email-heading {
             font-family: 'IM Fell English', serif;
-            font-size: 1.5rem;
+            font-size: var(--text-xl);
             color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
         .email-sub {
-            font-size: 0.88rem;
+            font-size: var(--text-base);
             color: var(--muted);
             margin-bottom: 1.8rem;
         }
@@ -144,8 +144,8 @@
             width: 100%;
             padding: 0.85rem 1.2rem;
             border: 1.5px solid rgba(123,107,53,0.25);
-            border-radius: 10px;
-            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            font-size: var(--text-base-lg);
             background: #fff;
             color: var(--dark);
             outline: none;
@@ -158,7 +158,7 @@
             display: flex;
             align-items: flex-start;
             gap: 0.7rem;
-            font-size: 0.83rem;
+            font-size: var(--text-sm);
             color: var(--muted);
             line-height: 1.5;
             cursor: pointer;
@@ -172,8 +172,8 @@
             color: #fff;
             border: none;
             padding: 0.85rem;
-            border-radius: 10px;
-            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            font-size: var(--text-base-lg);
             font-weight: 700;
             cursor: pointer;
             width: 100%;
@@ -201,7 +201,7 @@
 
         .stats-heading {
             font-family: 'IM Fell English', serif;
-            font-size: 1.4rem;
+            font-size: var(--text-xl);
             color: var(--dark);
             margin-bottom: 1.8rem;
         }
@@ -217,7 +217,7 @@
         .stat-icon {
             width: 46px; height: 46px;
             background: rgba(123,107,53,0.1);
-            border-radius: 10px;
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -228,12 +228,12 @@
 
         .stat-num {
             font-weight: 700;
-            font-size: 1rem;
+            font-size: var(--text-md);
             color: var(--dark);
             margin-bottom: 0.1rem;
         }
 
-        .stat-desc { font-size: 0.82rem; color: var(--muted); }
+        .stat-desc { font-size: var(--text-sm); color: var(--muted); }
     </style>
 
     <script>

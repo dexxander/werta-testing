@@ -11,11 +11,13 @@
             align-items: center;
         }
 
+        /* NOTE: These .el- prefixed classes are a local copy of the Elearning package's empty-state component.
+           Consolidating them belongs with the deferred design-system merge (Design System Flag) rather than this token pass. */
         .el-empty-state {
             text-align: center;
             padding: 4rem 2rem;
             border: 1.5px dashed rgba(196, 168, 64, 0.35);
-            border-radius: 16px;
+            border-radius: var(--radius-xl);
             background: rgba(196, 168, 64, 0.04);
             max-width: 680px;
             margin: 0 auto;
@@ -25,7 +27,7 @@
             width: 80px;
             height: 80px;
             margin: 0 auto 1.5rem;
-            border-radius: 50%;
+            border-radius: var(--radius-full);
             background: rgba(196, 168, 64, 0.15);
             display: flex;
             align-items: center;
@@ -39,11 +41,11 @@
             font-weight: 700;
             color: var(--dark);
             margin-bottom: 0.75rem;
-            font-size: 2rem;
+            font-size: var(--text-3xl);
         }
 
         .el-empty-state p {
-            font-size: 1rem;
+            font-size: var(--text-md);
             color: var(--muted);
             max-width: 500px;
             margin: 0 auto 2rem;

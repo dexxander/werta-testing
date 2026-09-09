@@ -222,32 +222,32 @@
         .assessment-hero-visual iframe {
             width: 100%;
             height: 520px;
-            border-radius: 16px;
+            border-radius: var(--radius-xl);
             background: transparent;
         }
 
         .assessment-pill {
             display: inline-block;
-            font-size: 0.75rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             letter-spacing: 3px;
             color: rgba(255,255,255,0.85);
             background: rgba(255,255,255,0.15);
             padding: 0.3rem 0.9rem;
-            border-radius: 20px;
+            border-radius: var(--radius-pill);
             margin-bottom: 1.2rem;
         }
 
         .assessment-heading {
             font-family: 'IM Fell English', serif;
-            font-size: 2.8rem;
+            font-size: var(--text-4xl);
             line-height: 1.2;
             color: #ffffff;
             margin-bottom: 1rem;
         }
 
         .assessment-sub {
-            font-size: 1rem;
+            font-size: var(--text-md);
             color: rgba(255,255,255,0.88);
             line-height: 1.7;
             max-width: 480px;
@@ -259,9 +259,9 @@
             background: var(--primary-dark);
             color: #fff;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: var(--text-base-lg);
             padding: 0.85rem 2.2rem;
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
             text-decoration: none;
             transition: background 0.2s;
             margin-bottom: 2rem;
@@ -283,11 +283,11 @@
             align-items: center;
             gap: 0.6rem;
             color: rgba(255,255,255,0.9);
-            font-size: 0.88rem;
+            font-size: var(--text-base);
         }
 
         .stat-item i {
-            font-size: 1rem;
+            font-size: var(--text-md);
             color: #fff;
         }
 
@@ -324,7 +324,7 @@
 
         .features-heading {
             font-family: 'IM Fell English', serif;
-            font-size: 2rem;
+            font-size: var(--text-3xl);
             color: #3AACB8;
             text-align: center;
             margin-bottom: 3.5rem;
@@ -347,7 +347,7 @@
 
         .feature-text h3 {
             font-family: 'IM Fell English', serif;
-            font-size: 1.4rem;
+            font-size: var(--text-xl);
             color: var(--primary-dark);
             margin-bottom: 0.8rem;
             text-decoration: underline;
@@ -355,7 +355,7 @@
         }
 
         .feature-text p {
-            font-size: 0.95rem;
+            font-size: var(--text-base-lg);
             color: var(--muted);
             line-height: 1.75;
             max-width: 420px;
@@ -373,8 +373,8 @@
             width: 220px;
             height: 220px;
             object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-md);
         }
 
         /* ── MODAL ────────────────────────────────────────── */
@@ -395,7 +395,7 @@
 
         .modal-card {
             background: var(--cream-light);
-            border-radius: 20px;
+            border-radius: var(--radius-xl);
             padding: 2.5rem 2.5rem 2rem;
             max-width: 560px;
             width: 100%;
@@ -408,7 +408,7 @@
         /* ── Bubbles ──────────────────────────────────────── */
         .bubble {
             position: absolute;
-            border-radius: 50%;
+            border-radius: var(--radius-full);
             opacity: 0.18;
             animation: bubbleFloat var(--dur) ease-in-out infinite alternate;
         }
@@ -435,13 +435,13 @@
 
         .modal-title {
             font-family: 'IM Fell English', serif;
-            font-size: 1.7rem;
+            font-size: var(--text-2xl);
             color: var(--dark);
             margin-bottom: 0.9rem;
         }
 
         .modal-desc {
-            font-size: 0.92rem;
+            font-size: var(--text-base-lg);
             color: var(--muted);
             line-height: 1.7;
             margin-bottom: 1.8rem;
@@ -457,7 +457,7 @@
         .modal-card-item {
             flex: 1;
             background: var(--cream);
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             padding: 1.2rem 0.8rem;
             border: 1px solid rgba(123,107,53,0.12);
         }
@@ -466,7 +466,7 @@
             width: 48px;
             height: 48px;
             background: var(--primary);
-            border-radius: 10px;
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -474,19 +474,19 @@
         }
 
         .modal-card-icon i {
-            font-size: 1.4rem;
+            font-size: var(--text-xl);
             color: #fff;
         }
 
         .modal-card-title {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: var(--text-base);
             color: var(--dark);
             margin-bottom: 0.2rem;
         }
 
         .modal-card-sub {
-            font-size: 0.78rem;
+            font-size: var(--text-sm);
             color: var(--muted);
             margin: 0;
         }
@@ -503,8 +503,8 @@
             border: 1.5px solid rgba(123,107,53,0.3);
             color: var(--muted);
             padding: 0.7rem 1.8rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            font-size: var(--text-base-lg);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -520,8 +520,8 @@
             color: #fff;
             border: none;
             padding: 0.7rem 1.8rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            font-size: var(--text-base-lg);
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;

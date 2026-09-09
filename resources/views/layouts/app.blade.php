@@ -16,6 +16,7 @@
 
     <style>
         :root {
+            /* ─── Colors ─── */
             --cream:        #F5EFE0;
             --cream-light:  #FDFAF4;
             --primary:      #7B6B35;
@@ -23,6 +24,34 @@
             --gold:         #C4A840;
             --dark:         #2C2416;
             --muted:        #6B6455;
+
+            /* ─── Type scale ─── */
+            --text-xs:      0.7rem;   /* Micro-labels, step indicators, pill tags (0.65–0.72rem cluster) */
+            --text-sm:      0.8rem;   /* Small captions, secondary meta, disclaimers (0.75–0.83rem cluster) */
+            --text-base:    0.9rem;   /* True body/nav baseline (absorbs 0.875rem, 0.88rem, 0.9rem) */
+            --text-base-lg: 0.95rem;  /* Prominent body, buttons, CTAs, lead text */
+            --text-md:      1rem;     /* 16px standard baseline */
+            --text-lg:      1.2rem;   /* Compact subheadings, card titles (1.15–1.2rem) */
+            --text-xl:      1.4rem;   /* Feature headings, medium titles (1.3–1.4rem) */
+            --text-2xl:     1.8rem;   /* Section subheadings, quiz titles (1.5–1.9rem) */
+            --text-3xl:     2rem;     /* Major section headings (2.0–2.25rem) */
+            --text-4xl:     2.8rem;   /* Hero subheadings (2.4–3.0rem) */
+
+            /* ─── Radius ─── */
+            --radius-sm:   6px;     /* Small badges, chips, code pills (4–6px cluster) */
+            --radius-md:   8px;     /* Buttons, form inputs, dropdown menus */
+            --radius-lg:   12px;    /* Inner cards, feature boxes (10–14px cluster) */
+            --radius-xl:   20px;    /* Outer container cards, quiz/summary cards */
+            --radius-pill: 99px;    /* Progress bars, rounded pills */
+            --radius-full: 50%;     /* Circular avatars, dots, radio circles */
+
+            /* ─── Section rhythm ─── */
+            --section-py:  80px;    /* Symmetric vertical section padding */
+
+            /* ─── Elevation ─── */
+            --shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.06);     /* Subtle element elevation */
+            --shadow-md:   0 8px 32px rgba(0, 0, 0, 0.08);    /* Main card elevation */
+            --shadow-lg:   0 12px 32px rgba(44, 36, 22, 0.1); /* Elevated dropdowns & modals */
         }
 
         * { box-sizing: border-box; }
@@ -38,7 +67,7 @@
         .site-navbar {
             background-color: var(--cream-light);
             padding: 1.2rem 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -91,11 +120,11 @@
         }
 
         .nav-links a {
-            font-size: 0.9rem;
+            font-size: var(--text-base);
             color: var(--dark);
             text-decoration: none;
             padding: 0.5rem 1rem;
-            border-radius: 4px;
+            border-radius: var(--radius-sm);
             font-weight: 500;
             transition: color 0.2s;
         }
@@ -113,9 +142,9 @@
             color: white;
             border: none;
             padding: 0.55rem 1.4rem;
-            border-radius: 5px;
+            border-radius: var(--radius-sm);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: var(--text-base-lg);
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -140,8 +169,8 @@
         .account-dropdown-menu-inner {
             background: var(--cream-light);
             border: 1px solid rgba(123,107,53,0.15);
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
             overflow: hidden;
         }
 
@@ -152,7 +181,7 @@
             align-items: center;
             gap: 10px;
             padding: 0.75rem 1.2rem;
-            font-size: 0.9rem;
+            font-size: var(--text-base);
             font-weight: 600;
             color: var(--dark);
             text-decoration: none;
@@ -164,7 +193,7 @@
             color: var(--primary);
         }
 
-        .account-dropdown-menu a i { font-size: 1rem; color: var(--gold); }
+        .account-dropdown-menu a i { font-size: var(--text-md); color: var(--gold); }
 
         .account-dropdown-menu .divider {
             border: none;
@@ -202,7 +231,7 @@
 
         .hero-heading {
             font-family: 'IM Fell English', serif;
-            font-size: 2.8rem;
+            font-size: var(--text-4xl);
             line-height: 1.15;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -222,9 +251,9 @@
             color: white;
             border: none;
             padding: 0.85rem 2.2rem;
-            border-radius: 5px;
+            border-radius: var(--radius-sm);
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: var(--text-base-lg);
             text-decoration: none;
             transition: background 0.2s;
             display: inline-block;
@@ -237,9 +266,9 @@
             color: white;
             border: 1.5px solid white;
             padding: 0.85rem 2.2rem;
-            border-radius: 5px;
+            border-radius: var(--radius-sm);
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: var(--text-base-lg);
             text-decoration: none;
             transition: all 0.2s;
             display: inline-block;
@@ -255,7 +284,7 @@
         }
 
         .pill-label {
-            font-size: 0.78rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -272,7 +301,7 @@
         }
 
         .sec-text {
-            font-size: 1rem;
+            font-size: var(--text-md);
             line-height: 1.85;
             color: #4a4440;
             text-align: justify;
@@ -289,7 +318,7 @@
             top: 0; left: 0;
             width: 72%; height: 290px;
             object-fit: cover;
-            border-radius: 14px;
+            border-radius: var(--radius-lg);
             z-index: 1;
         }
 
@@ -298,7 +327,7 @@
             bottom: 0; right: 0;
             width: 45%; height: 310px;
             object-fit: cover;
-            border-radius: 14px;
+            border-radius: var(--radius-lg);
             z-index: 2;
             box-shadow: -6px 6px 24px rgba(0,0,0,0.18);
         }
@@ -307,13 +336,13 @@
         .overlap-img-front--left { right: auto; left: 0; }
 
         /* ─── ABOUT SECTIONS ────────────────────────────── */
-        .about-sec { padding: 90px 0; }
+        .about-sec { padding: var(--section-py) 0; }
         .about-sec.bg-light-cream { background-color: var(--cream-light); }
         .about-sec.bg-cream       { background-color: var(--cream); }
 
         /* ─── FEATURES SECTION ──────────────────────────── */
         .features-sec {
-            padding: 90px 0;
+            padding: var(--section-py) 0;
             background: var(--dark);
             color: white;
         }
@@ -322,14 +351,14 @@
 
         .features-sec .sec-sub {
             color: rgba(255,255,255,0.6);
-            font-size: 1rem;
+            font-size: var(--text-md);
             margin-bottom: 3rem;
         }
 
         .feature-card {
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
+            border-radius: var(--radius-lg);
             padding: 1.8rem;
             height: 100%;
             transition: background 0.2s;
@@ -337,12 +366,12 @@
 
         .feature-card:hover { background: rgba(255,255,255,0.1); }
 
-        .feature-icon { font-size: 2rem; color: var(--gold); margin-bottom: 1rem; }
+        .feature-icon { font-size: var(--text-3xl); color: var(--gold); margin-bottom: 1rem; }
 
-        .feature-card h5 { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+        .feature-card h5 { font-weight: 700; font-size: var(--text-md); margin-bottom: 0.5rem; }
 
         .feature-card p {
-            font-size: 0.875rem;
+            font-size: var(--text-base);
             color: rgba(255,255,255,0.6);
             line-height: 1.65;
             margin: 0;
@@ -370,9 +399,9 @@
             max-width: 260px;
         }
 
-        .footer-brand p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin: 0; }
+        .footer-brand p { font-size: var(--text-base); color: var(--muted); line-height: 1.7; margin: 0; }
 
-        .footer-brand span { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+        .footer-brand span { font-size: var(--text-sm); color: var(--muted); display: flex; align-items: center; gap: 6px; }
 
         .footer-brand span i { color: var(--gold); }
 
@@ -387,7 +416,7 @@
             margin: 0 0 0.4rem 0;
         }
 
-        .footer-col a { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+        .footer-col a { font-size: var(--text-base); color: var(--muted); text-decoration: none; transition: color 0.2s; }
 
         .footer-col a:hover { color: var(--gold); }
 
@@ -401,11 +430,11 @@
             align-items: center;
         }
 
-        .footer-bottom p { font-size: 0.8rem; color: var(--muted); margin: 0; }
+        .footer-bottom p { font-size: var(--text-sm); color: var(--muted); margin: 0; }
 
         .footer-bottom div { display: flex; gap: 1.5rem; }
 
-        .footer-bottom div a { font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+        .footer-bottom div a { font-size: var(--text-sm); color: var(--muted); text-decoration: none; transition: color 0.2s; }
 
         .footer-bottom div a:hover { color: var(--primary); }
 

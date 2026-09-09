@@ -275,7 +275,7 @@
         .step-dot {
             width: 22px;
             height: 22px;
-            border-radius: 50%;
+            border-radius: var(--radius-full);
             border: 2px solid rgba(123,107,53,0.25);
             background: #fff;
             display: flex;
@@ -290,23 +290,23 @@
         .step.done .step-dot { background: var(--primary); border-color: var(--primary); }
         .step.done .step-check { display: block; }
 
-        .step-label { font-size: 0.68rem; color: var(--muted); text-align: center; }
+        .step-label { font-size: var(--text-xs); color: var(--muted); text-align: center; }
         .step.current .step-label { color: var(--primary); font-weight: 700; }
 
         /* ── Overall progress bar ─────────────────────────── */
         .quiz-progress-inner { display: flex; align-items: center; gap: 0.8rem; }
-        .progress-label, .progress-pct { font-size: 0.82rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
-        .progress-track { flex: 1; height: 8px; background: rgba(123,107,53,0.15); border-radius: 99px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--gold)); border-radius: 99px; transition: width 0.4s ease; }
+        .progress-label, .progress-pct { font-size: var(--text-sm); font-weight: 700; color: var(--muted); white-space: nowrap; }
+        .progress-track { flex: 1; height: 8px; background: rgba(123,107,53,0.15); border-radius: var(--radius-pill); overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--gold)); border-radius: var(--radius-pill); transition: width 0.4s ease; }
 
         /* ── Quiz card ─────────────────────────────────────── */
         .quiz-card {
             background: var(--cream-light);
-            border-radius: 20px;
+            border-radius: var(--radius-xl);
             padding: 2.5rem 3rem;
             max-width: 780px;
             width: 100%;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow-md);
             border: 1px solid rgba(123,107,53,0.1);
         }
 
@@ -315,26 +315,26 @@
 
         .quiz-section-pill {
             display: inline-block;
-            font-size: 0.72rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--primary);
             background: rgba(123,107,53,0.1);
             padding: 0.25rem 0.8rem;
-            border-radius: 20px;
+            border-radius: var(--radius-pill);
             margin-bottom: 0.6rem;
         }
 
-        .quiz-section-title { font-family: 'IM Fell English', serif; font-size: 1.8rem; color: var(--dark); margin-bottom: 0.3rem; }
-        .quiz-section-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(123,107,53,0.12); }
+        .quiz-section-title { font-family: 'IM Fell English', serif; font-size: var(--text-2xl); color: var(--dark); margin-bottom: 0.3rem; }
+        .quiz-section-sub { font-size: var(--text-base); color: var(--muted); margin-bottom: 2rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(123,107,53,0.12); }
 
         .questions-list { display: flex; flex-direction: column; gap: 1.8rem; }
 
         /* ── Question items ───────────────────────────────── */
         .question-item {
             background: var(--cream);
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             padding: 1.2rem 1.4rem;
             border: 1px solid rgba(123,107,53,0.1);
             transition: border-color 0.25s, background 0.25s;
@@ -357,7 +357,7 @@
         }
 
         .question-text {
-            font-size: 0.97rem;
+            font-size: var(--text-base-lg);
             color: var(--dark);
             font-weight: 500;
             margin-bottom: 1rem;
@@ -370,7 +370,7 @@
         .q-num { color: var(--primary); font-weight: 700; margin-right: 4px; }
 
         .q-answered-icon {
-            font-size: 0.9rem;
+            font-size: var(--text-base);
             color: var(--primary);
             opacity: 0;
             transform: scale(0.5);
@@ -394,7 +394,7 @@
         .likert-dot {
             width: 28px;
             height: 28px;
-            border-radius: 50%;
+            border-radius: var(--radius-full);
             border: 2px solid rgba(123,107,53,0.3);
             background: #fff;
             transition: all 0.2s;
@@ -413,13 +413,13 @@
         }
 
         .likert-option:hover .likert-dot { border-color: var(--gold); background: rgba(196,168,64,0.1); }
-        .likert-label { font-size: 0.68rem; color: var(--muted); text-align: center; line-height: 1.3; }
+        .likert-label { font-size: var(--text-xs); color: var(--muted); text-align: center; line-height: 1.3; }
 
         /* ── Navigation ────────────────────────────────────── */
         .quiz-nav { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(123,107,53,0.12); }
 
         .quiz-nav-error {
-            font-size: 0.85rem;
+            font-size: var(--text-base);
             color: #c0392b;
             margin-bottom: 0.8rem;
             display: none;
@@ -434,8 +434,8 @@
             border: 1.5px solid rgba(123,107,53,0.3);
             color: var(--muted);
             padding: 0.65rem 1.6rem;
-            border-radius: 8px;
-            font-size: 0.92rem;
+            border-radius: var(--radius-md);
+            font-size: var(--text-base-lg);
             font-weight: 600;
             cursor: pointer;
             display: flex;
@@ -451,8 +451,8 @@
             color: #fff;
             border: none;
             padding: 0.65rem 2rem;
-            border-radius: 8px;
-            font-size: 0.92rem;
+            border-radius: var(--radius-md);
+            font-size: var(--text-base-lg);
             font-weight: 700;
             cursor: pointer;
             display: flex;

@@ -259,14 +259,14 @@
 
         .heading-highlight { color: var(--primary); }
 
-        .results-sub { font-size: 0.95rem; color: var(--muted); }
+        .results-sub { font-size: var(--text-base-lg); color: var(--muted); }
 
         /* ── Teaser / Core Results Card ── */
         .teaser-card {
             background: var(--cream-light);
-            border-radius: 20px;
+            border-radius: var(--radius-xl);
             border: 1px solid rgba(123,107,53,0.12);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow-md);
             display: flex;
             overflow: hidden;
         }
@@ -280,7 +280,7 @@
         }
 
         .teaser-label {
-            font-size: 0.75rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -290,7 +290,7 @@
 
         .personality-hero {
             font-family: 'IM Fell English', serif;
-            font-size: 2.1rem;
+            font-size: var(--text-3xl);
             color: var(--primary);
             margin-bottom: 0.4rem;
             line-height: 1.25;
@@ -300,18 +300,18 @@
 
         .personality-code {
             display: inline-block;
-            font-size: 0.78rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             color: var(--muted);
             letter-spacing: 1.5px;
             text-transform: uppercase;
             background: rgba(123,107,53,0.08);
             padding: 0.2rem 0.65rem;
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
         }
 
         .personality-desc {
-            font-size: 0.9rem;
+            font-size: var(--text-base);
             color: var(--muted);
             line-height: 1.7;
         }
@@ -344,13 +344,13 @@
         }
 
         .bar-label {
-            font-size: 0.82rem;
+            font-size: var(--text-sm);
             color: var(--dark);
             font-weight: 600;
         }
 
         .bar-pct {
-            font-size: 0.82rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             color: var(--primary);
         }
@@ -359,14 +359,14 @@
             width: 100%;
             height: 8px;
             background: rgba(123,107,53,0.12);
-            border-radius: 99px;
+            border-radius: var(--radius-pill);
             overflow: hidden;
         }
 
         .bar-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--primary), var(--gold));
-            border-radius: 99px;
+            border-radius: var(--radius-pill);
             transition: width 1s ease;
         }
 
@@ -379,7 +379,7 @@
 
         /* ── Disclaimer ── */
         .results-disclaimer {
-            font-size: 0.8rem;
+            font-size: var(--text-sm);
             color: var(--muted);
             text-align: center;
             margin: -0.5rem 0 0.5rem;
@@ -394,9 +394,9 @@
         /* ── Summary Card ── */
         .summary-card {
             background: var(--cream-light);
-            border-radius: 20px;
+            border-radius: var(--radius-xl);
             border: 1px solid rgba(123,107,53,0.12);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow-md);
             overflow: hidden;
         }
 
@@ -413,14 +413,14 @@
 
         .summary-header h3 {
             font-family: 'IM Fell English', serif;
-            font-size: 1.15rem;
+            font-size: var(--text-lg);
             color: var(--dark);
             margin: 0;
         }
 
         .summary-body {
             padding: 1.8rem 2rem;
-            font-size: 0.95rem;
+            font-size: var(--text-base-lg);
             color: var(--muted);
             line-height: 1.8;
         }
@@ -436,7 +436,7 @@
         }
 
         .summary-teaser-faded {
-            font-size: 0.95rem;
+            font-size: var(--text-base-lg);
             color: var(--muted);
             line-height: 1.8;
             opacity: 0.45;
@@ -449,7 +449,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.88rem;
+            font-size: var(--text-base);
             color: var(--muted);
             font-weight: 500;
         }
@@ -460,22 +460,22 @@
         /* ── Next Steps Card ── */
         .next-steps-card {
             background: var(--cream-light);
-            border-radius: 20px;
+            border-radius: var(--radius-xl);
             border: 1px solid rgba(123,107,53,0.12);
             padding: 2.5rem 2.2rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            box-shadow: var(--shadow-md);
             text-align: center;
         }
 
         .next-steps-title {
             font-family: 'IM Fell English', serif;
-            font-size: 1.9rem;
+            font-size: var(--text-3xl);
             color: var(--dark);
             margin-bottom: 0.5rem;
         }
 
         .next-steps-sub {
-            font-size: 0.92rem;
+            font-size: var(--text-base-lg);
             color: var(--muted);
             max-width: 680px;
             margin: 0 auto 1.8rem;
@@ -497,9 +497,9 @@
             background: var(--gold);
             color: #fff;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: var(--text-base-lg);
             padding: 0.8rem 2.2rem;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             text-decoration: none;
             transition: all 0.2s;
             box-shadow: 0 4px 14px rgba(196,168,64,0.3);
@@ -519,9 +519,9 @@
             border: 1.5px solid var(--primary);
             color: var(--primary);
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: var(--text-base-lg);
             padding: 0.8rem 2rem;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             text-decoration: none;
             transition: all 0.2s;
         }
@@ -542,7 +542,7 @@
 
         .written-report-card {
             background: var(--cream);
-            border-radius: 14px;
+            border-radius: var(--radius-lg);
             padding: 1.8rem 2rem;
             border: 1px solid rgba(123,107,53,0.15);
         }
@@ -565,11 +565,11 @@
             gap: 5px;
             background: rgba(39,174,96,0.1);
             padding: 0.25rem 0.7rem;
-            border-radius: 99px;
+            border-radius: var(--radius-pill);
         }
 
         .written-report-tag {
-            font-size: 0.75rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -578,13 +578,13 @@
 
         .written-report-title {
             font-family: 'IM Fell English', serif;
-            font-size: 1.35rem;
+            font-size: var(--text-xl);
             color: var(--dark);
             margin-bottom: 0.4rem;
         }
 
         .written-report-intro {
-            font-size: 0.88rem;
+            font-size: var(--text-base);
             color: var(--muted);
             margin-bottom: 1.4rem;
             line-height: 1.5;
@@ -598,7 +598,7 @@
 
         .report-box {
             background: var(--cream-light);
-            border-radius: 10px;
+            border-radius: var(--radius-lg);
             padding: 1.2rem;
             border: 1px solid rgba(123,107,53,0.1);
         }
@@ -610,14 +610,14 @@
         }
 
         .report-box h4 {
-            font-size: 0.92rem;
+            font-size: var(--text-base-lg);
             font-weight: 700;
             color: var(--dark);
             margin-bottom: 0.4rem;
         }
 
         .report-box p {
-            font-size: 0.82rem;
+            font-size: var(--text-sm);
             color: var(--muted);
             line-height: 1.5;
             margin: 0;
@@ -627,7 +627,7 @@
             margin-top: 1.8rem;
             padding: 1.2rem 1.6rem;
             background: rgba(123,107,53,0.06);
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             border: 1px dashed rgba(123,107,53,0.2);
             display: flex;
             align-items: center;
@@ -642,7 +642,7 @@
         }
 
         .locked-teaser-text {
-            font-size: 0.85rem;
+            font-size: var(--text-base);
             color: var(--muted);
             margin: 0;
             line-height: 1.5;
@@ -651,7 +651,7 @@
         /* ── Safety-Net Note ── */
         .safety-net-card {
             background: rgba(123,107,53,0.06);
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             border: 1px solid rgba(123,107,53,0.14);
             padding: 1.1rem 1.6rem;
             display: flex;
@@ -668,7 +668,7 @@
         .safety-net-body { flex: 1; }
 
         .safety-net-text {
-            font-size: 0.85rem;
+            font-size: var(--text-base);
             color: var(--muted);
             margin: 0;
             line-height: 1.5;

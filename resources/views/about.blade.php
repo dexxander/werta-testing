@@ -10,23 +10,23 @@
         .about-header .sec-text { max-width: 640px; margin: 0 auto; text-align: center; }
         .step-row { display: flex; gap: 2rem; margin-top: 2.5rem; }
         .step-item { flex: 1; text-align: center; }
-        .step-number { width: 48px; height: 48px; border-radius: 50%; background: var(--gold); color: white; font-family: 'IM Fell English', serif; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
-        .step-item h5 { font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: var(--dark); }
-        .step-item p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin: 0; }
-        .trust-card { background: var(--cream-light); border: 1px solid rgba(123,107,53,0.15); border-radius: 10px; padding: 1.8rem; height: 100%; }
-        .trust-card i { font-size: 1.8rem; color: var(--gold); margin-bottom: 1rem; display: block; }
-        .trust-card h5 { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; color: var(--dark); }
-        .trust-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin: 0; }
-        .value-badge { background: rgba(196,168,64,0.1); border: 1px solid rgba(196,168,64,0.3); border-radius: 30px; padding: 0.6rem 1.4rem; font-size: 0.875rem; font-weight: 600; color: var(--primary-dark); display: inline-flex; align-items: center; gap: 8px; }
+        .step-number { width: 48px; height: 48px; border-radius: var(--radius-full); background: var(--gold); color: white; font-family: 'IM Fell English', serif; font-size: var(--text-xl); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+        .step-item h5 { font-weight: 700; font-size: var(--text-md); margin-bottom: 0.4rem; color: var(--dark); }
+        .step-item p { font-size: var(--text-base); color: var(--muted); line-height: 1.6; margin: 0; }
+        .trust-card { background: var(--cream-light); border: 1px solid rgba(123,107,53,0.15); border-radius: var(--radius-lg); padding: 1.8rem; height: 100%; }
+        .trust-card i { font-size: var(--text-2xl); color: var(--gold); margin-bottom: 1rem; display: block; }
+        .trust-card h5 { font-weight: 700; font-size: var(--text-md); margin-bottom: 0.5rem; color: var(--dark); }
+        .trust-card p { font-size: var(--text-base); color: var(--muted); line-height: 1.65; margin: 0; }
+        .value-badge { background: rgba(196,168,64,0.1); border: 1px solid rgba(196,168,64,0.3); border-radius: var(--radius-pill); padding: 0.6rem 1.4rem; font-size: var(--text-base); font-weight: 600; color: var(--primary-dark); display: inline-flex; align-items: center; gap: 8px; }
         .team-card { text-align: center; }
-        .team-photo { width: 140px; height: 140px; border-radius: 50%; background: rgba(123,107,53,0.12); border: 2px solid rgba(196,168,64,0.3); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.75rem; }
-        .team-card h5 { font-weight: 700; font-size: 1rem; margin-bottom: 0.2rem; color: var(--dark); }
-        .team-card p.role { font-size: 0.85rem; color: var(--gold); font-weight: 600; margin-bottom: 0.4rem; }
-        .team-card p.bio { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-        .disclaimer-box { background: rgba(44,36,22,0.04); border-left: 4px solid var(--gold); border-radius: 6px; padding: 1.5rem 1.8rem; font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
-        .placeholder-note { display: inline-block; background: rgba(196,168,64,0.15); border: 1px dashed var(--gold); border-radius: 4px; padding: 2px 8px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--primary-dark); margin-bottom: 0.6rem; }
+        .team-photo { width: 140px; height: 140px; border-radius: var(--radius-full); background: rgba(123,107,53,0.12); border: 2px solid rgba(196,168,64,0.3); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.75rem; }
+        .team-card h5 { font-weight: 700; font-size: var(--text-md); margin-bottom: 0.2rem; color: var(--dark); }
+        .team-card p.role { font-size: var(--text-base); color: var(--gold); font-weight: 600; margin-bottom: 0.4rem; }
+        .team-card p.bio { font-size: var(--text-base); color: var(--muted); line-height: 1.6; }
+        .disclaimer-box { background: rgba(44,36,22,0.04); border-left: 4px solid var(--gold); border-radius: var(--radius-sm); padding: 1.5rem 1.8rem; font-size: var(--text-base); color: var(--muted); line-height: 1.7; }
+        .placeholder-note { display: inline-block; background: rgba(196,168,64,0.15); border: 1px dashed var(--gold); border-radius: 4px; padding: 2px 8px; font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--primary-dark); margin-bottom: 0.6rem; }
         .image-placeholder-box { border: 2px dashed rgba(123,107,53,0.3); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.85rem; font-weight: 600; background: rgba(123,107,53,0.04); min-height: 180px; }
-        .cta-band { background: var(--dark); padding: 70px 0; text-align: center; }
+        .cta-band { background: var(--dark); padding: var(--section-py) 0; text-align: center; }
         .cta-band .sec-heading { color: white; margin-bottom: 1.5rem; }
         .cta-band-actions { display: flex; gap: 1rem; justify-content: center; }
         @media (max-width: 767px) { .step-row { flex-direction: column; } }

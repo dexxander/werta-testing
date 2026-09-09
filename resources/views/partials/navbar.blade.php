@@ -10,8 +10,8 @@
         left: 0;
         background-color: var(--cream-light, #ffffff);
         border: 1px solid rgba(123,107,53,0.15);
-        box-shadow: 0 12px 32px rgba(44,36,22,0.1);
-        border-radius: 8px;
+        box-shadow: var(--shadow-lg);
+        border-radius: var(--radius-md);
         min-width: 220px;
         padding: 0.5rem 0;
         z-index: 1000;
@@ -23,7 +23,7 @@
         display: block !important;
         padding: 0.6rem 1.5rem !important;
         color: var(--dark, #333) !important;
-        font-size: 0.9rem !important;
+        font-size: var(--text-base) !important;
         text-decoration: none !important;
         text-transform: none !important;
         transition: background 0.2s, color 0.2s !important;
@@ -52,7 +52,7 @@
             {{-- Replaced E-Learning Link with Hover Dropdown --}}
             <li class="elearning-dropdown">
                 <a href="{{ route('elearning.index') }}">
-                    E-Learning Modules <i class="bi bi-chevron-down" style="font-size:0.7rem; margin-left:4px;"></i>
+                    E-Learning Modules <i class="bi bi-chevron-down" style="font-size: var(--text-xs); margin-left:4px;"></i>
                 </a>
                 <div class="elearning-dropdown-menu">
                     <a href="{{ route('elearning.overview') }}">Overview</a>
@@ -87,7 +87,7 @@
                         ]);
                     @endphp
                     <button class="btn-account">
-                        <i class="bi {{ $profile['picture'] }}"></i> {{ $profile['username'] }} ({{ $role }}) <i class="bi bi-chevron-down" style="font-size:0.7rem;"></i>
+                        <i class="bi {{ $profile['picture'] }}"></i> {{ $profile['username'] }} ({{ $role }}) <i class="bi bi-chevron-down" style="font-size: var(--text-xs);"></i>
                     </button>
                     <div class="account-dropdown-menu">
                         <div class="account-dropdown-menu-inner">
@@ -98,7 +98,7 @@
                     </div>
                 @else
                     <button class="btn-account">
-                        <i class="bi bi-person-circle"></i> Account <i class="bi bi-chevron-down" style="font-size:0.7rem;"></i>
+                        <i class="bi bi-person-circle"></i> Account <i class="bi bi-chevron-down" style="font-size: var(--text-xs);"></i>
                     </button>
                     <div class="account-dropdown-menu">
                         <div class="account-dropdown-menu-inner">
