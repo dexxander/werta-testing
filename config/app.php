@@ -41,9 +41,6 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
-    /* DEV BYPASS */
-    'dev_bypass_auth' => env('DEV_BYPASS_AUTH', false),
-
     /*
     |--------------------------------------------------------------------------
     | Application URL

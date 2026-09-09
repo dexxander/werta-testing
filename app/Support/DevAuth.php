@@ -18,6 +18,6 @@ class DevAuth
     {
         return app()->environment('local')
             && config('app.debug') === true
-            && (bool) config('dev.bypass_auth', config('app.dev_bypass_auth', false));
+            && (bool) config('dev.bypass_auth', false);
     }
 }

@@ -76,6 +76,6 @@ For local testing and design review across all five dashboard roles (`client`, `
 4. Active bypass sessions will display a high-visibility hazard warning strip across the top of the dashboard chrome.
 
 #### Production Safety
-- The bypass is gated by a triple-lock: `app()->environment('local')` AND `config('app.debug') === true` AND `config('app.dev_bypass_auth') === true`.
+- The bypass is gated by a triple-lock: `app()->environment('local')` AND `config('app.debug') === true` AND `config('dev.bypass_auth') === true`.
 - **CRITICAL REMINDER**: `DEV_BYPASS_AUTH` must remain disabled (`false`) or absent in any staging or production deployment. It must never be enabled on publicly accessible servers.
 
