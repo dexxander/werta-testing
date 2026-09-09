@@ -41,7 +41,7 @@
                 <span class="el-dashboard-dot red"></span>
                 <span class="el-dashboard-dot yellow"></span>
                 <span class="el-dashboard-dot green"></span>
-                <span style="color:rgba(255,255,255,0.5);font-size:0.75rem;margin-left:12px;">Werta — Student Dashboard</span>
+                <span style="color:rgba(255,255,255,0.5);font-size:var(--text-xs);margin-left:12px;">Werta — Student Dashboard</span>
             </div>
             <div class="el-dash-body">
                 <div class="row g-4">
@@ -140,7 +140,7 @@
 
     .el-dash-panel {
         background: var(--cream);
-        border-radius: 12px;
+        border-radius: var(--radius-lg);
         padding: 1.5rem;
         transition: box-shadow 0.25s ease;
     }
@@ -164,7 +164,7 @@
     .el-dash-panel-title {
         font-weight: 700;
         margin: 0;
-        font-size: 0.9rem;
+        font-size: var(--text-base);
         color: var(--dark);
     }
 
@@ -173,7 +173,7 @@
     }
 
     .el-dash-view-all {
-        font-size: 0.75rem;
+        font-size: var(--text-xs);
         color: var(--gold);
         font-weight: 700;
         cursor: pointer;
@@ -191,7 +191,7 @@
         gap: 1rem;
         align-items: flex-start;
         background: var(--cream-light);
-        border-radius: 10px;
+        border-radius: var(--radius-lg);
         padding: 1rem;
         transition: background 0.2s ease, transform 0.2s ease;
     }
@@ -220,7 +220,7 @@
 
     .el-dash-course-top h6 {
         font-weight: 700;
-        font-size: 0.88rem;
+        font-size: var(--text-base);
         margin: 0;
         color: var(--dark);
         white-space: nowrap;
@@ -229,7 +229,7 @@
     }
 
     .el-dash-course-top span {
-        font-size: 0.78rem;
+        font-size: var(--text-sm);
         font-weight: 700;
         color: var(--gold);
         flex-shrink: 0;
@@ -238,7 +238,7 @@
     .el-dash-progress-bar {
         width: 100%;
         height: 5px;
-        border-radius: 4px;
+        border-radius: var(--radius-pill);
         background: rgba(123,107,53,0.12);
         overflow: hidden;
         margin-bottom: 0.4rem;
@@ -247,12 +247,12 @@
     .el-dash-progress-fill {
         height: 100%;
         background: var(--gold);
-        border-radius: 4px;
+        border-radius: var(--radius-pill);
         transition: width 0.6s ease;
     }
 
     .el-dash-course-next {
-        font-size: 0.75rem;
+        font-size: var(--text-xs);
         color: var(--muted);
         margin: 0;
     }
@@ -288,7 +288,7 @@
     .el-dash-ring {
         width: 60px;
         height: 60px;
-        border-radius: 50%;
+        border-radius: var(--radius-full);
         flex-shrink: 0;
         background: conic-gradient(var(--gold) calc(var(--pct) * 1%), rgba(123,107,53,0.12) 0);
         display: flex;
@@ -300,18 +300,18 @@
     .el-dash-ring-inner {
         width: 46px;
         height: 46px;
-        border-radius: 50%;
+        border-radius: var(--radius-full);
         background: var(--cream);
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 700;
-        font-size: 0.78rem;
+        font-size: var(--text-sm);
         color: var(--primary-dark);
     }
 
     .el-dash-progress-row p {
-        font-size: 0.8rem;
+        font-size: var(--text-sm);
         color: var(--muted);
         margin: 0;
     }
@@ -330,7 +330,7 @@
         display: flex;
         align-items: center;
         gap: 0.6rem;
-        font-size: 0.82rem;
+        font-size: var(--text-sm);
         color: var(--muted);
     }
 
@@ -358,7 +358,7 @@
     }
 
     .el-dash-streak-count span {
-        font-size: 0.8rem;
+        font-size: var(--text-sm);
         color: var(--muted);
         font-weight: 400;
     }

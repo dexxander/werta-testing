@@ -113,14 +113,14 @@
         z-index: 1;
         width: 36px;
         height: 36px;
-        border-radius: 50%;
+        border-radius: var(--radius-full);
         background: rgba(255,255,255,0.08);
         border: 1px solid rgba(255,255,255,0.15);
         display: flex;
         align-items: center;
         justify-content: center;
         color: rgba(255,255,255,0.55);
-        font-size: 0.95rem;
+        font-size: var(--text-base-lg);
         pointer-events: none;
     }
 
@@ -144,17 +144,17 @@
     }
 
     .el-hero-chip-label {
-        font-size: 0.8rem;
+        font-size: var(--text-sm);
         color: rgba(255,255,255,0.5);
         font-weight: 600;
         margin-right: 0.2rem;
     }
 
     .el-hero-chip {
-        font-size: 0.8rem;
+        font-size: var(--text-sm);
         color: rgba(255,255,255,0.75);
         border: 1px solid rgba(255,255,255,0.2);
-        border-radius: 20px;
+        border-radius: var(--radius-pill);
         padding: 0.35rem 0.9rem;
         text-decoration: none;
         transition: border-color 0.2s, color 0.2s, background 0.2s;
@@ -169,7 +169,7 @@
     /* ─── HERO: TRUST LINE ────────────────────────────────── */
     .el-hero-trust {
         margin: 1.5rem 0 0;
-        font-size: 0.85rem;
+        font-size: var(--text-sm);
         color: rgba(255,255,255,0.65);
         display: flex;
         align-items: center;
@@ -185,7 +185,7 @@
     /* ─── HERO: LESSON-PREVIEW CARD ───────────────────────── */
     .el-hero-card {
         background: var(--cream-light);
-        border-radius: 14px;
+        border-radius: var(--radius-lg);
         overflow: hidden;
         box-shadow: 0 24px 60px rgba(0,0,0,0.35);
     }
@@ -209,7 +209,7 @@
 
     .el-hero-card-tag {
         display: inline-block;
-        font-size: 0.7rem;
+        font-size: var(--text-xs);
         font-weight: 700;
         letter-spacing: 1px;
         text-transform: uppercase;
@@ -219,13 +219,13 @@
 
     .el-hero-card-body h5 {
         font-weight: 700;
-        font-size: 1.05rem;
+        font-size: var(--text-md);
         color: var(--dark);
         margin: 0 0 0.3rem;
     }
 
     .el-hero-card-body p {
-        font-size: 0.85rem;
+        font-size: var(--text-sm);
         color: var(--muted);
         margin: 0 0 1.25rem;
     }
@@ -237,7 +237,7 @@
     .el-hero-card-progress-bar {
         width: 100%;
         height: 6px;
-        border-radius: 4px;
+        border-radius: var(--radius-pill);
         background: rgba(123,107,53,0.15);
         overflow: hidden;
         margin-bottom: 0.5rem;
@@ -246,20 +246,20 @@
     .el-hero-card-progress-fill {
         height: 100%;
         background: var(--gold);
-        border-radius: 4px;
+        border-radius: var(--radius-pill);
     }
 
     .el-hero-card-progress span {
-        font-size: 0.78rem;
+        font-size: var(--text-sm);
         color: var(--muted);
         font-weight: 600;
     }
 
     .el-hero-card-next {
-        font-size: 0.82rem;
+        font-size: var(--text-sm);
         color: var(--dark);
         background: rgba(123,107,53,0.06);
-        border-radius: 8px;
+        border-radius: var(--radius-md);
         padding: 0.7rem 0.9rem;
         margin-bottom: 1.25rem;
     }
@@ -274,9 +274,9 @@
         color: #fff;
         text-decoration: none;
         font-weight: 700;
-        font-size: 0.9rem;
+        font-size: var(--text-base);
         padding: 0.8rem;
-        border-radius: 8px;
+        border-radius: var(--radius-md);
         transition: background 0.2s;
     }
 
@@ -292,7 +292,7 @@
         align-items: center;
         gap: 0.7rem;
         background: var(--cream-light);
-        border-radius: 12px;
+        border-radius: var(--radius-lg);
         padding: 0.8rem 1.1rem;
         box-shadow: 0 12px 30px rgba(0,0,0,0.25);
         z-index: 3;
@@ -305,14 +305,14 @@
 
     .el-hero-badge strong {
         display: block;
-        font-size: 1rem;
+        font-size: var(--text-md);
         color: var(--dark);
         line-height: 1.1;
     }
 
     .el-hero-badge span {
         display: block;
-        font-size: 0.7rem;
+        font-size: var(--text-xs);
         color: var(--muted);
         white-space: nowrap;
     }
