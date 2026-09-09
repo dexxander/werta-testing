@@ -37,7 +37,7 @@
 <section class="el-section bg-cream-light" id="course-preview">
     <div class="el-container">
         <div class="mb-4">
-            <a href="{{ route('elearning.courses') }}" style="color:var(--gold);text-decoration:none;font-size:0.9rem;font-weight:700;"><i class="bi bi-arrow-left"></i> Back to Courses</a>
+            <a href="{{ route('elearning.courses') }}" style="color:var(--gold);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> Back to Courses</a>
         </div>
 
         <div class="row g-4 align-items-start">
@@ -47,7 +47,7 @@
                     <h2 class="el-heading">{{ $course_title }}</h2>
                     @if($selected_course)
                         <p class="el-subtext">Learn what this course covers before enrolling. The lessons are locked until enrollment is complete.</p>
-                        <div style="display:flex;gap:1rem;flex-wrap:wrap;color:var(--muted);font-size:0.9rem;margin-top:1.5rem;">
+                        <div style="display:flex;gap:1rem;flex-wrap:wrap;color:var(--muted);font-size:var(--text-base);margin-top:1.5rem;">
                             <span><i class="bi bi-person"></i> {{ $selected_course['instructor'] }}</span>
                             <span><i class="bi bi-bar-chart"></i> {{ $selected_course['difficulty'] }}</span>
                             <span><i class="bi bi-clock"></i> {{ $selected_course['duration'] }}</span>
@@ -74,9 +74,9 @@
                                 </button>
                             @endforeach
                         </div>
-                        <p style="font-size:0.8rem;color:var(--muted);margin:1.2rem 0 0;"><i class="bi bi-info-circle"></i> Preview only. Enroll to open lessons and start learning.</p>
+                        <p style="font-size:var(--text-sm);color:var(--muted);margin:1.2rem 0 0;"><i class="bi bi-info-circle"></i> Preview only. Enroll to open lessons and start learning.</p>
                     @else
-                        <p style="font-size:0.9rem;color:var(--muted);margin:0;">Topics will appear here when this course is added to the catalog.</p>
+                        <p style="font-size:var(--text-base);color:var(--muted);margin:0;">Topics will appear here when this course is added to the catalog.</p>
                     @endif
                 </div>
             </div>
@@ -88,11 +88,11 @@
     <div class="el-modal-content el-card">
         <button class="el-modal-close" onclick="closeEnrollmentRequiredModal()" aria-label="Close"><i class="bi bi-x-lg"></i></button>
         <div class="text-center">
-            <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+            <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
                 <i class="bi bi-lock-fill" style="font-size:2rem;color:var(--gold);"></i>
             </div>
             <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Enrollment Required</h4>
-            <p style="color:var(--muted);font-size:0.95rem;margin-bottom:2rem;">Please enroll in this course first to open this topic and start learning.</p>
+            <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">Please enroll in this course first to open this topic and start learning.</p>
             <button type="button" onclick="closeEnrollmentRequiredModal()" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Got It</button>
         </div>
     </div>
@@ -102,7 +102,7 @@
     .el-topic-preview {
         width:100%;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;
         text-align:left;background:var(--cream-light);border:1px solid rgba(123,107,53,0.12);
-        border-radius:8px;padding:0.85rem 1rem;color:var(--dark);font-size:0.9rem;cursor:pointer;transition:all 0.2s;
+        border-radius:var(--radius-md);padding:0.85rem 1rem;color:var(--dark);font-size:var(--text-base);cursor:pointer;transition:all 0.2s;
     }
     .el-topic-preview:hover { border-color:var(--gold);background:rgba(196,168,64,0.08); }
     .el-topic-preview > span { display:flex;align-items:center;gap:0.65rem; }
@@ -111,7 +111,7 @@
     .el-modal-overlay.active { opacity:1;visibility:visible; }
     .el-modal-content { max-width:450px;width:90%;position:relative;transform:translateY(20px);transition:all 0.3s ease;background:var(--cream-light); }
     .el-modal-overlay.active .el-modal-content { transform:translateY(0); }
-    .el-modal-close { position:absolute;top:15px;right:15px;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer; }
+    .el-modal-close { position:absolute;top:15px;right:15px;background:none;border:none;color:var(--muted);font-size:var(--text-lg);cursor:pointer; }
 </style>
 
 <script>

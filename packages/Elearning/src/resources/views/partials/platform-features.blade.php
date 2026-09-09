@@ -14,7 +14,7 @@
                             <div class="el-feature-icon"><i class="bi bi-clock-history"></i></div>
                             <div>
                                 <h6 style="font-weight:700;margin-bottom:0.3rem;">Self-Paced Learning</h6>
-                                <p style="font-size:0.85rem;color:var(--muted);margin:0;line-height:1.6;">Learn on your own schedule, anytime and anywhere.</p>
+                                <p style="font-size:var(--text-sm);color:var(--muted);margin:0;line-height:1.6;">Learn on your own schedule, anytime and anywhere.</p>
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                             <div class="el-feature-icon"><i class="bi bi-award"></i></div>
                             <div>
                                 <h6 style="font-weight:700;margin-bottom:0.3rem;">Certificates</h6>
-                                <p style="font-size:0.85rem;color:var(--muted);margin:0;line-height:1.6;">Earn recognized certificates upon course completion.</p>
+                                <p style="font-size:var(--text-sm);color:var(--muted);margin:0;line-height:1.6;">Earn recognized certificates upon course completion.</p>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                             <div class="el-feature-icon"><i class="bi bi-kanban"></i></div>
                             <div>
                                 <h6 style="font-weight:700;margin-bottom:0.3rem;">Hands-On Projects</h6>
-                                <p style="font-size:0.85rem;color:var(--muted);margin:0;line-height:1.6;">Apply your knowledge with real-world project assignments.</p>
+                                <p style="font-size:var(--text-sm);color:var(--muted);margin:0;line-height:1.6;">Apply your knowledge with real-world project assignments.</p>
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                             <div class="el-feature-icon"><i class="bi bi-phone"></i></div>
                             <div>
                                 <h6 style="font-weight:700;margin-bottom:0.3rem;">Mobile Learning</h6>
-                                <p style="font-size:0.85rem;color:var(--muted);margin:0;line-height:1.6;">Access courses seamlessly on mobile devices.</p>
+                                <p style="font-size:var(--text-sm);color:var(--muted);margin:0;line-height:1.6;">Access courses seamlessly on mobile devices.</p>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             <div class="el-feature-icon"><i class="bi bi-people"></i></div>
                             <div>
                                 <h6 style="font-weight:700;margin-bottom:0.3rem;">Community Support</h6>
-                                <p style="font-size:0.85rem;color:var(--muted);margin:0;line-height:1.6;">Engage with peers through forums and study groups.</p>
+                                <p style="font-size:var(--text-sm);color:var(--muted);margin:0;line-height:1.6;">Engage with peers through forums and study groups.</p>
                             </div>
                         </div>
                     </div>

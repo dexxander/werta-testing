@@ -35,7 +35,7 @@
     <div class="el-container">
         
         <div class="mb-4">
-            <a href="{{ route('elearning.my-courses') }}" style="color:var(--gold);text-decoration:none;font-size:0.9rem;font-weight:700;"><i class="bi bi-arrow-left"></i> Back to My Courses</a>
+            <a href="{{ route('elearning.my-courses') }}" style="color:var(--gold);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> Back to My Courses</a>
         </div>
 
         <div class="row g-4">
@@ -45,7 +45,7 @@
                     {{-- Video Placeholder --}}
                     <div style="width:100%;aspect-ratio:16/9;background:var(--dark);display:flex;align-items:center;justify-content:center;position:relative;">
                         <i class="bi bi-play-circle-fill" style="font-size:4rem;color:var(--gold);cursor:pointer;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"></i>
-                        <div style="position:absolute;bottom:1rem;left:1rem;color:#fff;font-size:0.85rem;background:rgba(0,0,0,0.5);padding:0.2rem 0.6rem;border-radius:4px;">
+                        <div style="position:absolute;bottom:1rem;left:1rem;color:#fff;font-size:var(--text-sm);background:rgba(0,0,0,0.5);padding:0.2rem 0.6rem;border-radius:4px;">
                             {{ $course_details['current_lesson'] }}
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             <a class="nav-link" style="color:var(--muted);border:none;background:transparent;" href="#">Q&A</a>
                         </li>
                     </ul>
-                    <div style="color:var(--muted);font-size:0.95rem;line-height:1.6;">
+                    <div style="color:var(--muted);font-size:var(--text-base-lg);line-height:1.6;">
                         <p>In this lesson, you will learn the core concepts behind flexible layouts using CSS Flexbox. We will cover flex containers, flex items, main and cross axis alignments, and responsive behaviors.</p>
                         <p>Make sure to download the starter files from the resources tab before proceeding with the coding exercises.</p>
                     </div>
@@ -86,25 +86,25 @@
                 <div class="el-card h-100">
                     <h5 style="font-weight:700;margin-bottom:1rem;">Course Content</h5>
                     <div style="margin-bottom:1.5rem;">
-                        <div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.4rem;font-weight:600;">
+                        <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);margin-bottom:0.4rem;font-weight:600;">
                             <span>Overall Progress</span>
                             <span>{{ $course_details['progress'] }}%</span>
                         </div>
-                        <div style="width:100%;height:6px;background:var(--cream);border-radius:3px;overflow:hidden;">
-                            <div style="width:{{ $course_details['progress'] }}%;height:100%;background:var(--gold);border-radius:3px;"></div>
+                        <div style="width:100%;height:6px;background:var(--cream);border-radius:var(--radius-pill);overflow:hidden;">
+                            <div style="width:{{ $course_details['progress'] }}%;height:100%;background:var(--gold);border-radius:var(--radius-pill);"></div>
                         </div>
                     </div>
                     
                     <div>
                         @foreach($course_details['modules'] as $module)
                             <div style="margin-bottom:1rem;">
-                                <div style="font-weight:700;font-size:0.95rem;padding:0.75rem;background:var(--cream);border-radius:6px;display:flex;justify-content:space-between;align-items:center;">
+                                <div style="font-weight:700;font-size:var(--text-base-lg);padding:0.75rem;background:var(--cream);border-radius:var(--radius-sm);display:flex;justify-content:space-between;align-items:center;">
                                     {{ $module['title'] }}
                                     <i class="bi bi-chevron-down"></i>
                                 </div>
                                 <div style="padding:0.5rem 0;">
                                     @foreach($module['lessons'] as $lesson)
-                                        <div style="padding:0.75rem 1rem;font-size:0.85rem;display:flex;justify-content:space-between;align-items:center;border-left:2px solid {{ !empty($lesson['active']) ? 'var(--gold)' : 'transparent' }};background:{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }};cursor:pointer;" onmouseover="this.style.background='rgba(196,168,64,0.05)'" onmouseout="this.style.background='{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }}'">
+                                        <div style="padding:0.75rem 1rem;font-size:var(--text-sm);display:flex;justify-content:space-between;align-items:center;border-left:2px solid {{ !empty($lesson['active']) ? 'var(--gold)' : 'transparent' }};background:{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }};cursor:pointer;" onmouseover="this.style.background='rgba(196,168,64,0.05)'" onmouseout="this.style.background='{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }}'">
                                             <div style="display:flex;align-items:center;gap:0.75rem;">
                                                 @if(!empty($lesson['completed']))
                                                     <i class="bi bi-check-circle-fill" style="color:var(--success, #28a745);"></i>
@@ -115,7 +115,7 @@
                                                 @endif
                                                 <span style="color:{{ !empty($lesson['active']) ? 'var(--dark)' : 'var(--muted)' }};font-weight:{{ !empty($lesson['active']) ? '700' : '400' }};">{{ $lesson['title'] }}</span>
                                             </div>
-                                            <span style="color:var(--muted);font-size:0.75rem;">{{ $lesson['duration'] }}</span>
+                                            <span style="color:var(--muted);font-size:var(--text-xs);">{{ $lesson['duration'] }}</span>
                                         </div>
                                     @endforeach
                                 </div>

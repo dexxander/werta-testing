@@ -17,18 +17,18 @@
                                     <i class="bi bi-star-fill" style="color:var(--gold);font-size:0.85rem;"></i>
                                 @endfor
                             </div>
-                            <p style="font-size:0.92rem;color:var(--dark);line-height:1.7;margin-bottom:1.2rem;font-style:italic;">"{{ $testimonial['content'] }}"</p>
+                            <p style="font-size:var(--text-base);color:var(--dark);line-height:1.7;margin-bottom:1.2rem;font-style:italic;">"{{ $testimonial['content'] }}"</p>
                             <div style="display:flex;align-items:center;gap:0.8rem;margin-top:auto;">
                                 @if(!empty($testimonial['avatar']))
-                                    <img src="{{ asset($testimonial['avatar']) }}" alt="{{ $testimonial['name'] }}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+                                    <img src="{{ asset($testimonial['avatar']) }}" alt="{{ $testimonial['name'] }}" style="width:40px;height:40px;border-radius:var(--radius-full);object-fit:cover;">
                                 @else
-                                    <div style="width:40px;height:40px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;">
+                                    <div style="width:40px;height:40px;border-radius:var(--radius-full);background:var(--cream);display:flex;align-items:center;justify-content:center;">
                                         <i class="bi bi-person" style="color:var(--gold);"></i>
                                     </div>
                                 @endif
                                 <div>
-                                    <strong style="font-size:0.85rem;">{{ $testimonial['name'] }}</strong>
-                                    <p style="font-size:0.75rem;color:var(--muted);margin:0;">{{ $testimonial['role'] ?? 'Student' }}</p>
+                                    <strong style="font-size:var(--text-sm);">{{ $testimonial['name'] }}</strong>
+                                    <p style="font-size:var(--text-xs);color:var(--muted);margin:0;">{{ $testimonial['role'] ?? 'Student' }}</p>
                                 </div>
                             </div>
                         </div>

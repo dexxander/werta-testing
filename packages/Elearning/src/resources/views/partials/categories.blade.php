@@ -64,7 +64,7 @@
         width: 56px;
         height: 56px;
         margin: 0 auto 1rem;
-        border-radius: 50%;
+        border-radius: var(--radius-full);
         background: rgba(196,168,64,0.12);
         display: flex;
         align-items: center;
@@ -90,11 +90,11 @@
     .el-cat-card-count {
         display: inline-block;
         margin-top: 0.4rem;
-        font-size: 0.75rem;
+        font-size: var(--text-sm);
         font-weight: 600;
         color: var(--muted);
         background: rgba(123,107,53,0.08);
-        border-radius: 20px;
+        border-radius: var(--radius-pill);
         padding: 0.25rem 0.75rem;
     }
 </style>

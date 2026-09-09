@@ -73,7 +73,7 @@
                                     <i class="bi bi-{{ $path['icon'] ?? 'signpost-2' }}"></i>
                                 </div>
                                 <h5 class="text-white mb-1">{{ $path['name'] ?? '' }}</h5>
-                                <p class="mb-0" style="color: var(--muted); font-size: 0.85rem;">
+                                <p class="mb-0" style="color: var(--muted); font-size: var(--text-sm);">
                                     {{ $path['course_count'] ?? 0 }} courses
                                 </p>
                             </div>
@@ -118,10 +118,10 @@
         background: rgba(255,255,255,0.05);
         border: 1px solid rgba(255,255,255,0.1);
         color: rgba(255,255,255,0.85);
-        font-size: 0.8rem;
+        font-size: var(--text-sm);
         font-weight: 600;
         padding: 0.55rem 1rem;
-        border-radius: 8px;
+        border-radius: var(--radius-md);
         text-align: center;
         width: 100%;
         transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
@@ -130,7 +130,7 @@
     .el-roadmap-arrow {
         color: var(--gold);
         opacity: 0.5;
-        font-size: 0.85rem;
+        font-size: var(--text-sm);
         line-height: 1;
         transition: opacity 0.2s ease, transform 0.2s ease;
     }
@@ -140,9 +140,9 @@
         color: var(--dark);
         font-family: 'IM Fell English', serif;
         font-weight: 700;
-        font-size: 0.95rem;
+        font-size: var(--text-base-lg);
         padding: 0.75rem 1.1rem;
-        border-radius: 10px;
+        border-radius: var(--radius-lg);
         text-align: center;
         display: flex;
         align-items: center;
@@ -174,7 +174,7 @@
     .el-roadmap-fallback {
         background: rgba(255,255,255,0.03);
         border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 12px;
+        border-radius: var(--radius-lg);
         padding: 2rem 1.25rem;
         text-align: center;
         transition: border-color 0.2s ease, transform 0.2s ease;

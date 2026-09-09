@@ -27,10 +27,10 @@
             Join thousands of learners who are building new skills, advancing their careers, and achieving their goals with Werta's expert-led courses.
         </p>
         <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-            <a href="#el-courses" class="el-btn-primary" style="padding:1rem 2.5rem;font-size:1rem;">
+            <a href="#el-courses" class="el-btn-primary" style="padding:1rem 2.5rem;font-size:var(--text-md);">
                 <i class="bi bi-rocket-takeoff"></i> Get Started Now
             </a>
-            <a href="#el-paths" class="el-btn-outline el-btn-outline--light" style="padding:1rem 2.5rem;font-size:1rem;">
+            <a href="#el-paths" class="el-btn-outline el-btn-outline--light" style="padding:1rem 2.5rem;font-size:var(--text-md);">
                 Explore Learning Paths
             </a>
         </div>
@@ -86,11 +86,11 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        font-size: 0.85rem;
+        font-size: var(--text-sm);
         color: rgba(255,255,255,0.6);
         background: rgba(255,255,255,0.06);
         border: 1px solid rgba(255,255,255,0.12);
-        border-radius: 20px;
+        border-radius: var(--radius-pill);
         padding: 0.5rem 1.1rem;
         margin-bottom: 1.5rem;
     }
@@ -102,7 +102,7 @@
     /* ─── FINAL CTA: REASSURANCE NOTE ─────────────────────── */
     .el-final-cta-note {
         margin: 1.5rem 0 0;
-        font-size: 0.82rem;
+        font-size: var(--text-sm);
         color: rgba(255,255,255,0.45);
     }
 </style>

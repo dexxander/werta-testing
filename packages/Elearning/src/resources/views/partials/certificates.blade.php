@@ -181,7 +181,7 @@
 
     .el-bento-tile:hover {
         transform: translateY(-4px);
-        box-shadow: 0 16px 36px rgba(44,36,22,0.1);
+        box-shadow: var(--shadow-lg);
         border-color: var(--gold);
     }
 
@@ -195,7 +195,7 @@
     }
 
     .el-bento-desc {
-        font-size: 0.85rem;
+        font-size: var(--text-sm);
         line-height: 1.6;
         color: var(--muted);
     }
@@ -215,8 +215,8 @@
         background: rgba(196,168,64,0.18);
     }
     .el-bento-big .el-bento-icon i { font-size: 1.8rem; }
-    .el-bento-big .el-bento-title { font-size: 1.4rem; color: #fff; }
-    .el-bento-big .el-bento-desc { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
+    .el-bento-big .el-bento-title { font-size: var(--text-xl); color: #fff; }
+    .el-bento-big .el-bento-desc { font-size: var(--text-base-lg); color: rgba(255,255,255,0.6); }
     .el-bento-big:hover { border-color: var(--gold); }
 
     /* Wide tile: icon + text side by side */
