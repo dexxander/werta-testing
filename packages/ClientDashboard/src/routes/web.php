@@ -15,7 +15,8 @@ Route::get('/client/login', function () {
 Route::post('/client/login', function (Request $request) {
     /* DEV BYPASS: Development-only one-click authentication bypass */
     if (\App\Support\DevAuth::isBypassActive() && $request->has('dev_bypass')) {
-        session()->forget('parent_logged_in');
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         session([
             'client_logged_in' => true,
             'client_profile' => ['username' => 'Client User', 'picture' => 'bi-person-circle'],
@@ -28,7 +29,8 @@ Route::post('/client/login', function (Request $request) {
     $password = $request->input('password');
 
     if ($username === 'client' && $password === 'client') {
-        session()->forget('parent_logged_in');
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         session(['client_logged_in' => true]);
         session(['client_profile' => ['username' => 'Client User', 'picture' => 'bi-person-circle']]);
         return redirect('/');
@@ -39,8 +41,8 @@ Route::post('/client/login', function (Request $request) {
 
 // Logout
 Route::get('/client/logout', function () {
-    session()->forget('client_logged_in');
-    session()->forget('client_profile');
+    \App\Support\SessionRoles::clearAllRoles();
+    session()->regenerate();
     return redirect('/');
 });
 
@@ -68,12 +70,14 @@ Route::post('/auth/register', function (Request $request) {
             }
         }
         
-        session()->forget('parent_logged_in');
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         session(['client_logged_in' => true]);
         session(['client_profile' => ['username' => 'New Client', 'picture' => 'bi-person']]);
         return redirect('/');
     } else {
-        session()->forget('client_logged_in');
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         session(['parent_logged_in' => true]);
         session(['parent_profile' => ['username' => 'New Parent', 'picture' => 'bi-person-heart']]);
         return redirect('/');
@@ -93,9 +97,6 @@ Route::post('/client/profile', function (Request $request) {
 Route::middleware('web')->group(function () {
     $guard = function ($view) {
         return function () use ($view) {
-            if (session('parent_logged_in') && !session('client_logged_in')) {
-                return redirect('/parent/dashboard');
-            }
             if (!session('client_logged_in')) {
                 return redirect('/client/login');
             }

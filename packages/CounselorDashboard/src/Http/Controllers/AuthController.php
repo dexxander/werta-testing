@@ -19,6 +19,8 @@ class AuthController extends Controller
     {
         /* DEV BYPASS: Development-only one-click authentication bypass */
         if (\App\Support\DevAuth::isBypassActive() && $request->has('dev_bypass')) {
+            \App\Support\SessionRoles::clearAllRoles();
+            session()->regenerate();
             session([
                 'counselor_logged_in' => true,
                 'counselor_name'      => 'Counselor User',
@@ -33,6 +35,8 @@ class AuthController extends Controller
         // TODO: replace with real credential check (Auth::attempt) once a
         // Counselor/User model + migration exist.
         if ($username === 'counselor' && $password === 'counselor') {
+            \App\Support\SessionRoles::clearAllRoles();
+            session()->regenerate();
             session([
                 'counselor_logged_in' => true,
                 'counselor_name'      => $username, // TODO: use real display name from DB once auth is real
@@ -46,7 +50,8 @@ class AuthController extends Controller
 
     public function logout()
     {
-        session()->forget('counselor_logged_in');
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         return redirect('/');
     }
 }

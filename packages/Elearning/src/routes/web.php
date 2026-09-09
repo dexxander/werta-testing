@@ -9,6 +9,9 @@ Route::get('/elearning/courses', [ElearningController::class, 'courses'])->name(
 Route::get('/elearning/category/{slug}', [ElearningController::class, 'categoryCourses'])->name('elearning.category');
 Route::get('/elearning/paths', [ElearningController::class, 'paths'])->name('elearning.paths');
 Route::get('/elearning/course/{id}', [ElearningController::class, 'coursePreview'])->name('elearning.course-preview');
+// Intentionally public: marketing preview showing student dashboard UI, contains no user data.
+Route::get('/elearning/dashboard', [ElearningController::class, 'dashboard'])->name('elearning.dashboard');
+
 Route::middleware('web')->group(function () {
     $clientGuard = function ($method) {
         return function ($id = null) use ($method) {
@@ -20,7 +23,6 @@ Route::middleware('web')->group(function () {
         };
     };
 
-    Route::get('/elearning/dashboard', $clientGuard('dashboard'))->name('elearning.dashboard');
     Route::get('/elearning/my-courses', $clientGuard('myCourses'))->name('elearning.my-courses');
     Route::get('/elearning/course/{id}/content', $clientGuard('courseContent'))->name('elearning.course-content');
 });

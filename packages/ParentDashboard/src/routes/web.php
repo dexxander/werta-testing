@@ -16,7 +16,8 @@ Route::get('/parent/login', function () {
 Route::post('/parent/login', function (Request $request) {
     /* DEV BYPASS: Development-only one-click authentication bypass */
     if (\App\Support\DevAuth::isBypassActive() && $request->has('dev_bypass')) {
-        session()->forget('client_logged_in');
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         session([
             'parent_logged_in' => true,
             'parent_profile' => ['username' => 'Parent User', 'picture' => 'bi-person-heart'],
@@ -29,7 +30,8 @@ Route::post('/parent/login', function (Request $request) {
     $password = $request->input('password');
 
     if ($username === 'parent' && $password === 'parent') {
-        session()->forget('client_logged_in');
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         session(['parent_logged_in' => true]);
         session(['parent_profile' => ['username' => 'Parent User', 'picture' => 'bi-person-heart']]);
         return redirect('/');
@@ -40,8 +42,8 @@ Route::post('/parent/login', function (Request $request) {
 
 // Logout
 Route::get('/parent/logout', function () {
-    session()->forget('parent_logged_in');
-    session()->forget('parent_profile');
+    \App\Support\SessionRoles::clearAllRoles();
+    session()->regenerate();
     return redirect('/');
 });
 
@@ -58,9 +60,6 @@ Route::post('/parent/profile', function (Request $request) {
 Route::middleware('web')->group(function () {
     $guard = function ($view) {
         return function () use ($view) {
-            if (session('client_logged_in') && !session('parent_logged_in')) {
-                return redirect('/client/dashboard');
-            }
             if (!session('parent_logged_in')) {
                 return redirect('/parent/login');
             }

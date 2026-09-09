@@ -23,7 +23,8 @@ Route::get('/admin/login', function () {
 Route::post('/admin/login', function (Request $request) {
     /* DEV BYPASS: Development-only one-click authentication bypass */
     if (\App\Support\DevAuth::isBypassActive() && $request->has('dev_bypass')) {
-        session()->forget(['client_logged_in', 'client_profile', 'parent_logged_in', 'parent_profile']);
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         session([
             'staff_role' => 'admin',
             'dev_bypass_session' => true,
@@ -32,7 +33,8 @@ Route::post('/admin/login', function (Request $request) {
     }
 
     if ($request->input('username') === 'admin' && $request->input('password') === 'admin') {
-        session()->forget(['client_logged_in', 'client_profile', 'parent_logged_in', 'parent_profile']);
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         session(['staff_role' => 'admin']);
         return redirect('/admin/dashboard');
     }
@@ -49,7 +51,8 @@ Route::get('/superadmin/login', function () {
 Route::post('/superadmin/login', function (Request $request) {
     /* DEV BYPASS: Development-only one-click authentication bypass */
     if (\App\Support\DevAuth::isBypassActive() && $request->has('dev_bypass')) {
-        session()->forget(['client_logged_in', 'client_profile', 'parent_logged_in', 'parent_profile']);
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         session([
             'staff_role' => 'superadmin',
             'dev_bypass_session' => true,
@@ -58,7 +61,8 @@ Route::post('/superadmin/login', function (Request $request) {
     }
 
     if ($request->input('username') === 'superadmin' && $request->input('password') === 'superadmin') {
-        session()->forget(['client_logged_in', 'client_profile', 'parent_logged_in', 'parent_profile']);
+        \App\Support\SessionRoles::clearAllRoles();
+        session()->regenerate();
         session(['staff_role' => 'superadmin']);
         return redirect('/superadmin/dashboard');
     }
@@ -66,12 +70,14 @@ Route::post('/superadmin/login', function (Request $request) {
 });
 
 Route::get('/admin/logout', function () {
-    session()->forget('staff_role');
+    \App\Support\SessionRoles::clearAllRoles();
+    session()->regenerate();
     return redirect('/');
 });
 
 Route::get('/superadmin/logout', function () {
-    session()->forget('staff_role');
+    \App\Support\SessionRoles::clearAllRoles();
+    session()->regenerate();
     return redirect('/');
 });
 
