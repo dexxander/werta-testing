@@ -3,13 +3,13 @@
 @section('content')
 <div>
     <div class="mb-6 sm:mb-8">
-        <h1 class="text-2xl sm:text-3xl font-bold text-[#2C2416]">Counselor Approvals</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-dark">Counselor Approvals</h1>
         <p class="text-sm text-gray-500 mt-1">Review and approve counselor applications submitted to the platform.</p>
     </div>
 
     <!-- Filter Tabs -->
     <div class="flex gap-2 mb-6">
-        <button class="px-4 py-2 rounded-lg text-sm font-semibold bg-[#C4A840]/10 text-[#7B6B35]">Pending (0)</button>
+        <button class="px-4 py-2 rounded-lg text-sm font-semibold bg-gold/10 text-primary">Pending (0)</button>
         <button class="px-4 py-2 rounded-lg text-sm font-semibold text-gray-500 hover:bg-gray-50">Approved (0)</button>
         <button class="px-4 py-2 rounded-lg text-sm font-semibold text-gray-500 hover:bg-gray-50">Rejected (0)</button>
     </div>
@@ -21,10 +21,10 @@
     @endif
 
     <!-- Applications Table -->
-    <div class="bg-white rounded-2xl p-4 sm:p-6 border border-[#C4A840]/20 shadow-sm">
+    <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm text-gray-600">
-                <thead class="bg-[#F5EFE0] text-[#7B6B35] font-bold border-b border-[#C4A840]/20 uppercase text-xs tracking-wider">
+                <thead class="bg-cream text-primary font-bold border-b border-gold/20 uppercase text-xs tracking-wider">
                     <tr>
                         <th class="px-4 py-3 rounded-tl-lg">Name</th>
                         <th class="px-4 py-3">Qualification</th>
@@ -36,7 +36,7 @@
                 <tbody class="divide-y divide-gray-100">
     @forelse($counselors as $counselor)
         <tr>
-            <td class="px-4 py-3 font-semibold text-[#2C2416]">{{ $counselor->name }}</td>
+            <td class="px-4 py-3 font-semibold text-dark">{{ $counselor->name }}</td>
             <td class="px-4 py-3">{{ $counselor->qualification }}</td>
             <td class="px-4 py-3">{{ $counselor->created_at->diffForHumans() }}</td>
             <td class="px-4 py-3">

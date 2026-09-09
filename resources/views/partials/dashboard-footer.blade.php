@@ -1,4 +1,4 @@
-<footer class="mt-8 border-t border-[#C4A840]/20 pt-6 pb-4">
+<footer class="mt-8 border-t border-gold/20 pt-6 pb-4">
     <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
         <div class="flex items-center gap-2">
             <img src="{{ asset('images/Werta_Logo.png') }}" alt="Werta Logo" class="h-6 w-auto">
@@ -13,10 +13,10 @@
     <div class="mt-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
         <p>&copy; {{ date('Y') }} Werta. All rights reserved.</p>
         <div class="flex gap-4 mt-2 md:mt-0">
-            <a href="#" class="hover:text-[#7B6B35] transition-colors"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="hover:text-[#7B6B35] transition-colors"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="hover:text-[#7B6B35] transition-colors"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="hover:text-[#7B6B35] transition-colors"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="hover:text-primary transition-colors"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="hover:text-primary transition-colors"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="hover:text-primary transition-colors"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="hover:text-primary transition-colors"><i class="bi bi-linkedin"></i></a>
         </div>
     </div>
 </footer>

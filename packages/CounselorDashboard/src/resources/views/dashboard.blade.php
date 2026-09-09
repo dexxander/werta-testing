@@ -5,61 +5,61 @@
     
     <div class="mb-6 sm:mb-8 flex justify-between items-end">
         <div>
-            <h1 class="text-2xl sm:text-3xl font-bold text-[#2C2416]">Counselor Workspace</h1>
+            <h1 class="text-2xl sm:text-3xl font-bold text-dark">Counselor Workspace</h1>
             <p class="text-sm text-gray-500 mt-1">Manage your appointments, client progress, and clinical reports.</p>
         </div>
         <div class="flex gap-3">
-            <button @click="isModalOpen = true" class="hidden sm:flex items-center gap-2 bg-[#C4A840] hover:bg-[#7B6B35] text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
+            <button @click="isModalOpen = true" class="hidden sm:flex items-center gap-2 bg-gold hover:bg-primary text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
                 <i class="bi bi-file-earmark-plus"></i> Quick Report
             </button>
         </div>
     </div>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
-        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-[#C4A840]/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-[#C4A840]/10 text-[#C4A840]">
+        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-gold">
                 <i class="bi bi-camera-video text-xl sm:text-3xl"></i>
             </div>
             <div>
                 <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Today's Sessions</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">{{ $stats['todays_sessions'] ?? '0' }}</h3>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $stats['todays_sessions'] ?? '0' }}</h3>
             </div>
         </div>
         
-        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-[#C4A840]/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-[#C4A840]/10 text-[#C4A840]">
+        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-gold">
                 <i class="bi bi-people text-xl sm:text-3xl"></i>
             </div>
             <div>
                 <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Active Clients</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">{{ $stats['active_clients'] ?? '0' }}</h3>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $stats['active_clients'] ?? '0' }}</h3>
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-[#C4A840]/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-[#7B6B35]/10 text-[#7B6B35]">
+        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-primary/10 text-primary">
                 <i class="bi bi-journal-text text-xl sm:text-3xl"></i>
             </div>
             <div>
                 <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Articles Published</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">{{ $stats['published_articles'] ?? '0' }}</h3>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $stats['published_articles'] ?? '0' }}</h3>
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-[#C4A840]/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
             <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-red-50 text-red-500">
                 <i class="bi bi-exclamation-triangle text-xl sm:text-3xl"></i>
             </div>
             <div>
                 <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Pending Reports</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-[#2C2416] mt-1">{{ $stats['pending_reports'] ?? '0' }}</h3>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $stats['pending_reports'] ?? '0' }}</h3>
             </div>
         </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <div class="bg-white rounded-2xl p-6 border border-[#C4A840]/20 shadow-sm">
-            <h2 class="text-lg font-bold text-[#2C2416] mb-6">Aggregate Client Mood Trends</h2>
+        <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
+            <h2 class="text-lg font-bold text-dark mb-6">Aggregate Client Mood Trends</h2>
             <div class="h-72 w-full flex items-center justify-center">
                 <div class="text-center text-gray-400">
                     <i class="bi bi-graph-up text-5xl"></i>
@@ -68,8 +68,8 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 border border-[#C4A840]/20 shadow-sm">
-            <h2 class="text-lg font-bold text-[#2C2416] mb-6">Consultation Hours (This Week)</h2>
+        <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
+            <h2 class="text-lg font-bold text-dark mb-6">Consultation Hours (This Week)</h2>
             <div class="h-72 w-full flex items-center justify-center">
                 <div class="text-center text-gray-400">
                     <i class="bi bi-clock-history text-5xl"></i>
@@ -79,12 +79,12 @@
         </div>
     </div>
 
-    <div class="bg-white rounded-2xl p-4 sm:p-6 border border-[#C4A840]/20 shadow-sm">
-        <h2 class="text-lg font-bold text-[#2C2416] mb-4 sm:mb-6">Upcoming Appointments</h2>
+    <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm">
+        <h2 class="text-lg font-bold text-dark mb-4 sm:mb-6">Upcoming Appointments</h2>
         
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm text-gray-600">
-                <thead class="bg-[#F5EFE0] text-[#7B6B35] font-bold border-b border-[#C4A840]/20 uppercase text-xs tracking-wider">
+                <thead class="bg-cream text-primary font-bold border-b border-gold/20 uppercase text-xs tracking-wider">
                     <tr>
                         <th class="px-4 py-3 rounded-tl-lg">Time</th>
                         <th class="px-4 py-3">Client ID</th>
@@ -105,8 +105,8 @@
                                 <span class="px-2 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded">{{ $appointment->status }}</span>
                             </td>
                             <td class="px-4 py-4 text-right">
-                                <button class="text-sm font-medium text-[#C4A840] hover:text-[#7B6B35] mr-3">View History</button>
-                                <button class="text-sm font-medium bg-[#C4A840] text-white px-3 py-1 rounded hover:bg-[#7B6B35]">Join Room</button>
+                                <button class="text-sm font-medium text-gold hover:text-primary mr-3">View History</button>
+                                <button class="text-sm font-medium bg-gold text-white px-3 py-1 rounded hover:bg-primary">Join Room</button>
                             </td>
                         </tr>
                     @empty

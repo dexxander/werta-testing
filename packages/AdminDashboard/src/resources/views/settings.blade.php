@@ -3,15 +3,15 @@
 @section('content')
 <div>
     <div class="mb-6 sm:mb-8">
-        <h1 class="text-2xl sm:text-3xl font-bold text-[#2C2416]">Settings</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-dark">Settings</h1>
         <p class="text-sm text-gray-500 mt-1">Manage your account preferences and platform configuration.</p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         <!-- Profile Settings -->
-        <div class="bg-white rounded-2xl p-6 border border-[#C4A840]/20 shadow-sm">
-            <h2 class="text-lg font-bold text-[#2C2416] mb-4">Profile</h2>
+        <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
+            <h2 class="text-lg font-bold text-dark mb-4">Profile</h2>
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Display Name</label>
@@ -29,8 +29,8 @@
         </div>
 
         <!-- Platform Settings (Superadmin gets extra note) -->
-        <div class="bg-white rounded-2xl p-6 border border-[#C4A840]/20 shadow-sm">
-            <h2 class="text-lg font-bold text-[#2C2416] mb-4">Platform Configuration</h2>
+        <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
+            <h2 class="text-lg font-bold text-dark mb-4">Platform Configuration</h2>
             @if($role === 'superadmin')
             <p class="text-sm text-gray-500 mb-4">As Superadmin, you have access to system-wide configuration options.</p>
             @else

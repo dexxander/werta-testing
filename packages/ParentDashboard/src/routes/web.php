@@ -14,6 +14,17 @@ Route::get('/parent/login', function () {
 
 // Handle login POST
 Route::post('/parent/login', function (Request $request) {
+    /* DEV BYPASS: Development-only one-click authentication bypass */
+    if (\App\Support\DevAuth::isBypassActive() && $request->has('dev_bypass')) {
+        session()->forget('client_logged_in');
+        session([
+            'parent_logged_in' => true,
+            'parent_profile' => ['username' => 'Parent User', 'picture' => 'bi-person-heart'],
+            'dev_bypass_session' => true,
+        ]);
+        return redirect('/parent/dashboard');
+    }
+
     $username = $request->input('username');
     $password = $request->input('password');
 

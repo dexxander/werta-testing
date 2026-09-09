@@ -21,6 +21,16 @@ Route::get('/admin/login', function () {
 });
 
 Route::post('/admin/login', function (Request $request) {
+    /* DEV BYPASS: Development-only one-click authentication bypass */
+    if (\App\Support\DevAuth::isBypassActive() && $request->has('dev_bypass')) {
+        session()->forget(['client_logged_in', 'client_profile', 'parent_logged_in', 'parent_profile']);
+        session([
+            'staff_role' => 'admin',
+            'dev_bypass_session' => true,
+        ]);
+        return redirect('/admin/dashboard');
+    }
+
     if ($request->input('username') === 'admin' && $request->input('password') === 'admin') {
         session()->forget(['client_logged_in', 'client_profile', 'parent_logged_in', 'parent_profile']);
         session(['staff_role' => 'admin']);
@@ -37,6 +47,16 @@ Route::get('/superadmin/login', function () {
 });
 
 Route::post('/superadmin/login', function (Request $request) {
+    /* DEV BYPASS: Development-only one-click authentication bypass */
+    if (\App\Support\DevAuth::isBypassActive() && $request->has('dev_bypass')) {
+        session()->forget(['client_logged_in', 'client_profile', 'parent_logged_in', 'parent_profile']);
+        session([
+            'staff_role' => 'superadmin',
+            'dev_bypass_session' => true,
+        ]);
+        return redirect('/superadmin/dashboard');
+    }
+
     if ($request->input('username') === 'superadmin' && $request->input('password') === 'superadmin') {
         session()->forget(['client_logged_in', 'client_profile', 'parent_logged_in', 'parent_profile']);
         session(['staff_role' => 'superadmin']);

@@ -57,3 +57,25 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Development
+
+### Authentication Bypass (`DEV_BYPASS_AUTH`)
+
+For local testing and design review across all five dashboard roles (`client`, `parent`, `counselor`, `admin`, `superadmin`), Werta supports a single-click development login bypass.
+
+#### How to Enable
+1. Ensure your `.env` has:
+   ```env
+   APP_ENV=local
+   APP_DEBUG=true
+   DEV_BYPASS_AUTH=true
+   ```
+2. Navigate to any login portal (`/client/login`, `/parent/login`, `/counselor/login`, `/admin/login`, `/superadmin/login`).
+3. Click the **⚡ Dev: Skip Login as {Role}** button beneath the normal form to bypass authentication and directly enter the dashboard.
+4. Active bypass sessions will display a high-visibility hazard warning strip across the top of the dashboard chrome.
+
+#### Production Safety
+- The bypass is gated by a triple-lock: `app()->environment('local')` AND `config('app.debug') === true` AND `config('app.dev_bypass_auth') === true`.
+- **CRITICAL REMINDER**: `DEV_BYPASS_AUTH` must remain disabled (`false`) or absent in any staging or production deployment. It must never be enabled on publicly accessible servers.
+

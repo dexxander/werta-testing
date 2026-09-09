@@ -4,13 +4,13 @@
 <div>
     <div class="mb-6 sm:mb-8 flex justify-between items-end">
         <div>
-            <h1 class="text-2xl sm:text-3xl font-bold text-[#2C2416]">User Management</h1>
+            <h1 class="text-2xl sm:text-3xl font-bold text-dark">User Management</h1>
             <p class="text-sm text-gray-500 mt-1">View and manage client accounts across the platform.</p>
         </div>
     </div>
 
     <!-- Search / Filter Bar -->
-    <div class="bg-white rounded-2xl p-4 border border-[#C4A840]/20 shadow-sm mb-6 flex flex-col sm:flex-row gap-3">
+    <div class="bg-white rounded-2xl p-4 border border-gold/20 shadow-sm mb-6 flex flex-col sm:flex-row gap-3">
         <div class="relative flex-1">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="bi bi-search"></i></span>
             <input type="text" disabled placeholder="Search clients by name or email..." class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-400 outline-none">
@@ -21,10 +21,10 @@
     </div>
 
     <!-- Clients Table -->
-    <div class="bg-white rounded-2xl p-4 sm:p-6 border border-[#C4A840]/20 shadow-sm">
+    <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm text-gray-600">
-                <thead class="bg-[#F5EFE0] text-[#7B6B35] font-bold border-b border-[#C4A840]/20 uppercase text-xs tracking-wider">
+                <thead class="bg-cream text-primary font-bold border-b border-gold/20 uppercase text-xs tracking-wider">
                     <tr>
                         <th class="px-4 py-3 rounded-tl-lg">Name</th>
                         <th class="px-4 py-3">Email</th>
@@ -37,7 +37,7 @@
                 <tbody class="divide-y divide-gray-100">
     @forelse($clients as $client)
         <tr>
-            <td class="px-4 py-3 font-semibold text-[#2C2416]">{{ $client->name }}</td>
+            <td class="px-4 py-3 font-semibold text-dark">{{ $client->name }}</td>
             <td class="px-4 py-3">{{ $client->email }}</td>
             <td class="px-4 py-3">Path {{ $client->path }}</td>
             <td class="px-4 py-3">{{ $client->created_at->format('d M Y') }}</td>

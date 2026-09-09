@@ -13,6 +13,17 @@ Route::get('/client/login', function () {
 
 // Handle login POST
 Route::post('/client/login', function (Request $request) {
+    /* DEV BYPASS: Development-only one-click authentication bypass */
+    if (\App\Support\DevAuth::isBypassActive() && $request->has('dev_bypass')) {
+        session()->forget('parent_logged_in');
+        session([
+            'client_logged_in' => true,
+            'client_profile' => ['username' => 'Client User', 'picture' => 'bi-person-circle'],
+            'dev_bypass_session' => true,
+        ]);
+        return redirect('/client/dashboard');
+    }
+
     $username = $request->input('username');
     $password = $request->input('password');
 

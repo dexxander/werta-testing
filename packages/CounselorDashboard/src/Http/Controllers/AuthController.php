@@ -17,6 +17,16 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        /* DEV BYPASS: Development-only one-click authentication bypass */
+        if (\App\Support\DevAuth::isBypassActive() && $request->has('dev_bypass')) {
+            session([
+                'counselor_logged_in' => true,
+                'counselor_name'      => 'Counselor User',
+                'dev_bypass_session'  => true,
+            ]);
+            return redirect()->route('counselor.dashboard');
+        }
+
         $username = $request->input('username');
         $password = $request->input('password');
 
