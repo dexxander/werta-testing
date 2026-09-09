@@ -135,4 +135,23 @@ class ViewSmokeTest extends TestCase
             $response->assertStatus(200);
         }
     }
+
+    public function test_navbar_renders_across_all_roles_on_public_pages()
+    {
+        $roleSessions = [
+            'anonymous'  => [],
+            'client'     => ['client_logged_in' => true, 'client_profile' => ['username' => 'Client User', 'picture' => 'bi-person-circle']],
+            'parent'     => ['parent_logged_in' => true, 'parent_profile' => ['username' => 'Parent User', 'picture' => 'bi-person-heart']],
+            'counselor'  => ['counselor_logged_in' => true, 'counselor_name' => 'Counselor User'],
+            'admin'      => ['staff_role' => 'admin'],
+            'superadmin' => ['staff_role' => 'superadmin'],
+        ];
+
+        foreach ($roleSessions as $role => $session) {
+            $response = $this->withSession($session)->get('/');
+            $response->assertStatus(200);
+            $response->assertSee('E-Learning Modules');
+            $response->assertSee('btn-account-label');
+        }
+    }
 }
