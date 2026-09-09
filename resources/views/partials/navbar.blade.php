@@ -37,7 +37,7 @@
 <nav class="site-navbar">
     <div class="navbar-inner">
         <a href="/" class="navbar-brand-wrap">
-            <img src="{{ asset('images/Werta_Logo.png') }}" alt="Werta Logo" style="height: 90px; width: auto;">
+            <img src="{{ asset('images/Werta_Logo.png') }}" alt="Werta Logo" style="height: 46px; width: auto;">
             <span class="brand-title">
                 <span class="brand-w">W</span><span class="brand-rest">ERTA</span>
             </span>
@@ -87,7 +87,7 @@
                         ]);
                     @endphp
                     <button class="btn-account">
-                        <i class="bi {{ $profile['picture'] }}"></i> {{ $profile['username'] }} ({{ $role }}) <i class="bi bi-chevron-down" style="font-size: var(--text-xs);"></i>
+                        <i class="bi {{ $profile['picture'] }}"></i> <span class="btn-account-label">{{ $profile['username'] }} ({{ $role }})</span> <i class="bi bi-chevron-down" style="font-size: var(--text-xs);"></i>
                     </button>
                     <div class="account-dropdown-menu">
                         <div class="account-dropdown-menu-inner">
@@ -98,7 +98,7 @@
                     </div>
                 @else
                     <button class="btn-account">
-                        <i class="bi bi-person-circle"></i> Account <i class="bi bi-chevron-down" style="font-size: var(--text-xs);"></i>
+                        <i class="bi bi-person-circle"></i> <span class="btn-account-label">Account</span> <i class="bi bi-chevron-down" style="font-size: var(--text-xs);"></i>
                     </button>
                     <div class="account-dropdown-menu">
                         <div class="account-dropdown-menu-inner">

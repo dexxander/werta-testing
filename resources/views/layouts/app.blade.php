@@ -65,8 +65,10 @@
 
         /* ─── NAVBAR ────────────────────────────────────── */
         .site-navbar {
-            background-color: var(--cream-light);
-            padding: 1.2rem 0;
+            background-color: rgba(253, 250, 244, 0.7);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 0.45rem 0;
             box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
@@ -76,7 +78,7 @@
         .navbar-inner {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0.6rem 1rem;
+            padding: 0.25rem 1rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -127,6 +129,7 @@
             border-radius: var(--radius-sm);
             font-weight: 500;
             transition: color 0.2s;
+            white-space: nowrap; /* Keep navbar on a single line for long role labels */
         }
 
         .nav-links a:hover { color: var(--primary); }
@@ -150,6 +153,21 @@
             align-items: center;
             gap: 6px;
             transition: background 0.2s;
+            /* Keep navbar on a single line for long role labels */
+            max-width: 235px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .btn-account .btn-account-label {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .btn-account i {
+            flex-shrink: 0;
         }
 
         .btn-account:hover { background: var(--primary); }
