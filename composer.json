@@ -24,11 +24,12 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Elearning\\": "packages/Elearning/src/",
-            "ParentDashboard\\": "packages/ParentDashboard/src/",
-            "ClientDashboard\\": "packages/ClientDashboard/src/",
+            "AdminDashboard\\": "packages/AdminDashboard/src/",
             "Articles\\": "packages/Articles/src/",
-            "CounselorDashboard\\": "packages/CounselorDashboard/src/"
+            "ClientDashboard\\": "packages/ClientDashboard/src/",
+            "CounselorDashboard\\": "packages/CounselorDashboard/src/",
+            "Elearning\\": "packages/Elearning/src/",
+            "ParentDashboard\\": "packages/ParentDashboard/src/"
         }
     },
     "autoload-dev": {

@@ -44,7 +44,7 @@
         </a>
 
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="{{ url('/counselors') }}">Counselors</a></li>
             <li><a href="{{ url('/assessment') }}">Assessments</a></li>
             <li><a href="{{ route('public.articles') }}">Articles</a></li>
