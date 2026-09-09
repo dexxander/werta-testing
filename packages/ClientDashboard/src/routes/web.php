@@ -92,9 +92,9 @@ Route::middleware('web')->group(function () {
         };
     };
 
-    Route::get('/client/dashboard', $guard('dashboard'));
-    Route::get('/client/assessments', $guard('assessments'));
-    Route::get('/client/learning', $guard('learning'));
-    Route::get('/client/appointments', $guard('appointments'));
-    Route::get('/client/messages', $guard('messages'));
+    Route::get('/client/dashboard', $guard('dashboard'))->name('client.dashboard');
+    Route::get('/client/assessments', $guard('assessments'))->name('client.assessments');
+    Route::get('/client/learning', $guard('learning'))->name('client.learning');
+    Route::get('/client/appointments', $guard('appointments'))->name('client.appointments');
+    Route::get('/client/messages', $guard('messages'))->name('client.messages');
 });

@@ -42,32 +42,31 @@
     </header>
 
     <div class="flex flex-1 overflow-hidden">
-        @php $currentPath = request()->path(); @endphp
         <aside :class="sidebarOpen ? 'ml-0' : '-ml-64'" class="w-64 bg-white border-r border-[#C4A840]/20 flex-shrink-0 flex flex-col h-full z-10 shadow-[2px_0_10px_rgba(0,0,0,0.02)] transition-all duration-300 ease-in-out">
             <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
                 <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 px-3">Workspace</div>
                 
-                <a href="{{ url('/counselor/dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === 'counselor/dashboard' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/counselor/dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('counselor.dashboard') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-grid-1x2-fill text-lg"></i> Overview
                 </a>
                 
-                <a href="{{ url('/counselor/schedule') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === 'counselor/schedule' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/counselor/schedule') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('counselor.schedule') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-calendar-week text-lg"></i> Schedule & Slots
                 </a>
                 
-                <a href="{{ url('/counselor/clients') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === 'counselor/clients' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/counselor/clients') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('counselor.clients') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-people-fill text-lg"></i> Client History
                 </a>
 
                 <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-6 mb-4 px-3">Publishing</div>
                 
-                <a href="{{ url('/counselor/articles') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ Str::startsWith($currentPath, 'counselor/articles') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/counselor/articles') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('counselor.articles.*') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-journal-richtext text-lg"></i> Articles
                 </a>
 
                 <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-6 mb-4 px-3">Account</div>
 
-                <a href="{{ url('/counselor/profile') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === 'counselor/settings' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/counselor/profile') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('counselor.profile') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-gear-fill text-lg"></i> Profile & Rates
                 </a>
 
@@ -153,7 +152,7 @@
                 @yield('content')
             </div>
             
-            @include('counselor-dashboard::partials.footer')
+            @include('partials.dashboard-footer')
         </main>
     </div>
     

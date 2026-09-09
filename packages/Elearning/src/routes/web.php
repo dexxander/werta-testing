@@ -25,7 +25,6 @@ Route::middleware('web')->group(function () {
     Route::get('/elearning/course/{id}/content', $clientGuard('courseContent'))->name('elearning.course-content');
 });
 
-Route::get('/elearning/instructors', function () { return redirect()->route('elearning.index'); })->name('elearning.instructors');
 Route::get('/elearning/pricing', [ElearningController::class, 'pricing'])->name('elearning.pricing');
 Route::get('/elearning/checkout', [ElearningController::class, 'checkout'])->name('elearning.checkout');
 Route::get('/elearning/faq', [ElearningController::class, 'faq'])->name('elearning.faq');

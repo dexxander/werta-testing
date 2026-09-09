@@ -210,6 +210,13 @@
             margin-bottom: 1rem;
         }
 
+        /* NOTE [Design System Flag]:
+           The classes below (.btn-cta-filled, .btn-cta-outline, .pill-label, .sec-heading) parallel
+           Elearning's component classes (.el-btn-primary, .el-btn-outline, .el-pill, .el-heading)
+           with overlapping visual intent. Consolidating them into a unified component CSS system
+           should be done in a dedicated, deliberate design-system pass with side-by-side visual
+           testing, rather than an ad-hoc merge, due to broad site-wide usage across Home, About,
+           Assessments, and Articles. */
         .btn-cta-filled {
             background: var(--primary-dark);
             color: white;

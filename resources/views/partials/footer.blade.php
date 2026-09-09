@@ -13,7 +13,7 @@
         </div>
         <div class="footer-col">
             <h4>Platform</h4>
-            <a href="#">Find a Counselor</a>
+            <a href="{{ url('/counselors') }}">Find a Counselor</a>
             <a href="{{ url('/assessment') }}">Take an Assessment</a>
             <a href="#">Community Forum</a>
             <a href="#">Guidance Center</a>

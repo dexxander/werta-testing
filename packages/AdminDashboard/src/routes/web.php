@@ -71,11 +71,11 @@ Route::middleware('web')->prefix('admin')->group(function () {
 
     Route::get('/dashboard', function () use ($requireAdmin) {
         return $requireAdmin() ?? app(DashboardController::class)->index('admin');
-    });
+    })->name('admin.dashboard');
 
     Route::get('/counselor-approvals', function () use ($requireAdmin) {
         return $requireAdmin() ?? app(CounselorApprovalController::class)->index('admin');
-    });
+    })->name('admin.counselor-approvals');
     Route::post('/counselor-approvals/{counselor}/approve', function ($counselor) use ($requireAdmin) {
         return $requireAdmin() ?? app(CounselorApprovalController::class)->approve(request(), \AdminDashboard\Models\Counselor::findOrFail($counselor));
     });
@@ -85,20 +85,20 @@ Route::middleware('web')->prefix('admin')->group(function () {
 
     Route::get('/user-management', function () use ($requireAdmin) {
         return $requireAdmin() ?? app(UserManagementController::class)->index('admin');
-    });
+    })->name('admin.user-management');
     Route::delete('/user-management/{client}', function ($client) use ($requireAdmin) {
         return $requireAdmin() ?? app(UserManagementController::class)->destroy(\AdminDashboard\Models\Client::findOrFail($client));
     });
 
     Route::get('/analytics', function () use ($requireAdmin) {
         return $requireAdmin() ?? view('admindashboard::analytics', ['role' => 'admin']);
-    });
+    })->name('admin.analytics');
     Route::get('/content', function () use ($requireAdmin) {
         return $requireAdmin() ?? view('admindashboard::content', ['role' => 'admin']);
-    });
+    })->name('admin.content');
     Route::get('/settings', function () use ($requireAdmin) {
         return $requireAdmin() ?? view('admindashboard::settings', ['role' => 'admin']);
-    });
+    })->name('admin.settings');
 });
 
 /*
@@ -117,11 +117,11 @@ Route::middleware('web')->prefix('superadmin')->group(function () {
 
     Route::get('/dashboard', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? app(DashboardController::class)->index('superadmin');
-    });
+    })->name('superadmin.dashboard');
 
     Route::get('/administrators', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? app(AdministratorController::class)->index('superadmin');
-    });
+    })->name('superadmin.administrators');
     Route::post('/administrators', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? app(AdministratorController::class)->store(request());
     });
@@ -131,7 +131,7 @@ Route::middleware('web')->prefix('superadmin')->group(function () {
 
     Route::get('/counselor-approvals', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? app(CounselorApprovalController::class)->index('superadmin');
-    });
+    })->name('superadmin.counselor-approvals');
     Route::post('/counselor-approvals/{counselor}/approve', function ($counselor) use ($requireSuperadmin) {
         return $requireSuperadmin() ?? app(CounselorApprovalController::class)->approve(request(), \AdminDashboard\Models\Counselor::findOrFail($counselor));
     });
@@ -141,18 +141,18 @@ Route::middleware('web')->prefix('superadmin')->group(function () {
 
     Route::get('/user-management', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? app(UserManagementController::class)->index('superadmin');
-    });
+    })->name('superadmin.user-management');
     Route::delete('/user-management/{client}', function ($client) use ($requireSuperadmin) {
         return $requireSuperadmin() ?? app(UserManagementController::class)->destroy(\AdminDashboard\Models\Client::findOrFail($client));
     });
 
     Route::get('/analytics', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? view('admindashboard::analytics', ['role' => 'superadmin']);
-    });
+    })->name('superadmin.analytics');
     Route::get('/content', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? view('admindashboard::content', ['role' => 'superadmin']);
-    });
+    })->name('superadmin.content');
     Route::get('/settings', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? view('admindashboard::settings', ['role' => 'superadmin']);
-    });
+    })->name('superadmin.settings');
 });

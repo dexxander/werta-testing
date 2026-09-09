@@ -56,35 +56,33 @@
             <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
                 <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 px-3">Main Menu</div>
 
-                @php $currentPath = request()->path(); @endphp
-
-                <a href="{{ url('/' . $role . '/dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === $role . '/dashboard' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/' . $role . '/dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.dashboard') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-grid-1x2-fill text-lg"></i> Overview
                 </a>
 
                 @if($role === 'superadmin')
-                <a href="{{ url('/superadmin/administrators') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === 'superadmin/administrators' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/superadmin/administrators') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('superadmin.administrators') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-person-badge text-lg"></i> Administrators
                 </a>
                 @endif
 
-                <a href="{{ url('/' . $role . '/counselor-approvals') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === $role . '/counselor-approvals' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/' . $role . '/counselor-approvals') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.counselor-approvals') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-patch-check text-lg"></i> Counselor Approvals
                 </a>
 
-                <a href="{{ url('/' . $role . '/user-management') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === $role . '/user-management' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/' . $role . '/user-management') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.user-management') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-people text-lg"></i> User Management
                 </a>
 
-                <a href="{{ url('/' . $role . '/analytics') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === $role . '/analytics' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/' . $role . '/analytics') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.analytics') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-bar-chart-line text-lg"></i> Analytics
                 </a>
 
-                <a href="{{ url('/' . $role . '/content') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === $role . '/content' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/' . $role . '/content') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.content') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-file-earmark-text text-lg"></i> Content
                 </a>
 
-                <a href="{{ url('/' . $role . '/settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === $role . '/settings' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/' . $role . '/settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.settings') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-gear text-lg"></i> Settings
                 </a>
             </nav>
@@ -96,7 +94,7 @@
                 @yield('content')
             </div>
 
-            @include('admindashboard::partials.footer')
+            @include('partials.dashboard-footer')
         </main>
     </div>
 

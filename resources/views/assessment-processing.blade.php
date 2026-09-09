@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/Werta_Logo.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* NOTE: Design tokens below are intentionally duplicated from layouts/app.blade.php.
+           Keep in sync manually as this page is a standalone, distraction-free interstitial screen. */
         :root {
             --cream:        #F5EFE0;
             --cream-light:  #FDFAF4;
@@ -128,6 +130,14 @@
         <div class="step" id="s5"><span class="step-dot"></span> Preparing your report</div>
     </div>
 
+    {{-- Fallback escape hatch if JS redirect or network fails --}}
+    <div id="fallback-wrap" style="opacity: 0; pointer-events: none; transition: opacity 0.5s ease; margin-top: 1rem; text-align: center;">
+        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;">Taking longer than expected?</p>
+        <a href="{{ url('/assessment/email') }}" style="display: inline-block; font-size: 0.875rem; font-weight: 700; color: var(--primary); text-decoration: underline; text-underline-offset: 4px; padding: 0.35rem 0.75rem; border-radius: 6px; transition: color 0.2s ease;">
+            Continue to Results &rarr;
+        </a>
+    </div>
+
     <script>
         const steps = ['s1','s2','s3','s4','s5'];
         let i = 0;
@@ -144,6 +154,15 @@
         }
 
         setTimeout(showNext, 400);
+
+        // Reveal fallback link if redirect takes longer than 5 seconds
+        setTimeout(function() {
+            const fallback = document.getElementById('fallback-wrap');
+            if (fallback) {
+                fallback.style.opacity = '1';
+                fallback.style.pointerEvents = 'auto';
+            }
+        }, 5000);
     </script>
 </body>
 </html>

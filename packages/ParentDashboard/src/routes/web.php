@@ -57,8 +57,8 @@ Route::middleware('web')->group(function () {
         };
     };
 
-    Route::get('/parent/dashboard', $guard('dashboard'));
-    Route::get('/parent/progress', $guard('progress'));
-    Route::get('/parent/appointments', $guard('appointments'));
-    Route::get('/parent/messages', $guard('messages'));
+    Route::get('/parent/dashboard', $guard('dashboard'))->name('parent.dashboard');
+    Route::get('/parent/progress', $guard('progress'))->name('parent.progress');
+    Route::get('/parent/appointments', $guard('appointments'))->name('parent.appointments');
+    Route::get('/parent/messages', $guard('messages'))->name('parent.messages');
 });

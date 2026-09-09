@@ -29,6 +29,12 @@
 
         .el-container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
+        /* NOTE [Design System Flag]:
+           The component classes below (.el-pill, .el-heading, .el-btn-primary, .el-btn-outline)
+           parallel the public site's classes (.pill-label, .sec-heading, .btn-cta-filled, .btn-cta-outline
+           in layouts/app.blade.php) with overlapping visual intent. Consolidating them into a unified
+           component system should be handled in a dedicated design-system pass with visual side-by-side
+           comparison, rather than an ad-hoc merge, as the blast radius spans across all 11+ Elearning views. */
         .el-pill {
             font-size: 0.75rem; font-weight: 700; letter-spacing: 3px;
             text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem;
@@ -288,57 +294,6 @@
         @yield('elearning-body')
     </div>
 
-    {{-- Client-Only Access Popup --}}
-    @php
-        $isClient = session('client_logged_in', false);
-        $isParent = session('parent_logged_in', false);
-        $isGuest = !$isClient && !$isParent;
-        $onProtectedPage = request()->routeIs('elearning.dashboard') || request()->routeIs('elearning.my-courses') || request()->routeIs('elearning.course-content');
-    @endphp
-
-    @if(!$isClient && $onProtectedPage)
-        <div id="elearningAccessPopup" class="el-modal-overlay active">
-            <div class="el-modal-content el-card" style="background: var(--cream-light);">
-                <div class="text-center">
-                    <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
-                        <i class="bi bi-shield-lock" style="font-size:2rem;color:var(--gold);"></i>
-                    </div>
-                    <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Client Access Only</h4>
-                    <p style="color:var(--muted);font-size:0.95rem;margin-bottom:2rem;">
-                        @if($isParent)
-                            Parent accounts cannot access the E-Learning dashboard. Please log in with a Client account to enroll in courses and track your progress.
-                        @else
-                            Please log in using a Client account to access the E-Learning dashboard, enroll in courses, and track your progress.
-                        @endif
-                    </p>
-                    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-                        <a href="{{ route('elearning.index') }}" class="el-btn-outline" style="padding:0.75rem 1.5rem;">Back to E-Learning</a>
-                        @if($isParent)
-                            <a href="{{ url('/client/login') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Switch to Client</a>
-                        @else
-                            <a href="{{ url('/client/login') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Client Login</a>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-        <style>
-            .el-modal-overlay {
-                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                background: rgba(44,36,22,0.6); z-index: 9999;
-                display: flex; align-items: center; justify-content: center;
-                opacity: 0; visibility: hidden; transition: all 0.3s ease;
-                backdrop-filter: blur(4px);
-            }
-            .el-modal-overlay.active { opacity: 1; visibility: visible; }
-            .el-modal-content {
-                max-width: 480px; width: 90%; position: relative;
-                transform: translateY(20px); transition: all 0.3s ease;
-            }
-            .el-modal-overlay.active .el-modal-content { transform: translateY(0); }
-        </style>
-    @endif
-
     @include('elearning::partials.final-cta')
     @include('partials.footer')
 
@@ -383,13 +338,6 @@
             }
 
             initElearningAnimations();
-            
-            // ─── Hide Instructors link from core navbar ───
-            document.querySelectorAll('.elearning-dropdown-menu a').forEach(function(link) {
-                if (link.getAttribute('href') && link.getAttribute('href').includes('/elearning/instructors')) {
-                    link.style.setProperty('display', 'none', 'important');
-                }
-            });
 
             // ─── FAQ accordion (delegated so it survives content swaps) ───
             document.addEventListener('click', function (e) {

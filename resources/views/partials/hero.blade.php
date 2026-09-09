@@ -8,7 +8,7 @@
             <div class="col-lg-7">
                 <h1 class="hero-heading">Mental Wellbeing,<br>With You Every Step</h1>
                 <div class="d-flex gap-3 flex-wrap">
-                    <a href="#" class="btn-cta-filled">Find a Counselor</a>
+                    <a href="{{ url('/counselors') }}" class="btn-cta-filled">Find a Counselor</a>
                     <a href="#" class="btn-cta-outline">Take an Assessment</a>
                 </div>
             </div>

@@ -112,7 +112,7 @@
     </section>
 
     <!-- SECTION: CTA -->
-    <section class="cta-band"><div class="container"><h2 class="sec-heading">Lorem Ipsum Dolor Sit Amet Consectetur</h2><div class="cta-band-actions"><a href="{{ url('/assessment') }}" class="btn-cta-filled">Take the Assessment</a><a href="#" class="btn-cta-outline">Browse Counselors</a></div></div></section>
+    <section class="cta-band"><div class="container"><h2 class="sec-heading">Lorem Ipsum Dolor Sit Amet Consectetur</h2><div class="cta-band-actions"><a href="{{ url('/assessment') }}" class="btn-cta-filled">Take the Assessment</a><a href="{{ url('/counselors') }}" class="btn-cta-outline">Browse Counselors</a></div></div></section>
 
     @include('partials.footer')
 @endsection

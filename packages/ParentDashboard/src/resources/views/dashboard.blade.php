@@ -32,7 +32,28 @@
     // TEMP DUMMY DATA END
 @endphp
 
-<div x-data="{ isModalOpen: false }" @open-add-child.window="isModalOpen = true">
+<div x-data="{ 
+    isModalOpen: false,
+    childName: '',
+    childEmail: '',
+    childPassword: '',
+    submitChild() {
+        if (!this.childName) {
+            alert('Please enter your child\'s name.');
+            return;
+        }
+        console.log('Registering child account:', {
+            name: this.childName,
+            email: this.childEmail,
+            password: this.childPassword
+        });
+        alert('Child account registered for ' + this.childName + ' (' + (this.childEmail || 'no email provided') + ').');
+        this.isModalOpen = false;
+        this.childName = '';
+        this.childEmail = '';
+        this.childPassword = '';
+    }
+}" @open-add-child.window="isModalOpen = true">
     
     <div class="mb-6 sm:mb-8 flex justify-between items-end">
         <div>
@@ -157,18 +178,19 @@
                                 <div class="mt-2">
                                     <p class="text-sm text-gray-500 mb-4">Create a Werta account for your underage child to access assessments and learning modules.</p>
                                     
-                                    <form class="space-y-4">
+                                    {{-- TODO: Connect to backend child registration endpoint (e.g. POST /parent/children) when API is implemented --}}
+                                    <form id="registerChildForm" @submit.prevent="submitChild()" class="space-y-4">
                                         <div>
                                             <label class="block text-sm font-semibold text-gray-700">Child's Full Name</label>
-                                            <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#C4A840] focus:ring focus:ring-[#C4A840]/20 p-2 border" placeholder="e.g. Ahmad bin Ali">
+                                            <input type="text" x-model="childName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#C4A840] focus:ring focus:ring-[#C4A840]/20 p-2 border" placeholder="e.g. Ahmad bin Ali">
                                         </div>
                                         <div>
                                             <label class="block text-sm font-semibold text-gray-700">Email Address (for login)</label>
-                                            <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#C4A840] focus:ring focus:ring-[#C4A840]/20 p-2 border" placeholder="ahmad@example.com">
+                                            <input type="email" x-model="childEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#C4A840] focus:ring focus:ring-[#C4A840]/20 p-2 border" placeholder="ahmad@example.com">
                                         </div>
                                         <div>
                                             <label class="block text-sm font-semibold text-gray-700">Temporary Password</label>
-                                            <input type="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#C4A840] focus:ring focus:ring-[#C4A840]/20 p-2 border" placeholder="••••••••">
+                                            <input type="password" x-model="childPassword" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#C4A840] focus:ring focus:ring-[#C4A840]/20 p-2 border" placeholder="••••••••">
                                         </div>
                                     </form>
                                 </div>
@@ -176,7 +198,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-gray-100">
-                        <button type="button" @click="isModalOpen = false" class="inline-flex w-full justify-center rounded-md bg-[#C4A840] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#7B6B35] sm:ml-3 sm:w-auto transition-colors">Register Account</button>
+                        <button type="submit" form="registerChildForm" class="inline-flex w-full justify-center rounded-md bg-[#C4A840] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#7B6B35] sm:ml-3 sm:w-auto transition-colors">Register Account</button>
                         <button type="button" @click="isModalOpen = false" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition-colors">Cancel</button>
                     </div>
                 </div>

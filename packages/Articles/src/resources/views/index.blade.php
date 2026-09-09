@@ -289,16 +289,6 @@
          STYLES
     ═══════════════════════════════════════════════════ --}}
     <style>
-        :root {
-            --primary: #7B6B35;
-            --primary-dark: #2C2416;
-            --gold: #C4A840;
-            --cream: #F5EFE0;
-            --cream-light: #FDFAF4;
-            --dark: #2C2416;
-            --muted: #6B7280;
-        }
-
         .werta-articles-main {
             max-width: 1200px;
             margin: 0 auto;

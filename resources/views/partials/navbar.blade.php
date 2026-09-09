@@ -45,7 +45,7 @@
 
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Counselors</a></li>
+            <li><a href="{{ url('/counselors') }}">Counselors</a></li>
             <li><a href="{{ url('/assessment') }}">Assessments</a></li>
             <li><a href="{{ route('public.articles') }}">Articles</a></li>
 
@@ -59,7 +59,6 @@
                     <a href="{{ route('elearning.courses') }}">Courses</a>
                     <a href="{{ route('elearning.paths') }}">Learning Paths</a>
                     <a href="{{ route('elearning.dashboard') }}">Dashboard Preview</a>
-                    <a href="{{ route('elearning.instructors') }}">Instructors</a>
                     <a href="{{ route('elearning.pricing') }}">Pricing</a>
                     <a href="{{ route('elearning.faq') }}">FAQ</a>
                 </div>

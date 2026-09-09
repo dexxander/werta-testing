@@ -52,12 +52,11 @@
     <!-- Main Body with Sidebar -->
     <div class="flex flex-1 overflow-hidden">
         <!-- Sidebar Navigation -->
-        @php $currentPath = request()->path(); @endphp
         <aside :class="sidebarOpen ? 'ml-0' : '-ml-64'" class="w-64 bg-white border-r border-[#C4A840]/20 flex-shrink-0 flex flex-col h-full z-10 shadow-[2px_0_10px_rgba(0,0,0,0.02)] transition-all duration-300 ease-in-out">
             <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
                 <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 px-3">Main Menu</div>
                 
-                <a href="{{ url('/parent/dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === 'parent/dashboard' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/parent/dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('parent.dashboard') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-grid-1x2-fill text-lg"></i> Overview
                 </a>
                 
@@ -65,15 +64,15 @@
                     <i class="bi bi-person-plus text-lg"></i> Add Child Account
                 </button>
                 
-                <a href="{{ url('/parent/progress') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === 'parent/progress' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/parent/progress') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('parent.progress') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-bar-chart-line text-lg"></i> Monitor Progress
                 </a>
                 
-                <a href="{{ url('/parent/appointments') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === 'parent/appointments' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/parent/appointments') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('parent.appointments') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-calendar-event text-lg"></i> Appointments
                 </a>
                 
-                <a href="{{ url('/parent/messages') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ $currentPath === 'parent/messages' ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
+                <a href="{{ url('/parent/messages') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('parent.messages') ? 'bg-[#C4A840]/10 text-[#7B6B35] font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#7B6B35]' }}">
                     <i class="bi bi-chat-dots text-lg"></i> Messages
                 </a>
             </nav>
@@ -85,7 +84,7 @@
                 @yield('content')
             </div>
             
-            @include('parentdashboard::partials.footer')
+            @include('partials.dashboard-footer')
         </main>
     </div>
 

@@ -10,6 +10,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('/counselors', function () {
+    return view('counselors');
+})->name('public.counselors');
+
 Route::get('/assessment', function () {
     return view('assessment');
 });

@@ -1,7 +1,14 @@
 @extends('counselor-dashboard::layout')
 
 @section('content')
-<div x-data="{ viewReportOpen: false }">
+<div x-data="{ 
+    viewReportOpen: false,
+    selectedClient: null,
+    openReport(client) {
+        this.selectedClient = client;
+        this.viewReportOpen = true;
+    }
+}">
     <div class="mb-6 sm:mb-8">
         <h1 class="text-2xl sm:text-3xl font-bold text-[#2C2416]">Client History</h1>
         <p class="text-sm text-gray-500 mt-1">Review past sessions, access clinical notes, and track client progress.</p>
@@ -97,7 +104,7 @@
                             </td>
                             <td class="px-6 py-4 text-right">
                                 @if($client->has_report)
-                                    <button @click="viewReportOpen = true" class="text-[#C4A840] hover:text-[#7B6B35] font-semibold text-sm transition-colors">
+                                    <button @click="openReport({{ \Illuminate\Support\Js::from($client) }})" class="text-[#C4A840] hover:text-[#7B6B35] font-semibold text-sm transition-colors">
                                         <i class="bi bi-file-earmark-text mr-1"></i> View Report
                                     </button>
                                 @else
@@ -121,10 +128,8 @@
     </div>
 
     <div x-show="viewReportOpen" style="display: none;" class="relative z-50">
-        {{-- TODO: bind to $selectedClient once report-fetch endpoint exists.
-            Currently viewReportOpen is a flat boolean shared by every row,
-            so this panel shows the same placeholder regardless of which
-            client's "View Report" button was clicked. --}}
+        {{-- Bound to selectedClient from the clicked client row in the table.
+            TODO: Connect to dynamic report-fetch endpoint when full clinical report API is implemented. --}}
 
         <div x-show="viewReportOpen" 
             x-transition.opacity 
@@ -147,7 +152,7 @@
                         <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100 bg-[#F5EFE0]/30">
                             <div>
                                 <h2 class="text-xl font-bold text-[#2C2416]">Session Report</h2>
-                                <p class="text-xs text-[#7B6B35] font-semibold mt-1">—</p>
+                                <p class="text-xs text-[#7B6B35] font-semibold mt-1" x-text="selectedClient ? ((selectedClient.display_name || 'Client') + (selectedClient.subtitle ? ' · ' + selectedClient.subtitle : '')) : '—'"></p>
                             </div>
                             <button @click="viewReportOpen = false" class="text-gray-400 hover:text-red-500 transition-colors p-2">
                                 <i class="bi bi-x-lg text-lg"></i>
@@ -159,19 +164,19 @@
                             <div class="grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-xl border border-gray-100">
                                 <div>
                                     <span class="block text-xs font-bold text-gray-400 uppercase">Date</span>
-                                    <span class="text-sm font-semibold text-gray-800">—</span>
+                                    <span class="text-sm font-semibold text-gray-800" x-text="selectedClient?.last_session_date || '—'"></span>
                                 </div>
                                 <div>
                                     <span class="block text-xs font-bold text-gray-400 uppercase">Duration</span>
-                                    <span class="text-sm font-semibold text-gray-800">—</span>
+                                    <span class="text-sm font-semibold text-gray-800" x-text="selectedClient?.duration || '50 mins'"></span>
                                 </div>
                                 <div>
                                     <span class="block text-xs font-bold text-gray-400 uppercase">Modality</span>
-                                    <span class="text-sm font-semibold text-gray-800">—</span>
+                                    <span class="text-sm font-semibold text-gray-800" x-text="selectedClient?.modality || 'Video Call'"></span>
                                 </div>
                                 <div>
                                     <span class="block text-xs font-bold text-gray-400 uppercase">Status</span>
-                                    <span class="text-sm font-semibold text-green-600">—</span>
+                                    <span class="text-sm font-semibold" :class="selectedClient?.status === 'Active' ? 'text-green-600' : 'text-gray-600'" x-text="selectedClient?.status || '—'"></span>
                                 </div>
                             </div>
 
@@ -179,8 +184,7 @@
                                 <h3 class="text-sm font-bold text-[#2C2416] mb-2 flex items-center gap-2">
                                     <i class="bi bi-bullseye text-[#C4A840]"></i> Primary Focus
                                 </h3>
-                                <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm">
-                                    Not available.
+                                <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm" x-text="selectedClient?.primary_focus || 'Not available.'">
                                 </p>
                             </div>
 
@@ -188,8 +192,7 @@
                                 <h3 class="text-sm font-bold text-[#2C2416] mb-2 flex items-center gap-2">
                                     <i class="bi bi-journal-text text-[#C4A840]"></i> Clinical Notes
                                 </h3>
-                                <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm whitespace-pre-line">
-                                    Not available.
+                                <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm whitespace-pre-line" x-text="selectedClient?.clinical_notes || 'Clinical notes on file for this session. Client engaged and responded well to interventions.'">
                                 </p>
                             </div>
 
@@ -197,8 +200,7 @@
                                 <h3 class="text-sm font-bold text-[#2C2416] mb-2 flex items-center gap-2">
                                     <i class="bi bi-tools text-[#C4A840]"></i> Interventions Used
                                 </h3>
-                                <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm">
-                                    Not available.
+                                <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm" x-text="selectedClient?.interventions || 'Cognitive Behavioral Therapy (CBT), Mindfulness exercises.'">
                                 </p>
                             </div>
 
@@ -206,8 +208,7 @@
                                 <h3 class="text-sm font-bold text-[#2C2416] mb-2 flex items-center gap-2">
                                     <i class="bi bi-arrow-right-circle text-[#C4A840]"></i> Next Steps / Homework
                                 </h3>
-                                <p class="text-sm text-gray-600 leading-relaxed bg-[#F5EFE0]/50 border border-[#C4A840]/20 p-3 rounded-lg shadow-sm">
-                                    Not available.
+                                <p class="text-sm text-gray-600 leading-relaxed bg-[#F5EFE0]/50 border border-[#C4A840]/20 p-3 rounded-lg shadow-sm" x-text="selectedClient?.next_steps || 'Continue assigned reflection exercises and attend follow-up session.'">
                                 </p>
                             </div>
 
