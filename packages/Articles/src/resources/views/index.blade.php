@@ -317,7 +317,7 @@
         }
         .section-subtitle {
             color: var(--muted);
-            font-size: 1rem;
+            font-size: var(--text-md);
         }
 
         /* ── TOP GRID ───────────────────────────────────── */
@@ -346,8 +346,8 @@
             background: var(--gold);
             color: #fff;
             padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
+            border-radius: var(--radius-xl);
+            font-size: var(--text-xs);
             font-weight: 700;
             letter-spacing: 1px;
             z-index: 10;
@@ -371,7 +371,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.75rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             margin-bottom: 1rem;
         }
@@ -397,13 +397,13 @@
             color: #fff;
             border: none;
             padding: 0.8rem 1.8rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            border-radius: var(--radius-md);
+            font-size: var(--text-base-lg);
             font-weight: 700;
             cursor: pointer;
             transition: background 0.2s;
         }
-        .btn-unlock-article:hover { background: #9E8630; }
+        .btn-unlock-article:hover { background: var(--primary); }
 
         /* Trending Sidebar */
         .trending-sidebar {
@@ -434,24 +434,24 @@
         .comment-avatar {
             width: 32px;
             height: 32px;
-            border-radius: 50%;
+            border-radius: var(--radius-full);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: var(--text-sm);
         }
-        .comment-author { font-weight: 700; font-size: 0.9rem; }
-        .comment-time { font-size: 0.7rem; color: var(--muted); font-weight: 700; }
+        .comment-author { font-weight: 700; font-size: var(--text-base); }
+        .comment-time { font-size: var(--text-xs); color: var(--muted); font-weight: 700; }
         .comment-text {
-            font-size: 0.9rem;
+            font-size: var(--text-base);
             color: var(--muted);
             line-height: 1.5;
             margin-bottom: 0.5rem;
             font-style: italic;
         }
         .comment-source {
-            font-size: 0.75rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             color: var(--primary-dark);
             text-decoration: none;
@@ -481,7 +481,7 @@
             border: 2px solid var(--primary-dark);
             color: var(--primary-dark);
             padding: 0.6rem 1.2rem;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
@@ -502,7 +502,7 @@
             background: #fff;
             border: 1px solid rgba(0,0,0,0.05);
             padding: 1.5rem;
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             text-align: center;
             cursor: pointer;
         }
@@ -512,7 +512,7 @@
             margin-bottom: 0.2rem;
         }
         .discovery-node p {
-            font-size: 0.7rem;
+            font-size: var(--text-xs);
             font-weight: 700;
             color: var(--muted);
             letter-spacing: 1px;
@@ -560,7 +560,7 @@
             text-align: center;
             transform: translate(-50%, -50%);
             background: #fff;
-            border-radius: 50%;
+            border-radius: var(--radius-full);
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -576,13 +576,13 @@
             line-height: 1.1;
         }
         .center-hub:hover {
-            box-shadow: 0 0 30px rgba(58, 172, 184, 0.3);
+            box-shadow: 0 0 30px rgba(196, 168, 64, 0.35);
             transform: translate(-50%, -50%) scale(1.05);
         }
         .satellite {
             width: 100px; height: 100px;
             border: 2px solid var(--gold);
-            font-size: 0.75rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             color: var(--dark);
             letter-spacing: 0.5px;
@@ -596,7 +596,7 @@
             transform: translate(-50%, -50%) scale(1.15);
             border-color: var(--primary);
             color: var(--primary-dark);
-            box-shadow: 0 15px 35px rgba(58, 172, 184, 0.2);
+            box-shadow: 0 15px 35px rgba(44, 36, 22, 0.12);
         }
 
         .ai-node { top: 25%; left: 25%; }
@@ -609,8 +609,8 @@
             .iot-node { top: 20%; left: 80%; }
             .ar-node { top: 85%; left: 25%; }
             .lang-node { top: 80%; left: 80%; }
-            .satellite { width: 85px; height: 85px; font-size: 0.65rem; }
-            .center-hub { width: 110px; height: 110px; font-size: 0.9rem; }
+            .satellite { width: 85px; height: 85px; font-size: var(--text-xs); }
+            .center-hub { width: 110px; height: 110px; font-size: var(--text-base); }
         }
 
         /* ── IN-PAGE DYNAMIC RESOURCE PANEL ──────────────── */
@@ -618,7 +618,7 @@
             margin-top: 2rem;
             background: #fff;
             border: 1px solid var(--gold);
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             padding: 2.5rem;
             position: relative;
             box-shadow: 0 20px 40px rgba(196, 168, 64, 0.08);
@@ -638,7 +638,7 @@
         .btn-close-panel:hover { color: var(--dark); }
         .panel-title {
             font-family: 'IM Fell English', serif;
-            font-size: 2rem;
+            font-size: var(--text-3xl);
             color: var(--dark);
             margin-bottom: 0.5rem;
             display: flex;
@@ -665,18 +665,18 @@
             background: var(--cream-light);
             border: 1px solid rgba(0,0,0,0.05);
             padding: 1.5rem;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             text-decoration: none;
             transition: all 0.2s;
         }
         .mini-card:hover {
             border-color: var(--primary);
-            box-shadow: 0 5px 15px rgba(58, 172, 184, 0.1);
+            box-shadow: 0 5px 15px rgba(123, 107, 53, 0.15);
             transform: translateY(-2px);
         }
         .mini-tag {
             display: inline-block;
-            font-size: 0.7rem;
+            font-size: var(--text-xs);
             font-weight: 700;
             color: var(--primary-dark);
             letter-spacing: 1px;
@@ -684,13 +684,13 @@
         }
         .mini-card h4 {
             font-family: 'Lato', sans-serif;
-            font-size: 1.15rem;
+            font-size: var(--text-lg);
             font-weight: 700;
             color: var(--dark);
             margin-bottom: 0.5rem;
         }
         .mini-meta {
-            font-size: 0.75rem;
+            font-size: var(--text-sm);
             color: var(--muted);
         }
 
@@ -711,7 +711,7 @@
             border: 1px solid rgba(0,0,0,0.1);
             width: 40px;
             height: 40px;
-            border-radius: 50%;
+            border-radius: var(--radius-full);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -742,7 +742,7 @@
         .standard-article-card {
             background: #fff;
             border: 1px solid rgba(0,0,0,0.05);
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             overflow: hidden;
             cursor: pointer;
         }
@@ -764,7 +764,7 @@
         .standard-article-card:hover .card-image img { transform: scale(1.05); }
         .card-content { padding: 1.2rem; }
         .card-category {
-            font-size: 0.7rem;
+            font-size: var(--text-xs);
             font-weight: 700;
             letter-spacing: 1px;
             display: block;
@@ -778,7 +778,7 @@
             line-height: 1.3;
         }
         .card-read-time {
-            font-size: 0.75rem;
+            font-size: var(--text-sm);
             color: var(--muted);
         }
     </style>

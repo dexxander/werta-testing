@@ -167,7 +167,7 @@
             color: var(--muted);
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: var(--text-base);
             transition: color 0.2s;
         }
         .back-link:hover { color: var(--gold); }
@@ -177,7 +177,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.75rem;
+            font-size: var(--text-sm);
             font-weight: 700;
             margin-bottom: 1.5rem;
         }
@@ -193,7 +193,7 @@
             margin-bottom: 1rem;
         }
         .article-subtitle {
-            font-size: 1.2rem;
+            font-size: var(--text-lg);
             color: var(--muted);
             line-height: 1.6;
             margin-bottom: 2rem;
@@ -209,9 +209,9 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .author-info { display: flex; align-items: center; gap: 1rem; }
-        .author-avatar { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--cream); }
-        .author-name { font-weight: 700; font-size: 1rem; }
-        .author-title { font-size: 0.8rem; color: var(--muted); }
+        .author-avatar { width: 48px; height: 48px; border-radius: var(--radius-full); border: 2px solid var(--cream); }
+        .author-name { font-weight: 700; font-size: var(--text-md); }
+        .author-title { font-size: var(--text-sm); color: var(--muted); }
         .article-date { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
 
         /* Image */
@@ -219,13 +219,13 @@
         .article-featured-image img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             max-height: 450px;
             object-fit: cover;
         }
         .image-caption {
             text-align: center;
-            font-size: 0.8rem;
+            font-size: var(--text-sm);
             color: var(--muted);
             margin-top: 0.8rem;
             font-style: italic;
@@ -241,7 +241,7 @@
         .article-body p { margin-bottom: 1.8rem; }
         .article-body h2 {
             font-family: 'IM Fell English', serif;
-            font-size: 2rem;
+            font-size: var(--text-3xl);
             margin: 3rem 0 1rem;
             color: var(--dark);
         }
@@ -290,24 +290,24 @@
             margin: 0 auto;
         }
         .paywall-icon i { font-size: 2rem; margin-bottom: 1rem; display: block; }
-        .paywall-title { font-family: 'IM Fell English', serif; font-size: 1.8rem; margin-bottom: 0.8rem; }
-        .paywall-desc { font-size: 1rem; color: var(--muted); margin-bottom: 2rem; padding: 0 1rem; }
+        .paywall-title { font-family: 'IM Fell English', serif; font-size: var(--text-2xl); margin-bottom: 0.8rem; }
+        .paywall-desc { font-size: var(--text-md); color: var(--muted); margin-bottom: 2rem; padding: 0 1rem; }
         
         .btn-unlock {
             background: var(--gold);
             color: #fff;
             border: none;
             padding: 0.9rem 2.5rem;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: var(--radius-md);
+            font-size: var(--text-md);
             font-weight: 700;
             cursor: pointer;
             transition: background 0.2s;
             width: 100%;
             margin-bottom: 1rem;
         }
-        .btn-unlock:hover { background: #9E8630; }
-        .paywall-login { font-size: 0.9rem; color: var(--muted); }
+        .btn-unlock:hover { background: var(--primary); }
+        .paywall-login { font-size: var(--text-base); color: var(--muted); }
         .paywall-login a { color: var(--primary-dark); font-weight: 700; text-decoration: none; }
 
         /* ── ENGAGEMENT ───────────────────────────────── */
@@ -318,15 +318,15 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
             text-align: center;
         }
-        .engagement-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 1.5rem; }
+        .engagement-title { font-weight: 700; font-size: var(--text-lg); margin-bottom: 1.5rem; }
         .reaction-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
         
         .btn-reaction, .btn-share {
             background: #fff;
             border: 1px solid rgba(0,0,0,0.1);
             padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.95rem;
+            border-radius: var(--radius-pill);
+            font-size: var(--text-base-lg);
             font-weight: 600;
             color: var(--dark);
             cursor: pointer;
@@ -346,7 +346,7 @@
         .comment-input-area {
             background: #fff;
             border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             padding: 1rem;
             margin-bottom: 3rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
@@ -357,7 +357,7 @@
             outline: none;
             resize: none;
             font-family: inherit;
-            font-size: 1rem;
+            font-size: var(--text-md);
             color: var(--dark);
             margin-bottom: 1rem;
         }
@@ -367,9 +367,9 @@
             color: #fff;
             border: none;
             padding: 0.5rem 1.2rem;
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: var(--text-base);
             cursor: pointer;
         }
 
@@ -377,17 +377,17 @@
         .comment-item { display: flex; flex-direction: column; }
         .comment-author-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
         .comment-avatar {
-            width: 36px; height: 36px; border-radius: 50%;
+            width: 36px; height: 36px; border-radius: var(--radius-full);
             display: flex; align-items: center; justify-content: center;
-            font-weight: bold; font-size: 0.9rem;
+            font-weight: bold; font-size: var(--text-base);
         }
-        .c-name { font-weight: 700; font-size: 0.95rem; }
+        .c-name { font-weight: 700; font-size: var(--text-base-lg); }
         .author-badge {
-            background: var(--gold); color: #fff; font-size: 0.65rem;
+            background: var(--gold); color: #fff; font-size: var(--text-xs);
             padding: 2px 6px; border-radius: 4px; margin-left: 4px; vertical-align: middle;
         }
-        .c-time { font-size: 0.75rem; color: var(--muted); }
-        .comment-text { font-size: 0.95rem; line-height: 1.6; color: rgba(44,36,22, 0.85); margin-bottom: 0.8rem; }
+        .c-time { font-size: var(--text-sm); color: var(--muted); }
+        .comment-text { font-size: var(--text-base-lg); line-height: 1.6; color: rgba(44,36,22, 0.85); margin-bottom: 0.8rem; }
         .comment-footer { display: flex; gap: 1rem; }
         .c-action {
             background: none; border: none; font-size: 0.85rem; font-weight: 600;
