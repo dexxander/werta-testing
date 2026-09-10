@@ -154,4 +154,42 @@ class ViewSmokeTest extends TestCase
             $response->assertSee('btn-account-label');
         }
     }
+
+    public function test_mobile_navbar_renders_accessible_toggle_and_destinations()
+    {
+        $response = $this->get('/');
+        $response->assertStatus(200);
+
+        // Accessible mobile toggle button
+        $response->assertSee('data-bs-toggle="collapse"', false);
+        $response->assertSee('data-bs-target="#mobileNav"', false);
+        $response->assertSee('aria-controls="mobileNav"', false);
+        $response->assertSee('aria-expanded="false"', false);
+        $response->assertSee('aria-label="Toggle navigation"', false);
+
+        // Collapsed mobile container and destinations
+        $response->assertSee('id="mobileNav"', false);
+        $response->assertSee('href="' . url('/counselors') . '"', false);
+        $response->assertSee('href="' . url('/assessment') . '"', false);
+        $response->assertSee('href="' . route('public.articles') . '"', false);
+        $response->assertSee('data-bs-target="#mobileElearningMenu"', false);
+        $response->assertSee('href="' . route('elearning.courses') . '"', false);
+        $response->assertSee('href="' . url('/about') . '"', false);
+
+        // Anonymous account destinations
+        $response->assertSee('data-bs-target="#mobileAccountMenu"', false);
+        $response->assertSee('href="' . url('/client/login') . '"', false);
+        $response->assertSee('href="' . url('/parent/login') . '"', false);
+        $response->assertSee('href="' . route('counselor.login') . '"', false);
+        $response->assertSee('href="' . url('/auth/register') . '"', false);
+
+        // Authenticated client sees dashboard and logout in mobile menu
+        $authResponse = $this->withSession([
+            'client_logged_in' => true,
+            'client_profile' => ['username' => 'Test Client', 'picture' => 'bi-person-circle'],
+        ])->get('/');
+        $authResponse->assertStatus(200);
+        $authResponse->assertSee('href="/client/dashboard"', false);
+        $authResponse->assertSee('href="/client/logout"', false);
+    }
 }
