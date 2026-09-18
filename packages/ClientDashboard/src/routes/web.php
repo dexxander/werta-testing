@@ -33,7 +33,7 @@ Route::post('/client/login', function (Request $request) {
         session()->regenerate();
         session(['client_logged_in' => true]);
         session(['client_profile' => ['username' => 'Client User', 'picture' => 'bi-person-circle']]);
-        return redirect('/');
+        return redirect('/client/dashboard');
     }
 
     return redirect('/client/login')->with('error', 'Invalid username or password.');

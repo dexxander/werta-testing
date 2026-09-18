@@ -224,11 +224,10 @@
                 <i class="bi bi-heart-pulse-fill"></i>
             </div>
             <div class="safety-net-body">
+                {{-- TODO: Connect to dedicated crisis-resources page or external emergency hotline before going live --}}
                 <p class="safety-net-text">
                     If you're going through something difficult right now, support is available.
-                    <a href="{{ url('/counselors') }}" class="safety-net-link">Talk to a counselor today</a> or
-                    {{-- TODO: Connect to dedicated crisis-resources page or external emergency hotline before going live --}}
-                    <a href="#" class="safety-net-link">find urgent support resources</a>.
+                    <a href="{{ url('/counselors') }}" class="safety-net-link">Talk to a counselor today</a> to connect with someone who can help.
                 </p>
             </div>
         </div>

@@ -15,15 +15,14 @@
             <h4>Platform</h4>
             <a href="{{ url('/counselors') }}">Find a Counselor</a>
             <a href="{{ url('/assessment') }}">Take an Assessment</a>
-            <a href="#">Community Forum</a>
-            <a href="#">Guidance Center</a>
+            <span style="display: inline-block; line-height: 1.4; font-size: var(--text-base); color: var(--muted, #6b6455); opacity: 0.65; cursor: default;">Community Forum <span style="font-size: 0.75em; font-style: italic;">(coming soon)</span></span>
+            <span style="display: inline-block; line-height: 1.4; font-size: var(--text-base); color: var(--muted, #6b6455); opacity: 0.65; cursor: default;">Guidance Center <span style="font-size: 0.75em; font-style: italic;">(coming soon)</span></span>
         </div>
         <div class="footer-col">
             <h4>Resources</h4>
-            <a href="#">Articles &amp; Guides</a>
-            <a href="{#">Guidances Center</a>
-            <a href="#">For Parents &amp; Guardians</a>
-            <a href="#">For Counselors</a>
+            <a href="{{ url('/articles') }}">Articles &amp; Guides</a>
+            <span style="display: inline-block; line-height: 1.4; font-size: var(--text-base); color: var(--muted, #6b6455); opacity: 0.65; cursor: default;">For Parents &amp; Guardians <span style="font-size: 0.75em; font-style: italic;">(coming soon)</span></span>
+            <span style="display: inline-block; line-height: 1.4; font-size: var(--text-base); color: var(--muted, #6b6455); opacity: 0.65; cursor: default;">For Counselors <span style="font-size: 0.75em; font-style: italic;">(coming soon)</span></span>
         </div>
         <div class="footer-col">
             <h4>Legal</h4>

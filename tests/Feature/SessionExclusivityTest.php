@@ -21,7 +21,7 @@ class SessionExclusivityTest extends TestCase
             'username' => 'client',
             'password' => 'client',
         ]);
-        $clientLoginResponse->assertRedirect('/');
+        $clientLoginResponse->assertRedirect('/client/dashboard');
         $this->assertTrue(session('client_logged_in'));
         $this->assertNull(session('staff_role'));
 
@@ -64,7 +64,7 @@ class SessionExclusivityTest extends TestCase
         $this->post('/parent/login', [
             'username' => 'parent',
             'password' => 'parent',
-        ])->assertRedirect('/');
+        ])->assertRedirect('/parent/dashboard');
         $this->assertTrue(session('parent_logged_in'));
 
         $this->post('/counselor/login', [

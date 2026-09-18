@@ -34,7 +34,7 @@ Route::post('/parent/login', function (Request $request) {
         session()->regenerate();
         session(['parent_logged_in' => true]);
         session(['parent_profile' => ['username' => 'Parent User', 'picture' => 'bi-person-heart']]);
-        return redirect('/');
+        return redirect('/parent/dashboard');
     }
 
     return redirect('/parent/login')->with('error', 'Invalid username or password.');

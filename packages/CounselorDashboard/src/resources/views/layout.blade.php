@@ -11,7 +11,7 @@
     @include('partials.tailwind-dashboard-config')
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-cream text-dark font-[Lato,sans-serif] antialiased flex flex-col h-screen overflow-hidden" x-data="{ isModalOpen: false }" x-data="{ sidebarOpen: true }">
+<body class="bg-cream text-dark font-[Lato,sans-serif] antialiased flex flex-col h-screen overflow-hidden" x-data="{ isModalOpen: false, sidebarOpen: true }">
     {{-- DEV BYPASS: Warning banner for dev-bypassed sessions --}}
     @include('partials.dev-bypass-banner')
     

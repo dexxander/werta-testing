@@ -15,6 +15,13 @@
             </div>
         @endif
 
+        <div style="background: #fdfaf4; border: 1px solid rgba(196, 168, 64, 0.35); border-left: 4px solid #c4a840; border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+            <i class="bi bi-info-circle-fill" style="color: #c4a840; font-size: 1.1rem; line-height: 1.4; flex-shrink: 0;"></i>
+            <p style="margin: 0; font-size: 0.85rem; color: #6b6455; line-height: 1.45;">
+                Prototype preview — no account is created and no form details are saved. Please use test information only.
+            </p>
+        </div>
+
         <form action="/auth/register" method="POST" id="registerForm">
             @csrf
             
@@ -51,14 +58,12 @@
                 <div id="ic-error" style="color: #dc3545; font-size: 0.8rem; margin-top: 0.4rem; display: none;"></div>
             </div>
 
-            <div style="margin-bottom: 2rem;">
-                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">Password</label>
-                <input type="password" name="password" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 0.95rem;">
-            </div>
-
             <button type="submit" style="width: 100%; padding: 0.85rem; background: #c4a840; color: #fff; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#b09638'" onmouseout="this.style.background='#c4a840'">
                 Create Account
             </button>
+            <p style="font-size: 0.78rem; color: #6b6455; text-align: center; margin-top: 0.75rem; margin-bottom: 0; line-height: 1.4;">
+                Prototype preview — no details are saved.
+            </p>
         </form>
         
         <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
