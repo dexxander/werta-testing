@@ -35,7 +35,7 @@
     <div class="el-container">
         
         <div class="mb-4">
-            <a href="{{ route('elearning.my-courses') }}" style="color:var(--gold);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> Back to My Courses</a>
+            <a href="{{ route('elearning.my-courses') }}" style="color:var(--primary);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> Back to My Courses</a>
         </div>
 
         <div class="row g-4">
@@ -65,7 +65,7 @@
                 <div class="el-card">
                     <ul class="nav nav-tabs" style="border-bottom:2px solid var(--cream);margin-bottom:1.5rem;">
                         <li class="nav-item">
-                            <a class="nav-link active" style="color:var(--dark);font-weight:700;border:none;border-bottom:2px solid var(--gold);background:transparent;" href="#">Overview</a>
+                            <a class="nav-link active" style="color:var(--dark);font-weight:700;border:none;border-bottom:2px solid var(--primary);background:transparent;" href="#">Overview</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" style="color:var(--muted);border:none;background:transparent;" href="#">Resources (2)</a>
@@ -104,12 +104,12 @@
                                 </div>
                                 <div style="padding:0.5rem 0;">
                                     @foreach($module['lessons'] as $lesson)
-                                        <div style="padding:0.75rem 1rem;font-size:var(--text-sm);display:flex;justify-content:space-between;align-items:center;border-left:2px solid {{ !empty($lesson['active']) ? 'var(--gold)' : 'transparent' }};background:{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }};cursor:pointer;" onmouseover="this.style.background='rgba(196,168,64,0.05)'" onmouseout="this.style.background='{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }}'">
+                                        <div style="padding:0.75rem 1rem;font-size:var(--text-sm);display:flex;justify-content:space-between;align-items:center;border-left:2px solid {{ !empty($lesson['active']) ? 'var(--primary)' : 'transparent' }};background:{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }};cursor:pointer;" onmouseover="this.style.background='rgba(196,168,64,0.05)'" onmouseout="this.style.background='{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }}'">
                                             <div style="display:flex;align-items:center;gap:0.75rem;">
                                                 @if(!empty($lesson['completed']))
                                                     <i class="bi bi-check-circle-fill" style="color:var(--success, #28a745);"></i>
                                                 @elseif(!empty($lesson['active']))
-                                                    <i class="bi bi-play-circle-fill" style="color:var(--gold);"></i>
+                                                    <i class="bi bi-play-circle-fill" style="color:var(--primary);"></i>
                                                 @else
                                                     <i class="bi bi-circle" style="color:var(--muted);"></i>
                                                 @endif

@@ -36,7 +36,7 @@
     <div class="el-container">
         <div class="mb-5 d-flex justify-content-between align-items-end">
             <div>
-                <a href="{{ route('elearning.dashboard') }}" style="color:var(--gold);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> Back to Dashboard</a>
+                <a href="{{ route('elearning.dashboard') }}" style="color:var(--primary);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> Back to Dashboard</a>
                 <h2 class="el-heading mt-3">My Enrolled Courses</h2>
                 <p class="el-subtext">Pick up right where you left off.</p>
             </div>

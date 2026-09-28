@@ -104,7 +104,7 @@
             color: var(--primary);
         }
 
-        .secure-badge i { font-size: 1.3rem; color: var(--gold); }
+        .secure-badge i { font-size: 1.3rem; color: var(--primary); }
 
         /* ── Container ── */
         .email-container {
@@ -151,7 +151,7 @@
             transition: border-color 0.2s;
         }
 
-        .email-input:focus { border-color: var(--gold); }
+        .email-input:focus { border-color: var(--primary); }
 
         .agree-label {
             display: flex;

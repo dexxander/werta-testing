@@ -62,7 +62,7 @@
                 
                 <div class="paywall-box">
                     <div class="paywall-icon">
-                        <i class="bi bi-star-fill text-gold"></i>
+                        <i class="bi bi-star-fill text-accent"></i>
                     </div>
                     <h3 class="paywall-title">This article is for Premium Members</h3>
                     <p class="paywall-desc">Unlock the rest of this article, plus access to our full library of clinical resources, AI-guided discovery maps, and exclusive therapist Q&As.</p>
@@ -160,7 +160,7 @@
             color: var(--dark);
         }
 
-        .text-gold { color: var(--gold); }
+        .text-accent { color: var(--primary); }
 
         /* Links & Header */
         .back-link {
@@ -170,7 +170,7 @@
             font-size: var(--text-base);
             transition: color 0.2s;
         }
-        .back-link:hover { color: var(--gold); }
+        .back-link:hover { color: var(--primary); }
 
         .article-header { margin-bottom: 2rem; }
         .article-meta {
@@ -251,7 +251,7 @@
             font-size: 4rem;
             line-height: 0.8;
             padding-right: 0.5rem;
-            color: var(--gold);
+            color: var(--primary);
         }
         .article-body blockquote {
             border-left: 4px solid var(--gold);
@@ -335,7 +335,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        .btn-reaction:hover { border-color: var(--gold); color: var(--gold); }
+        .btn-reaction:hover { border-color: var(--primary); color: var(--primary); }
         .btn-share { background: var(--cream); border: none; }
         .btn-share:hover { background: var(--primary); color: #fff; }
 

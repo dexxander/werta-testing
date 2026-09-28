@@ -213,7 +213,7 @@
         font-weight: 700;
         letter-spacing: 1px;
         text-transform: uppercase;
-        color: var(--gold);
+        color: var(--primary);
         margin-bottom: 0.6rem;
     }
 
@@ -300,7 +300,7 @@
 
     .el-hero-badge i {
         font-size: 1.3rem;
-        color: var(--gold);
+        color: var(--primary);
     }
 
     .el-hero-badge strong {

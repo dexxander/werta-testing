@@ -74,7 +74,7 @@
 
     .el-cat-card-icon i {
         font-size: 1.5rem;
-        color: var(--gold);
+        color: var(--primary);
         margin: 0;
     }
 

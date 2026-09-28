@@ -37,7 +37,7 @@
 <section class="el-section bg-cream-light" id="course-preview">
     <div class="el-container">
         <div class="mb-4">
-            <a href="{{ route('elearning.courses') }}" style="color:var(--gold);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> Back to Courses</a>
+            <a href="{{ route('elearning.courses') }}" style="color:var(--primary);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> Back to Courses</a>
         </div>
 
         <div class="row g-4 align-items-start">
@@ -89,7 +89,7 @@
         <button class="el-modal-close" onclick="closeEnrollmentRequiredModal()" aria-label="Close"><i class="bi bi-x-lg"></i></button>
         <div class="text-center">
             <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
-                <i class="bi bi-lock-fill" style="font-size:2rem;color:var(--gold);"></i>
+                <i class="bi bi-lock-fill" style="font-size:2rem;color:var(--primary);"></i>
             </div>
             <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Enrollment Required</h4>
             <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">Please enroll in this course first to open this topic and start learning.</p>
@@ -104,9 +104,9 @@
         text-align:left;background:var(--cream-light);border:1px solid rgba(123,107,53,0.12);
         border-radius:var(--radius-md);padding:0.85rem 1rem;color:var(--dark);font-size:var(--text-base);cursor:pointer;transition:all 0.2s;
     }
-    .el-topic-preview:hover { border-color:var(--gold);background:rgba(196,168,64,0.08); }
+    .el-topic-preview:hover { border-color:var(--primary);background:rgba(196,168,64,0.08); }
     .el-topic-preview > span { display:flex;align-items:center;gap:0.65rem; }
-    .el-topic-preview > span i, .el-topic-preview > i { color:var(--gold); }
+    .el-topic-preview > span i, .el-topic-preview > i { color:var(--primary); }
     .el-modal-overlay { position:fixed;inset:0;background:rgba(44,36,22,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease;backdrop-filter:blur(4px); }
     .el-modal-overlay.active { opacity:1;visibility:visible; }
     .el-modal-content { max-width:450px;width:90%;position:relative;transform:translateY(20px);transition:all 0.3s ease;background:#ffffff;border:1.5px solid var(--primary);box-shadow:0 20px 60px rgba(44,36,22,0.25); }

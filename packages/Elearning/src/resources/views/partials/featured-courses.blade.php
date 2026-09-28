@@ -144,7 +144,7 @@
         <button class="el-modal-close" onclick="closeElearningModal()"><i class="bi bi-x-lg"></i></button>
         <div class="text-center">
             <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
-                <i class="bi bi-person-lock" style="font-size:2rem;color:var(--gold);"></i>
+                <i class="bi bi-person-lock" style="font-size:2rem;color:var(--primary);"></i>
             </div>
             <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Client Access Only</h4>
             <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">Only Client accounts can enroll in courses. Please log in using a Client account to continue.</p>

@@ -49,7 +49,7 @@
             {{-- Right: Trending Conversations --}}
             <aside class="trending-sidebar">
                 <h2 class="sidebar-title">
-                    <i class="bi bi-graph-up-arrow" style="color: var(--gold);"></i> Trending Conversations
+                    <i class="bi bi-graph-up-arrow" style="color: var(--primary);"></i> Trending Conversations
                 </h2>
                 
                 <div class="trending-comments-list">
@@ -90,7 +90,7 @@
 
             <div id="map-grid-view" class="discovery-grid">
                 <div onclick="showResources('ai')" class="discovery-node hover-lift">
-                    <i class="bi bi-cpu text-gold text-3xl mb-2 block"></i>
+                    <i class="bi bi-cpu text-accent text-3xl mb-2 block"></i>
                     <h3>AI Guided</h3>
                     <p>{{ $categories['ai']['count'] ?? 0 }} RESOURCES</p>
                 </div>
@@ -105,7 +105,7 @@
                     <p>{{ $categories['ar']['count'] ?? 0 }} RESOURCES</p>
                 </div>
                 <div onclick="showResources('multilingual')" class="discovery-node hover-lift">
-                    <i class="bi bi-globe2 text-gold text-3xl mb-2 block"></i>
+                    <i class="bi bi-globe2 text-accent text-3xl mb-2 block"></i>
                     <h3>Multilingual</h3>
                     <p>{{ $categories['multilingual']['count'] ?? 0 }} RESOURCES</p>
                 </div>
@@ -223,7 +223,7 @@
                             <img src="{{ $article->image_url }}" alt="{{ $article->category }}">
                         </div>
                         <div class="card-content">
-                            <span class="card-category text-gold">{{ strtoupper($article->category) }}</span>
+                            <span class="card-category text-accent">{{ strtoupper($article->category) }}</span>
                             <h3 class="card-title group-hover-gold">{{ $article->title }}</h3>
                             <span class="card-read-time">{{ $article->read_time }} MIN READ • <i class="bi bi-translate"></i> {{ $article->lang }}</span>
                         </div>
@@ -297,16 +297,16 @@
             color: var(--dark);
         }
 
-        .text-gold { color: var(--gold); }
+        .text-accent { color: var(--primary); }
         .text-primary { color: var(--primary); }
         .text-dark { color: var(--dark); }
         
         .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         .group-hover-gold { transition: color 0.2s; }
-        .group:hover .group-hover-gold { color: var(--gold); }
+        .group:hover .group-hover-gold { color: var(--primary); }
         .group-hover-underline { transition: color 0.2s; }
-        .group:hover .group-hover-underline { text-decoration: underline; color: var(--gold); }
+        .group:hover .group-hover-underline { text-decoration: underline; color: var(--primary); }
 
         /* Typography */
         .section-title {
@@ -617,11 +617,10 @@
         .resource-panel {
             margin-top: 2rem;
             background: #fff;
-            border: 1px solid var(--gold);
             border-radius: var(--radius-lg);
             padding: 2.5rem;
             position: relative;
-            box-shadow: 0 20px 40px rgba(196, 168, 64, 0.08);
+            box-shadow: var(--card-ring), 0 20px 40px rgba(196, 168, 64, 0.08);
             animation: fadeIn 0.3s ease-out;
         }
         .btn-close-panel {
@@ -719,8 +718,8 @@
             color: var(--dark);
         }
         .carousel-btn:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+            border-color: var(--primary);
+            color: var(--primary);
             transform: scale(1.05);
         }
         

@@ -213,7 +213,7 @@
             color: var(--primary);
         }
 
-        .account-dropdown-menu a i { font-size: var(--text-md); color: var(--gold); }
+        .account-dropdown-menu a i { font-size: var(--text-md); color: var(--primary); }
 
         .account-dropdown-menu .divider {
             border: none;
@@ -333,7 +333,7 @@
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--gold);
+            color: var(--primary);
             margin-bottom: 0.6rem;
         }
 
@@ -448,7 +448,7 @@
 
         .footer-brand span { font-size: var(--text-sm); color: var(--muted); display: flex; align-items: center; gap: 6px; }
 
-        .footer-brand span i { color: var(--gold); }
+        .footer-brand span i { color: var(--primary); }
 
         .footer-col { display: flex; flex-direction: column; gap: 0.7rem; }
 
@@ -463,7 +463,7 @@
 
         .footer-col a { font-size: var(--text-base); color: var(--muted); text-decoration: none; transition: color 0.2s; }
 
-        .footer-col a:hover { color: var(--gold); }
+        .footer-col a:hover { color: var(--primary); }
 
         .footer-bottom {
             max-width: 1200px;

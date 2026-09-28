@@ -23,7 +23,7 @@
                                     <img src="{{ asset($testimonial['avatar']) }}" alt="{{ $testimonial['name'] }}" style="width:40px;height:40px;border-radius:var(--radius-full);object-fit:cover;">
                                 @else
                                     <div style="width:40px;height:40px;border-radius:var(--radius-full);background:var(--cream);display:flex;align-items:center;justify-content:center;">
-                                        <i class="bi bi-person" style="color:var(--gold);"></i>
+                                        <i class="bi bi-person" style="color:var(--primary);"></i>
                                     </div>
                                 @endif
                                 <div>

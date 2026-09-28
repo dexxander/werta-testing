@@ -182,7 +182,7 @@
     .el-bento-tile:hover {
         transform: translateY(-4px);
         box-shadow: var(--shadow-lg);
-        border-color: var(--gold);
+        border-color: var(--primary);
     }
 
     .el-bento-icon {

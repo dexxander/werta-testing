@@ -17,13 +17,13 @@
         .step-item p { font-size: var(--text-base); color: var(--muted); line-height: 1.6; margin: 0; }
         .trust-card { background: var(--cream-light); box-shadow: var(--card-ring), var(--shadow-md); border-radius: var(--radius-lg); padding: 1.8rem; height: 100%; }
         .bg-light-cream .trust-card { background: #ffffff; }
-        .trust-card i { font-size: var(--text-2xl); color: var(--gold); margin-bottom: 1rem; display: block; }
+        .trust-card i { font-size: var(--text-2xl); color: var(--primary); margin-bottom: 1rem; display: block; }
         .trust-card h5 { font-weight: 700; font-size: var(--text-md); margin-bottom: 0.5rem; color: var(--dark); }
         .trust-card p { font-size: var(--text-base); color: var(--muted); line-height: 1.65; margin: 0; }
         .team-card { text-align: center; height: 100%; }
         .team-photo { width: 175px; height: 175px; border-radius: var(--radius-full); background: rgba(123,107,53,0.12); border: 2px solid rgba(196,168,64,0.3); margin: 0 auto 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: var(--text-sm); }
         .team-card h5 { font-weight: 700; font-size: var(--text-md); margin-bottom: 0.2rem; color: var(--dark); }
-        .team-card p.role { font-size: var(--text-base); color: var(--gold); font-weight: 600; margin-bottom: 0.4rem; }
+        .team-card p.role { font-size: var(--text-base); color: var(--primary); font-weight: 600; margin-bottom: 0.4rem; }
         .team-card p.bio { font-size: var(--text-base); color: var(--muted); line-height: 1.6; }
         .disclaimer-box { background: rgba(44,36,22,0.04); border-left: 4px solid var(--gold); border-radius: var(--radius-sm); padding: 1.5rem 1.8rem; font-size: var(--text-base); color: var(--muted); line-height: 1.7; }
         .placeholder-note { display: inline-block; background: #dc2626; border: 1px solid #b91c1c; border-radius: 4px; padding: 3px 10px; font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #ffffff; margin-bottom: 0.75rem; }

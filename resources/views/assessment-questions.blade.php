@@ -407,11 +407,11 @@
         }
 
         .likert-option input:focus-visible ~ .likert-dot {
-            outline: 2px solid var(--gold);
+            outline: 2px solid var(--primary);
             outline-offset: 2px;
         }
 
-        .likert-option:hover .likert-dot { border-color: var(--gold); background: rgba(196,168,64,0.1); }
+        .likert-option:hover .likert-dot { border-color: var(--primary); background: rgba(196,168,64,0.1); }
         .likert-label { font-size: var(--text-xs); color: var(--muted); text-align: center; line-height: 1.3; }
 
         /* ── Navigation ────────────────────────────────────── */

@@ -116,7 +116,7 @@
 
                         {{-- Streak --}}
                         <div class="el-dash-panel el-dash-panel--tight">
-                            <h6 class="el-dash-panel-title"><i class="bi bi-fire" style="color:var(--gold);"></i> Learning Streak</h6>
+                            <h6 class="el-dash-panel-title"><i class="bi bi-fire" style="color:var(--primary);"></i> Learning Streak</h6>
                             <p class="el-dash-streak-count">{{ $dashboard_streak_days ?? 0 }} <span>days</span></p>
                             <div class="el-dash-streak-dots">
                                 @for($i = 0; $i < 7; $i++)
@@ -174,7 +174,7 @@
 
     .el-dash-view-all {
         font-size: var(--text-xs);
-        color: var(--gold);
+        color: var(--primary);
         font-weight: 700;
         cursor: pointer;
     }
@@ -231,7 +231,7 @@
     .el-dash-course-top span {
         font-size: var(--text-sm);
         font-weight: 700;
-        color: var(--gold);
+        color: var(--primary);
         flex-shrink: 0;
     }
 
@@ -346,7 +346,7 @@
     }
 
     .el-dash-goal.is-done i {
-        color: var(--gold);
+        color: var(--primary);
     }
 
     /* ─── STREAK ───────────────────────────────────────────── */

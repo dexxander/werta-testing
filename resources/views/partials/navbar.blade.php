@@ -50,7 +50,7 @@
     }
     .elearning-dropdown-menu a:hover {
         background-color: rgba(196,168,64,0.1) !important;
-        color: var(--gold, #c4a840) !important;
+        color: var(--primary) !important;
     }
 </style>
 

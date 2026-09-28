@@ -387,7 +387,7 @@
             gap: 6px;
         }
 
-        .results-disclaimer i { color: var(--gold); }
+        .results-disclaimer i { color: var(--primary); }
 
         /* ── Summary Card ── */
         .summary-card {
@@ -406,7 +406,7 @@
             background: rgba(123,107,53,0.04);
         }
 
-        .summary-header i { font-size: 1.3rem; color: var(--gold); }
+        .summary-header i { font-size: 1.3rem; color: var(--primary); }
 
         .summary-header h3 {
             font-family: 'IM Fell English', serif;
@@ -451,7 +451,7 @@
             font-weight: 500;
         }
 
-        .summary-blur-cta i { color: var(--gold); }
+        .summary-blur-cta i { color: var(--primary); }
         .summary-blur-cta a { color: var(--primary); font-weight: 700; text-decoration: underline; }
 
         /* ── Next Steps Card ── */
@@ -607,7 +607,7 @@
 
         .report-box-icon {
             font-size: 1.2rem;
-            color: var(--gold);
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
@@ -639,7 +639,7 @@
 
         .locked-icon-wrap {
             font-size: 1.3rem;
-            color: var(--gold);
+            color: var(--primary);
             flex-shrink: 0;
         }
 
@@ -663,7 +663,7 @@
 
         .safety-net-icon {
             font-size: 1.4rem;
-            color: var(--gold);
+            color: var(--primary);
             flex-shrink: 0;
         }
 

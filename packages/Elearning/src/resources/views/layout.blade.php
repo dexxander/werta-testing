@@ -37,8 +37,9 @@
            comparison, rather than an ad-hoc merge, as the blast radius spans across all 11+ Elearning views. */
         .el-pill {
             font-size: var(--text-sm); font-weight: 700; letter-spacing: 3px;
-            text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem;
+            text-transform: uppercase; color: var(--primary); margin-bottom: 0.6rem;
         }
+        .el-final-cta .el-pill, #el-paths .el-pill, .el-hero .el-pill { color: var(--gold); }
 
         .el-heading {
             font-family: 'IM Fell English', serif; font-size: 2.4rem;
@@ -56,7 +57,8 @@
             border: 2px dashed rgba(123,107,53,0.2); border-radius: var(--radius-lg);
         }
         .el-empty-state--dark { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
-        .el-empty-state i { font-size: 3rem; color: var(--gold); margin-bottom: 1rem; display: block; opacity: 0.5; }
+        .el-empty-state i { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; display: block; opacity: 0.5; }
+        .el-empty-state--dark i { color: var(--gold); }
         .el-empty-state h5 { font-weight: 700; margin-bottom: 0.5rem; }
         .el-empty-state p { font-size: var(--text-base); color: var(--muted); max-width: 400px; margin: 0 auto; }
         .el-empty-state--dark h5 { color: #fff; }
@@ -129,7 +131,7 @@
             background: rgba(196,168,64,0.12); display: flex; align-items: center;
             justify-content: center; transition: background 0.25s ease;
         }
-        .el-cat-card-icon i { font-size: 1.5rem; color: var(--gold); margin: 0; }
+        .el-cat-card-icon i { font-size: 1.5rem; color: var(--primary); margin: 0; }
         .el-cat-card:hover .el-cat-card-icon { background: var(--gold); }
         .el-cat-card:hover .el-cat-card-icon i { color: #fff; }
         .el-cat-card h5 { font-weight: 700; font-size: var(--text-base-lg); margin-bottom: 0.3rem; }
@@ -161,21 +163,21 @@
             font-size: var(--text-base); color: var(--dark); padding: 0.5rem 0;
             border-bottom: 1px solid rgba(123,107,53,0.08); display: flex; align-items: center; gap: 10px;
         }
-        .el-pricing-features li i { color: var(--gold); font-size: 0.85rem; }
+        .el-pricing-features li i { color: var(--primary); font-size: 0.85rem; }
 
         /* ─── FAQ ACCORDION ───────────────────────────────── */
         .el-faq-item {
             background: var(--cream-light); border: 1px solid rgba(123,107,53,0.1); border-radius: var(--radius-lg);
             margin-bottom: 0.8rem; overflow: hidden; transition: border-color 0.2s;
         }
-        .el-faq-item:hover { border-color: var(--gold); }
+        .el-faq-item:hover { border-color: var(--primary); }
         .el-faq-question {
             width: 100%; background: none; border: none; padding: 1.2rem 1.5rem; font-size: var(--text-base-lg);
             font-weight: 700; color: var(--dark); text-align: left; cursor: pointer; display: flex;
             justify-content: space-between; align-items: center; transition: color 0.2s;
         }
         .el-faq-question:hover { color: var(--primary); }
-        .el-faq-question i { transition: transform 0.3s ease; color: var(--gold); }
+        .el-faq-question i { transition: transform 0.3s ease; color: var(--primary); }
         .el-faq-question.active i { transform: rotate(180deg); }
         .el-faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; padding: 0 1.5rem; }
         .el-faq-answer.open { max-height: 200px; padding: 0 1.5rem 1.2rem; }
@@ -212,7 +214,7 @@
             width: 48px; height: 48px; background: rgba(196,168,64,0.12); border-radius: var(--radius-lg);
             display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
-        .el-feature-icon i { font-size: 1.2rem; color: var(--gold); }
+        .el-feature-icon i { font-size: 1.2rem; color: var(--primary); }
 
         /* ─── HERO SEARCH ─────────────────────────────────── */
         .el-hero-search {
@@ -243,7 +245,7 @@
             text-decoration: none; display: inline-block;
         }
         .el-tab-bar a.nav-link:hover { color: var(--dark); border-color: rgba(196,168,64,0.4); }
-        .el-tab-bar a.nav-link.active { color: var(--primary-dark); border-bottom: 3px solid var(--gold); }
+        .el-tab-bar a.nav-link.active { color: var(--primary-dark); border-bottom: 3px solid var(--primary); }
 
         @media (max-width: 767px) {
             .el-tab-bar { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; }
