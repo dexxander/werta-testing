@@ -306,8 +306,7 @@
             padding: 2.5rem 3rem;
             max-width: 780px;
             width: 100%;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(123,107,53,0.1);
+            box-shadow: var(--card-ring), var(--shadow-md);
         }
 
         .quiz-page { display: none; }

@@ -44,7 +44,7 @@
                 <i class="bi bi-chevron-down text-xs text-primary"></i>
             </button>
             <!-- Dropdown -->
-            <div x-show="open" style="display: none;" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50" x-transition>
+            <div x-show="open" style="display: none;" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-primary-dark/35 py-1 z-50" x-transition>
                 <button onclick="openParentProfileModal()" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-cream hover:text-primary"><i class="bi bi-person mr-2"></i> Edit Profile</button>
                 <div class="border-t border-gray-100 my-1"></div>
                 <a href="{{ url('/parent/logout') }}" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50"><i class="bi bi-box-arrow-right mr-2"></i> Logout</a>
@@ -93,7 +93,7 @@
 
     <!-- Parent Edit Profile Modal -->
     <div id="parentProfileModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(44,36,22,0.6); z-index:9999; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
-        <div style="background:#fff; width:90%; max-width:400px; border-radius:12px; padding:2rem; position:relative; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+        <div style="background:#fff; width:90%; max-width:400px; border-radius:12px; padding:2rem; position:relative; border:1.5px solid var(--primary, #7B6B35); box-shadow:0 20px 60px rgba(44,36,22,0.25);">
             <button onclick="closeParentProfileModal()" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.2rem; cursor:pointer; color:#6c757d;"><i class="bi bi-x-lg"></i></button>
             
             <h3 style="font-size:1.25rem; font-weight:700; color:#2c2416; margin-bottom:1.5rem; font-family:'IM Fell English',serif;">Edit Profile</h3>

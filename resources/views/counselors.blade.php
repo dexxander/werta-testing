@@ -71,7 +71,7 @@
                 <p>We are currently onboarding and verifying licensed mental health practitioners across Malaysia. Our certified counselor matching directory will be available soon.</p>
                 <div class="el-empty-state-actions">
                     <a href="{{ url('/assessment') }}" class="btn-cta-filled">Take the Assessment</a>
-                    <a href="{{ url('/') }}" class="btn-cta-outline">Return to Home</a>
+                    <a href="{{ url('/') }}" class="btn-cta-outline-on-light">Return to Home</a>
                 </div>
             </div>
         </div>

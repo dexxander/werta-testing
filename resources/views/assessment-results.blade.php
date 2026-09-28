@@ -264,8 +264,7 @@
         .teaser-card {
             background: var(--cream-light);
             border-radius: var(--radius-xl);
-            border: 1px solid rgba(123,107,53,0.12);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--card-ring), var(--shadow-md);
             display: flex;
             overflow: hidden;
         }
@@ -394,8 +393,7 @@
         .summary-card {
             background: var(--cream-light);
             border-radius: var(--radius-xl);
-            border: 1px solid rgba(123,107,53,0.12);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--card-ring), var(--shadow-md);
             overflow: hidden;
         }
 
@@ -460,9 +458,8 @@
         .next-steps-card {
             background: var(--cream-light);
             border-radius: var(--radius-xl);
-            border: 1px solid rgba(123,107,53,0.12);
             padding: 2.5rem 2.2rem;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--card-ring), var(--shadow-md);
             text-align: center;
         }
 
@@ -514,9 +511,9 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: transparent;
+            background: var(--sand);
             border: 1.5px solid var(--primary);
-            color: var(--primary);
+            color: var(--dark);
             font-weight: 700;
             font-size: var(--text-base-lg);
             padding: 0.8rem 2rem;
@@ -526,9 +523,15 @@
         }
 
         .btn-cta-secondary:hover {
-            background: rgba(123,107,53,0.08);
-            color: var(--primary-dark);
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
             transform: translateY(-1px);
+        }
+
+        .btn-cta-secondary:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--cream), 0 0 0 4px var(--primary);
         }
 
         /* ── Written Report Preview ── */

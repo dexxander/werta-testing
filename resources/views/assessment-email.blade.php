@@ -110,8 +110,7 @@
         .email-container {
             background: var(--cream-light);
             border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(123,107,53,0.1);
+            box-shadow: var(--card-ring), var(--shadow-md);
             max-width: 820px;
             width: 100%;
             display: flex;

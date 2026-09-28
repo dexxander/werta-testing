@@ -109,7 +109,7 @@
     .el-topic-preview > span i, .el-topic-preview > i { color:var(--gold); }
     .el-modal-overlay { position:fixed;inset:0;background:rgba(44,36,22,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease;backdrop-filter:blur(4px); }
     .el-modal-overlay.active { opacity:1;visibility:visible; }
-    .el-modal-content { max-width:450px;width:90%;position:relative;transform:translateY(20px);transition:all 0.3s ease;background:var(--cream-light); }
+    .el-modal-content { max-width:450px;width:90%;position:relative;transform:translateY(20px);transition:all 0.3s ease;background:#ffffff;border:1.5px solid var(--primary);box-shadow:0 20px 60px rgba(44,36,22,0.25); }
     .el-modal-overlay.active .el-modal-content { transform:translateY(0); }
     .el-modal-close { position:absolute;top:15px;right:15px;background:none;border:none;color:var(--muted);font-size:var(--text-lg);cursor:pointer; }
 </style>

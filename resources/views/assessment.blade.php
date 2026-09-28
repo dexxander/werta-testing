@@ -394,12 +394,13 @@
         }
 
         .modal-card {
-            background: var(--cream-light);
+            background: #ffffff;
+            border: 1.5px solid var(--primary);
             border-radius: var(--radius-xl);
             padding: 2.5rem 2.5rem 2rem;
             max-width: 560px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 60px rgba(44, 36, 22, 0.25);
             text-align: center;
             position: relative;
             overflow: hidden;

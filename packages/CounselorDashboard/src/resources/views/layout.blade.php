@@ -36,7 +36,7 @@
                 <span class="font-semibold text-sm">{{ session('counselor_name', 'Counselor') }}</span>
                 <i class="bi bi-chevron-down text-xs text-primary"></i>
             </button>
-            <div x-show="open" style="display: none;" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50" x-transition>
+            <div x-show="open" style="display: none;" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-primary-dark/35 py-1 z-50" x-transition>
                 <a href="{{ url('') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-cream hover:text-primary"><i class="bi"></i> Back to main page</a>
                 <div class="border-t border-gray-100 my-1"></div>
                 <a href="{{ url('/counselor/logout') }}" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50"><i class="bi bi-box-arrow-right mr-2"></i> Logout</a>
@@ -93,7 +93,7 @@
                          x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
                          x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                          @click.away="isModalOpen = false"
-                         class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl border border-gold/30">
+                         class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-modal transition-all sm:my-8 sm:w-full sm:max-w-xl border-[1.5px] border-primary">
                         
                         <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                             <div class="sm:flex sm:items-start">

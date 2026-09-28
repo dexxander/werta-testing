@@ -41,7 +41,7 @@
                 <i class="bi bi-funnel"></i> Filter
             </button>
             
-            <div x-show="filterOpen" style="display: none;" class="absolute right-0 mt-2 w-full sm:w-64 bg-white border border-gray-100 rounded-lg shadow-xl z-50 p-4" x-transition>
+            <div x-show="filterOpen" style="display: none;" class="absolute right-0 mt-2 w-full sm:w-64 bg-white ring-1 ring-primary-dark/35 rounded-lg shadow-lg z-50 p-4" x-transition>
                 
                 <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Publish Status</h3>
                 <label class="flex items-center gap-3 mb-2 cursor-pointer group">

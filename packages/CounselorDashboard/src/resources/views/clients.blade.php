@@ -41,7 +41,7 @@
                 <button @click="filterOpen = !filterOpen" class="bg-gray-50 border border-gray-200 text-gray-600 hover:bg-cream hover:text-primary hover:border-gold/30 px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2">
                     <i class="bi bi-funnel"></i> Filter
                 </button>
-                <div x-show="filterOpen" style="display: none;" class="absolute right-0 mt-2 w-72 bg-white border border-gray-100 rounded-lg shadow-xl z-50 p-4" x-transition>
+                <div x-show="filterOpen" style="display: none;" class="absolute right-0 mt-2 w-72 bg-white ring-1 ring-primary-dark/35 rounded-lg shadow-lg z-50 p-4" x-transition>
                     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Client Status</h3>
                     <label class="flex items-center gap-3 mb-2 cursor-pointer group">
                         <input type="checkbox" checked class="w-4 h-4 text-gold border-gray-300 rounded focus:ring-gold group-hover:border-gold transition-colors">
@@ -147,7 +147,7 @@
                          x-transition:leave-start="translate-x-0"
                          x-transition:leave-end="translate-x-full"
                          @click.outside="viewReportOpen = false"
-                         class="pointer-events-auto w-screen max-w-md bg-white shadow-2xl flex flex-col h-full border-l border-gold/20">
+                         class="pointer-events-auto w-screen max-w-md bg-white shadow-modal flex flex-col h-full border-l border-primary-dark/35">
                         
                         <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100 bg-cream/30">
                             <div>

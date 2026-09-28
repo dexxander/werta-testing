@@ -334,7 +334,7 @@
         /* Premium Card */
         .premium-featured-card {
             background: var(--cream-light);
-            border: 1px solid rgba(196, 168, 64, 0.2);
+            box-shadow: var(--card-ring), var(--shadow-md);
             border-radius: 16px;
             overflow: hidden;
             position: relative;
@@ -663,15 +663,14 @@
         .mini-card {
             display: block;
             background: var(--cream-light);
-            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--card-ring), var(--shadow-md);
             padding: 1.5rem;
             border-radius: var(--radius-md);
             text-decoration: none;
             transition: all 0.2s;
         }
         .mini-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 5px 15px rgba(123, 107, 53, 0.15);
+            box-shadow: var(--card-ring-hover), var(--shadow-lg);
             transform: translateY(-2px);
         }
         .mini-tag {
@@ -741,10 +740,15 @@
 
         .standard-article-card {
             background: #fff;
-            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--card-ring), var(--shadow-md);
             border-radius: var(--radius-lg);
             overflow: hidden;
             cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .standard-article-card:hover {
+            box-shadow: var(--card-ring-hover), var(--shadow-lg);
+            transform: translateY(-4px);
         }
         .carousel-card {
             flex: 0 0 300px;

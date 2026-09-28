@@ -16,9 +16,10 @@
 
     <style>
         :root {
-            /* ─── Colors ─── */
+            /* ─── Colors (Sync note: keep in sync with partials/tailwind-dashboard-config.blade.php) ─── */
             --cream:        #F5EFE0;
             --cream-light:  #FDFAF4;
+            --sand:         #E8E0CC;
             --primary:      #7B6B35;
             --primary-dark: #574B22;
             --gold:         #C4A840;
@@ -49,9 +50,11 @@
             --section-py:  80px;    /* Symmetric vertical section padding */
 
             /* ─── Elevation ─── */
-            --shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.06);     /* Subtle element elevation */
-            --shadow-md:   0 8px 32px rgba(0, 0, 0, 0.08);    /* Main card elevation */
-            --shadow-lg:   0 12px 32px rgba(44, 36, 22, 0.1); /* Elevated dropdowns & modals */
+            --shadow-sm:        0 2px 8px rgba(44, 36, 22, 0.06);   /* Subtle element elevation (warm) */
+            --shadow-md:        0 8px 32px rgba(44, 36, 22, 0.07);  /* Main card elevation (warm) */
+            --shadow-lg:        0 12px 32px rgba(44, 36, 22, 0.1);  /* Elevated dropdowns & modals (warm) */
+            --card-ring:        0 0 0 1px rgba(87, 75, 34, 0.35);   /* Level 1 perimeter ring */
+            --card-ring-hover:  0 0 0 1px var(--primary);            /* Level 1 interactive hover ring */
         }
 
         * { box-sizing: border-box; }
@@ -185,10 +188,9 @@
         }
 
         .account-dropdown-menu-inner {
-            background: var(--cream-light);
-            border: 1px solid rgba(123,107,53,0.15);
+            background: #ffffff;
             border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--card-ring), var(--shadow-lg);
             overflow: hidden;
         }
 
@@ -293,6 +295,31 @@
         }
 
         .btn-cta-outline:hover { background: white; color: var(--primary-dark); }
+
+        /* Light-background variant (solid sand fill); .btn-cta-outline is the dark-background ghost */
+        .btn-cta-outline-on-light {
+            background: var(--sand);
+            color: var(--dark);
+            border: 1.5px solid var(--primary);
+            padding: 0.85rem 2.2rem;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: var(--text-base-lg);
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-cta-outline-on-light:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .btn-cta-outline-on-light:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--cream), 0 0 0 4px var(--primary);
+        }
 
         /* ─── SECTION COMMONS ───────────────────────────── */
         .section-divider {
@@ -496,9 +523,10 @@
             }
 
             .mobile-nav-collapse {
-                background-color: var(--cream-light);
-                border-top: 1px solid rgba(123, 107, 53, 0.15);
-                box-shadow: var(--shadow-md);
+                background-color: #ffffff;
+                border-top: 1px solid rgba(87, 75, 34, 0.35);
+                border-bottom: 1px solid rgba(87, 75, 34, 0.35);
+                box-shadow: var(--shadow-lg);
                 max-height: calc(100vh - 90px);
                 max-height: calc(100dvh - 90px);
                 overflow-y: auto;

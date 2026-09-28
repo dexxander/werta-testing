@@ -130,7 +130,9 @@
     .el-modal-content {
         max-width: 450px; width: 90%; position: relative;
         transform: translateY(20px); transition: all 0.3s ease;
-        background: var(--cream-light);
+        background: #ffffff;
+        border: 1.5px solid var(--primary);
+        box-shadow: 0 20px 60px rgba(44, 36, 22, 0.25);
     }
     .el-modal-overlay.active .el-modal-content { transform: translateY(0); }
     .el-modal-close {

@@ -15,7 +15,7 @@
         .step-number { width: 48px; height: 48px; border-radius: var(--radius-full); background: var(--gold); color: white; font-family: 'IM Fell English', serif; font-size: var(--text-xl); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
         .step-item h5 { font-weight: 700; font-size: var(--text-md); margin-bottom: 0.4rem; color: var(--dark); }
         .step-item p { font-size: var(--text-base); color: var(--muted); line-height: 1.6; margin: 0; }
-        .trust-card { background: var(--cream-light); border: 1px solid rgba(123,107,53,0.15); border-radius: var(--radius-lg); padding: 1.8rem; height: 100%; }
+        .trust-card { background: var(--cream-light); box-shadow: var(--card-ring), var(--shadow-md); border-radius: var(--radius-lg); padding: 1.8rem; height: 100%; }
         .bg-light-cream .trust-card { background: #ffffff; }
         .trust-card i { font-size: var(--text-2xl); color: var(--gold); margin-bottom: 1rem; display: block; }
         .trust-card h5 { font-weight: 700; font-size: var(--text-md); margin-bottom: 0.5rem; color: var(--dark); }

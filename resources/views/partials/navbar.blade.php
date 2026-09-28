@@ -28,9 +28,9 @@
         position: absolute;
         top: 100%;
         left: 0;
-        background-color: var(--cream-light, #ffffff);
-        border: 1px solid rgba(123,107,53,0.15);
-        box-shadow: var(--shadow-lg);
+        background-color: #ffffff;
+        box-shadow: var(--card-ring), var(--shadow-lg);
+        border: none;
         border-radius: var(--radius-md);
         min-width: 220px;
         padding: 0.5rem 0;

@@ -45,7 +45,7 @@
                 <span class="font-semibold text-sm">{{ ucfirst($role) }} User</span>
                 <i class="bi bi-chevron-down text-xs text-primary"></i>
             </button>
-            <div x-show="open" style="display: none;" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50" x-transition>
+            <div x-show="open" style="display: none;" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-primary-dark/35 py-1 z-50" x-transition>
                 <a href="{{ url('/' . $role . '/settings') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-cream hover:text-primary"><i class="bi bi-person mr-2"></i> My Profile</a>
                 <div class="border-t border-gray-100 my-1"></div>
                 <a href="{{ url('/' . $role . '/logout') }}" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50"><i class="bi bi-box-arrow-right mr-2"></i> Logout</a>

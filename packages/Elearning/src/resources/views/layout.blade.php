@@ -64,12 +64,12 @@
 
         /* ─── CARD STYLES ────────────────────────────────── */
         .el-card {
-            background: var(--cream-light); border: 1px solid rgba(123,107,53,0.12);
+            background: var(--cream-light); box-shadow: var(--card-ring), var(--shadow-md);
             border-radius: var(--radius-lg); padding: 2rem; transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .el-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-        .el-card--dark { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
-        .el-card--dark:hover { background: rgba(255,255,255,0.1); }
+        .el-card:hover { transform: translateY(-4px); box-shadow: var(--card-ring-hover), var(--shadow-lg); }
+        .el-card--dark { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); box-shadow: none; }
+        .el-card--dark:hover { background: rgba(255,255,255,0.1); box-shadow: none; }
 
         /* ─── BUTTONS ────────────────────────────────────── */
         .el-btn-primary {
@@ -80,12 +80,28 @@
         .el-btn-primary:hover { background: var(--dark); color: #fff; transform: translateY(-1px); }
 
         .el-btn-outline {
-            background: transparent; color: var(--primary-dark); border: 2px solid var(--primary-dark);
-            padding: 0.75rem 2rem; border-radius: var(--radius-sm); font-weight: 700; font-size: var(--text-base-lg);
-            text-decoration: none; display: inline-block; transition: all 0.2s; cursor: pointer;
+            background: var(--sand);
+            color: var(--dark);
+            border: 1.5px solid var(--primary);
+            padding: 0.75rem 2rem;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: var(--text-base-lg);
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+            cursor: pointer;
         }
-        .el-btn-outline:hover { background: var(--primary-dark); color: #fff; }
-        .el-btn-outline--light { color: #fff; border-color: #fff; }
+        .el-btn-outline:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+        .el-btn-outline:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--cream), 0 0 0 4px var(--primary);
+        }
+        .el-btn-outline--light { color: #fff; border-color: #fff; background: transparent; }
         .el-btn-outline--light:hover { background: #fff; color: var(--primary-dark); }
 
         /* ─── STAT COUNTER ────────────────────────────────── */
@@ -100,13 +116,13 @@
 
         /* ─── CATEGORY CARDS ──────────────────────────────── */
         .el-cat-card {
-            background: var(--cream-light); border: 1px solid rgba(123,107,53,0.12); border-radius: var(--radius-lg);
+            background: var(--cream-light); box-shadow: var(--card-ring), var(--shadow-md); border-radius: var(--radius-lg);
             padding: 2rem 1.5rem; text-align: center; transition: all 0.25s ease; cursor: pointer;
             text-decoration: none; display: block; color: var(--dark);
         }
         .el-cat-card:hover {
-            transform: translateY(-5px); box-shadow: var(--shadow-lg);
-            border-color: var(--gold); color: var(--dark);
+            transform: translateY(-5px); box-shadow: var(--card-ring-hover), var(--shadow-lg);
+            color: var(--dark);
         }
         .el-cat-card-icon {
             width: 56px; height: 56px; margin: 0 auto 1rem; border-radius: var(--radius-full);
@@ -124,11 +140,11 @@
 
         /* ─── PRICING CARDS ───────────────────────────────── */
         .el-pricing-card {
-            background: var(--cream-light); border: 1px solid rgba(123,107,53,0.12); border-radius: var(--radius-lg);
+            background: var(--cream-light); box-shadow: var(--card-ring), var(--shadow-md); border-radius: var(--radius-lg);
             padding: 2.5rem 2rem; text-align: center; transition: transform 0.25s ease, box-shadow 0.25s ease;
             position: relative;
         }
-        .el-pricing-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(44,36,22,0.12); }
+        .el-pricing-card:hover { transform: translateY(-6px); box-shadow: var(--card-ring-hover), var(--shadow-lg); }
         .el-pricing-card.recommended { border: 2px solid var(--gold); box-shadow: 0 8px 30px rgba(196,168,64,0.15); }
         .el-pricing-badge {
             position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold);
