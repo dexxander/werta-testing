@@ -56,7 +56,7 @@
                     @forelse($trendingComments as $comment)
                         <div class="comment-item group">
                             <div class="comment-header">
-                                <div class="comment-avatar" style="background: #C4A840; color: #fff;">{{ substr($comment->author_name, 0, 1) }}</div>
+                                <div class="comment-avatar" style="background: #C4A840; color: var(--dark);">{{ substr($comment->author_name, 0, 1) }}</div>
                                 <span class="comment-author">{{ $comment->author_name }}</span>
                                 <span class="comment-time">{{ $comment->time_ago }}</span>
                             </div>
@@ -344,7 +344,7 @@
             top: 1rem;
             left: 1rem;
             background: var(--gold);
-            color: #fff;
+            color: var(--dark);
             padding: 0.3rem 0.8rem;
             border-radius: var(--radius-xl);
             font-size: var(--text-xs);
@@ -394,7 +394,7 @@
         }
         .btn-unlock-article {
             background: var(--gold);
-            color: #fff;
+            color: var(--dark);
             border: none;
             padding: 0.8rem 1.8rem;
             border-radius: var(--radius-md);
@@ -403,7 +403,7 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-        .btn-unlock-article:hover { background: var(--primary); }
+        .btn-unlock-article:hover { background: var(--primary); color: #fff; }
 
         /* Trending Sidebar */
         .trending-sidebar {

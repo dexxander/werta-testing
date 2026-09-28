@@ -462,8 +462,8 @@
         }
 
         .btn-quiz-next:hover, .btn-quiz-submit:hover { background: var(--primary-dark); }
-        .btn-quiz-submit { background: var(--gold); }
-        .btn-quiz-submit:hover { background: var(--primary); }
+        .btn-quiz-submit { background: var(--gold); color: var(--dark); }
+        .btn-quiz-submit:hover { background: var(--primary); color: #fff; }
         .btn-quiz-submit:disabled { opacity: 0.5; cursor: not-allowed; }
     </style>
 

@@ -295,7 +295,7 @@
         
         .btn-unlock {
             background: var(--gold);
-            color: #fff;
+            color: var(--dark);
             border: none;
             padding: 0.9rem 2.5rem;
             border-radius: var(--radius-md);
@@ -306,7 +306,7 @@
             width: 100%;
             margin-bottom: 1rem;
         }
-        .btn-unlock:hover { background: var(--primary); }
+        .btn-unlock:hover { background: var(--primary); color: #fff; }
         .paywall-login { font-size: var(--text-base); color: var(--muted); }
         .paywall-login a { color: var(--primary-dark); font-weight: 700; text-decoration: none; }
 
@@ -383,7 +383,7 @@
         }
         .c-name { font-weight: 700; font-size: var(--text-base-lg); }
         .author-badge {
-            background: var(--gold); color: #fff; font-size: var(--text-xs);
+            background: var(--gold); color: var(--dark); font-size: var(--text-xs);
             padding: 2px 6px; border-radius: 4px; margin-left: 4px; vertical-align: middle;
         }
         .c-time { font-size: var(--text-sm); color: var(--muted); }

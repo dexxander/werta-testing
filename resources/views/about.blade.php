@@ -12,7 +12,7 @@
         .about-sec-expanded { padding: calc(var(--section-py) * 1.15) 0; }
         .step-row { display: flex; gap: 2rem; margin-top: 2.5rem; }
         .step-item { flex: 1; text-align: center; }
-        .step-number { width: 48px; height: 48px; border-radius: var(--radius-full); background: var(--gold); color: white; font-family: 'IM Fell English', serif; font-size: var(--text-xl); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+        .step-number { width: 48px; height: 48px; border-radius: var(--radius-full); background: var(--gold); color: var(--dark); font-family: 'IM Fell English', serif; font-size: var(--text-xl); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
         .step-item h5 { font-weight: 700; font-size: var(--text-md); margin-bottom: 0.4rem; color: var(--dark); }
         .step-item p { font-size: var(--text-base); color: var(--muted); line-height: 1.6; margin: 0; }
         .trust-card { background: var(--cream-light); box-shadow: var(--card-ring), var(--shadow-md); border-radius: var(--radius-lg); padding: 1.8rem; height: 100%; }

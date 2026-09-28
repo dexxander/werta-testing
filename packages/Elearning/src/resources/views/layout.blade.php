@@ -133,7 +133,7 @@
         }
         .el-cat-card-icon i { font-size: 1.5rem; color: var(--primary); margin: 0; }
         .el-cat-card:hover .el-cat-card-icon { background: var(--gold); }
-        .el-cat-card:hover .el-cat-card-icon i { color: #fff; }
+        .el-cat-card:hover .el-cat-card-icon i { color: var(--dark); }
         .el-cat-card h5 { font-weight: 700; font-size: var(--text-base-lg); margin-bottom: 0.3rem; }
         .el-cat-card-count {
             display: inline-block; margin-top: 0.4rem; font-size: var(--text-sm); font-weight: 600;
@@ -150,7 +150,7 @@
         .el-pricing-card.recommended { border: 2px solid var(--gold); box-shadow: 0 8px 30px rgba(196,168,64,0.15); }
         .el-pricing-badge {
             position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold);
-            color: #fff; font-size: var(--text-xs); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--dark); font-size: var(--text-xs); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
             padding: 4px 16px; border-radius: var(--radius-pill);
         }
         .el-pricing-price {
@@ -223,8 +223,8 @@
         }
         .el-hero-search input { flex: 1; border: none; background: transparent; padding: 0.9rem 1.2rem; color: #fff; font-size: var(--text-base-lg); outline: none; }
         .el-hero-search input::placeholder { color: rgba(255,255,255,0.5); }
-        .el-hero-search button { background: var(--gold); border: none; padding: 0.9rem 1.4rem; color: #fff; font-weight: 700; cursor: pointer; transition: background 0.2s; }
-        .el-hero-search button:hover { background: var(--primary); }
+        .el-hero-search button { background: var(--gold); border: none; padding: 0.9rem 1.4rem; color: var(--dark); font-weight: 700; cursor: pointer; transition: background 0.2s; }
+        .el-hero-search button:hover { background: var(--primary); color: #fff; }
 
         /* ─── SECTION DIVIDER ─────────────────────────────── */
         .el-divider { border: none; border-top: 1px solid rgba(123,107,53,0.15); margin: 0; }

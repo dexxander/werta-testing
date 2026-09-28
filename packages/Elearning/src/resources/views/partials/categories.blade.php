@@ -83,7 +83,7 @@
     }
 
     .el-cat-card:hover .el-cat-card-icon i {
-        color: #fff;
+        color: var(--dark);
     }
 
     /* ─── CATEGORIES: COURSE COUNT PILL ───────────────────── */

@@ -491,7 +491,7 @@
             align-items: center;
             gap: 8px;
             background: var(--gold);
-            color: #fff;
+            color: var(--dark);
             font-weight: 700;
             font-size: var(--text-base-lg);
             padding: 0.8rem 2.2rem;

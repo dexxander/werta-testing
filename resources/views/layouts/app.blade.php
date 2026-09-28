@@ -145,7 +145,7 @@
 
         .btn-account {
             background: var(--gold);
-            color: white;
+            color: var(--dark);
             border: none;
             padding: 0.55rem 1.4rem;
             border-radius: var(--radius-sm);
@@ -173,7 +173,7 @@
             flex-shrink: 0;
         }
 
-        .btn-account:hover { background: var(--primary); }
+        .btn-account:hover { background: var(--primary); color: #fff; }
 
         .account-dropdown { position: relative; }
 
@@ -591,7 +591,7 @@
 
             .mobile-account-toggle {
                 background: var(--gold);
-                color: #fff;
+                color: var(--dark);
                 margin-top: 0.75rem;
                 padding: 0.65rem 1rem;
             }
