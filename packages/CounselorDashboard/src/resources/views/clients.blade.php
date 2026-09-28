@@ -18,13 +18,13 @@
         
         <div class="relative w-full md:w-96">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="bi bi-search"></i></span>
-            <input type="text" class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none text-sm transition-colors" placeholder="Search by Client ID or Group Name...">
+            <input type="text" class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-sm transition-colors" placeholder="Search by Client ID or Group Name...">
         </div>
 
         <div class="w-full md:w-auto flex gap-3">
             
             <div class="relative" x-data="{ sortOpen: false, selectedSort: 'Default' }" @click.outside="sortOpen = false">
-                <button @click="sortOpen = !sortOpen" class="w-full md:w-44 flex justify-between items-center border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none hover:border-gold bg-white transition-colors">
+                <button @click="sortOpen = !sortOpen" class="w-full md:w-44 flex justify-between items-center border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none hover:border-primary bg-white transition-colors">
                     <span x-text="selectedSort" class="font-medium text-gray-700"></span>
                     <i class="bi bi-chevron-down text-xs text-gray-400"></i>
                 </button>
@@ -44,11 +44,11 @@
                 <div x-show="filterOpen" style="display: none;" class="absolute right-0 mt-2 w-72 bg-white ring-1 ring-primary-dark/35 rounded-lg shadow-lg z-50 p-4" x-transition>
                     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Client Status</h3>
                     <label class="flex items-center gap-3 mb-2 cursor-pointer group">
-                        <input type="checkbox" checked class="w-4 h-4 text-gold border-gray-300 rounded focus:ring-gold group-hover:border-gold transition-colors">
+                        <input type="checkbox" checked class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary group-hover:border-primary transition-colors">
                         <span class="text-sm text-gray-700 font-medium">Active Clients</span>
                     </label>
                     <label class="flex items-center gap-3 mb-4 cursor-pointer group">
-                        <input type="checkbox" checked class="w-4 h-4 text-gold border-gray-300 rounded focus:ring-gold group-hover:border-gold transition-colors">
+                        <input type="checkbox" checked class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary group-hover:border-primary transition-colors">
                         <span class="text-sm text-gray-700 font-medium">Discharged</span>
                     </label>
 
@@ -56,17 +56,17 @@
 
                     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Session Date</h3>
                     <label class="flex items-center gap-3 mb-3 cursor-pointer group">
-                        <input type="checkbox" x-model="dateFilterActive" class="w-4 h-4 text-gold border-gray-300 rounded focus:ring-gold group-hover:border-gold transition-colors">
+                        <input type="checkbox" x-model="dateFilterActive" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary group-hover:border-primary transition-colors">
                         <span class="text-sm text-gray-700 font-medium">Filter by Custom Date</span>
                     </label>
                     <div x-show="dateFilterActive" x-transition class="space-y-3 bg-cream/50 p-3 rounded-lg border border-gold/20">
                         <div>
                             <label class="block text-xs text-gray-600 font-semibold mb-1">From Date</label>
-                            <input type="date" class="w-full text-sm border border-gray-200 rounded px-2 py-1.5 outline-none focus:border-gold bg-white">
+                            <input type="date" class="w-full text-sm border border-gray-200 rounded px-2 py-1.5 outline-none focus:border-primary bg-white">
                         </div>
                         <div>
                             <label class="block text-xs text-gray-600 font-semibold mb-1">To Date</label>
-                            <input type="date" class="w-full text-sm border border-gray-200 rounded px-2 py-1.5 outline-none focus:border-gold bg-white">
+                            <input type="date" class="w-full text-sm border border-gray-200 rounded px-2 py-1.5 outline-none focus:border-primary bg-white">
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                             </td>
                             <td class="px-6 py-4 text-right">
                                 @if($client->has_report)
-                                    <button @click="openReport({{ \Illuminate\Support\Js::from($client) }})" class="text-gold hover:text-primary font-semibold text-sm transition-colors">
+                                    <button @click="openReport({{ \Illuminate\Support\Js::from($client) }})" class="text-primary hover:text-primary-dark font-semibold text-sm transition-colors">
                                         <i class="bi bi-file-earmark-text mr-1"></i> View Report
                                     </button>
                                 @else
@@ -182,7 +182,7 @@
 
                             <div>
                                 <h3 class="text-sm font-bold text-dark mb-2 flex items-center gap-2">
-                                    <i class="bi bi-bullseye text-gold"></i> Primary Focus
+                                    <i class="bi bi-bullseye text-primary"></i> Primary Focus
                                 </h3>
                                 <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm" x-text="selectedClient?.primary_focus || 'Not available.'">
                                 </p>
@@ -190,7 +190,7 @@
 
                             <div>
                                 <h3 class="text-sm font-bold text-dark mb-2 flex items-center gap-2">
-                                    <i class="bi bi-journal-text text-gold"></i> Clinical Notes
+                                    <i class="bi bi-journal-text text-primary"></i> Clinical Notes
                                 </h3>
                                 <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm whitespace-pre-line" x-text="selectedClient?.clinical_notes || 'Clinical notes on file for this session. Client engaged and responded well to interventions.'">
                                 </p>
@@ -198,7 +198,7 @@
 
                             <div>
                                 <h3 class="text-sm font-bold text-dark mb-2 flex items-center gap-2">
-                                    <i class="bi bi-tools text-gold"></i> Interventions Used
+                                    <i class="bi bi-tools text-primary"></i> Interventions Used
                                 </h3>
                                 <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm" x-text="selectedClient?.interventions || 'Cognitive Behavioral Therapy (CBT), Mindfulness exercises.'">
                                 </p>
@@ -206,7 +206,7 @@
 
                             <div>
                                 <h3 class="text-sm font-bold text-dark mb-2 flex items-center gap-2">
-                                    <i class="bi bi-arrow-right-circle text-gold"></i> Next Steps / Homework
+                                    <i class="bi bi-arrow-right-circle text-primary"></i> Next Steps / Homework
                                 </h3>
                                 <p class="text-sm text-gray-600 leading-relaxed bg-cream/50 border border-gold/20 p-3 rounded-lg shadow-sm" x-text="selectedClient?.next_steps || 'Continue assigned reflection exercises and attend follow-up session.'">
                                 </p>
@@ -218,7 +218,7 @@
                             <button class="flex-1 px-4 py-2 border border-gray-200 text-gray-600 rounded-lg text-sm font-semibold hover:bg-white transition-colors flex items-center justify-center gap-2">
                                 <i class="bi bi-printer"></i> Print
                             </button>
-                            <button class="flex-1 px-4 py-2 bg-gold text-white rounded-lg text-sm font-semibold hover:bg-primary transition-colors shadow-sm flex items-center justify-center gap-2">
+                            <button class="flex-1 px-4 py-2 bg-gold text-dark hover:text-white rounded-lg text-sm font-semibold hover:bg-primary transition-colors shadow-sm flex items-center justify-center gap-2">
                                 <i class="bi bi-pencil"></i> Edit Report
                             </button>
                         </div>

@@ -10,7 +10,7 @@
     <!-- Empty State -->
     <div class="bg-white rounded-2xl p-12 border border-gold/20 shadow-sm text-center">
         <div class="w-20 h-20 rounded-full bg-cream flex items-center justify-center mx-auto mb-4">
-            <i class="bi bi-chat-dots text-4xl text-gold"></i>
+            <i class="bi bi-chat-dots text-4xl text-primary"></i>
         </div>
         <h3 class="text-lg font-bold text-dark mb-2">No Messages Yet</h3>
         <p class="text-sm text-gray-500 max-w-md mx-auto">Your inbox is currently empty.</p>

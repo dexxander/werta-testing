@@ -115,7 +115,7 @@
                     </select>
                 </div>
                 
-                <button type="submit" style="width:100%; padding:0.75rem; background:#c4a840; color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Save Changes</button>
+                <button type="submit" style="width:100%; padding:0.75rem; background:#c4a840; color:#2C2416; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Save Changes</button>
             </form>
         </div>
     </div>

@@ -14,8 +14,8 @@
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-base font-bold text-dark">{{ $month->format('F Y') }}</h2>
             <div class="flex gap-3 text-gray-400">
-                <a href="{{ route('counselor.schedule', ['month' => $prevMonth]) }}" class="hover:text-gold transition-colors"><i class="bi bi-chevron-left"></i></a>
-                <a href="{{ route('counselor.schedule', ['month' => $nextMonth]) }}" class="hover:text-gold transition-colors"><i class="bi bi-chevron-right"></i></a>
+                <a href="{{ route('counselor.schedule', ['month' => $prevMonth]) }}" class="hover:text-primary transition-colors"><i class="bi bi-chevron-left"></i></a>
+                <a href="{{ route('counselor.schedule', ['month' => $nextMonth]) }}" class="hover:text-primary transition-colors"><i class="bi bi-chevron-right"></i></a>
             </div>
         </div>
         
@@ -34,7 +34,7 @@
                             $hasBooking = $bookedDates->contains($day->format('Y-m-d'));
                         @endphp
                         <div class="py-1.5 rounded-lg cursor-pointer transition-colors relative
-                            {{ $isToday ? 'bg-gold text-white font-bold shadow-sm' : 'hover:bg-cream hover:text-primary' }}">
+                            {{ $isToday ? 'bg-gold text-dark font-bold shadow-sm' : 'hover:bg-cream hover:text-primary' }}">
                             {{ $day->day }}
                             @if($hasBooking)
                                 <span class="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 {{ $isToday ? 'bg-white' : 'bg-red-400' }} rounded-full"></span>
@@ -49,7 +49,7 @@
         <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-lg font-bold text-dark">Default Availability</h2>
-                <button class="text-sm font-semibold text-gold hover:text-primary transition-colors">Save</button>
+                <button class="text-sm font-semibold text-primary hover:text-primary-dark transition-colors">Save</button>
             </div>
 
             <div class="space-y-4">
@@ -59,14 +59,14 @@
                             <input type="checkbox"
                                 name="availability[{{ $dayItem->day }}][enabled]"
                                 {{ $dayItem->enabled ? 'checked' : '' }}
-                                class="w-4 h-4 text-gold border-gray-300 rounded focus:ring-gold">
+                                class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
                             <span class="font-semibold text-sm text-gray-700">{{ $dayItem->day }}</span>
                         </div>
                         @if($dayItem->enabled)
                             <div class="flex items-center gap-2 text-sm text-gray-600">
-                                <input type="time" name="availability[{{ $dayItem->day }}][start]" value="{{ $dayItem->start }}" class="border border-gray-200 rounded px-2 py-1 bg-white outline-none focus:border-gold">
+                                <input type="time" name="availability[{{ $dayItem->day }}][start]" value="{{ $dayItem->start }}" class="border border-gray-200 rounded px-2 py-1 bg-white outline-none focus:border-primary">
                                 <span>-</span>
-                                <input type="time" name="availability[{{ $dayItem->day }}][end]" value="{{ $dayItem->end }}" class="border border-gray-200 rounded px-2 py-1 bg-white outline-none focus:border-gold">
+                                <input type="time" name="availability[{{ $dayItem->day }}][end]" value="{{ $dayItem->end }}" class="border border-gray-200 rounded px-2 py-1 bg-white outline-none focus:border-primary">
                             </div>
                         @else
                             <span class="text-sm font-medium text-gray-400 italic">Unavailable</span>
@@ -82,7 +82,7 @@
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-lg font-bold text-dark">Booked Slots</h2>
                 <div class="flex gap-2">
-                    <select class="text-sm border border-gray-200 rounded-lg px-3 py-1.5 bg-gray-50 outline-none focus:border-gold">
+                    <select class="text-sm border border-gray-200 rounded-lg px-3 py-1.5 bg-gray-50 outline-none focus:border-primary">
                         <option>Selected Day</option>
                         <option>This Week</option>
                     </select>
@@ -93,7 +93,7 @@
                 @forelse($bookedSlots as $slot)
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl border border-gray-100 hover:border-gold/30 hover:shadow-sm transition-all gap-4">
                         <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-full bg-gold/10 text-gold flex flex-col items-center justify-center shrink-0">
+                            <div class="w-12 h-12 rounded-full bg-gold/10 text-primary flex flex-col items-center justify-center shrink-0">
                                 <span class="text-xs font-bold uppercase">{{ $slot->month_short }}</span>
                                 <span class="text-lg font-extrabold leading-none">{{ $slot->day }}</span>
                             </div>
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                         <div class="flex gap-2 sm:flex-col sm:items-end">
-                            <button class="px-4 py-1.5 bg-gold hover:bg-primary text-white text-sm font-semibold rounded-lg transition-colors">Join Call</button>
+                            <button class="px-4 py-1.5 bg-gold hover:bg-primary text-dark hover:text-white text-sm font-semibold rounded-lg transition-colors">Join Call</button>
                             <button class="px-4 py-1.5 bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-sm font-semibold rounded-lg transition-colors">Reschedule</button>
                         </div>
                     </div>

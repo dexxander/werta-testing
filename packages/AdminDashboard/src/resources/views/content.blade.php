@@ -7,7 +7,7 @@
             <h1 class="text-2xl sm:text-3xl font-bold text-dark">Content Management</h1>
             <p class="text-sm text-gray-500 mt-1">Manage articles, e-learning modules, and platform resources.</p>
         </div>
-        <button class="hidden sm:flex items-center gap-2 bg-gold hover:bg-primary text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
+        <button class="hidden sm:flex items-center gap-2 bg-gold hover:bg-primary text-dark hover:text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
             <i class="bi bi-plus-lg"></i> New Content
         </button>
     </div>

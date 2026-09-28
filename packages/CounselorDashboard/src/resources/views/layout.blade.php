@@ -110,30 +110,30 @@
                                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <div>
                                                     <label class="block text-sm font-semibold text-gray-700">Client / Session</label>
-                                                    <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gold focus:ring focus:ring-gold/20 p-2 border bg-white text-sm">
+                                                    <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border bg-white text-sm">
                                                         <option>Student #84201 - Today, 10:00 AM</option>
                                                         <option>Group Therapy A - Today, 2:30 PM</option>
                                                     </select>
                                                 </div>
                                                 <div>
                                                     <label class="block text-sm font-semibold text-gray-700">Primary Focus</label>
-                                                    <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gold focus:ring focus:ring-gold/20 p-2 border text-sm" placeholder="e.g. Academic Anxiety">
+                                                    <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border text-sm" placeholder="e.g. Academic Anxiety">
                                                 </div>
                                             </div>
 
                                             <div>
                                                 <label class="block text-sm font-semibold text-gray-700">Clinical Notes & Observations</label>
-                                                <textarea rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gold focus:ring focus:ring-gold/20 p-2 border text-sm" placeholder="Document client's emotional state, general topics discussed, and progress..."></textarea>
+                                                <textarea rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border text-sm" placeholder="Document client's emotional state, general topics discussed, and progress..."></textarea>
                                             </div>
 
                                             <div>
                                                 <label class="block text-sm font-semibold text-gray-700">Interventions Used</label>
-                                                <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gold focus:ring focus:ring-gold/20 p-2 border text-sm" placeholder="e.g., Cognitive Restructuring, 4-7-8 Breathing...">
+                                                <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border text-sm" placeholder="e.g., Cognitive Restructuring, 4-7-8 Breathing...">
                                             </div>
 
                                             <div>
                                                 <label class="block text-sm font-semibold text-gray-700">Next Steps / Homework</label>
-                                                <textarea rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gold focus:ring focus:ring-gold/20 p-2 border text-sm" placeholder="List any actionable tasks or habits for the client to practice..."></textarea>
+                                                <textarea rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border text-sm" placeholder="List any actionable tasks or habits for the client to practice..."></textarea>
                                             </div>
 
                                         </form>
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-gray-100">
-                            <button type="button" @click="isModalOpen = false" class="inline-flex w-full justify-center rounded-md bg-gold px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary sm:ml-3 sm:w-auto transition-colors">Save Report</button>
+                            <button type="button" @click="isModalOpen = false" class="inline-flex w-full justify-center rounded-md bg-gold px-4 py-2 text-sm font-semibold text-dark hover:text-white shadow-sm hover:bg-primary sm:ml-3 sm:w-auto transition-colors">Save Report</button>
                             <button type="button" @click="isModalOpen = false" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition-colors">Cancel</button>
                         </div>
                     </div>

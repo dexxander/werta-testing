@@ -60,7 +60,7 @@
             <h1 class="text-2xl sm:text-3xl font-bold text-dark">Parent Overview</h1>
             <p class="text-sm text-gray-500 mt-1">Welcome back, {{ session('parent_profile.username', 'Parent User') }}. Monitor your children's mental wellness and platform activity.</p>
         </div>
-        <button @click="isModalOpen = true" class="hidden sm:flex items-center gap-2 bg-gold hover:bg-primary text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
+        <button @click="isModalOpen = true" class="hidden sm:flex items-center gap-2 bg-gold hover:bg-primary text-dark hover:text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
             <i class="bi bi-plus-lg"></i> Register Child
         </button>
     </div>
@@ -68,7 +68,7 @@
     <!-- KPI Cards -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
         <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-gold">
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-primary">
                 <i class="bi bi-clipboard-check text-xl sm:text-3xl"></i>
             </div>
             <div>
@@ -78,7 +78,7 @@
         </div>
         
         <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-gold">
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-primary">
                 <i class="bi bi-book text-xl sm:text-3xl"></i>
             </div>
             <div>
@@ -182,15 +182,15 @@
                                     <form id="registerChildForm" @submit.prevent="submitChild()" class="space-y-4">
                                         <div>
                                             <label class="block text-sm font-semibold text-gray-700">Child's Full Name</label>
-                                            <input type="text" x-model="childName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gold focus:ring focus:ring-gold/20 p-2 border" placeholder="e.g. Ahmad bin Ali">
+                                            <input type="text" x-model="childName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border" placeholder="e.g. Ahmad bin Ali">
                                         </div>
                                         <div>
                                             <label class="block text-sm font-semibold text-gray-700">Email Address (for login)</label>
-                                            <input type="email" x-model="childEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gold focus:ring focus:ring-gold/20 p-2 border" placeholder="ahmad@example.com">
+                                            <input type="email" x-model="childEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border" placeholder="ahmad@example.com">
                                         </div>
                                         <div>
                                             <label class="block text-sm font-semibold text-gray-700">Temporary Password</label>
-                                            <input type="password" x-model="childPassword" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gold focus:ring focus:ring-gold/20 p-2 border" placeholder="••••••••">
+                                            <input type="password" x-model="childPassword" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border" placeholder="••••••••">
                                         </div>
                                     </form>
                                 </div>
@@ -198,7 +198,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-gray-100">
-                        <button type="submit" form="registerChildForm" class="inline-flex w-full justify-center rounded-md bg-gold px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary sm:ml-3 sm:w-auto transition-colors">Register Account</button>
+                        <button type="submit" form="registerChildForm" class="inline-flex w-full justify-center rounded-md bg-gold px-4 py-2 text-sm font-semibold text-dark hover:text-white shadow-sm hover:bg-primary sm:ml-3 sm:w-auto transition-colors">Register Account</button>
                         <button type="button" @click="isModalOpen = false" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition-colors">Cancel</button>
                     </div>
                 </div>

@@ -9,7 +9,7 @@
             <p class="text-sm text-gray-500 mt-1">Manage your appointments, client progress, and clinical reports.</p>
         </div>
         <div class="flex gap-3">
-            <button @click="isModalOpen = true" class="hidden sm:flex items-center gap-2 bg-gold hover:bg-primary text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
+            <button @click="isModalOpen = true" class="hidden sm:flex items-center gap-2 bg-gold hover:bg-primary text-dark hover:text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
                 <i class="bi bi-file-earmark-plus"></i> Quick Report
             </button>
         </div>
@@ -17,7 +17,7 @@
 
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
         <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-gold">
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-primary">
                 <i class="bi bi-camera-video text-xl sm:text-3xl"></i>
             </div>
             <div>
@@ -27,7 +27,7 @@
         </div>
         
         <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-gold">
+            <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-primary">
                 <i class="bi bi-people text-xl sm:text-3xl"></i>
             </div>
             <div>
@@ -105,8 +105,8 @@
                                 <span class="px-2 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded">{{ $appointment->status }}</span>
                             </td>
                             <td class="px-4 py-4 text-right">
-                                <button class="text-sm font-medium text-gold hover:text-primary mr-3">View History</button>
-                                <button class="text-sm font-medium bg-gold text-white px-3 py-1 rounded hover:bg-primary">Join Room</button>
+                                <button class="text-sm font-medium text-primary hover:text-primary-dark mr-3">View History</button>
+                                <button class="text-sm font-medium bg-gold text-dark hover:text-white px-3 py-1 rounded hover:bg-primary">Join Room</button>
                             </td>
                         </tr>
                     @empty

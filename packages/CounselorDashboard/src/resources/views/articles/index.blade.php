@@ -7,7 +7,7 @@
         <p class="text-sm text-gray-500 mt-1">Manage your wellness articles, edit content, and publish new resources.</p>
     </div>
     
-    <a href="{{ route('counselor.articles.create') }}" class="flex items-center gap-2 bg-gold hover:bg-primary text-white px-5 py-2.5 rounded-lg font-semibold transition-colors shadow-sm">
+    <a href="{{ route('counselor.articles.create') }}" class="flex items-center gap-2 bg-gold hover:bg-primary text-dark hover:text-white px-5 py-2.5 rounded-lg font-semibold transition-colors shadow-sm">
         <i class="bi bi-pencil-square"></i> Write New Article
     </a>
 </div>
@@ -16,13 +16,13 @@
     
     <div class="relative w-full lg:w-96 shrink-0">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="bi bi-search"></i></span>
-        <input type="text" class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none text-sm transition-colors" placeholder="Search articles by title or keywords...">
+        <input type="text" class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-sm transition-colors" placeholder="Search articles by title or keywords...">
     </div>
 
     <div class="w-full lg:w-auto flex flex-col sm:flex-row gap-3">
         
         <div class="relative w-full sm:w-auto" x-data="{ sortOpen: false, selectedSort: 'Latest' }" @click.outside="sortOpen = false">
-            <button @click="sortOpen = !sortOpen" class="w-full sm:w-44 flex justify-between items-center border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none hover:border-gold bg-white transition-colors">
+            <button @click="sortOpen = !sortOpen" class="w-full sm:w-44 flex justify-between items-center border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none hover:border-primary bg-white transition-colors">
                 <span x-text="selectedSort" class="font-medium text-gray-700"></span>
                 <i class="bi bi-chevron-down text-xs text-gray-400"></i>
             </button>
@@ -45,18 +45,18 @@
                 
                 <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Publish Status</h3>
                 <label class="flex items-center gap-3 mb-2 cursor-pointer group">
-                    <input type="checkbox" checked class="w-4 h-4 text-gold border-gray-300 rounded focus:ring-gold group-hover:border-gold transition-colors">
+                    <input type="checkbox" checked class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary group-hover:border-primary transition-colors">
                     <span class="text-sm text-gray-700 font-medium">Published</span>
                 </label>
                 <label class="flex items-center gap-3 mb-4 cursor-pointer group">
-                    <input type="checkbox" checked class="w-4 h-4 text-gold border-gray-300 rounded focus:ring-gold group-hover:border-gold transition-colors">
+                    <input type="checkbox" checked class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary group-hover:border-primary transition-colors">
                     <span class="text-sm text-gray-700 font-medium">Drafts</span>
                 </label>
 
                 <div class="border-t border-gray-100 my-4"></div>
 
                 <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Category</h3>
-                <select class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-gold outline-none bg-white text-sm text-gray-600 transition-colors">
+                <select class="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-primary outline-none bg-white text-sm text-gray-600 transition-colors">
                     <option>All Categories</option>
                     <option>Anxiety & Stress</option>
                     <option>Academic Pressure</option>
@@ -87,7 +87,7 @@
                     <div class="flex items-center gap-3 mt-2 text-xs text-gray-400 font-medium">
                         <span><i class="bi bi-calendar3 mr-1"></i> {{ $article->date_label }}</span>
                         <span>•</span>
-                        <span class="text-gold bg-gold/10 px-2 py-0.5 rounded">{{ $article->category }}</span>
+                        <span class="text-primary bg-gold/10 px-2 py-0.5 rounded">{{ $article->category }}</span>
                     </div>
                 </div>
 
@@ -108,7 +108,7 @@
                 </div>
 
                 <div class="col-span-2 flex justify-start md:justify-end gap-2">
-                    <a href="#" class="p-2 text-gray-400 hover:text-gold hover:bg-cream rounded-lg transition-colors" title="Edit Article">
+                    <a href="#" class="p-2 text-gray-400 hover:text-primary hover:bg-cream rounded-lg transition-colors" title="Edit Article">
                         <i class="bi bi-pencil-fill"></i>
                     </a>
                     <button class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Delete Article">

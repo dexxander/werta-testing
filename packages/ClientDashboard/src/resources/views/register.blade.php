@@ -15,8 +15,8 @@
             </div>
         @endif
 
-        <div style="background: #fdfaf4; border: 1px solid rgba(196, 168, 64, 0.35); border-left: 4px solid #c4a840; border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 0.75rem;">
-            <i class="bi bi-info-circle-fill" style="color: #c4a840; font-size: 1.1rem; line-height: 1.4; flex-shrink: 0;"></i>
+        <div style="background: #fdfaf4; border: 1px solid rgba(196, 168, 64, 0.35); border-left: 4px solid var(--primary); border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+            <i class="bi bi-info-circle-fill" style="color: var(--primary); font-size: 1.1rem; line-height: 1.4; flex-shrink: 0;"></i>
             <p style="margin: 0; font-size: 0.85rem; color: #6b6455; line-height: 1.45;">
                 Prototype preview — no account is created and no form details are saved. Please use test information only.
             </p>
@@ -33,10 +33,10 @@
                         <i class="bi bi-person-heart" style="font-size: 1.5rem; display: block; margin-bottom: 0.3rem;"></i>
                         Parent
                     </label>
-                    <label style="flex: 1; border: 1px solid #c4a840; background: rgba(196,168,64,0.1); border-radius: 6px; padding: 0.75rem; text-align: center; cursor: pointer; transition: all 0.2s;" id="label-client">
+                    <label style="flex: 1; border: 1px solid var(--primary); background: rgba(196,168,64,0.1); border-radius: 6px; padding: 0.75rem; text-align: center; cursor: pointer; transition: all 0.2s;" id="label-client">
                         <input type="radio" name="role" value="client" checked style="display: none;" onchange="toggleRole('client')">
-                        <i class="bi bi-person" style="font-size: 1.5rem; display: block; margin-bottom: 0.3rem; color: #c4a840;"></i>
-                        <span style="color: #c4a840; font-weight: 600;">Client</span>
+                        <i class="bi bi-person" style="font-size: 1.5rem; display: block; margin-bottom: 0.3rem; color: var(--primary);"></i>
+                        <span style="color: var(--primary); font-weight: 600;">Client</span>
                     </label>
                 </div>
             </div>
@@ -52,13 +52,13 @@
             </div>
 
             <div style="margin-bottom: 1.5rem;" id="ic-container">
-                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">Malaysian IC Number <span style="color: #c4a840;">*</span></label>
+                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">Malaysian IC Number <span style="color: var(--primary);">*</span></label>
                 <input type="text" name="ic_number" id="ic_number" placeholder="YYMMDD-XX-XXXX" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 0.95rem;">
                 <p style="font-size: 0.75rem; color: #6c757d; margin-top: 0.4rem;">Used to verify age. Clients must be at least 17 years old.</p>
                 <div id="ic-error" style="color: #dc3545; font-size: 0.8rem; margin-top: 0.4rem; display: none;"></div>
             </div>
 
-            <button type="submit" style="width: 100%; padding: 0.85rem; background: #c4a840; color: #fff; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#b09638'" onmouseout="this.style.background='#c4a840'">
+            <button type="submit" style="width: 100%; padding: 0.85rem; background: #c4a840; color: #2C2416; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#7B6B35'; this.style.color='#ffffff'" onmouseout="this.style.background='#c4a840'; this.style.color='#2C2416'">
                 Create Account
             </button>
             <p style="font-size: 0.78rem; color: #6b6455; text-align: center; margin-top: 0.75rem; margin-bottom: 0; line-height: 1.4;">
@@ -68,7 +68,7 @@
         
         <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
             Already have an account? 
-            <a href="{{ url('/client/login') }}" style="color: #c4a840; text-decoration: none; font-weight: 600;">Sign In</a>
+            <a href="{{ url('/client/login') }}" style="color: var(--primary); text-decoration: none; font-weight: 600;">Sign In</a>
         </div>
     </div>
 </div>
@@ -81,10 +81,10 @@
         const icInput = document.getElementById('ic_number');
         
         if (role === 'client') {
-            clientLabel.style.border = '1px solid #c4a840';
+            clientLabel.style.border = '1px solid var(--primary)';
             clientLabel.style.background = 'rgba(196,168,64,0.1)';
-            clientLabel.querySelector('i').style.color = '#c4a840';
-            clientLabel.querySelector('span').style.color = '#c4a840';
+            clientLabel.querySelector('i').style.color = 'var(--primary)';
+            clientLabel.querySelector('span').style.color = 'var(--primary)';
             clientLabel.querySelector('span').style.fontWeight = '600';
             
             parentLabel.style.border = '1px solid #ddd';
@@ -94,9 +94,9 @@
             icContainer.style.display = 'block';
             icInput.setAttribute('required', 'required');
         } else {
-            parentLabel.style.border = '1px solid #c4a840';
+            parentLabel.style.border = '1px solid var(--primary)';
             parentLabel.style.background = 'rgba(196,168,64,0.1)';
-            parentLabel.style.color = '#c4a840';
+            parentLabel.style.color = 'var(--primary)';
             parentLabel.style.fontWeight = '600';
             
             clientLabel.style.border = '1px solid #ddd';
