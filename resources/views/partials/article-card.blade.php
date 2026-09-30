@@ -19,6 +19,9 @@
             <span class="inline-block mb-2 px-2 py-0.5 text-[10px] font-bold uppercase rounded {{ $statusInfo['class'] }}">{{ $statusInfo['label'] }}</span>
         @endif
         <h3 class="font-bold text-[#2C2416] mb-1 line-clamp-2">{{ $article->title }}</h3>
+        @if($showStatus ?? false)
+            <p class="text-[10px] text-gray-400 mb-1">by {{ $article->author_name }} · {{ ucfirst($article->author_role) }}</p>
+        @endif
         @if($article->abstract)
             <p class="text-xs text-gray-500 line-clamp-2">{{ $article->abstract }}</p>
         @endif
