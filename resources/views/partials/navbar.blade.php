@@ -19,11 +19,11 @@
 @endphp
 
 <style>
-    /* Dropdown styling for E-Learning Nav Link */
-    .elearning-dropdown {
+    /* Shared hover-dropdown styling for nav links with submenus */
+    .nav-dropdown {
         position: relative;
     }
-    .elearning-dropdown-menu {
+    .nav-dropdown-menu {
         display: none;
         position: absolute;
         top: 100%;
@@ -36,10 +36,10 @@
         padding: 0.5rem 0;
         z-index: 1000;
     }
-    .elearning-dropdown:hover .elearning-dropdown-menu {
+    .nav-dropdown:hover .nav-dropdown-menu {
         display: block;
     }
-    .elearning-dropdown-menu a {
+    .nav-dropdown-menu a {
         display: block !important;
         padding: 0.6rem 1.5rem !important;
         color: var(--dark, #333) !important;
@@ -48,7 +48,7 @@
         text-transform: none !important;
         transition: background 0.2s, color 0.2s !important;
     }
-    .elearning-dropdown-menu a:hover {
+    .nav-dropdown-menu a:hover {
         background-color: rgba(196,168,64,0.1) !important;
         color: var(--primary) !important;
     }
@@ -67,14 +67,25 @@
             <li><a href="/">Home</a></li>
             <li><a href="{{ url('/counselors') }}">Counselors</a></li>
             <li><a href="{{ url('/assessment') }}">Assessments</a></li>
-            <li><a href="{{ route('public.articles') }}">Articles</a></li>
+            <li class="nav-dropdown">
+                <a href="{{ route('public.articles') }}">
+                    Articles <i class="bi bi-chevron-down" style="font-size: var(--text-xs); margin-left:4px;"></i>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="{{ route('public.articles') }}"><i class="bi bi-journal-text"></i> Browse Articles</a>
+                    @if($isLoggedIn)
+                        <a href="{{ route('submissions.create') }}"><i class="bi bi-pencil-square"></i> Publish an Article</a>
+                        <a href="{{ route('submissions.index') }}"><i class="bi bi-folder2-open"></i> Your Articles</a>
+                    @endif
+                </div>
+            </li>
 
             {{-- Replaced E-Learning Link with Hover Dropdown --}}
-            <li class="elearning-dropdown">
+            <li class="nav-dropdown">
                 <a href="{{ route('elearning.index') }}">
                     E-Learning Modules <i class="bi bi-chevron-down" style="font-size: var(--text-xs); margin-left:4px;"></i>
                 </a>
-                <div class="elearning-dropdown-menu">
+                <div class="nav-dropdown-menu">
                     <a href="{{ route('elearning.overview') }}">Overview</a>
                     <a href="{{ route('elearning.courses') }}">Courses</a>
                     <a href="{{ route('elearning.paths') }}">Learning Paths</a>
@@ -130,7 +141,19 @@
                 <li><a href="/" class="mobile-nav-link">Home</a></li>
                 <li><a href="{{ url('/counselors') }}" class="mobile-nav-link">Counselors</a></li>
                 <li><a href="{{ url('/assessment') }}" class="mobile-nav-link">Assessments</a></li>
-                <li><a href="{{ route('public.articles') }}" class="mobile-nav-link">Articles</a></li>
+                <li>
+                    <button class="mobile-nav-sub-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileArticlesMenu" aria-expanded="false" aria-controls="mobileArticlesMenu">
+                        <span>Articles</span>
+                        <i class="bi bi-chevron-down sub-chevron"></i>
+                    </button>
+                    <div class="collapse mobile-sub-links" id="mobileArticlesMenu">
+                        <a href="{{ route('public.articles') }}" class="mobile-sub-link">Browse Articles</a>
+                        @if($isLoggedIn)
+                            <a href="{{ route('submissions.create') }}" class="mobile-sub-link">Publish an Article</a>
+                            <a href="{{ route('submissions.index') }}" class="mobile-sub-link">Your Articles</a>
+                        @endif
+                    </div>
+                </li>
 
                 <li>
                     <button class="mobile-nav-sub-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileElearningMenu" aria-expanded="false" aria-controls="mobileElearningMenu">

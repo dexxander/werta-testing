@@ -29,7 +29,8 @@
             "ClientDashboard\\": "packages/ClientDashboard/src/",
             "CounselorDashboard\\": "packages/CounselorDashboard/src/",
             "Elearning\\": "packages/Elearning/src/",
-            "ParentDashboard\\": "packages/ParentDashboard/src/"
+            "ParentDashboard\\": "packages/ParentDashboard/src/",
+            "Submissions\\": "packages/Submissions/src/"
         }
     },
     "autoload-dev": {

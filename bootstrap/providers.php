@@ -10,4 +10,5 @@ return [
     ClientDashboard\Providers\ClientDashboardServiceProvider::class,
     Articles\Providers\ArticlesServiceProvider::class,
     CounselorDashboard\Providers\CounselorDashboardServiceProvider::class,
+    Submissions\Providers\SubmissionsServiceProvider::class,
 ];

@@ -18,9 +18,9 @@
         ═══════════════════════════════════════════════════ --}}
         <header class="article-header">
             <div class="article-meta">
-                <span class="meta-tag">{{ strtoupper($article->category ?? '') }}</span>
+                <span class="meta-tag">{{ strtoupper($article->access_type) }}</span>
                 <span class="meta-dot">•</span>
-                <span class="meta-read-time">{{ $article->read_time ?? '—' }} MIN READ</span>
+                <span class="meta-read-time">{{ ucfirst($article->visibility) }}</span>
             </div>
             
             <h1 class="article-title">{{ $article->title ?? 'Article not found' }}</h1>
@@ -50,29 +50,40 @@
              ARTICLE CONTENT (With Premium Paywall)
         ═══════════════════════════════════════════════════ --}}
         <article class="article-body">
-            @if($article && $article->body_html)
-                {!! $article->body_html !!}
-            @else
-                <p class="text-gray-400">This article isn't available yet.</p>
+            @if($article->abstract)
+                <p class="lead" style="font-size: 1.05rem; color: var(--muted); font-style: italic; border-left: 3px solid var(--gold); padding-left: 1rem; margin-bottom: 2rem;">
+                    {{ $article->abstract }}
+                </p>
             @endif
 
-            {{-- FADING PAYWALL OVERLAY --}}
-            <div class="premium-paywall-container">
-                <div class="paywall-fade"></div>
-                
-                <div class="paywall-box">
-                    <div class="paywall-icon">
-                        <i class="bi bi-star-fill text-accent"></i>
+            @if($article->access_type === 'free')
+                @if($article->file_path)
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <a href="{{ asset('storage/' . $article->file_path) }}" target="_blank" class="btn-unlock-article" style="display: inline-block; text-decoration: none;">
+                            <i class="bi bi-file-earmark-pdf"></i> View Paper
+                        </a>
                     </div>
-                    <h3 class="paywall-title">This article is for Premium Members</h3>
-                    <p class="paywall-desc">Unlock the rest of this article, plus access to our full library of clinical resources, AI-guided discovery maps, and exclusive therapist Q&As.</p>
-                    
-                    <div class="paywall-actions">
-                        <button class="btn-unlock">Unlock Full Access</button>
-                        <p class="paywall-login">Already a member? <a href="#">Sign in</a></p>
+                @elseif($article->content)
+                    <p style="white-space: pre-line;">{{ $article->content }}</p>
+                @else
+                    <p class="text-gray-400">This article isn't available yet.</p>
+                @endif
+            @else
+                {{-- Paid article: abstract only, rest is locked --}}
+                <div class="premium-paywall-container">
+                    <div class="paywall-fade"></div>
+                    <div class="paywall-box">
+                        <div class="paywall-icon">
+                            <i class="bi bi-star-fill text-gold"></i>
+                        </div>
+                        <h3 class="paywall-title">This article is for Premium Members</h3>
+                        <p class="paywall-desc">Unlock the full content for RM {{ number_format($article->price, 2) }}.</p>
+                        <div class="paywall-actions">
+                            <a href="{{ route('public.articles.subscribe', ['slug' => $article->slug]) }}" class="btn-unlock" style="text-decoration: none; display: inline-block;">Unlock Full Access</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </article>
 
         {{-- ═══════════════════════════════════════════════════

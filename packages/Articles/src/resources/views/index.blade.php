@@ -19,21 +19,18 @@
                     </div>
                     
                     <div class="premium-image-wrapper">
-                        <img src="{{ $featuredArticle->image_url }}" alt="{{ $featuredArticle->title }}">
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode($featuredArticle->title) }}&size=800&background=C4A840&color=fff" alt="{{ $featuredArticle->title }}">
                     </div>
                     
                     <div class="premium-content">
                         <div class="article-meta">
-                            <span class="meta-tag">{{ strtoupper($featuredArticle->category) }}</span>
+                            <span class="meta-tag">{{ strtoupper($featuredArticle->access_type) }}</span>
                             <span class="meta-dot">•</span>
-                            <span class="meta-read-time">{{ $featuredArticle->read_time }} MIN READ</span>
-                            <span class="meta-lang">
-                                <i class="bi bi-translate"></i> {{ $featuredArticle->lang }}
-                            </span>
+                            <span class="meta-read-time">{{ $featuredArticle->author_name }}</span>
                         </div>
                         
                         <h1 class="article-headline group-hover-gold">{{ $featuredArticle->title }}</h1>
-                        <p class="article-excerpt">{{ $featuredArticle->excerpt }}</p>
+                        <p class="article-excerpt">{{ $featuredArticle->abstract }}</p>
                         
                         <a href="{{ route('public.articles.show', ['slug' => $featuredArticle->slug]) }}" class="btn-unlock-article" style="display: inline-block; text-decoration: none; text-align: center;">
                             <i class="bi bi-lock-fill"></i> Unlock Full Article
@@ -194,7 +191,6 @@
                         <p class="text-sm text-gray-400">No resources yet.</p>
                     @endforelse
                 </div>
-                </div>
             </div>
 
         </section>
@@ -220,12 +216,12 @@
                 @forelse($moreArticles as $article)
                     <div onclick="window.location.href='{{ route('public.articles.show', ['slug' => $article->slug]) }}'" class="standard-article-card carousel-card group hover-lift">
                         <div class="card-image">
-                            <img src="{{ $article->image_url }}" alt="{{ $article->category }}">
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode($article->title) }}&size=400&background=C4A840&color=fff" alt="{{ $article->title }}">
                         </div>
                         <div class="card-content">
-                            <span class="card-category text-accent">{{ strtoupper($article->category) }}</span>
+                            <span class="card-category text-accent">{{ strtoupper($article->access_type) }}</span>
                             <h3 class="card-title group-hover-gold">{{ $article->title }}</h3>
-                            <span class="card-read-time">{{ $article->read_time }} MIN READ • <i class="bi bi-translate"></i> {{ $article->lang }}</span>
+                            <span class="card-read-time">By {{ $article->author_name }}</span>
                         </div>
                     </div>
                 @empty
@@ -285,9 +281,6 @@
         }
     </script>
 
-    {{-- ═══════════════════════════════════════════════════
-         STYLES
-    ═══════════════════════════════════════════════════ --}}
     <style>
         .werta-articles-main {
             max-width: 1200px;
