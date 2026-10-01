@@ -12,15 +12,15 @@ class AdminDashboardSeeder extends Seeder
     public function run(): void
     {
         Administrator::insert([
-            ['name' => 'Nur Aina Zulkifli', 'email' => 'aina@werta.com', 'status' => 'active', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Marcus Tan', 'email' => 'marcus@werta.com', 'status' => 'active', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Nur Aina Zulkifli', 'email' => 'aina@example.com', 'status' => 'active', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Marcus Tan', 'email' => 'marcus@example.com', 'status' => 'active', 'created_at' => now(), 'updated_at' => now()],
         ]);
 
         Counselor::insert([
             [
                 'name' => 'Nurul Huda',
                 'qualification' => 'M.Couns',
-                'email' => 'nurul@werta.com',
+                'email' => 'nurul@example.com',
                 'status' => 'pending',
                 'display_title' => 'Counselor',
                 'specialties' => json_encode(['Academic Anxiety']),
@@ -37,7 +37,7 @@ class AdminDashboardSeeder extends Seeder
             [
                 'name' => 'Dr. James Lee',
                 'qualification' => 'PhD Clin Psych',
-                'email' => 'james@werta.com',
+                'email' => 'james@example.com',
                 'status' => 'pending',
                 'display_title' => 'Counselor',
                 'specialties' => json_encode(['Depression & Mood']),
@@ -54,7 +54,7 @@ class AdminDashboardSeeder extends Seeder
             [
                 'name' => 'Siti Rahman',
                 'qualification' => 'M.Couns',
-                'email' => 'siti@werta.com',
+                'email' => 'siti@example.com',
                 'status' => 'approved',
                 'display_title' => 'Counselor',
                 'specialties' => json_encode(['Academic Anxiety', 'Depression & Mood']),
@@ -71,7 +71,7 @@ class AdminDashboardSeeder extends Seeder
             [
                 'name' => 'Kevin Ong',
                 'qualification' => 'B.Psych (Hons)',
-                'email' => 'kevin@werta.com',
+                'email' => 'kevin@example.com',
                 'status' => 'rejected',
                 'display_title' => 'Counselor',
                 'specialties' => json_encode(['Career Transitions']),
@@ -88,7 +88,7 @@ class AdminDashboardSeeder extends Seeder
             [
                 'name' => 'Grace Ling',
                 'qualification' => 'M.Couns',
-                'email' => 'grace.ling@werta.com',
+                'email' => 'grace.ling@example.com',
                 'status' => 'approved',
                 'display_title' => 'Counselor',
                 'specialties' => json_encode(['Relationship Counseling', 'Career Transitions']),
@@ -105,7 +105,7 @@ class AdminDashboardSeeder extends Seeder
             [
                 'name' => 'Joshua Justin',
                 'qualification' => 'M.A. Counseling',
-                'email' => 'joshua.justin@werta.com',
+                'email' => 'joshua.justin@example.com',
                 'status' => 'approved',
                 'display_title' => 'Counselor',
                 'specialties' => json_encode(['Academic Anxiety', 'Career Transitions']),
@@ -122,7 +122,7 @@ class AdminDashboardSeeder extends Seeder
             [
                 'name' => 'Ananthi Subramaniam',
                 'qualification' => 'M.Couns',
-                'email' => 'ananthi@werta.com',
+                'email' => 'ananthi@example.com',
                 'status' => 'approved',
                 'display_title' => 'Counselor',
                 'specialties' => json_encode(['Depression & Mood', 'Relationship Counseling']),
@@ -139,7 +139,7 @@ class AdminDashboardSeeder extends Seeder
             [
                 'name' => 'Chen Wei Xiang',
                 'qualification' => 'B.Psych (Hons), M.Couns',
-                'email' => 'weixiang@werta.com',
+                'email' => 'weixiang@example.com',
                 'status' => 'approved',
                 'display_title' => 'Counselor',
                 'specialties' => json_encode(['Academic Anxiety', 'Relationship Counseling']),
@@ -156,7 +156,7 @@ class AdminDashboardSeeder extends Seeder
             [
                 'name' => 'Faridah binti Osman',
                 'qualification' => 'M.Ed. Guidance & Counseling',
-                'email' => 'faridah@werta.com',
+                'email' => 'faridah@example.com',
                 'status' => 'approved',
                 'display_title' => 'Counselor',
                 'specialties' => json_encode(['Depression & Mood', 'Career Transitions']),
