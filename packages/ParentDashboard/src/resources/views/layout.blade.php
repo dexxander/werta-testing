@@ -16,15 +16,15 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-cream text-dark font-[Lato,sans-serif] antialiased flex flex-col h-screen overflow-hidden" x-data="{ sidebarOpen: true }">
+<body class="bg-cream text-dark font-[Lato,sans-serif] antialiased flex flex-col h-screen overflow-hidden" x-data="{ sidebarOpen: window.innerWidth >= 1024 }">
     {{-- DEV BYPASS: Warning banner for dev-bypassed sessions --}}
     @include('partials.dev-bypass-banner')
     
     <!-- Top Header -->
-    <header class="bg-cream-light border-b border-gold/20 shadow-sm flex items-center justify-between px-6 py-3 z-20 shrink-0 relative">
+    <header class="bg-cream-light border-b border-gold/20 shadow-sm flex items-center justify-between px-4 sm:px-6 py-3 z-20 shrink-0 relative">
         <!-- Logo Left — links back to home -->
         <div class="flex items-center gap-4">
-            <button @click="sidebarOpen = !sidebarOpen" class="text-primary hover:bg-cream p-1.5 rounded-lg transition-colors focus:outline-none">
+            <button @click="sidebarOpen = !sidebarOpen" aria-label="Toggle navigation" :aria-expanded="sidebarOpen.toString()" class="text-primary hover:bg-cream p-1.5 rounded-lg transition-colors focus:outline-none">
                 <i class="bi bi-list text-2xl"></i>
             </button>
             <a href="/" class="flex items-center gap-2 no-underline">
@@ -40,7 +40,7 @@
         <div class="relative" x-data="{ open: false }">
             <button @click="open = !open" @click.away="open = false" class="flex items-center gap-2 focus:outline-none hover:bg-cream px-3 py-1.5 rounded-lg transition-colors">
                 <img src="https://ui-avatars.com/api/?name={{ urlencode(session('parent_profile.username', 'Parent User')) }}&background=C4A840&color=fff" alt="Profile" class="h-8 w-8 rounded-full border border-gold/30">
-                <span class="font-semibold text-sm">{{ session('parent_profile.username', 'Parent User') }}</span>
+                <span class="font-semibold text-sm hidden sm:inline">{{ session('parent_profile.username', 'Parent User') }}</span>
                 <i class="bi bi-chevron-down text-xs text-primary"></i>
             </button>
             <!-- Dropdown -->
@@ -53,9 +53,9 @@
     </header>
 
     <!-- Main Body with Sidebar -->
-    <div class="flex flex-1 overflow-hidden">
+    <div class="relative flex flex-1 overflow-hidden">
         <!-- Sidebar Navigation -->
-        <aside :class="sidebarOpen ? 'ml-0' : '-ml-64'" class="w-64 bg-white border-r border-gold/20 flex-shrink-0 flex flex-col h-full z-10 shadow-sidebar transition-all duration-300 ease-in-out">
+        <aside :class="sidebarOpen ? '!translate-x-0' : 'lg:-ml-64'" class="absolute inset-y-0 left-0 z-30 -translate-x-full lg:relative lg:z-10 lg:translate-x-0 w-64 bg-white border-r border-gold/20 flex-shrink-0 flex flex-col h-full shadow-sidebar transition-all duration-300 ease-in-out">
             <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
                 <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 px-3">Main Menu</div>
                 
@@ -80,6 +80,8 @@
                 </a>
             </nav>
         </aside>
+
+        <div x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false" style="display: none;" class="absolute inset-0 z-20 bg-dark/40 lg:hidden"></div>
 
         <!-- Main Content Area -->
         <main class="flex-1 overflow-y-auto bg-cream p-6 lg:p-8 flex flex-col justify-between">
