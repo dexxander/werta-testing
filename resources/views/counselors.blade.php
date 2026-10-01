@@ -133,12 +133,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .counselor-card:hover {
-            box-shadow: var(--card-ring-hover), var(--shadow-lg);
-            transform: translateY(-2px);
         }
 
         .counselor-card-header {
@@ -478,8 +472,10 @@
 
                                     <div class="counselor-card-footer">
                                         <div class="counselor-rate">
-                                            from RM {{ number_format($counselor->rate_individual ?? 0, 0) }}
-                                            <span class="counselor-rate-unit">per session</span>
+                                            @if(!is_null($counselor->rate_individual))
+                                                RM {{ number_format($counselor->rate_individual, 0) }}
+                                                <span class="counselor-rate-unit">per session</span>
+                                            @endif
                                         </div>
                                         <a href="{{ url('/counselors/' . $counselor->id) }}" class="btn-view-profile">
                                             View profile

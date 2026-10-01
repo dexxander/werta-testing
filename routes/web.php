@@ -1,5 +1,7 @@
 <?php
 
+use AdminDashboard\Models\Counselor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,9 +11,6 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
-
-use AdminDashboard\Models\Counselor;
-use Illuminate\Http\Request;
 
 Route::get('/counselors', function (Request $request) {
     $specialty = $request->query('specialty');
@@ -75,6 +74,14 @@ Route::get('/counselors', function (Request $request) {
         'allStates'
     ));
 })->name('public.counselors');
+
+Route::get('/counselors/{id}', function ($id) {
+    $counselor = Counselor::where('id', $id)
+        ->where('status', 'approved')
+        ->firstOrFail();
+
+    return view('counselor-profile', compact('counselor'));
+})->name('public.counselors.show');
 
 Route::get('/assessment', function () {
     return view('assessment');
