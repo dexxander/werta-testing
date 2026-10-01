@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use AdminDashboard\Database\Seeders\AdminDashboardSeeder;
+use Submissions\Database\Seeders\SubmissionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +22,11 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+        ]);
+
+        $this->call([
+            AdminDashboardSeeder::class,
+            SubmissionSeeder::class,
         ]);
     }
 }

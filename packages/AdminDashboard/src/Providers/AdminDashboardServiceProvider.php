@@ -20,6 +20,6 @@ class AdminDashboardServiceProvider extends ServiceProvider
     $this->loadViewsFrom(__DIR__ . '/../resources/views', 'admindashboard');
 
     // NEW: register this package's own migrations
-    $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    $this->loadMigrationsFrom(__DIR__ . '/../Database/migrations');
 }
 }
