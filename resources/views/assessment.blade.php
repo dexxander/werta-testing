@@ -377,6 +377,30 @@
             box-shadow: var(--shadow-md);
         }
 
+        @media (max-width: 767px) {
+            .feature-row,
+            .feature-row-reverse {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .feature-visual {
+                flex: 0 0 auto;
+                order: 1;
+            }
+
+            .feature-text {
+                order: 2;
+            }
+
+            .feature-photo {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
         /* ── MODAL ────────────────────────────────────────── */
         .modal-backdrop {
             display: none;

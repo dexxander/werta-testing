@@ -2,7 +2,7 @@
 
 <section class="about-sec bg-light-cream">
     <div class="container">
-        <div class="row align-items-center g-5">
+        <div class="row align-items-center g-4 g-lg-5">
             <div class="col-lg-6">
                 <div class="overlap-images">
                     <img src="{{ asset('images/empowering.jpg') }}" alt="Empowering 1" class="overlap-img-back">

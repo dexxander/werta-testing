@@ -2,7 +2,7 @@
 
 <section class="about-sec bg-cream">
     <div class="container">
-        <div class="row align-items-start g-5">
+        <div class="row align-items-start g-4 g-lg-5">
             <div class="col-lg-6">
                 <div class="mb-5">
                     <p class="pill-label">Our Vision</p>

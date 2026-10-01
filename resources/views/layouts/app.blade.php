@@ -483,6 +483,33 @@
 
         .footer-bottom div a:hover { color: var(--primary); }
 
+        @media (max-width: 767px) {
+            .footer-top {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem 1.5rem;
+                padding: 40px 1.25rem 32px;
+            }
+
+            .footer-brand {
+                grid-column: span 2;
+                max-width: 100%;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1.2rem 1.25rem;
+            }
+
+            .footer-bottom div {
+                flex-wrap: wrap;
+                gap: 1rem 1.5rem;
+                justify-content: flex-start;
+            }
+        }
+
         /* ─── RESPONSIVE ────────────────────────────────── */
         @media (min-width: 992px) {
             .mobile-nav-toggle,

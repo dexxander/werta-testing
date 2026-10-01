@@ -48,7 +48,7 @@
     <!-- SECTION 2: OUR STORY -->
     <section class="about-sec about-sec-expanded bg-light-cream" id="our-story">
         <div class="container">
-            <div class="row align-items-center g-5">
+            <div class="row align-items-center g-4 g-lg-5">
                 <div class="col-lg-6">
                     <p class="pill-label">Our Story</p>
                     <h2 class="sec-heading">Bridging the Mental Health Care Gap</h2>
@@ -76,7 +76,7 @@
     <!-- SECTION 3: MISSION & VISION -->
     <section class="about-sec about-sec-compact bg-cream" id="mission-vision">
         <div class="container">
-            <div class="row g-5">
+            <div class="row g-4 g-lg-5">
                 <div class="col-lg-6">
                     <p class="pill-label">Our Vision</p>
                     <p class="sec-text">
