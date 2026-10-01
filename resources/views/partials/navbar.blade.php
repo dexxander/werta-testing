@@ -1,5 +1,6 @@
 @php
     $isLoggedIn = session('staff_role') || session('counselor_logged_in') || session('client_logged_in') || session('parent_logged_in');
+    $canPublish = session('counselor_logged_in') || session('client_logged_in') || session('parent_logged_in');
     if ($isLoggedIn) {
         $staffRole = session('staff_role');
         $role = $staffRole
@@ -73,7 +74,7 @@
                 </a>
                 <div class="nav-dropdown-menu">
                     <a href="{{ route('public.articles') }}"><i class="bi bi-journal-text"></i> Browse Articles</a>
-                    @if($isLoggedIn)
+                    @if($canPublish)
                         <a href="{{ route('submissions.create') }}"><i class="bi bi-pencil-square"></i> Publish an Article</a>
                         <a href="{{ route('submissions.index') }}"><i class="bi bi-folder2-open"></i> Your Articles</a>
                     @endif
@@ -148,7 +149,7 @@
                     </button>
                     <div class="collapse mobile-sub-links" id="mobileArticlesMenu">
                         <a href="{{ route('public.articles') }}" class="mobile-sub-link">Browse Articles</a>
-                        @if($isLoggedIn)
+                        @if($canPublish)
                             <a href="{{ route('submissions.create') }}" class="mobile-sub-link">Publish an Article</a>
                             <a href="{{ route('submissions.index') }}" class="mobile-sub-link">Your Articles</a>
                         @endif
