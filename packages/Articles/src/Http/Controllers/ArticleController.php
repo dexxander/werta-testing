@@ -11,6 +11,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $published = Submission::where('visibility', 'public')
+            ->where('status', 'published')
             ->latest('submitted_at')
             ->get();
 
@@ -31,14 +32,7 @@ class ArticleController extends Controller
     {
         $article = Submission::where('slug', $slug)->firstOrFail();
 
-        // Private articles are only viewable by their uploader.
-        if ($article->visibility === 'private') {
-            $viewer = $this->currentViewer();
-            abort_unless(
-                $viewer && $viewer[0] === $article->author_role && $viewer[1] === $article->author_name,
-                404
-            );
-        }
+        $this->authorizeArticleView($article);
 
         // TODO: load real comments once a comments table exists for submissions
         $comments = collect();
@@ -48,8 +42,22 @@ class ArticleController extends Controller
 
     public function subscribe($slug)
     {
-        $article = \Submissions\Models\Submission::where('slug', $slug)->firstOrFail();
+        $article = Submission::where('slug', $slug)->firstOrFail();
+
+        $this->authorizeArticleView($article);
+
         return view('articles::subscribe', compact('article'));
+    }
+
+    private function authorizeArticleView(Submission $article): void
+    {
+        if ($article->status !== 'published' || $article->visibility === 'private') {
+            $viewer = $this->currentViewer();
+            abort_unless(
+                $viewer && $viewer[0] === $article->author_role && $viewer[1] === $article->author_name,
+                404
+            );
+        }
     }
 
     /**

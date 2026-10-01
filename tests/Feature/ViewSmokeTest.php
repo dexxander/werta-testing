@@ -23,6 +23,8 @@ class ViewSmokeTest extends TestCase
             '/assessment/processing',
             '/assessment/email',
             '/assessment/results',
+            '/articles',
+            '/submissions/create',
         ];
 
         foreach ($routes as $route) {
