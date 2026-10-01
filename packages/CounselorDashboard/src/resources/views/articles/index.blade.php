@@ -74,7 +74,7 @@
     <div class="bg-cream px-6 py-4 border-b border-gold/20 hidden md:grid grid-cols-12 gap-4 text-primary font-bold uppercase text-xs tracking-wider shrink-0 z-10">
         <div class="col-span-6">Article Details</div>
         <div class="col-span-2 text-center">Status</div>
-        <div class="col-span-2 text-center">Views</div>
+        <div class="col-span-2 text-center">Visibility</div>
         <div class="col-span-2 text-right">Actions</div>
     </div>
 
@@ -87,33 +87,24 @@
                     <div class="flex items-center gap-3 mt-2 text-xs text-gray-400 font-medium">
                         <span><i class="bi bi-calendar3 mr-1"></i> {{ $article->date_label }}</span>
                         <span>•</span>
-                        <span class="text-primary bg-gold/10 px-2 py-0.5 rounded">{{ $article->category }}</span>
+                        <span class="text-primary bg-gold/10 px-2 py-0.5 rounded">{{ $article->visibility }}</span>
                     </div>
                 </div>
 
                 <div class="col-span-2 md:text-center">
-                    @if($article->status === 'Published')
-                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-bold uppercase rounded-md border border-green-100">
-                            <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Published
-                        </span>
-                    @else
-                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-100 text-gray-600 text-xs font-bold uppercase rounded-md border border-gray-200">
-                            <i class="bi bi-journal-text"></i> Draft
-                        </span>
-                    @endif
+                    <span class="inline-flex items-center px-2.5 py-1 {{ $article->status_class }} text-xs font-bold uppercase rounded-md">
+                        {{ $article->status_label }}
+                    </span>
                 </div>
 
                 <div class="col-span-2 md:text-center font-semibold text-gray-600">
-                    {{ $article->status === 'Published' ? $article->views : '--' }}
+                    {{ $article->visibility }}
                 </div>
 
-                <div class="col-span-2 flex justify-start md:justify-end gap-2">
-                    <a href="#" class="p-2 text-gray-400 hover:text-primary hover:bg-cream rounded-lg transition-colors" title="Edit Article">
-                        <i class="bi bi-pencil-fill"></i>
+                <div class="col-span-2 flex justify-start md:justify-end">
+                    <a href="{{ route('submissions.show', $article->id) }}" class="text-sm font-semibold text-primary hover:text-primary-dark transition-colors">
+                        View
                     </a>
-                    <button class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Delete Article">
-                        <i class="bi bi-trash3-fill"></i>
-                    </button>
                 </div>
             </div>
         @empty

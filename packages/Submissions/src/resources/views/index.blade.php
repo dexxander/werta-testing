@@ -25,14 +25,8 @@
     @endif  
 
     @php
-        $statusLabels = [
-            'submitted'           => ['label' => 'Waiting for Review', 'class' => 'bg-gray-100 text-gray-600'],
-            'under_review'        => ['label' => 'Under Review',       'class' => 'bg-blue-50 text-blue-700'],
-            'revisions_requested' => ['label' => 'Revisions Requested','class' => 'bg-yellow-50 text-yellow-700'],
-            'accepted'            => ['label' => 'Accepted',           'class' => 'bg-green-50 text-green-700'],
-            'rejected'            => ['label' => 'Not Approved',       'class' => 'bg-red-50 text-red-700'],
-            'published'           => ['label' => 'Approved',           'class' => 'bg-green-50 text-green-700'],
-        ];
+        use Submissions\Models\Submission;
+        $statusLabels = Submission::STATUS_LABELS;
     @endphp
 
     <p class="text-xs text-gray-400 mb-3">{{ $submissions->count() }} {{ Str::plural('article', $submissions->count()) }}</p>
