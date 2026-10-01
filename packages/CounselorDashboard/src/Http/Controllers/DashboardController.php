@@ -1,21 +1,23 @@
 <?php
 namespace CounselorDashboard\Http\Controllers;
 
+use CounselorDashboard\Support\SampleData;
 use Illuminate\Routing\Controller;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // TODO: replace with real Eloquent queries once DB/models exist
+        $appointments = SampleData::appointments();
+        $clients      = SampleData::clients();
+
         $stats = [
-            'todays_sessions'    => 0,
-            'active_clients'     => 0,
+            'todays_sessions'    => $appointments->filter(fn($a) => $a->date->isToday())->count(),
+            'active_clients'     => $clients->where('status', 'Active')->count(),
             'monthly_earnings'   => 'RM 0.00',
             'published_articles' => 0,
-            'pending_reports'    => 0,
+            'pending_reports'    => $clients->where('status', 'Active')->where('has_report', false)->count(),
         ];
-        $appointments = collect(); // empty for now
 
         return view('counselor-dashboard::dashboard', compact('stats', 'appointments'));
     }

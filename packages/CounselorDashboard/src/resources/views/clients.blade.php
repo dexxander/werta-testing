@@ -14,6 +14,8 @@
         <p class="text-sm text-gray-500 mt-1">Review past sessions, access clinical notes, and track client progress.</p>
     </div>
 
+    @include('counselor-dashboard::partials.sample-banner')
+
     <div class="bg-white rounded-2xl p-4 border border-gold/20 shadow-sm mb-6 flex flex-col md:flex-row gap-4 justify-between items-center relative z-20">
         
         <div class="relative w-full md:w-96">
@@ -168,11 +170,11 @@
                                 </div>
                                 <div>
                                     <span class="block text-xs font-bold text-gray-400 uppercase">Duration</span>
-                                    <span class="text-sm font-semibold text-gray-800" x-text="selectedClient?.duration || '50 mins'"></span>
+                                    <span class="text-sm font-semibold text-gray-800" x-text="selectedClient?.duration || 'Not recorded'"></span>
                                 </div>
                                 <div>
                                     <span class="block text-xs font-bold text-gray-400 uppercase">Modality</span>
-                                    <span class="text-sm font-semibold text-gray-800" x-text="selectedClient?.modality || 'Video Call'"></span>
+                                    <span class="text-sm font-semibold text-gray-800" x-text="selectedClient?.modality || 'Not recorded'"></span>
                                 </div>
                                 <div>
                                     <span class="block text-xs font-bold text-gray-400 uppercase">Status</span>
@@ -192,7 +194,7 @@
                                 <h3 class="text-sm font-bold text-dark mb-2 flex items-center gap-2">
                                     <i class="bi bi-journal-text text-primary"></i> Clinical Notes
                                 </h3>
-                                <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm whitespace-pre-line" x-text="selectedClient?.clinical_notes || 'Clinical notes on file for this session. Client engaged and responded well to interventions.'">
+                                <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm whitespace-pre-line" x-text="selectedClient?.clinical_notes || 'Not recorded'">
                                 </p>
                             </div>
 
@@ -200,7 +202,7 @@
                                 <h3 class="text-sm font-bold text-dark mb-2 flex items-center gap-2">
                                     <i class="bi bi-tools text-primary"></i> Interventions Used
                                 </h3>
-                                <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm" x-text="selectedClient?.interventions || 'Cognitive Behavioral Therapy (CBT), Mindfulness exercises.'">
+                                <p class="text-sm text-gray-600 leading-relaxed bg-white border border-gray-100 p-3 rounded-lg shadow-sm" x-text="selectedClient?.interventions || 'Not recorded'">
                                 </p>
                             </div>
 
@@ -208,17 +210,17 @@
                                 <h3 class="text-sm font-bold text-dark mb-2 flex items-center gap-2">
                                     <i class="bi bi-arrow-right-circle text-primary"></i> Next Steps / Homework
                                 </h3>
-                                <p class="text-sm text-gray-600 leading-relaxed bg-cream/50 border border-gold/20 p-3 rounded-lg shadow-sm" x-text="selectedClient?.next_steps || 'Continue assigned reflection exercises and attend follow-up session.'">
+                                <p class="text-sm text-gray-600 leading-relaxed bg-cream/50 border border-gold/20 p-3 rounded-lg shadow-sm" x-text="selectedClient?.next_steps || 'Not recorded'">
                                 </p>
                             </div>
 
                         </div>
                         
                         <div class="p-6 border-t border-gray-100 bg-gray-50 flex gap-3">
-                            <button class="flex-1 px-4 py-2 border border-gray-200 text-gray-600 rounded-lg text-sm font-semibold hover:bg-white transition-colors flex items-center justify-center gap-2">
+                            <button disabled title="Available when booking opens" class="flex-1 px-4 py-2 bg-gray-100 text-gray-600 cursor-not-allowed rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
                                 <i class="bi bi-printer"></i> Print
                             </button>
-                            <button class="flex-1 px-4 py-2 bg-gold text-dark hover:text-white rounded-lg text-sm font-semibold hover:bg-primary transition-colors shadow-sm flex items-center justify-center gap-2">
+                            <button disabled title="Available when booking opens" class="flex-1 px-4 py-2 bg-gray-100 text-gray-600 cursor-not-allowed rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
                                 <i class="bi bi-pencil"></i> Edit Report
                             </button>
                         </div>

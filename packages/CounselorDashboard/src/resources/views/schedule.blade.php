@@ -6,6 +6,8 @@
     <p class="text-sm text-gray-500 mt-1">Manage your weekly availability and upcoming client sessions.</p>
 </div>
 
+@include('counselor-dashboard::partials.sample-banner')
+
 <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 sm:gap-8">
     
     <div class="xl:col-span-1 space-y-6">
@@ -54,19 +56,19 @@
 
             <div class="space-y-4">
                 @foreach($availability as $dayItem)
-                    <div class="flex items-center justify-between p-3 rounded-lg {{ $dayItem->enabled ? 'bg-gray-50 border border-gray-100' : 'border border-gray-100 opacity-50' }}">
+                    <div class="flex flex-wrap items-center justify-between gap-2 p-3 rounded-lg {{ $dayItem->enabled ? 'bg-gray-50 border border-gray-100' : 'border border-gray-100 opacity-50' }}">
                         <div class="flex items-center gap-3">
                             <input type="checkbox"
                                 name="availability[{{ $dayItem->day }}][enabled]"
                                 {{ $dayItem->enabled ? 'checked' : '' }}
-                                class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary accent-primary">
                             <span class="font-semibold text-sm text-gray-700">{{ $dayItem->day }}</span>
                         </div>
                         @if($dayItem->enabled)
-                            <div class="flex items-center gap-2 text-sm text-gray-600">
-                                <input type="time" name="availability[{{ $dayItem->day }}][start]" value="{{ $dayItem->start }}" class="border border-gray-200 rounded px-2 py-1 bg-white outline-none focus:border-primary">
+                            <div class="flex items-center gap-2 w-full text-sm text-gray-600">
+                                <input type="time" name="availability[{{ $dayItem->day }}][start]" value="{{ $dayItem->start }}" class="flex-1 min-w-0 border border-gray-200 rounded px-2 py-1 bg-white outline-none focus:border-primary">
                                 <span>-</span>
-                                <input type="time" name="availability[{{ $dayItem->day }}][end]" value="{{ $dayItem->end }}" class="border border-gray-200 rounded px-2 py-1 bg-white outline-none focus:border-primary">
+                                <input type="time" name="availability[{{ $dayItem->day }}][end]" value="{{ $dayItem->end }}" class="flex-1 min-w-0 border border-gray-200 rounded px-2 py-1 bg-white outline-none focus:border-primary">
                             </div>
                         @else
                             <span class="text-sm font-medium text-gray-400 italic">Unavailable</span>
@@ -104,8 +106,8 @@
                             </div>
                         </div>
                         <div class="flex gap-2 sm:flex-col sm:items-end">
-                            <button class="px-4 py-1.5 bg-gold hover:bg-primary text-dark hover:text-white text-sm font-semibold rounded-lg transition-colors">Join Call</button>
-                            <button class="px-4 py-1.5 bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-sm font-semibold rounded-lg transition-colors">Reschedule</button>
+                            <button disabled title="Available when booking opens" class="px-4 py-1.5 bg-gray-100 text-gray-600 cursor-not-allowed text-sm font-semibold rounded-lg">Join Call</button>
+                            <button disabled title="Available when booking opens" class="px-4 py-1.5 bg-gray-100 text-gray-600 cursor-not-allowed text-sm font-semibold rounded-lg">Reschedule</button>
                         </div>
                     </div>
                 @empty

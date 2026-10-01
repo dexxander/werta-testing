@@ -15,6 +15,8 @@
         </div>
     </div>
 
+    @include('counselor-dashboard::partials.sample-banner')
+
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
         <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
             <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shrink-0 bg-gold/10 text-primary">
@@ -73,7 +75,7 @@
             <div class="h-72 w-full flex items-center justify-center">
                 <div class="text-center text-gray-400">
                     <i class="bi bi-clock-history text-5xl"></i>
-                    <p class="text-sm mt-2">No completed sessions this week.</p>
+                    <p class="text-sm mt-2">Chart available once session records are connected.</p>
                 </div>
             </div>
         </div>
@@ -86,7 +88,7 @@
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-cream text-primary font-bold border-b border-gold/20 uppercase text-xs tracking-wider">
                     <tr>
-                        <th class="px-4 py-3 rounded-tl-lg">Time</th>
+                        <th class="px-4 py-3 rounded-tl-lg">When</th>
                         <th class="px-4 py-3">Client ID</th>
                         <th class="px-4 py-3">Type</th>
                         <th class="px-4 py-3">Status</th>
@@ -96,17 +98,17 @@
                 <tbody class="divide-y divide-gray-100">
                     @forelse($appointments as $appointment)
                         <tr class="hover:bg-gray-50 transition-colors">
-                            <td class="px-4 py-4 font-medium text-gray-900">{{ $appointment->time }}</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">{{ $appointment->date->isToday() ? 'Today' : $appointment->date->format('D j M') }}, {{ $appointment->time }}</td>
                             <td class="px-4 py-4">{{ $appointment->client_label }}</td>
                             <td class="px-4 py-4">
                                 <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded">{{ $appointment->type }}</span>
                             </td>
                             <td class="px-4 py-4">
-                                <span class="px-2 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded">{{ $appointment->status }}</span>
+                                <span class="px-2 py-1 {{ $appointment->status === 'Pending' ? 'bg-amber-50 text-amber-700' : 'bg-green-50 text-green-700' }} text-xs font-semibold rounded">{{ $appointment->status }}</span>
                             </td>
                             <td class="px-4 py-4 text-right">
-                                <button class="text-sm font-medium text-primary hover:text-primary-dark mr-3">View History</button>
-                                <button class="text-sm font-medium bg-gold text-dark hover:text-white px-3 py-1 rounded hover:bg-primary">Join Room</button>
+                                <button disabled title="Available when booking opens" class="text-sm font-medium bg-gray-100 text-gray-600 cursor-not-allowed px-3 py-1 rounded mr-3">View History</button>
+                                <button disabled title="Available when booking opens" class="text-sm font-medium bg-gray-100 text-gray-600 cursor-not-allowed px-3 py-1 rounded">Join Room</button>
                             </td>
                         </tr>
                     @empty

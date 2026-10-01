@@ -2,6 +2,7 @@
 
 namespace CounselorDashboard\Http\Controllers;
 
+use CounselorDashboard\Support\SampleData;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -34,19 +35,10 @@ class ScheduleController extends Controller
             $cells[] = null;
         }
         $calendarWeeks = array_chunk($cells, 7);
-        // TODO: pull real saved values from an Availability model once DB exists.
-        // For now this seeds all 7 days as blank/unchecked defaults.
-        $availability = collect(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
-            ->map(fn($day) => (object) [
-                'day'       => $day,
-                'enabled'   => false,
-                'start'     => null,
-                'end'       => null,
-            ]);
         
-        $bookedSlots  = collect();
-        // Dates that have booked slots, for showing a dot marker — empty for now
-        $bookedDates = collect(); // e.g. ['2026-08-14', '2026-08-20']
+        $availability = SampleData::availability();
+        $bookedSlots  = SampleData::appointments();
+        $bookedDates  = $bookedSlots->map(fn($slot) => $slot->date->format('Y-m-d'));
 
         return view('counselor-dashboard::schedule', [
             'month'         => $month,
