@@ -31,9 +31,9 @@
 <section class="el-section bg-cream">
     <div class="el-container">
         <div class="text-center mb-5">
-            <div class="el-pill">Your Learning Hub</div>
-            <h2 class="el-heading">Student Dashboard Preview</h2>
-            <p class="el-subtext mx-auto">A premium dashboard experience to track your learning journey, goals, and achievements.</p>
+            <div class="el-pill">{{ __('Your Learning Hub') }}</div>
+            <h2 class="el-heading">{{ __('Student Dashboard Preview') }}</h2>
+            <p class="el-subtext mx-auto">{{ __('A premium dashboard experience to track your learning journey, goals, and achievements.') }}</p>
         </div>
 
         <div class="el-dashboard-mock">
@@ -41,7 +41,7 @@
                 <span class="el-dashboard-dot red"></span>
                 <span class="el-dashboard-dot yellow"></span>
                 <span class="el-dashboard-dot green"></span>
-                <span style="color:rgba(255,255,255,0.5);font-size:var(--text-xs);margin-left:12px;">Werta — Student Dashboard</span>
+                <span style="color:rgba(255,255,255,0.5);font-size:var(--text-xs);margin-left:12px;">{{ __('Werta — Student Dashboard') }}</span>
             </div>
             <div class="el-dash-body">
                 <div class="row g-4">
@@ -49,8 +49,8 @@
                     <div class="col-md-8">
                         <div class="el-dash-panel h-100">
                             <div class="el-dash-panel-header">
-                                <h6>Active Courses</h6>
-                                <a href="{{ route('elearning.my-courses') }}" class="el-dash-view-all" style="text-decoration:none;">View All</a>
+                                <h6>{{ __('Active Courses') }}</h6>
+                                <a href="{{ route('elearning.my-courses') }}" class="el-dash-view-all" style="text-decoration:none;">{{ __('View All') }}</a>
                             </div>
 
                             @if(!empty($dashboard_courses))
@@ -62,14 +62,14 @@
                                             </div>
                                             <div class="el-dash-course-info">
                                                 <div class="el-dash-course-top">
-                                                    <h6>{{ $course['title'] ?? '' }}</h6>
-                                                    <span>{{ $course['progress'] ?? 0 }}%</span>
+                                                    <h6>{{ \App\Support\SiteText::translate($course['title'] ?? '') }}</h6>
+                                                    <span>{{ \App\Support\SiteText::translate($course['progress'] ?? 0) }}%</span>
                                                 </div>
                                                 <div class="el-dash-progress-bar">
                                                     <div class="el-dash-progress-fill" style="width: {{ $course['progress'] ?? 0 }}%;"></div>
                                                 </div>
                                                 @if(!empty($course['next_lesson']))
-                                                    <p class="el-dash-course-next">Next: {{ $course['next_lesson'] }}</p>
+                                                    <p class="el-dash-course-next">{{ __('Next:') }} {{ \App\Support\SiteText::translate($course['next_lesson']) }}</p>
                                                 @endif
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                             @else
                                 <div class="el-dash-empty">
                                     <i class="bi bi-journal-text"></i>
-                                    <p>No active courses yet. Start your learning journey today.</p>
+                                    <p>{{ __('No active courses yet. Start your learning journey today.') }}</p>
                                 </div>
                             @endif
                         </div>
@@ -88,36 +88,36 @@
                     <div class="col-md-4">
                         {{-- Progress --}}
                         <div class="el-dash-panel el-dash-panel--tight mb-3">
-                            <h6 class="el-dash-panel-title">Progress Tracker</h6>
+                            <h6 class="el-dash-panel-title">{{ __('Progress Tracker') }}</h6>
                             <div class="el-dash-progress-row">
                                 <div class="el-dash-ring" style="--pct: {{ $dashboard_overall_progress ?? 0 }};">
-                                    <div class="el-dash-ring-inner">{{ $dashboard_overall_progress ?? 0 }}%</div>
+                                    <div class="el-dash-ring-inner">{{ \App\Support\SiteText::translate($dashboard_overall_progress ?? 0) }}%</div>
                                 </div>
-                                <p>Overall completion</p>
+                                <p>{{ __('Overall completion') }}</p>
                             </div>
                         </div>
 
                         {{-- Goals --}}
                         <div class="el-dash-panel el-dash-panel--tight mb-3">
-                            <h6 class="el-dash-panel-title">Weekly Goals</h6>
+                            <h6 class="el-dash-panel-title">{{ __('Weekly Goals') }}</h6>
                             @if(!empty($dashboard_goals))
                                 <ul class="el-dash-goal-list">
                                     @foreach($dashboard_goals as $goal)
                                         <li class="el-dash-goal {{ !empty($goal['done']) ? 'is-done' : '' }}">
                                             <i class="bi bi-{{ !empty($goal['done']) ? 'check-circle-fill' : 'circle' }}"></i>
-                                            {{ $goal['label'] ?? '' }}
+                                            {{ \App\Support\SiteText::translate($goal['label'] ?? '') }}
                                         </li>
                                     @endforeach
                                 </ul>
                             @else
-                                <p class="el-dash-empty-text">No goals set yet.</p>
+                                <p class="el-dash-empty-text">{{ __('No goals set yet.') }}</p>
                             @endif
                         </div>
 
                         {{-- Streak --}}
                         <div class="el-dash-panel el-dash-panel--tight">
-                            <h6 class="el-dash-panel-title"><i class="bi bi-fire" style="color:var(--primary);"></i> Learning Streak</h6>
-                            <p class="el-dash-streak-count">{{ $dashboard_streak_days ?? 0 }} <span>days</span></p>
+                            <h6 class="el-dash-panel-title"><i class="bi bi-fire" style="color:var(--primary);"></i> {{ __('Learning Streak') }}</h6>
+                            <p class="el-dash-streak-count">{{ \App\Support\SiteText::translate($dashboard_streak_days ?? 0) }} <span>{{ __('days') }}</span></p>
                             <div class="el-dash-streak-dots">
                                 @for($i = 0; $i < 7; $i++)
                                     <span class="{{ $i < ($dashboard_streak_active_days ?? 0) ? 'is-active' : '' }}"></span>

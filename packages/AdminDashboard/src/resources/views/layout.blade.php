@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
+    @include('partials.localization')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ ucfirst($role) }} Dashboard - Werta</title>
+    <title>{{ \App\Support\SiteText::translate(ucfirst($role)) }} {{ __('Dashboard - Werta') }}</title>
     <!-- Alpine.js for interactions like modals and dropdowns -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Bootstrap Icons -->
@@ -23,17 +24,17 @@
     <!-- Top Header -->
     <header class="bg-cream-light border-b border-gold/20 shadow-sm flex items-center justify-between px-4 sm:px-6 py-3 z-20 shrink-0 relative">
         <div class="flex items-center gap-4">
-            <button @click="sidebarOpen = !sidebarOpen" aria-label="Toggle navigation" :aria-expanded="sidebarOpen.toString()" class="text-primary hover:bg-cream p-1.5 rounded-lg transition-colors focus:outline-none">
+            <button @click="sidebarOpen = !sidebarOpen" aria-label="{{ __('Toggle navigation') }}" :aria-expanded="sidebarOpen.toString()" class="text-primary hover:bg-cream p-1.5 rounded-lg transition-colors focus:outline-none">
                 <i class="bi bi-list text-2xl"></i>
             </button>
             <a href="/" class="flex items-center gap-2">
-                <img src="{{ asset('images/Werta_Logo.png') }}" alt="Werta Logo" class="h-8 w-auto">
+                <img src="{{ asset('images/Werta_Logo.png') }}" alt="{{ __('Werta Logo') }}" class="h-8 w-auto">
                 <span class="flex items-baseline gap-px">
                     <span style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: #C4A840; line-height: 1;">W</span>
                     <span style="font-family: 'Lato', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 3px; color: #7B6B35;">ERTA</span>
                 </span>
                 <span class="ml-2 text-xs font-bold uppercase tracking-widest text-primary bg-gold/10 px-2 py-1 rounded-full hidden sm:inline">
-                    {{ ucfirst($role) }} Portal
+                    {{ __(ucfirst($role).' Portal') }}
                 </span>
             </a>
         </div>
@@ -41,52 +42,53 @@
         <!-- Profile Right -->
         <div class="relative" x-data="{ open: false }">
             <button @click="open = !open" @click.away="open = false" class="flex items-center gap-2 focus:outline-none hover:bg-cream px-3 py-1.5 rounded-lg transition-colors">
-                <img src="https://ui-avatars.com/api/?name={{ ucfirst($role) }}&background=7B6B35&color=fff" alt="Profile" class="h-8 w-8 rounded-full border border-gold/30">
-                <span class="font-semibold text-sm hidden sm:inline">{{ ucfirst($role) }} User</span>
+                <img src="https://ui-avatars.com/api/?name={{ ucfirst($role) }}&background=7B6B35&color=fff" alt="{{ __('Profile') }}" class="h-8 w-8 rounded-full border border-gold/30">
+                <span class="font-semibold text-sm hidden sm:inline">{{ \App\Support\SiteText::translate(ucfirst($role)) }} {{ __('User') }}</span>
                 <i class="bi bi-chevron-down text-xs text-primary"></i>
             </button>
             <div x-show="open" style="display: none;" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-primary-dark/35 py-1 z-50" x-transition>
-                <a href="{{ url('/' . $role . '/settings') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-cream hover:text-primary"><i class="bi bi-person mr-2"></i> My Profile</a>
+                <a href="{{ url('/' . $role . '/settings') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-cream hover:text-primary"><i class="bi bi-person mr-2"></i> {{ __('My Profile') }}</a>
                 <div class="border-t border-gray-100 my-1"></div>
-                <a href="{{ url('/' . $role . '/logout') }}" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50"><i class="bi bi-box-arrow-right mr-2"></i> Logout</a>
+                <a href="{{ url('/' . $role . '/logout') }}" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50"><i class="bi bi-box-arrow-right mr-2"></i> {{ __('Logout') }}</a>
             </div>
         </div>
+        @include('partials.language-picker')
     </header>
 
     <!-- Main Body with Sidebar -->
     <div class="relative flex flex-1 overflow-hidden">
         <aside :class="sidebarOpen ? '!translate-x-0' : 'lg:-ml-64'" class="absolute inset-y-0 left-0 z-30 -translate-x-full lg:relative lg:z-10 lg:translate-x-0 w-64 bg-white border-r border-gold/20 flex-shrink-0 flex flex-col h-full shadow-sidebar transition-all duration-300 ease-in-out">
             <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
-                <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 px-3">Main Menu</div>
+                <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 px-3">{{ __('Main Menu') }}</div>
 
                 <a href="{{ url('/' . $role . '/dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.dashboard') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="bi bi-grid-1x2-fill text-lg"></i> Overview
+                    <i class="bi bi-grid-1x2-fill text-lg"></i> {{ __('Overview') }}
                 </a>
 
                 @if($role === 'superadmin')
                 <a href="{{ url('/superadmin/administrators') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs('superadmin.administrators') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="bi bi-person-badge text-lg"></i> Administrators
+                    <i class="bi bi-person-badge text-lg"></i> {{ __('Administrators') }}
                 </a>
                 @endif
 
                 <a href="{{ url('/' . $role . '/counselor-approvals') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.counselor-approvals') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="bi bi-patch-check text-lg"></i> Counselor Approvals
+                    <i class="bi bi-patch-check text-lg"></i> {{ __('Counselor Approvals') }}
                 </a>
 
                 <a href="{{ url('/' . $role . '/user-management') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.user-management') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="bi bi-people text-lg"></i> User Management
+                    <i class="bi bi-people text-lg"></i> {{ __('User Management') }}
                 </a>
 
                 <a href="{{ url('/' . $role . '/analytics') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.analytics') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="bi bi-bar-chart-line text-lg"></i> Analytics
+                    <i class="bi bi-bar-chart-line text-lg"></i> {{ __('Analytics') }}
                 </a>
 
                 <a href="{{ url('/' . $role . '/content') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.content') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="bi bi-file-earmark-text text-lg"></i> Content
+                    <i class="bi bi-file-earmark-text text-lg"></i> {{ __('Content') }}
                 </a>
 
                 <a href="{{ url('/' . $role . '/settings') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.settings') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
-                    <i class="bi bi-gear text-lg"></i> Settings
+                    <i class="bi bi-gear text-lg"></i> {{ __('Settings') }}
                 </a>
             </nav>
         </aside>

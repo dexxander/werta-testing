@@ -15,7 +15,7 @@
             @if($featuredArticle)
                 <section class="premium-featured-card group">
                     <div class="premium-badge">
-                        <i class="bi bi-star-fill"></i> PREMIUM
+                        <i class="bi bi-star-fill"></i> {{ __('PREMIUM') }}
                     </div>
                     
                     <div class="premium-image-wrapper">
@@ -24,47 +24,47 @@
                     
                     <div class="premium-content">
                         <div class="article-meta">
-                            <span class="meta-tag">{{ strtoupper($featuredArticle->access_type) }}</span>
+                            <span class="meta-tag">{{ \App\Support\SiteText::translate(strtoupper($featuredArticle->access_type)) }}</span>
                             <span class="meta-dot">•</span>
-                            <span class="meta-read-time">{{ $featuredArticle->author_name }}</span>
+                            <span class="meta-read-time">{{ \App\Support\SiteText::translate($featuredArticle->author_name) }}</span>
                         </div>
                         
                         <h1 class="article-headline group-hover-gold">{{ $featuredArticle->title }}</h1>
                         <p class="article-excerpt">{{ $featuredArticle->abstract }}</p>
                         
                         <a href="{{ route('public.articles.show', ['slug' => $featuredArticle->slug]) }}" class="btn-unlock-article" style="display: inline-block; text-decoration: none; text-align: center;">
-                            <i class="bi bi-lock-fill"></i> Unlock Full Article
+                            <i class="bi bi-lock-fill"></i> {{ __('Unlock Full Article') }}
                         </a>
                     </div>
                 </section>
             @else
                 <section class="premium-featured-card group" style="display: flex; align-items: center; justify-content: center; min-height: 300px;">
-                    <p class="text-sm text-gray-400">No featured article yet.</p>
+                    <p class="text-sm text-gray-400">{{ __('No featured article yet.') }}</p>
                 </section>
             @endif
 
             {{-- Right: Trending Conversations --}}
             <aside class="trending-sidebar">
                 <h2 class="sidebar-title">
-                    <i class="bi bi-graph-up-arrow" style="color: var(--primary);"></i> Trending Conversations
+                    <i class="bi bi-graph-up-arrow" style="color: var(--primary);"></i> {{ __('Trending Conversations') }}
                 </h2>
                 
                 <div class="trending-comments-list">
                     @forelse($trendingComments as $comment)
                         <div class="comment-item group">
                             <div class="comment-header">
-                                <div class="comment-avatar" style="background: #C4A840; color: var(--dark);">{{ substr($comment->author_name, 0, 1) }}</div>
-                                <span class="comment-author">{{ $comment->author_name }}</span>
-                                <span class="comment-time">{{ $comment->time_ago }}</span>
+                                <div class="comment-avatar" style="background: #C4A840; color: var(--dark);">{{ \App\Support\SiteText::translate(substr($comment->author_name, 0, 1)) }}</div>
+                                <span class="comment-author">{{ \App\Support\SiteText::translate($comment->author_name) }}</span>
+                                <span class="comment-time">{{ \App\Support\SiteText::translate($comment->time_ago) }}</span>
                             </div>
-                            <p class="comment-text">{{ $comment->text }}</p>
-                            <a href="{{ route('public.articles.show', ['slug' => $comment->article_slug]) }}" class="comment-source group-hover-underline">On: {{ $comment->article_title }}</a>
+                            <p class="comment-text">{{ \App\Support\SiteText::translate($comment->text) }}</p>
+                            <a href="{{ route('public.articles.show', ['slug' => $comment->article_slug]) }}" class="comment-source group-hover-underline">{{ __('On:') }} {{ \App\Support\SiteText::translate($comment->article_title) }}</a>
                         </div>
                         @if(!$loop->last)
                             <hr class="comment-divider">
                         @endif
                     @empty
-                        <p class="text-sm text-gray-400">No trending conversations yet.</p>
+                        <p class="text-sm text-gray-400">{{ __('No trending conversations yet.') }}</p>
                     @endforelse
                 </div>
             </aside>
@@ -76,35 +76,35 @@
         <section class="discovery-map-section">
             <div class="discovery-header">
                 <div>
-                    <h2 class="section-title">Discovery Map</h2>
-                    <p class="section-subtitle">Explore the intersection of modern technology and mental wellbeing.</p>
+                    <h2 class="section-title">{{ __('Discovery Map') }}</h2>
+                    <p class="section-subtitle">{{ __('Explore the intersection of modern technology and mental wellbeing.') }}</p>
                 </div>
                 
                 <button id="btn-toggle-map" onclick="toggleDiscoveryMap()" class="btn-interactive-view">
-                    <i class="bi bi-diagram-3 mr-1"></i> <span id="map-btn-text">Interactive View</span>
+                    <i class="bi bi-diagram-3 mr-1"></i> <span id="map-btn-text">{{ __('Interactive View') }}</span>
                 </button>
             </div>
 
             <div id="map-grid-view" class="discovery-grid">
                 <div onclick="showResources('ai')" class="discovery-node hover-lift">
                     <i class="bi bi-cpu text-accent text-3xl mb-2 block"></i>
-                    <h3>AI Guided</h3>
-                    <p>{{ $categories['ai']['count'] ?? 0 }} RESOURCES</p>
+                    <h3>{{ __('AI Guided') }}</h3>
+                    <p>{{ \App\Support\SiteText::translate($categories['ai']['count'] ?? 0) }} {{ __('RESOURCES') }}</p>
                 </div>
                 <div onclick="showResources('iot')" class="discovery-node hover-lift">
                     <i class="bi bi-smartwatch text-primary text-3xl mb-2 block"></i>
-                    <h3>IoT Wellness</h3>
-                    <p>{{ $categories['iot']['count'] ?? 0 }} RESOURCES</p>
+                    <h3>{{ __('IoT Wellness') }}</h3>
+                    <p>{{ \App\Support\SiteText::translate($categories['iot']['count'] ?? 0) }} {{ __('RESOURCES') }}</p>
                 </div>
                 <div onclick="showResources('ar')" class="discovery-node hover-lift">
                     <i class="bi bi-headset-vr text-dark text-3xl mb-2 block"></i>
-                    <h3>AR Therapy</h3>
-                    <p>{{ $categories['ar']['count'] ?? 0 }} RESOURCES</p>
+                    <h3>{{ __('AR Therapy') }}</h3>
+                    <p>{{ \App\Support\SiteText::translate($categories['ar']['count'] ?? 0) }} {{ __('RESOURCES') }}</p>
                 </div>
                 <div onclick="showResources('multilingual')" class="discovery-node hover-lift">
                     <i class="bi bi-globe2 text-accent text-3xl mb-2 block"></i>
-                    <h3>Multilingual</h3>
-                    <p>{{ $categories['multilingual']['count'] ?? 0 }} RESOURCES</p>
+                    <h3>{{ __('Multilingual') }}</h3>
+                    <p>{{ \App\Support\SiteText::translate($categories['multilingual']['count'] ?? 0) }} {{ __('RESOURCES') }}</p>
                 </div>
             </div>
 
@@ -118,25 +118,25 @@
                 </svg>
 
                 <div class="c-node center-hub">
-                    <img src="{{ asset('images/Werta_Logo.png') }}" alt="Werta Logo" style="height: 35px; margin-bottom: 4px;" onerror="this.style.display='none'">
-                    <span>Werta<br>Ecosystem</span>
+                    <img src="{{ asset('images/Werta_Logo.png') }}" alt="{{ __('Werta Logo') }}" style="height: 35px; margin-bottom: 4px;" onerror="this.style.display='none'">
+                    <span>Werta<br>{{ __('Ecosystem') }}</span>
                 </div>
 
                 <div onclick="showResources('ai')" class="c-node satellite ai-node">
                     <i class="bi bi-cpu"></i>
-                    <span>AI Guided</span>
+                    <span>{{ __('AI Guided') }}</span>
                 </div>
                 <div onclick="showResources('iot')" class="c-node satellite iot-node">
                     <i class="bi bi-smartwatch"></i>
-                    <span>IoT Wellness</span>
+                    <span>{{ __('IoT Wellness') }}</span>
                 </div>
                 <div onclick="showResources('ar')" class="c-node satellite ar-node">
                     <i class="bi bi-headset-vr"></i>
-                    <span>AR Therapy</span>
+                    <span>{{ __('AR Therapy') }}</span>
                 </div>
                 <div onclick="showResources('multilingual')" class="c-node satellite lang-node">
                     <i class="bi bi-globe2"></i>
-                    <span>Multilingual</span>
+                    <span>{{ __('Multilingual') }}</span>
                 </div>
             </div>
 
@@ -147,48 +147,48 @@
                 <div id="list-ai" class="mini-card-grid resource-list">
                     @forelse(($categoryArticles['ai'] ?? []) as $item)
                         <a href="{{ route('public.articles.show', ['slug' => $item->slug]) }}" class="mini-card">
-                            <span class="mini-tag">{{ strtoupper($item->type) }}</span>
+                            <span class="mini-tag">{{ \App\Support\SiteText::translate(strtoupper($item->type)) }}</span>
                             <h4>{{ $item->title }}</h4>
-                            <span class="mini-meta">{{ $item->read_time }} MIN READ</span>
+                            <span class="mini-meta">{{ \App\Support\SiteText::translate($item->read_time) }} {{ __('MIN READ') }}</span>
                         </a>
                     @empty
-                        <p class="text-sm text-gray-400">No resources yet.</p>
+                        <p class="text-sm text-gray-400">{{ __('No resources yet.') }}</p>
                     @endforelse
                 </div>
 
                 <div id="list-iot" class="mini-card-grid resource-list" style="display: none;">
                     @forelse(($categoryArticles['iot'] ?? []) as $item)
                         <a href="{{ route('public.articles.show', ['slug' => $item->slug]) }}" class="mini-card">
-                            <span class="mini-tag">{{ strtoupper($item->type) }}</span>
+                            <span class="mini-tag">{{ \App\Support\SiteText::translate(strtoupper($item->type)) }}</span>
                             <h4>{{ $item->title }}</h4>
-                            <span class="mini-meta">{{ $item->read_time }} MIN READ</span>
+                            <span class="mini-meta">{{ \App\Support\SiteText::translate($item->read_time) }} {{ __('MIN READ') }}</span>
                         </a>
                     @empty
-                        <p class="text-sm text-gray-400">No resources yet.</p>
+                        <p class="text-sm text-gray-400">{{ __('No resources yet.') }}</p>
                     @endforelse
                 </div>
 
                 <div id="list-ar" class="mini-card-grid resource-list" style="display: none;">
                     @forelse(($categoryArticles['ar'] ?? []) as $item)
                         <a href="{{ route('public.articles.show', ['slug' => $item->slug]) }}" class="mini-card">
-                            <span class="mini-tag">{{ strtoupper($item->type) }}</span>
+                            <span class="mini-tag">{{ \App\Support\SiteText::translate(strtoupper($item->type)) }}</span>
                             <h4>{{ $item->title }}</h4>
-                            <span class="mini-meta">{{ $item->read_time }} MIN READ</span>
+                            <span class="mini-meta">{{ \App\Support\SiteText::translate($item->read_time) }} {{ __('MIN READ') }}</span>
                         </a>
                     @empty
-                        <p class="text-sm text-gray-400">No resources yet.</p>
+                        <p class="text-sm text-gray-400">{{ __('No resources yet.') }}</p>
                     @endforelse
                 </div>
 
                 <div id="list-multilingual" class="mini-card-grid resource-list" style="display: none;">
                     @forelse(($categoryArticles['multilingual'] ?? []) as $item)
                         <a href="{{ route('public.articles.show', ['slug' => $item->slug]) }}" class="mini-card">
-                            <span class="mini-tag">{{ strtoupper($item->type) }}</span>
+                            <span class="mini-tag">{{ \App\Support\SiteText::translate(strtoupper($item->type)) }}</span>
                             <h4>{{ $item->title }}</h4>
-                            <span class="mini-meta">{{ $item->read_time }} MIN READ</span>
+                            <span class="mini-meta">{{ \App\Support\SiteText::translate($item->read_time) }} {{ __('MIN READ') }}</span>
                         </a>
                     @empty
-                        <p class="text-sm text-gray-400">No resources yet.</p>
+                        <p class="text-sm text-gray-400">{{ __('No resources yet.') }}</p>
                     @endforelse
                 </div>
             </div>
@@ -201,12 +201,12 @@
         <section class="more-articles-section">
             
             <div class="carousel-header">
-                <h2 class="section-title mb-0">More to Explore</h2>
+                <h2 class="section-title mb-0">{{ __('More to Explore') }}</h2>
                 <div class="carousel-controls">
-                    <button onclick="document.getElementById('article-slider').scrollBy({ left: -340, behavior: 'smooth' })" class="carousel-btn" aria-label="Scroll Left">
+                    <button onclick="document.getElementById('article-slider').scrollBy({ left: -340, behavior: 'smooth' })" class="carousel-btn" aria-label="{{ __('Scroll Left') }}">
                         <i class="bi bi-chevron-left"></i>
                     </button>
-                    <button onclick="document.getElementById('article-slider').scrollBy({ left: 340, behavior: 'smooth' })" class="carousel-btn" aria-label="Scroll Right">
+                    <button onclick="document.getElementById('article-slider').scrollBy({ left: 340, behavior: 'smooth' })" class="carousel-btn" aria-label="{{ __('Scroll Right') }}">
                         <i class="bi bi-chevron-right"></i>
                     </button>
                 </div>
@@ -219,13 +219,13 @@
                             <img src="https://ui-avatars.com/api/?name={{ urlencode($article->title) }}&size=400&background=C4A840&color=fff" alt="{{ $article->title }}">
                         </div>
                         <div class="card-content">
-                            <span class="card-category text-accent">{{ strtoupper($article->access_type) }}</span>
+                            <span class="card-category text-accent">{{ \App\Support\SiteText::translate(strtoupper($article->access_type)) }}</span>
                             <h3 class="card-title group-hover-gold">{{ $article->title }}</h3>
-                            <span class="card-read-time">By {{ $article->author_name }}</span>
+                            <span class="card-read-time">{{ __('By') }} {{ \App\Support\SiteText::translate($article->author_name) }}</span>
                         </div>
                     </div>
                 @empty
-                    <p class="text-sm text-gray-400 px-2">No articles published yet.</p>
+                    <p class="text-sm text-gray-400 px-2">{{ __('No articles published yet.') }}</p>
                 @endforelse
             </div>
         </section>
@@ -248,12 +248,12 @@
             if (gridView.style.display !== 'none') {
                 gridView.style.display = 'none';
                 interactiveView.style.display = 'block';
-                btnText.innerText = 'Grid View';
+                btnText.innerText = WertaI18n.t('Grid View');
                 btnIcon.className = 'bi bi-grid mr-1';
             } else {
                 gridView.style.display = 'grid';
                 interactiveView.style.display = 'none';
-                btnText.innerText = 'Interactive View';
+                btnText.innerText = WertaI18n.t('Interactive View');
                 btnIcon.className = 'bi bi-diagram-3 mr-1';
             }
             // Auto-close resources if map type changes

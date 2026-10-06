@@ -9,6 +9,7 @@ return [
     ParentDashboard\Providers\ParentDashboardServiceProvider::class,
     ClientDashboard\Providers\ClientDashboardServiceProvider::class,
     Articles\Providers\ArticlesServiceProvider::class,
+    GuidanceCenter\Providers\GuidanceCenterServiceProvider::class,
     CounselorDashboard\Providers\CounselorDashboardServiceProvider::class,
     Submissions\Providers\SubmissionsServiceProvider::class,
 ];

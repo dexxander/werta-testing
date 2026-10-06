@@ -35,8 +35,8 @@
 <div>
     <div class="mb-6 sm:mb-8 flex justify-between items-end">
         <div>
-            <h1 class="text-2xl sm:text-3xl font-bold text-dark">Client Overview</h1>
-            <p class="text-sm text-gray-500 mt-1">Welcome back, {{ session('client_profile.username', 'Client User') }}. Here's a summary of your mental wellness journey.</p>
+            <h1 class="text-2xl sm:text-3xl font-bold text-dark">{{ __('Client Overview') }}</h1>
+            <p class="text-sm text-gray-500 mt-1">{{ __('Welcome back,') }} {{ session('client_profile.username', 'Client User') }}{{ __('. Here\'s a summary of your mental wellness journey.') }}</p>
         </div>
     </div>
 
@@ -47,8 +47,8 @@
                 <i class="bi bi-clipboard-check text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Assessments Done</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $dashboard_stats['assessments_done'] ?? 0 }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Assessments Done') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::translate($dashboard_stats['assessments_done'] ?? 0) }}</h3>
             </div>
         </div>
         
@@ -57,8 +57,8 @@
                 <i class="bi bi-book text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Modules Finished</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $dashboard_stats['modules_finished'] ?? 0 }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Modules Finished') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::translate($dashboard_stats['modules_finished'] ?? 0) }}</h3>
             </div>
         </div>
 
@@ -67,8 +67,8 @@
                 <i class="bi bi-calendar-check text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Next Appointment</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $dashboard_stats['next_appointment'] ?? 0 }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Next Appointment') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::date($dashboard_stats['next_appointment'] ?? 0) }}</h3>
             </div>
         </div>
 
@@ -77,8 +77,8 @@
                 <i class="bi bi-bell text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Notifications</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $dashboard_stats['notifications'] ?? 0 }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Notifications') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::translate($dashboard_stats['notifications'] ?? 0) }}</h3>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
     <!-- Charts Section -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
-            <h2 class="text-lg font-bold text-dark mb-6">My Assessment Score Trend</h2>
+            <h2 class="text-lg font-bold text-dark mb-6">{{ __('My Assessment Score Trend') }}</h2>
             <div class="h-72 w-full flex items-center justify-center">
                 @if(!empty($assessment_scores))
                     <div class="w-full flex items-end justify-center gap-2 h-48">
@@ -95,22 +95,22 @@
                         @endforeach
                     </div>
                 @else
-                    <div class="text-center text-gray-400"><i class="bi bi-bar-chart text-5xl"></i><p class="text-sm mt-2">No assessment data available yet.</p></div>
+                    <div class="text-center text-gray-400"><i class="bi bi-bar-chart text-5xl"></i><p class="text-sm mt-2">{{ __('No assessment data available yet.') }}</p></div>
                 @endif
             </div>
         </div>
 
         <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
-            <h2 class="text-lg font-bold text-dark mb-6">My Platform Activity (Hours / Week)</h2>
+            <h2 class="text-lg font-bold text-dark mb-6">{{ __('My Platform Activity (Hours / Week)') }}</h2>
             <div class="h-72 w-full flex items-center justify-center">
                 @if(!empty($weekly_activity))
                     <div class="w-full flex items-end justify-center gap-2 h-48">
                         @foreach($weekly_activity as $hours)
-                            <div class="w-8 bg-primary rounded-t" style="height:{{ min(100, max(0, $hours * 15)) }}%;" title="{{ $hours }} hours"></div>
+                            <div class="w-8 bg-primary rounded-t" style="height:{{ min(100, max(0, $hours * 15)) }}%;" title="{{ __(':count hours', ['count' => $hours]) }}"></div>
                         @endforeach
                     </div>
                 @else
-                    <div class="text-center text-gray-400"><i class="bi bi-graph-up text-5xl"></i><p class="text-sm mt-2">No activity data available yet.</p></div>
+                    <div class="text-center text-gray-400"><i class="bi bi-graph-up text-5xl"></i><p class="text-sm mt-2">{{ __('No activity data available yet.') }}</p></div>
                 @endif
             </div>
         </div>
@@ -118,23 +118,23 @@
 
     <!-- Recent Activities Table -->
     <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm">
-        <h2 class="text-lg font-bold text-dark mb-4 sm:mb-6">My Recent Activities</h2>
+        <h2 class="text-lg font-bold text-dark mb-4 sm:mb-6">{{ __('My Recent Activities') }}</h2>
         
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-cream text-primary font-bold border-b border-gold/20 uppercase text-xs tracking-wider">
                     <tr>
-                        <th class="px-4 py-3 rounded-tl-lg">Date</th>
-                        <th class="px-4 py-3">Activity Type</th>
-                        <th class="px-4 py-3">Status</th>
-                        <th class="px-4 py-3 text-right rounded-tr-lg">Action</th>
+                        <th class="px-4 py-3 rounded-tl-lg">{{ __('Date') }}</th>
+                        <th class="px-4 py-3">{{ __('Activity Type') }}</th>
+                        <th class="px-4 py-3">{{ __('Status') }}</th>
+                        <th class="px-4 py-3 text-right rounded-tr-lg">{{ __('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     @forelse($recent_activities as $activity)
-                        <tr><td class="px-4 py-3">{{ $activity['date'] ?? '' }}</td><td class="px-4 py-3">{{ $activity['type'] ?? '' }}</td><td class="px-4 py-3">{{ $activity['status'] ?? '' }}</td><td class="px-4 py-3 text-right">View</td></tr>
+                        <tr><td class="px-4 py-3">{{ \App\Support\SiteText::date($activity['date'] ?? '') }}</td><td class="px-4 py-3">{{ \App\Support\SiteText::translate($activity['type'] ?? '') }}</td><td class="px-4 py-3">{{ \App\Support\SiteText::translate($activity['status'] ?? '') }}</td><td class="px-4 py-3 text-right">{{ __('View') }}</td></tr>
                     @empty
-                        <tr><td colspan="4" class="px-4 py-12 text-center text-gray-400"><i class="bi bi-inbox text-4xl block mb-2"></i>No activities recorded yet. Start exploring assessments or learning modules.</td></tr>
+                        <tr><td colspan="4" class="px-4 py-12 text-center text-gray-400"><i class="bi bi-inbox text-4xl block mb-2"></i>{{ __('No activities recorded yet. Start exploring assessments or learning modules.') }}</td></tr>
                     @endforelse
                 </tbody>
             </table>

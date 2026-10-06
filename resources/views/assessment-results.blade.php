@@ -24,9 +24,9 @@
         {{-- ── Heading ── --}}
         <div class="results-heading-wrap">
             <h1 class="results-heading">
-                Your Wellbeing Report <span class="heading-highlight">Is Ready</span>
+                {{ __('Your Wellbeing Report') }} <span class="heading-highlight">{{ __('Is Ready') }}</span>
             </h1>
-            <p class="results-sub">Here's what we found — and how we can help.</p>
+            <p class="results-sub">{{ __('Here\'s what we found — and how we can help.') }}</p>
         </div>
 
         {{-- ── Core Results Card ── --}}
@@ -34,15 +34,13 @@
 
             {{-- Left: personality summary (hero label + secondary code) --}}
             <div class="teaser-left">
-                <p class="teaser-label">Your Profile Archetype</p>
-                <h2 class="personality-hero" id="personalityHero">The Structured Connector</h2>
+                <p class="teaser-label">{{ __('Your Profile Archetype') }}</p>
+                <h2 class="personality-hero" id="personalityHero">{{ __('The Structured Connector') }}</h2>
                 <div class="personality-code-wrap">
-                    <span class="personality-code" id="personalityType">Profile Pattern: ET–JS</span>
+                    <span class="personality-code" id="personalityType">{{ __('Profile Pattern: ET–JS') }}</span>
                 </div>
                 <div class="personality-desc" id="personalityDesc">
-                    You are a thoughtful and empathetic individual with a strong sense of
-                    personal values. You draw energy from meaningful connections and tend
-                    to approach challenges with creativity and care.
+                    {{ __('You are a thoughtful and empathetic individual with a strong sense of personal values. You draw energy from meaningful connections and tend to approach challenges with creativity and care.') }}
                 </div>
             </div>
 
@@ -51,51 +49,51 @@
                 <div class="score-bars" id="scoreBars">
                     <div class="score-bar-item" data-key="social">
                         <div class="bar-header">
-                            <span class="bar-label">Social &amp; Energy</span>
+                            <span class="bar-label">{{ __('Social & Energy') }}</span>
                             <span class="bar-pct">–</span>
                         </div>
                         <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-                        <p class="dimension-context">{{ $dimensions['social']['context'] ?? 'Reflects how you navigate social environments and recharge your mental energy.' }}</p>
+                        <p class="dimension-context">{{ \App\Support\SiteText::translate($dimensions['social']['context'] ?? 'Reflects how you navigate social environments and recharge your mental energy.') }}</p>
                     </div>
                     <div class="score-bar-item" data-key="thinking">
                         <div class="bar-header">
-                            <span class="bar-label">Thinking &amp; Decision Making</span>
+                            <span class="bar-label">{{ __('Thinking & Decision Making') }}</span>
                             <span class="bar-pct">–</span>
                         </div>
                         <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-                        <p class="dimension-context">{{ $dimensions['thinking']['context'] ?? 'Shows your balance between objective analytical reasoning and values-based intuition.' }}</p>
+                        <p class="dimension-context">{{ \App\Support\SiteText::translate($dimensions['thinking']['context'] ?? 'Shows your balance between objective analytical reasoning and values-based intuition.') }}</p>
                     </div>
                     <div class="score-bar-item" data-key="structure">
                         <div class="bar-header">
-                            <span class="bar-label">Structure &amp; Lifestyle</span>
+                            <span class="bar-label">{{ __('Structure & Lifestyle') }}</span>
                             <span class="bar-pct">–</span>
                         </div>
                         <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-                        <p class="dimension-context">{{ $dimensions['structure']['context'] ?? 'Indicates your preferred balance between organized planning and adaptable flexibility.' }}</p>
+                        <p class="dimension-context">{{ \App\Support\SiteText::translate($dimensions['structure']['context'] ?? 'Indicates your preferred balance between organized planning and adaptable flexibility.') }}</p>
                     </div>
                     <div class="score-bar-item" data-key="wellbeing">
                         <div class="bar-header">
-                            <span class="bar-label">Emotional Wellbeing</span>
+                            <span class="bar-label">{{ __('Emotional Wellbeing') }}</span>
                             <span class="bar-pct">–</span>
                         </div>
                         <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-                        <p class="dimension-context">{{ $dimensions['wellbeing']['context'] ?? 'Reflects your overall sense of purpose, daily emotional balance, and outlook.' }}</p>
+                        <p class="dimension-context">{{ \App\Support\SiteText::translate($dimensions['wellbeing']['context'] ?? 'Reflects your overall sense of purpose, daily emotional balance, and outlook.') }}</p>
                     </div>
                     <div class="score-bar-item" data-key="stress">
                         <div class="bar-header">
-                            <span class="bar-label">Stress &amp; Coping</span>
+                            <span class="bar-label">{{ __('Stress & Coping') }}</span>
                             <span class="bar-pct">–</span>
                         </div>
                         <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-                        <p class="dimension-context">{{ $dimensions['stress']['context'] ?? 'Highlights your resilience strategies and how you manage challenging pressures.' }}</p>
+                        <p class="dimension-context">{{ \App\Support\SiteText::translate($dimensions['stress']['context'] ?? 'Highlights your resilience strategies and how you manage challenging pressures.') }}</p>
                     </div>
                     <div class="score-bar-item" data-key="growth">
                         <div class="bar-header">
-                            <span class="bar-label">Self-Awareness &amp; Growth</span>
+                            <span class="bar-label">{{ __('Self-Awareness & Growth') }}</span>
                             <span class="bar-pct">–</span>
                         </div>
                         <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
-                        <p class="dimension-context">{{ $dimensions['growth']['context'] ?? 'Demonstrates your commitment to self-reflection and personal development.' }}</p>
+                        <p class="dimension-context">{{ \App\Support\SiteText::translate($dimensions['growth']['context'] ?? 'Demonstrates your commitment to self-reflection and personal development.') }}</p>
                     </div>
                 </div>
             </div>
@@ -104,44 +102,36 @@
 
         {{-- ── Disclaimer Line (Always visible, non-gated) ── --}}
         <p class="results-disclaimer">
-            <i class="bi bi-info-circle"></i> This is a self-reflection tool, not a clinical diagnosis. Full results are best discussed with a counselor.
+            <i class="bi bi-info-circle"></i> {{ __('This is a self-reflection tool, not a clinical diagnosis. Full results are best discussed with a counselor.') }}
         </p>
 
         {{-- ── Emotional Landscape Summary (Partially Gated) ── --}}
         <div class="summary-card">
             <div class="summary-header">
                 <i class="bi bi-file-earmark-person"></i>
-                <h3>Your Emotional Landscape Summary</h3>
+                <h3>{{ __('Your Emotional Landscape Summary') }}</h3>
             </div>
             <div class="summary-body" id="summaryBody">
                 {{-- Always-visible opening: general, safe framing --}}
                 <p class="summary-lead">
-                    Based on your responses, you demonstrate a balanced emotional profile with notable
-                    strengths in self-awareness and interpersonal connection. Your wellbeing scores
-                    suggest a grounded sense of purpose, reflecting steady personal values and a thoughtful
-                    approach to your relationships and everyday commitments.
+                    {{ __('Based on your responses, you demonstrate a balanced emotional profile with notable strengths in self-awareness and interpersonal connection. Your wellbeing scores suggest a grounded sense of purpose, reflecting steady personal values and a thoughtful approach to your relationships and everyday commitments.') }}
                 </p>
 
                 {{-- DEV PREVIEW: gated in production, see $devPreviewUnlockAll above --}}
                 @if($devPreviewUnlockAll || ($userHasUnlockedReport ?? false))
                     {{-- Unlocked detailed behavioral analysis --}}
                     <p class="summary-detail">
-                        In high-pressure situations, you lean toward introspective problem-solving before seeking
-                        external validation. While this provides clarity and composure, proactive boundary setting
-                        and structured stress-recovery routines will further protect your emotional equilibrium.
-                        Your growth mindset positions you exceptionally well for productive counseling or self-guided
-                        resilience practices.
+                        {{ __('In high-pressure situations, you lean toward introspective problem-solving before seeking external validation. While this provides clarity and composure, proactive boundary setting and structured stress-recovery routines will further protect your emotional equilibrium. Your growth mindset positions you exceptionally well for productive counseling or self-guided resilience practices.') }}
                     </p>
                 @else
                     {{-- Gated teaser shown in production when report is locked --}}
                     <div class="summary-gated-teaser">
                         <p class="summary-teaser-faded">
-                            In high-pressure situations, your responses reflect distinct behavioral tendencies that
-                            benefit from structured coping mechanisms and targeted communication practices...
+                            {{ __('In high-pressure situations, your responses reflect distinct behavioral tendencies that benefit from structured coping mechanisms and targeted communication practices...') }}
                         </p>
                         <div class="summary-blur-cta">
                             <i class="bi bi-lock-fill"></i>
-                            <span>Unlock your full behavioral analysis — <a href="#nextSteps">Get Full Report</a></span>
+                            <span>{{ __('Unlock your full behavioral analysis —') }} <a href="#nextSteps">{{ __('Get Full Report') }}</a></span>
                         </div>
                     </div>
                 @endif
@@ -151,9 +141,9 @@
         {{-- ── Next Steps CTA Band ── --}}
         <div class="next-steps-card" id="nextSteps">
             <div class="next-steps-header">
-                <h2 class="next-steps-title">Ready for the Next Step?</h2>
+                <h2 class="next-steps-title">{{ __('Ready for the Next Step?') }}</h2>
                 <p class="next-steps-sub">
-                    Your results offer valuable insights into your wellbeing. Connect with an experienced professional to explore your results in depth, or access your complete personalized breakdown.
+                    {{ __('Your results offer valuable insights into your wellbeing. Connect with an experienced professional to explore your results in depth, or access your complete personalized breakdown.') }}
                 </p>
             </div>
 
@@ -161,13 +151,13 @@
                 {{-- Primary CTA: Talk to a Counselor (Filled gold) --}}
                 {{-- TODO: Deep-link to pre-filtered counselors based on lowest-scoring dimension once matching logic exists --}}
                 <a href="{{ url('/counselors') }}" class="btn-cta-primary">
-                    <i class="bi bi-person-check-fill"></i> Talk to a Counselor
+                    <i class="bi bi-person-check-fill"></i> {{ __('Talk to a Counselor') }}
                 </a>
 
                 {{-- Secondary CTA: Get Your Full Written Report (Outlined) --}}
                 {{-- TODO: Connect to real report checkout / download route when built --}}
                 <a href="#writtenReportSection" class="btn-cta-secondary" id="btnGetReport">
-                    <i class="bi bi-file-earmark-text"></i> Get Your Full Written Report
+                    <i class="bi bi-file-earmark-text"></i> {{ __('Get Your Full Written Report') }}
                 </a>
             </div>
 
@@ -178,31 +168,31 @@
                     <div class="written-report-card">
                         <div class="written-report-top">
                             <div class="written-report-badge">
-                                <i class="bi bi-check2-circle"></i> Unlocked Preview
+                                <i class="bi bi-check2-circle"></i> {{ __('Unlocked Preview') }}
                             </div>
                             {{-- Note: Full written report content / generation route to be built --}}
-                            <span class="written-report-tag">Full Written Report &amp; Action Plan</span>
+                            <span class="written-report-tag">{{ __('Full Written Report & Action Plan') }}</span>
                         </div>
-                        <h3 class="written-report-title">Comprehensive Dimension Breakdown</h3>
+                        <h3 class="written-report-title">{{ __('Comprehensive Dimension Breakdown') }}</h3>
                         <p class="written-report-intro">
-                            Here is an initial preview of your personalized growth recommendations and tailored micro-habits based on your complete assessment profile.
+                            {{ __('Here is an initial preview of your personalized growth recommendations and tailored micro-habits based on your complete assessment profile.') }}
                         </p>
 
                         <div class="written-report-grid">
                             <div class="report-box">
                                 <div class="report-box-icon"><i class="bi bi-lightning-charge-fill"></i></div>
-                                <h4>Identified Strengths</h4>
-                                <p>Strong self-reflection habits and organized task orientation. You respond thoughtfully rather than impulsively, offering stability to those around you.</p>
+                                <h4>{{ __('Identified Strengths') }}</h4>
+                                <p>{{ __('Strong self-reflection habits and organized task orientation. You respond thoughtfully rather than impulsively, offering stability to those around you.') }}</p>
                             </div>
                             <div class="report-box">
                                 <div class="report-box-icon"><i class="bi bi-shield-heart-fill"></i></div>
-                                <h4>Growth Focus Areas</h4>
-                                <p>Energy replenishment and stress resilience. Introducing intentional decompression breaks after intense social or cognitive tasks will prevent burnout.</p>
+                                <h4>{{ __('Growth Focus Areas') }}</h4>
+                                <p>{{ __('Energy replenishment and stress resilience. Introducing intentional decompression breaks after intense social or cognitive tasks will prevent burnout.') }}</p>
                             </div>
                             <div class="report-box">
                                 <div class="report-box-icon"><i class="bi bi-compass-fill"></i></div>
-                                <h4>Counselor Discussion Guide</h4>
-                                <p>Consider exploring tailored boundary-setting strategies and stress reframing tools with your counselor to optimize your daily wellbeing.</p>
+                                <h4>{{ __('Counselor Discussion Guide') }}</h4>
+                                <p>{{ __('Consider exploring tailored boundary-setting strategies and stress reframing tools with your counselor to optimize your daily wellbeing.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -212,7 +202,7 @@
                 <div class="written-report-teaser">
                     <div class="locked-icon-wrap"><i class="bi bi-lock-fill"></i></div>
                     <p class="locked-teaser-text">
-                        <strong>Full Written Report &amp; Action Plan</strong> is locked. Unlock to view detailed dimension deep-dives, personalized growth tools, and counselor discussion prompts.
+                        <strong>{{ __('Full Written Report & Action Plan') }}</strong> {{ __('is locked. Unlock to view detailed dimension deep-dives, personalized growth tools, and counselor discussion prompts.') }}
                     </p>
                 </div>
             @endif
@@ -226,8 +216,8 @@
             <div class="safety-net-body">
                 {{-- TODO: Connect to dedicated crisis-resources page or external emergency hotline before going live --}}
                 <p class="safety-net-text">
-                    If you're going through something difficult right now, support is available.
-                    <a href="{{ url('/counselors') }}" class="safety-net-link">Talk to a counselor today</a> to connect with someone who can help.
+                    {{ __('If you\'re going through something difficult right now, support is available.') }}
+                    <a href="{{ url('/counselors') }}" class="safety-net-link">{{ __('Talk to a counselor today') }}</a> {{ __('to connect with someone who can help.') }}
                 </p>
             </div>
         </div>
@@ -765,11 +755,11 @@
 
             const heroEl = document.getElementById('personalityHero');
             if (heroEl) {
-                heroEl.textContent = archetypes[code] || 'The Mindful Explorer';
+                heroEl.textContent = WertaI18n.t(archetypes[code] || 'The Mindful Explorer');
             }
             const typeEl = document.getElementById('personalityType');
             if (typeEl) {
-                typeEl.textContent = `Profile Pattern: ${code}`;
+                typeEl.textContent = WertaI18n.t('Profile Pattern: :code', { code });
             }
         }
     </script>

@@ -4,6 +4,12 @@ use AdminDashboard\Models\Counselor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/language/{locale}', function (Request $request, string $locale) {
+    $request->session()->put('locale', $locale);
+
+    return redirect()->back();
+})->whereIn('locale', ['en', 'ms', 'zh'])->name('language.switch');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -14,22 +20,22 @@ Route::get('/about', function () {
 
 Route::get('/counselors', function (Request $request) {
     $specialty = $request->query('specialty');
-    $language  = $request->query('language');
-    $mode      = $request->query('mode');
-    $state     = $request->query('state');
+    $language = $request->query('language');
+    $mode = $request->query('mode');
+    $state = $request->query('state');
 
     $query = Counselor::where('status', 'approved');
 
-    if (!empty($specialty)) {
+    if (! empty($specialty)) {
         $query->whereJsonContains('specialties', $specialty);
     }
-    if (!empty($language)) {
+    if (! empty($language)) {
         $query->whereJsonContains('languages', $language);
     }
-    if (!empty($mode)) {
+    if (! empty($mode)) {
         $query->whereJsonContains('session_modes', $mode);
     }
-    if (!empty($state)) {
+    if (! empty($state)) {
         $query->where('state', $state);
     }
 

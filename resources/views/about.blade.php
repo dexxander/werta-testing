@@ -38,9 +38,9 @@
     <!-- SECTION 1: HERO / PAGE HEADER -->
     <section class="about-sec bg-cream about-header">
         <div class="container">
-            <p class="pill-label">About Werta</p>
-            <h1 class="sec-heading">Advancing Mental Wellbeing Across Malaysia</h1>
-            <p class="sec-text">A Malaysian digital mental health platform connecting individuals, families, and licensed professionals through accessible, culturally sensitive care.</p>
+            <p class="pill-label">{{ __('About Werta') }}</p>
+            <h1 class="sec-heading">{{ __('Advancing Mental Wellbeing Across Malaysia') }}</h1>
+            <p class="sec-text">{{ __('A Malaysian digital mental health platform connecting individuals, families, and licensed professionals through accessible, culturally sensitive care.') }}</p>
         </div>
     </section>
     <hr class="section-divider">
@@ -50,22 +50,22 @@
         <div class="container">
             <div class="row align-items-center g-4 g-lg-5">
                 <div class="col-lg-6">
-                    <p class="pill-label">Our Story</p>
-                    <h2 class="sec-heading">Bridging the Mental Health Care Gap</h2>
+                    <p class="pill-label">{{ __('Our Story') }}</p>
+                    <h2 class="sec-heading">{{ __('Bridging the Mental Health Care Gap') }}</h2>
                     <p class="sec-text">
-                        Across Malaysia, many individuals face emotional and psychological challenges in silence. While dedicated and qualified counselors practice throughout the country, persistent barriers—such as social stigma, geographical constraints, and language differences—frequently prevent people from accessing timely support.
+                        {{ __('Across Malaysia, many individuals face emotional and psychological challenges in silence. While dedicated and qualified counselors practice throughout the country, persistent barriers—such as social stigma, geographical constraints, and language differences—frequently prevent people from accessing timely support.') }}
                     </p>
                     <p class="sec-text mt-3">
-                        Werta was created to bridge this divide. We believe that reaching out for guidance should be safe, straightforward, and culturally resonant. By combining guided self-reflection, psychoeducational learning, and direct connections to licensed mental health professionals, Werta offers a welcoming entry point into compassionate care.
+                        {{ __('Werta was created to bridge this divide. We believe that reaching out for guidance should be safe, straightforward, and culturally resonant. By combining guided self-reflection, psychoeducational learning, and direct connections to licensed mental health professionals, Werta offers a welcoming entry point into compassionate care.') }}
                     </p>
                     <p class="sec-text mt-3">
-                        Currently developed as a working prototype, Werta demonstrates how digital innovation can empower practitioners and make emotional wellbeing support accessible to everyone in English, Bahasa Malaysia, and Mandarin.
+                        {{ __('Currently developed as a working prototype, Werta demonstrates how digital innovation can empower practitioners and make emotional wellbeing support accessible to everyone in English, Bahasa Malaysia, and Mandarin.') }}
                     </p>
                 </div>
                 <div class="col-lg-6">
                     <div class="overlap-images">
-                        <div class="overlap-img-back image-placeholder-box">Image Placeholder</div>
-                        <div class="overlap-img-front image-placeholder-box">Image Placeholder</div>
+                        <div class="overlap-img-back image-placeholder-box">{{ __('Image Placeholder') }}</div>
+                        <div class="overlap-img-front image-placeholder-box">{{ __('Image Placeholder') }}</div>
                     </div>
                 </div>
             </div>
@@ -78,15 +78,15 @@
         <div class="container">
             <div class="row g-4 g-lg-5">
                 <div class="col-lg-6">
-                    <p class="pill-label">Our Vision</p>
+                    <p class="pill-label">{{ __('Our Vision') }}</p>
                     <p class="sec-text">
-                        To position Malaysia as a leading regional hub for accessible, inclusive, and high-quality mental health support — where every individual, regardless of background, has the tools and guidance to thrive emotionally and psychologically.
+                        {{ __('To position Malaysia as a leading regional hub for accessible, inclusive, and high-quality mental health support — where every individual, regardless of background, has the tools and guidance to thrive emotionally and psychologically.') }}
                     </p>
                 </div>
                 <div class="col-lg-6">
-                    <p class="pill-label">Our Mission</p>
+                    <p class="pill-label">{{ __('Our Mission') }}</p>
                     <p class="sec-text">
-                        To drive inclusive mental health support by empowering licensed counselors, accelerating community awareness, and advancing culturally sensitive psychological care — delivered through ethical, compassionate, and impactful solutions in English, Bahasa Malaysia, and Mandarin.
+                        {{ __('To drive inclusive mental health support by empowering licensed counselors, accelerating community awareness, and advancing culturally sensitive psychological care — delivered through ethical, compassionate, and impactful solutions in English, Bahasa Malaysia, and Mandarin.') }}
                     </p>
                 </div>
             </div>
@@ -98,29 +98,29 @@
     <section class="about-sec bg-light-cream" id="who-we-serve">
         <div class="container">
             <div class="text-center mb-5">
-                <p class="pill-label">Who We Serve</p>
-                <h2 class="sec-heading" style="max-width:600px; margin:0 auto;">Support Designed for Every Perspective</h2>
+                <p class="pill-label">{{ __('Who We Serve') }}</p>
+                <h2 class="sec-heading" style="max-width:600px; margin:0 auto;">{{ __('Support Designed for Every Perspective') }}</h2>
             </div>
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="trust-card">
                         <i class="bi bi-person-heart"></i>
-                        <h5>Clients</h5>
-                        <p>Individuals navigating personal challenges, life transitions, or emotional distress who need confidential self-reflection tools, structured learning, and direct access to licensed counselors.</p>
+                        <h5>{{ __('Clients') }}</h5>
+                        <p>{{ __('Individuals navigating personal challenges, life transitions, or emotional distress who need confidential self-reflection tools, structured learning, and direct access to licensed counselors.') }}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="trust-card">
                         <i class="bi bi-person-badge"></i>
-                        <h5>Counselors</h5>
-                        <p>Registered mental health professionals seeking a unified digital practice platform to manage bookings, hold secure virtual or in-person sessions, and connect with clients across Malaysia.</p>
+                        <h5>{{ __('Counselors') }}</h5>
+                        <p>{{ __('Registered mental health professionals seeking a unified digital practice platform to manage bookings, hold secure virtual or in-person sessions, and connect with clients across Malaysia.') }}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="trust-card">
                         <i class="bi bi-people"></i>
-                        <h5>Parents &amp; Guardians</h5>
-                        <p>Families and caregivers who want transparent, ethical visibility into a dependent's wellbeing journey while respecting appropriate boundaries and professional guidance.</p>
+                        <h5>{{ __('Parents & Guardians') }}</h5>
+                        <p>{{ __('Families and caregivers who want transparent, ethical visibility into a dependent\'s wellbeing journey while respecting appropriate boundaries and professional guidance.') }}</p>
                     </div>
                 </div>
             </div>
@@ -132,29 +132,29 @@
     <section class="about-sec bg-cream" id="how-it-works">
         <div class="container">
             <div class="text-center mb-2">
-                <p class="pill-label">How Werta Works</p>
-                <h2 class="sec-heading" style="max-width:600px; margin:0 auto;">A Thoughtful Path to Care</h2>
+                <p class="pill-label">{{ __('How Werta Works') }}</p>
+                <h2 class="sec-heading" style="max-width:600px; margin:0 auto;">{{ __('A Thoughtful Path to Care') }}</h2>
             </div>
             <div class="step-row">
                 <div class="step-item">
                     <div class="step-number">1</div>
-                    <h5>Take an Assessment</h5>
-                    <p>Complete a guided self-reflection questionnaire to understand your current wellbeing and stress patterns.</p>
+                    <h5>{{ __('Take an Assessment') }}</h5>
+                    <p>{{ __('Complete a guided self-reflection questionnaire to understand your current wellbeing and stress patterns.') }}</p>
                 </div>
                 <div class="step-item">
                     <div class="step-number">2</div>
-                    <h5>Review Your Profile</h5>
-                    <p>Receive an archetype breakdown with personalized growth focus areas and actionable wellbeing insights.</p>
+                    <h5>{{ __('Review Your Profile') }}</h5>
+                    <p>{{ __('Receive an archetype breakdown with personalized growth focus areas and actionable wellbeing insights.') }}</p>
                 </div>
                 <div class="step-item">
                     <div class="step-number">3</div>
-                    <h5>Connect with a Counselor</h5>
-                    <p>Explore counselor profiles to match with a qualified practitioner aligned with your needs and language preferences.</p>
+                    <h5>{{ __('Connect with a Counselor') }}</h5>
+                    <p>{{ __('Explore counselor profiles to match with a qualified practitioner aligned with your needs and language preferences.') }}</p>
                 </div>
                 <div class="step-item">
                     <div class="step-number">4</div>
-                    <h5>Continue with Care</h5>
-                    <p>Attend tailored counseling sessions, track daily moods, and access interactive psychoeducational modules.</p>
+                    <h5>{{ __('Continue with Care') }}</h5>
+                    <p>{{ __('Attend tailored counseling sessions, track daily moods, and access interactive psychoeducational modules.') }}</p>
                 </div>
             </div>
         </div>
@@ -165,36 +165,36 @@
     <section class="about-sec about-sec-compact bg-light-cream" id="values">
         <div class="container">
             <div class="text-center mb-5">
-                <p class="pill-label">Our Values</p>
-                <h2 class="sec-heading" style="max-width:600px; margin:0 auto;">Principles That Anchor Our Work</h2>
+                <p class="pill-label">{{ __('Our Values') }}</p>
+                <h2 class="sec-heading" style="max-width:600px; margin:0 auto;">{{ __('Principles That Anchor Our Work') }}</h2>
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <div class="trust-card">
                         <i class="bi bi-shield-lock-fill"></i>
-                        <h5>Privacy First</h5>
-                        <p>We treat personal and emotional disclosures with absolute discretion, ensuring user trust through ethical handling of sensitive data.</p>
+                        <h5>{{ __('Privacy First') }}</h5>
+                        <p>{{ __('We treat personal and emotional disclosures with absolute discretion, ensuring user trust through ethical handling of sensitive data.') }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="trust-card">
                         <i class="bi bi-heart-fill"></i>
-                        <h5>Compassion</h5>
-                        <p>Every feature and interaction is designed with empathy, offering a safe, non-judgmental space for healing and personal growth.</p>
+                        <h5>{{ __('Compassion') }}</h5>
+                        <p>{{ __('Every feature and interaction is designed with empathy, offering a safe, non-judgmental space for healing and personal growth.') }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="trust-card">
                         <i class="bi bi-globe2"></i>
-                        <h5>Inclusivity</h5>
-                        <p>Care should reflect Malaysia's rich diversity, providing culturally attuned support in English, Bahasa Malaysia, and Mandarin.</p>
+                        <h5>{{ __('Inclusivity') }}</h5>
+                        <p>{{ __('Care should reflect Malaysia\'s rich diversity, providing culturally attuned support in English, Bahasa Malaysia, and Mandarin.') }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="trust-card">
                         <i class="bi bi-mortarboard-fill"></i>
-                        <h5>Education</h5>
-                        <p>We provide accessible psychoeducational resources that empower individuals and families with lifelong mental health literacy.</p>
+                        <h5>{{ __('Education') }}</h5>
+                        <p>{{ __('We provide accessible psychoeducational resources that empower individuals and families with lifelong mental health literacy.') }}</p>
                     </div>
                 </div>
             </div>
@@ -205,49 +205,49 @@
     <!-- SECTION 7: THE TEAM -->
     <section class="about-sec about-sec-expanded bg-cream" id="team">
         <div class="container text-center">
-            <span class="placeholder-note">Filler: The Team</span>
-            <p class="pill-label">The Team Behind Werta</p>
-            <h2 class="sec-heading" style="max-width:600px; margin:0 auto 0.8rem;">Dedicated to Mental Health Innovation</h2>
-            <p class="sec-text text-center mx-auto mb-5" style="max-width:680px;">Developed by a team of five under academic supervision, Werta is a working prototype exploring how digital tools can enhance mental wellbeing and care delivery in Malaysia.</p>
+            <span class="placeholder-note">{{ __('Filler: The Team') }}</span>
+            <p class="pill-label">{{ __('The Team Behind Werta') }}</p>
+            <h2 class="sec-heading" style="max-width:600px; margin:0 auto 0.8rem;">{{ __('Dedicated to Mental Health Innovation') }}</h2>
+            <p class="sec-text text-center mx-auto mb-5" style="max-width:680px;">{{ __('Developed by a team of five under academic supervision, Werta is a working prototype exploring how digital tools can enhance mental wellbeing and care delivery in Malaysia.') }}</p>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-4 col-md-6">
                     <div class="team-card">
-                        <div class="team-photo">Photo</div>
-                        <h5>Team Member 1</h5>
-                        <p class="role">Role Title</p>
-                        <p class="bio">Short bio to be added.</p>
+                        <div class="team-photo">{{ __('Photo') }}</div>
+                        <h5>{{ __('Team Member 1') }}</h5>
+                        <p class="role">{{ __('Role Title') }}</p>
+                        <p class="bio">{{ __('Short bio to be added.') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="team-card">
-                        <div class="team-photo">Photo</div>
-                        <h5>Team Member 2</h5>
-                        <p class="role">Role Title</p>
-                        <p class="bio">Short bio to be added.</p>
+                        <div class="team-photo">{{ __('Photo') }}</div>
+                        <h5>{{ __('Team Member 2') }}</h5>
+                        <p class="role">{{ __('Role Title') }}</p>
+                        <p class="bio">{{ __('Short bio to be added.') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="team-card">
-                        <div class="team-photo">Photo</div>
-                        <h5>Team Member 3</h5>
-                        <p class="role">Role Title</p>
-                        <p class="bio">Short bio to be added.</p>
+                        <div class="team-photo">{{ __('Photo') }}</div>
+                        <h5>{{ __('Team Member 3') }}</h5>
+                        <p class="role">{{ __('Role Title') }}</p>
+                        <p class="bio">{{ __('Short bio to be added.') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="team-card">
-                        <div class="team-photo">Photo</div>
-                        <h5>Team Member 4</h5>
-                        <p class="role">Role Title</p>
-                        <p class="bio">Short bio to be added.</p>
+                        <div class="team-photo">{{ __('Photo') }}</div>
+                        <h5>{{ __('Team Member 4') }}</h5>
+                        <p class="role">{{ __('Role Title') }}</p>
+                        <p class="bio">{{ __('Short bio to be added.') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="team-card">
-                        <div class="team-photo">Photo</div>
-                        <h5>Team Member 5</h5>
-                        <p class="role">Role Title</p>
-                        <p class="bio">Short bio to be added.</p>
+                        <div class="team-photo">{{ __('Photo') }}</div>
+                        <h5>{{ __('Team Member 5') }}</h5>
+                        <p class="role">{{ __('Role Title') }}</p>
+                        <p class="bio">{{ __('Short bio to be added.') }}</p>
                     </div>
                 </div>
             </div>
@@ -259,45 +259,45 @@
     <section class="about-sec bg-light-cream" id="trust-privacy">
         <div class="container" id="trust-credentials">
             <div class="text-center mb-5">
-                <span class="placeholder-note">Filler: Trust &amp; Credentials</span>
-                <p class="pill-label">Trust &amp; Privacy</p>
-                <h2 class="sec-heading" style="max-width:700px; margin:0 auto;">Our Commitments to Your Safety and Care</h2>
+                <span class="placeholder-note">{{ __('Filler: Trust & Credentials') }}</span>
+                <p class="pill-label">{{ __('Trust & Privacy') }}</p>
+                <h2 class="sec-heading" style="max-width:700px; margin:0 auto;">{{ __('Our Commitments to Your Safety and Care') }}</h2>
             </div>
             <div class="row g-4 mb-5">
                 <div class="col-md-4">
                     <div class="trust-card">
                         <i class="bi bi-patch-check-fill"></i>
-                        <h5>Vetted Professional Standards</h5>
-                        <p>We are building rigorous verification protocols to ensure all practicing counselors on Werta hold recognized credentials and professional standing before offering sessions.</p>
+                        <h5>{{ __('Vetted Professional Standards') }}</h5>
+                        <p>{{ __('We are building rigorous verification protocols to ensure all practicing counselors on Werta hold recognized credentials and professional standing before offering sessions.') }}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="trust-card">
                         <i class="bi bi-shield-lock-fill"></i>
-                        <h5>Confidential Records &amp; Sessions</h5>
-                        <p>We are committed to strict privacy standards. Your self-reflection results, appointment logs, and personal notes are treated with absolute discretion.</p>
+                        <h5>{{ __('Confidential Records & Sessions') }}</h5>
+                        <p>{{ __('We are committed to strict privacy standards. Your self-reflection results, appointment logs, and personal notes are treated with absolute discretion.') }}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="trust-card">
                         <i class="bi bi-mortarboard-fill"></i>
-                        <h5>Evidence-Informed Content</h5>
-                        <p>Our self-assessment questions and educational modules are developed with qualified psychological input to provide grounded, constructive guidance.</p>
+                        <h5>{{ __('Evidence-Informed Content') }}</h5>
+                        <p>{{ __('Our self-assessment questions and educational modules are developed with qualified psychological input to provide grounded, constructive guidance.') }}</p>
                     </div>
                 </div>
             </div>
 
             <div class="row g-4" id="privacy">
                 <div class="col-lg-6">
-                    <p class="pill-label">Privacy Commitment</p>
+                    <p class="pill-label">{{ __('Privacy Commitment') }}</p>
                     <div class="disclaimer-box">
-                        We treat all personal details, assessment reflections, and communication as strictly confidential. Your information is never sold, shared, or disclosed to unauthorized parties without your clear consent. As a working prototype, we are establishing responsible data handling and privacy practices to safeguard every user who engages with our platform.
+                        {{ __('We treat all personal details, assessment reflections, and communication as strictly confidential. Your information is never sold, shared, or disclosed to unauthorized parties without your clear consent. As a working prototype, we are establishing responsible data handling and privacy practices to safeguard every user who engages with our platform.') }}
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <p class="pill-label">Please Note</p>
+                    <p class="pill-label">{{ __('Please Note') }}</p>
                     <div class="disclaimer-box">
-                        Werta's assessments are self-reflection tools, not clinical diagnoses. Full results are best discussed with a counselor. This platform does not replace professional medical advice, diagnosis, or clinical psychiatric treatment. If you are experiencing acute distress, a mental health crisis, or thoughts of self-harm, please contact emergency services or reach out to a 24/7 crisis hotline immediately.
+                        {{ __('Werta\'s assessments are self-reflection tools, not clinical diagnoses. Full results are best discussed with a counselor. This platform does not replace professional medical advice, diagnosis, or clinical psychiatric treatment. If you are experiencing acute distress, a mental health crisis, or thoughts of self-harm, please contact emergency services or reach out to a 24/7 crisis hotline immediately.') }}
                     </div>
                 </div>
             </div>
@@ -307,13 +307,13 @@
     <!-- SECTION 9: CTA -->
     <section class="cta-band">
         <div class="container">
-            <h2 class="sec-heading">Ready to Take the Next Step?</h2>
+            <h2 class="sec-heading">{{ __('Ready to Take the Next Step?') }}</h2>
             <p class="sec-text" style="color: rgba(255,255,255,0.8); text-align: center; max-width: 600px; margin: -0.5rem auto 2rem;">
-                Whether you want to explore your wellbeing with a self-guided assessment or connect directly with a licensed counselor, Werta is here to support you.
+                {{ __('Whether you want to explore your wellbeing with a self-guided assessment or connect directly with a licensed counselor, Werta is here to support you.') }}
             </p>
             <div class="cta-band-actions">
-                <a href="{{ url('/assessment') }}" class="btn-cta-filled">Take the Assessment</a>
-                <a href="{{ url('/counselors') }}" class="btn-cta-outline">Browse Counselors</a>
+                <a href="{{ url('/assessment') }}" class="btn-cta-filled">{{ __('Take the Assessment') }}</a>
+                <a href="{{ url('/counselors') }}" class="btn-cta-outline">{{ __('Browse Counselors') }}</a>
             </div>
         </div>
     </section>

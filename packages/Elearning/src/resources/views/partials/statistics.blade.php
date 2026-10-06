@@ -24,8 +24,8 @@
 <section class="el-section bg-cream-light">
     <div class="el-container">
         <div class="text-center mb-5">
-            <div class="el-pill">By The Numbers</div>
-            <h2 class="el-heading">Learning Statistics</h2>
+            <div class="el-pill">{{ __('By The Numbers') }}</div>
+            <h2 class="el-heading">{{ __('Learning Statistics') }}</h2>
         </div>
         <div class="row g-4 text-center">
             <div class="col-6 col-md-4">
@@ -34,7 +34,7 @@
                         <i class="bi bi-people-fill"></i>
                     </div>
                     <div class="el-stat-number" data-count-to="{{ $statistics['total_students'] ?? 0 }}">0</div>
-                    <div class="el-stat-label">Total Students</div>
+                    <div class="el-stat-label">{{ __('Total Students') }}</div>
                 </div>
             </div>
             <div class="col-6 col-md-4">
@@ -43,7 +43,7 @@
                         <i class="bi bi-journal-bookmark-fill"></i>
                     </div>
                     <div class="el-stat-number" data-count-to="{{ $statistics['courses_available'] ?? 0 }}">0</div>
-                    <div class="el-stat-label">Courses Available</div>
+                    <div class="el-stat-label">{{ __('Courses Available') }}</div>
                 </div>
             </div>
             <div class="col-6 col-md-4">
@@ -52,7 +52,7 @@
                         <i class="bi bi-patch-check-fill"></i>
                     </div>
                     <div class="el-stat-number" data-count-to="{{ $statistics['certificates_issued'] ?? 0 }}">0</div>
-                    <div class="el-stat-label">Certificates Issued</div>
+                    <div class="el-stat-label">{{ __('Certificates Issued') }}</div>
                 </div>
             </div>
         </div>

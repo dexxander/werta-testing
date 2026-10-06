@@ -11,28 +11,27 @@
 
             {{-- Left: text content --}}
             <div class="assessment-hero-text">
-                <p class="assessment-pill">MENTAL WELLBEING</p>
+                <p class="assessment-pill">{{ __('MENTAL WELLBEING') }}</p>
                 <h1 class="assessment-heading">
-                    Personality &amp;<br>Wellbeing Assessment
+                    {{ __('Personality &') }}<br>{{ __('Wellbeing Assessment') }}
                 </h1>
                 <p class="assessment-sub">
-                    Discover your personality type and gain deeper insight into your
-                    mental wellbeing. Enhanced with multiple dimensions for greater accuracy.
+                    {{ __('Discover your personality type and gain deeper insight into your mental wellbeing. Enhanced with multiple dimensions for greater accuracy.') }}
                 </p>
-                <button onclick="document.getElementById('assessmentModal').classList.add('active')" class="btn-assessment-cta">Take the Assessment</button>
+                <button onclick="document.getElementById('assessmentModal').classList.add('active')" class="btn-assessment-cta">{{ __('Take the Assessment') }}</button>
 
                 <div class="assessment-stats">
                     <div class="stat-item">
                         <i class="bi bi-people-fill"></i>
-                        <span><strong>12,480</strong> assessments taken</span>
+                        <span><strong>12,480</strong> {{ __('assessments taken') }}</span>
                     </div>
                     <div class="stat-item">
                         <i class="bi bi-bar-chart-fill"></i>
-                        <span>Most common type: <a href="#">INFP</a></span>
+                        <span>{{ __('Most common type:') }} <a href="#">INFP</a></span>
                     </div>
                     <div class="stat-item">
                         <i class="bi bi-patch-check-fill"></i>
-                        <span><strong>91.4%</strong> results rated as accurate</span>
+                        <span><strong>91.4%</strong> {{ __('results rated as accurate') }}</span>
                     </div>
                 </div>
             </div>
@@ -62,22 +61,21 @@
     <section class="assessment-features">
         <div class="assessment-features-inner">
 
-            <p class="pill-label" style="text-align:center; margin-bottom:0.6rem;">WHY TAKE IT</p>
+            <p class="pill-label" style="text-align:center; margin-bottom:0.6rem;">{{ __('WHY TAKE IT') }}</p>
             <h2 class="features-heading">
-                Fuel your personal growth with<br>Werta's Assessment
+                {{ __('Fuel your personal growth with') }}<br>{{ __('Werta\'s Assessment') }}
             </h2>
 
             {{-- Feature row 1 --}}
             <div class="feature-row">
                 <div class="feature-text">
-                    <h3>Deepen your self-awareness</h3>
+                    <h3>{{ __('Deepen your self-awareness') }}</h3>
                     <p>
-                        Dive deeper into your personality and discover your strengths and weaknesses,
-                        motivations, natural talents, and more with a comprehensive Werta profile.
+                        {{ __('Dive deeper into your personality and discover your strengths and weaknesses, motivations, natural talents, and more with a comprehensive Werta profile.') }}
                     </p>
                 </div>
                 <div class="feature-visual">
-                    <img src="{{ asset('images/photo1.png') }}" alt="Deepen self-awareness" class="feature-photo">
+                    <img src="{{ asset('images/photo1.png') }}" alt="{{ __('Deepen self-awareness') }}" class="feature-photo">
                 </div>
             </div>
 
@@ -86,14 +84,12 @@
             {{-- Feature row 2 --}}
             <div class="feature-row feature-row-reverse">
                 <div class="feature-visual">
-                    <img src="{{ asset('images/photo2.png') }}" alt="Understand yourself and others" class="feature-photo">
+                    <img src="{{ asset('images/photo2.png') }}" alt="{{ __('Understand yourself and others') }}" class="feature-photo">
                 </div>
                 <div class="feature-text">
-                    <h3>Understand yourself and others</h3>
+                    <h3>{{ __('Understand yourself and others') }}</h3>
                     <p>
-                        Fast-track your self-discovery journey and forge deeper connections with others
-                        using our toolkit, which contains 25+ specialized personal growth, relationship,
-                        and personality assessments.
+                        {{ __('Fast-track your self-discovery journey and forge deeper connections with others using our toolkit, which contains 25+ specialized personal growth, relationship, and personality assessments.') }}
                     </p>
                 </div>
             </div>
@@ -103,14 +99,13 @@
             {{-- Feature row 3 --}}
             <div class="feature-row">
                 <div class="feature-text">
-                    <h3>Track your wellbeing over time</h3>
+                    <h3>{{ __('Track your wellbeing over time') }}</h3>
                     <p>
-                        Monitor changes in your mental wellbeing across multiple sessions.
-                        Werta keeps a history so you can see how far you've come on your wellness journey.
+                        {{ __('Monitor changes in your mental wellbeing across multiple sessions. Werta keeps a history so you can see how far you\'ve come on your wellness journey.') }}
                     </p>
                 </div>
                 <div class="feature-visual">
-                    <img src="{{ asset('images/photo3.png') }}" alt="Track your wellbeing over time" class="feature-photo">
+                    <img src="{{ asset('images/photo3.png') }}" alt="{{ __('Track your wellbeing over time') }}" class="feature-photo">
                 </div>
             </div>
 
@@ -143,11 +138,9 @@
             </div>
 
             {{-- Title & description --}}
-            <h2 class="modal-title">Personal Wellbeing Assessment</h2>
+            <h2 class="modal-title">{{ __('Personal Wellbeing Assessment') }}</h2>
             <p class="modal-desc">
-                This brief questionnaire helps us understand your current emotional state.
-                It takes about 5-10 minutes to complete. Your responses are strictly confidential
-                and will be used to personalize your care journey.
+                {{ __('This brief questionnaire helps us understand your current emotional state. It takes about 5-10 minutes to complete. Your responses are strictly confidential and will be used to personalize your care journey.') }}
             </p>
 
             {{-- 3 info cards --}}
@@ -156,32 +149,32 @@
                     <div class="modal-card-icon">
                         <i class="bi bi-list-ol"></i>
                     </div>
-                    <p class="modal-card-title">30 questions</p>
-                    <p class="modal-card-sub">From different dimensions</p>
+                    <p class="modal-card-title">{{ __('30 questions') }}</p>
+                    <p class="modal-card-sub">{{ __('From different dimensions') }}</p>
                 </div>
                 <div class="modal-card-item">
                     <div class="modal-card-icon">
                         <i class="bi bi-check2-circle"></i>
                     </div>
-                    <p class="modal-card-title">Select the answer</p>
-                    <p class="modal-card-sub">That best describes you</p>
+                    <p class="modal-card-title">{{ __('Select the answer') }}</p>
+                    <p class="modal-card-sub">{{ __('That best describes you') }}</p>
                 </div>
                 <div class="modal-card-item">
                     <div class="modal-card-icon">
                         <i class="bi bi-hourglass-split"></i>
                     </div>
-                    <p class="modal-card-title">Take your time</p>
-                    <p class="modal-card-sub">In a quiet environment</p>
+                    <p class="modal-card-title">{{ __('Take your time') }}</p>
+                    <p class="modal-card-sub">{{ __('In a quiet environment') }}</p>
                 </div>
             </div>
 
             {{-- Actions --}}
             <div class="modal-actions">
                 <button onclick="document.getElementById('assessmentModal').classList.remove('active')" class="btn-modal-cancel">
-                    Cancel
+                    {{ __('Cancel') }}
                 </button>
                 <a href="{{ url('/assessment/questions') }}" class="btn-modal-begin">
-                    Begin Assessment
+                    {{ __('Begin Assessment') }}
                 </a>
             </div>
 

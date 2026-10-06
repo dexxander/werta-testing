@@ -16,18 +16,18 @@
     </div>
     <div class="p-4">
         @if($showStatus ?? false)
-            <span class="inline-block mb-2 px-2 py-0.5 text-[10px] font-bold uppercase rounded {{ $statusInfo['class'] }}">{{ $statusInfo['label'] }}</span>
+            <span class="inline-block mb-2 px-2 py-0.5 text-[10px] font-bold uppercase rounded {{ $statusInfo['class'] }}">{{ \App\Support\SiteText::translate($statusInfo['label']) }}</span>
         @endif
         <h3 class="font-bold text-[#2C2416] mb-1 line-clamp-2">{{ $article->title }}</h3>
         @if($showStatus ?? false)
-            <p class="text-[10px] text-gray-400 mb-1">by {{ $article->author_name }} · {{ ucfirst($article->author_role) }}</p>
+            <p class="text-[10px] text-gray-400 mb-1">{{ __('by') }} {{ \App\Support\SiteText::translate($article->author_name) }} · {{ \App\Support\SiteText::translate(ucfirst($article->author_role)) }}</p>
         @endif
         @if($article->abstract)
             <p class="text-xs text-gray-500 line-clamp-2">{{ $article->abstract }}</p>
         @endif
         <div class="flex items-center gap-2 mt-3 text-[10px] text-gray-400 font-medium">
-            <span class="px-2 py-0.5 bg-[#C4A840]/10 text-[#C4A840] rounded uppercase">{{ $article->access_type }}</span>
-            <span>{{ $article->submitted_at->format('M d, Y') }}</span>
+            <span class="px-2 py-0.5 bg-[#C4A840]/10 text-[#C4A840] rounded uppercase">{{ \App\Support\SiteText::translate($article->access_type) }}</span>
+            <span>{{ \App\Support\SiteText::translate($article->submitted_at->translatedFormat('M d, Y')) }}</span>
         </div>
     </div>
 </a>

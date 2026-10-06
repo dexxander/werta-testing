@@ -39,7 +39,7 @@
     childPassword: '',
     submitChild() {
         if (!this.childName) {
-            alert('Please enter your child\'s name.');
+            alert(WertaI18n.t('Please enter your child\'s name.'));
             return;
         }
         console.log('Registering child account:', {
@@ -47,7 +47,7 @@
             email: this.childEmail,
             password: this.childPassword
         });
-        alert('Child account registered for ' + this.childName + ' (' + (this.childEmail || 'no email provided') + ').');
+        alert(WertaI18n.t('Child account registered for :name (:email).', { name: this.childName, email: this.childEmail || WertaI18n.t('no email provided') }));
         this.isModalOpen = false;
         this.childName = '';
         this.childEmail = '';
@@ -57,11 +57,11 @@
     
     <div class="mb-6 sm:mb-8 flex justify-between items-end">
         <div>
-            <h1 class="text-2xl sm:text-3xl font-bold text-dark">Parent Overview</h1>
-            <p class="text-sm text-gray-500 mt-1">Welcome back, {{ session('parent_profile.username', 'Parent User') }}. Monitor your children's mental wellness and platform activity.</p>
+            <h1 class="text-2xl sm:text-3xl font-bold text-dark">{{ __('Parent Overview') }}</h1>
+            <p class="text-sm text-gray-500 mt-1">{{ __('Welcome back,') }} {{ session('parent_profile.username', 'Parent User') }}{{ __('. Monitor your children\'s mental wellness and platform activity.') }}</p>
         </div>
         <button @click="isModalOpen = true" class="hidden sm:flex items-center gap-2 bg-gold hover:bg-primary text-dark hover:text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">
-            <i class="bi bi-plus-lg"></i> Register Child
+            <i class="bi bi-plus-lg"></i> {{ __('Register Child') }}
         </button>
     </div>
 
@@ -72,8 +72,8 @@
                 <i class="bi bi-clipboard-check text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Assessments Completed</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $dashboard_stats['assessments_completed'] ?? 0 }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Assessments Completed') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::translate($dashboard_stats['assessments_completed'] ?? 0) }}</h3>
             </div>
         </div>
         
@@ -82,8 +82,8 @@
                 <i class="bi bi-book text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Modules Finished</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $dashboard_stats['modules_finished'] ?? 0 }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Modules Finished') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::translate($dashboard_stats['modules_finished'] ?? 0) }}</h3>
             </div>
         </div>
 
@@ -92,8 +92,8 @@
                 <i class="bi bi-calendar-check text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Upcoming Appointments</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $dashboard_stats['upcoming_appointments'] ?? 0 }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Upcoming Appointments') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::translate($dashboard_stats['upcoming_appointments'] ?? 0) }}</h3>
             </div>
         </div>
 
@@ -102,8 +102,8 @@
                 <i class="bi bi-exclamation-triangle text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Action Required</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $dashboard_stats['action_required'] ?? 0 }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Action Required') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::translate($dashboard_stats['action_required'] ?? 0) }}</h3>
             </div>
         </div>
     </div>
@@ -111,40 +111,40 @@
     <!-- Charts Section -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
-            <h2 class="text-lg font-bold text-dark mb-6">Wellness Assessment Score Trend</h2>
+            <h2 class="text-lg font-bold text-dark mb-6">{{ __('Wellness Assessment Score Trend') }}</h2>
             <div class="h-72 w-full flex items-center justify-center">
-                @if(!empty($assessment_scores))<div class="w-full flex items-end justify-center gap-2 h-48">@foreach($assessment_scores as $score)<div class="w-8 bg-gold rounded-t" style="height:{{ min(100, max(0, $score)) }}%;" title="{{ $score }}%"></div>@endforeach</div>@else<div class="text-center text-gray-400"><i class="bi bi-bar-chart text-5xl"></i><p class="text-sm mt-2">No assessment data available yet.</p></div>@endif
+                @if(!empty($assessment_scores))<div class="w-full flex items-end justify-center gap-2 h-48">@foreach($assessment_scores as $score)<div class="w-8 bg-gold rounded-t" style="height:{{ min(100, max(0, $score)) }}%;" title="{{ $score }}%"></div>@endforeach</div>@else<div class="text-center text-gray-400"><i class="bi bi-bar-chart text-5xl"></i><p class="text-sm mt-2">{{ __('No assessment data available yet.') }}</p></div>@endif
             </div>
         </div>
 
         <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
-            <h2 class="text-lg font-bold text-dark mb-6">Platform Activity (Hours / Week)</h2>
+            <h2 class="text-lg font-bold text-dark mb-6">{{ __('Platform Activity (Hours / Week)') }}</h2>
             <div class="h-72 w-full flex items-center justify-center">
-                @if(!empty($weekly_activity))<div class="w-full flex items-end justify-center gap-2 h-48">@foreach($weekly_activity as $hours)<div class="w-8 bg-primary rounded-t" style="height:{{ min(100, max(0, $hours * 15)) }}%;" title="{{ $hours }} hours"></div>@endforeach</div>@else<div class="text-center text-gray-400"><i class="bi bi-graph-up text-5xl"></i><p class="text-sm mt-2">No activity data available yet.</p></div>@endif
+                @if(!empty($weekly_activity))<div class="w-full flex items-end justify-center gap-2 h-48">@foreach($weekly_activity as $hours)<div class="w-8 bg-primary rounded-t" style="height:{{ min(100, max(0, $hours * 15)) }}%;" title="{{ __(':count hours', ['count' => $hours]) }}"></div>@endforeach</div>@else<div class="text-center text-gray-400"><i class="bi bi-graph-up text-5xl"></i><p class="text-sm mt-2">{{ __('No activity data available yet.') }}</p></div>@endif
             </div>
         </div>
     </div>
 
     <!-- Recent Activities Table -->
     <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm">
-        <h2 class="text-lg font-bold text-dark mb-4 sm:mb-6">Recent Child Activities</h2>
+        <h2 class="text-lg font-bold text-dark mb-4 sm:mb-6">{{ __('Recent Child Activities') }}</h2>
         
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-cream text-primary font-bold border-b border-gold/20 uppercase text-xs tracking-wider">
                     <tr>
-                        <th class="px-4 py-3 rounded-tl-lg">Date</th>
-                        <th class="px-4 py-3">Child Name</th>
-                        <th class="px-4 py-3">Activity Type</th>
-                        <th class="px-4 py-3">Status</th>
-                        <th class="px-4 py-3 text-right rounded-tr-lg">Action</th>
+                        <th class="px-4 py-3 rounded-tl-lg">{{ __('Date') }}</th>
+                        <th class="px-4 py-3">{{ __('Child Name') }}</th>
+                        <th class="px-4 py-3">{{ __('Activity Type') }}</th>
+                        <th class="px-4 py-3">{{ __('Status') }}</th>
+                        <th class="px-4 py-3 text-right rounded-tr-lg">{{ __('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     @forelse($recent_activities as $activity)
-                        <tr><td class="px-4 py-3">{{ $activity['date'] ?? '' }}</td><td class="px-4 py-3">{{ $activity['child'] ?? '' }}</td><td class="px-4 py-3">{{ $activity['type'] ?? '' }}</td><td class="px-4 py-3">{{ $activity['status'] ?? '' }}</td><td class="px-4 py-3 text-right">View</td></tr>
+                        <tr><td class="px-4 py-3">{{ \App\Support\SiteText::date($activity['date'] ?? '') }}</td><td class="px-4 py-3">{{ \App\Support\SiteText::translate($activity['child'] ?? '') }}</td><td class="px-4 py-3">{{ \App\Support\SiteText::translate($activity['type'] ?? '') }}</td><td class="px-4 py-3">{{ \App\Support\SiteText::translate($activity['status'] ?? '') }}</td><td class="px-4 py-3 text-right">{{ __('View') }}</td></tr>
                     @empty
-                        <tr><td colspan="5" class="px-4 py-12 text-center text-gray-400"><i class="bi bi-inbox text-4xl block mb-2"></i>No activities recorded yet. Register a child account to get started.</td></tr>
+                        <tr><td colspan="5" class="px-4 py-12 text-center text-gray-400"><i class="bi bi-inbox text-4xl block mb-2"></i>{{ __('No activities recorded yet. Register a child account to get started.') }}</td></tr>
                     @endforelse
                 </tbody>
             </table>
@@ -174,22 +174,22 @@
                                 <i class="bi bi-person-plus text-primary text-xl"></i>
                             </div>
                             <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
-                                <h3 class="text-lg font-bold leading-6 text-dark" id="modal-title">Register Child Account</h3>
+                                <h3 class="text-lg font-bold leading-6 text-dark" id="modal-title">{{ __('Register Child Account') }}</h3>
                                 <div class="mt-2">
-                                    <p class="text-sm text-gray-500 mb-4">Create a Werta account for your underage child to access assessments and learning modules.</p>
+                                    <p class="text-sm text-gray-500 mb-4">{{ __('Create a Werta account for your underage child to access assessments and learning modules.') }}</p>
                                     
                                     {{-- TODO: Connect to backend child registration endpoint (e.g. POST /parent/children) when API is implemented --}}
                                     <form id="registerChildForm" @submit.prevent="submitChild()" class="space-y-4">
                                         <div>
-                                            <label class="block text-sm font-semibold text-gray-700">Child's Full Name</label>
-                                            <input type="text" x-model="childName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border" placeholder="e.g. Ahmad bin Ali">
+                                            <label class="block text-sm font-semibold text-gray-700">{{ __('Child\'s Full Name') }}</label>
+                                            <input type="text" x-model="childName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border" placeholder="{{ __('e.g. Ahmad bin Ali') }}">
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-semibold text-gray-700">Email Address (for login)</label>
+                                            <label class="block text-sm font-semibold text-gray-700">{{ __('Email Address (for login)') }}</label>
                                             <input type="email" x-model="childEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border" placeholder="ahmad@example.com">
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-semibold text-gray-700">Temporary Password</label>
+                                            <label class="block text-sm font-semibold text-gray-700">{{ __('Temporary Password') }}</label>
                                             <input type="password" x-model="childPassword" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary/20 p-2 border" placeholder="••••••••">
                                         </div>
                                     </form>
@@ -198,8 +198,8 @@
                         </div>
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-gray-100">
-                        <button type="submit" form="registerChildForm" class="inline-flex w-full justify-center rounded-md bg-gold px-4 py-2 text-sm font-semibold text-dark hover:text-white shadow-sm hover:bg-primary sm:ml-3 sm:w-auto transition-colors">Register Account</button>
-                        <button type="button" @click="isModalOpen = false" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition-colors">Cancel</button>
+                        <button type="submit" form="registerChildForm" class="inline-flex w-full justify-center rounded-md bg-gold px-4 py-2 text-sm font-semibold text-dark hover:text-white shadow-sm hover:bg-primary sm:ml-3 sm:w-auto transition-colors">{{ __('Register Account') }}</button>
+                        <button type="button" @click="isModalOpen = false" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition-colors">{{ __('Cancel') }}</button>
                     </div>
                 </div>
             </div>

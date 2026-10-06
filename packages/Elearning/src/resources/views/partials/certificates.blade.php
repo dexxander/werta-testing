@@ -58,9 +58,9 @@
 <section class="el-section bg-cream-light" id="el-certificates">
     <div class="el-container">
         <div class="text-center mb-5">
-            <div class="el-pill">Recognition</div>
-            <h2 class="el-heading">Certificates & Achievements</h2>
-            <p class="el-subtext mx-auto">Earn verifiable certificates, collect achievement badges, and build your professional portfolio.</p>
+            <div class="el-pill">{{ __('Recognition') }}</div>
+            <h2 class="el-heading">{{ __('Certificates & Achievements') }}</h2>
+            <p class="el-subtext mx-auto">{{ __('Earn verifiable certificates, collect achievement badges, and build your professional portfolio.') }}</p>
         </div>
 
         @if(!empty($certificates) && count($certificates) > 0)
@@ -83,8 +83,8 @@
                                 <div class="el-feature-icon el-bento-icon">
                                     <i class="bi bi-{{ $group[0]['icon'] ?? 'patch-check' }}"></i>
                                 </div>
-                                <h5 class="fw-bold el-bento-title">{{ $group[0]['title'] ?? '' }}</h5>
-                                <p class="mb-0 el-bento-desc">{{ $group[0]['description'] ?? '' }}</p>
+                                <h5 class="fw-bold el-bento-title">{{ \App\Support\SiteText::translate($group[0]['title'] ?? '') }}</h5>
+                                <p class="mb-0 el-bento-desc">{{ \App\Support\SiteText::translate($group[0]['description'] ?? '') }}</p>
                             </div>
                         @endif
 
@@ -95,8 +95,8 @@
                                         <i class="bi bi-{{ $group[1]['icon'] ?? 'patch-check' }}"></i>
                                     </div>
                                     <div>
-                                        <h5 class="fw-bold el-bento-title">{{ $group[1]['title'] ?? '' }}</h5>
-                                        <p class="mb-0 el-bento-desc">{{ $group[1]['description'] ?? '' }}</p>
+                                        <h5 class="fw-bold el-bento-title">{{ \App\Support\SiteText::translate($group[1]['title'] ?? '') }}</h5>
+                                        <p class="mb-0 el-bento-desc">{{ \App\Support\SiteText::translate($group[1]['description'] ?? '') }}</p>
                                     </div>
                                 </div>
                             @endif
@@ -109,8 +109,8 @@
                                                 <div class="el-feature-icon el-bento-icon">
                                                     <i class="bi bi-{{ $cert['icon'] ?? 'patch-check' }}"></i>
                                                 </div>
-                                                <h5 class="fw-bold el-bento-title">{{ $cert['title'] ?? '' }}</h5>
-                                                <p class="mb-0 el-bento-desc">{{ $cert['description'] ?? '' }}</p>
+                                                <h5 class="fw-bold el-bento-title">{{ \App\Support\SiteText::translate($cert['title'] ?? '') }}</h5>
+                                                <p class="mb-0 el-bento-desc">{{ \App\Support\SiteText::translate($cert['description'] ?? '') }}</p>
                                             </div>
                                         @endif
                                     @endforeach
@@ -125,8 +125,8 @@
             {{-- Empty State: kept as the standard empty state instead of fabricated dummy content --}}
             <div class="el-empty-state">
                 <i class="bi bi-award"></i>
-                <h5>No Certificates Yet</h5>
-                <p>Start your learning journey today. Your earned certificates and achievements will appear here.</p>
+                <h5>{{ __('No Certificates Yet') }}</h5>
+                <p>{{ __('Start your learning journey today. Your earned certificates and achievements will appear here.') }}</p>
             </div>
         @endif
     </div>

@@ -336,25 +336,25 @@
                     <div class="el-empty-state-icon">
                         <i class="bi bi-person-badge"></i>
                     </div>
-                    <p class="pill-label mb-2">Find a Counselor</p>
-                    <h2>Directory Coming Soon</h2>
-                    <p>We are currently onboarding and verifying licensed mental health practitioners across Malaysia. Our certified counselor matching directory will be available soon.</p>
+                    <p class="pill-label mb-2">{{ __('Find a Counselor') }}</p>
+                    <h2>{{ __('Directory Coming Soon') }}</h2>
+                    <p>{{ __('We are currently onboarding and verifying licensed mental health practitioners across Malaysia. Our certified counselor matching directory will be available soon.') }}</p>
                     <div class="el-empty-state-actions">
-                        <a href="{{ url('/assessment') }}" class="btn-cta-filled">Take the Assessment</a>
-                        <a href="{{ url('/') }}" class="btn-cta-outline-on-light">Return to Home</a>
+                        <a href="{{ url('/assessment') }}" class="btn-cta-filled">{{ __('Take the Assessment') }}</a>
+                        <a href="{{ url('/') }}" class="btn-cta-outline-on-light">{{ __('Return to Home') }}</a>
                     </div>
                 </div>
             @else
                 {{-- Header & Title --}}
                 <div class="counselors-header">
-                    <h1 class="counselors-title">Find a Counselor</h1>
-                    <p class="counselors-subtitle">Connect with supportive mental health guidance tailored to your journey.</p>
+                    <h1 class="counselors-title">{{ __('Find a Counselor') }}</h1>
+                    <p class="counselors-subtitle">{{ __('Connect with supportive mental health guidance tailored to your journey.') }}</p>
                 </div>
 
                 {{-- Sample Banner --}}
                 <div class="sample-preview-banner">
                     <i class="bi bi-info-circle-fill"></i>
-                    <span>Preview: these are sample profiles, not real counselors. Booking opens soon.</span>
+                    <span>{{ __('Preview: these are sample profiles, not real counselors. Booking opens soon.') }}</span>
                 </div>
 
                 {{-- Filter Bar --}}
@@ -362,52 +362,52 @@
                     <form method="GET" action="{{ route('public.counselors') }}">
                         <div class="row g-3 align-items-end">
                             <div class="col-12 col-sm-6 col-lg-3">
-                                <label for="specialtyFilter" class="filter-label">Specialty</label>
+                                <label for="specialtyFilter" class="filter-label">{{ __('Specialty') }}</label>
                                 <select id="specialtyFilter" name="specialty" class="filter-select">
-                                    <option value="">All Specialties</option>
+                                    <option value="">{{ __('All Specialties') }}</option>
                                     @foreach($allSpecialties as $s)
-                                        <option value="{{ $s }}" {{ ($specialty ?? '') === $s ? 'selected' : '' }}>{{ $s }}</option>
+                                        <option value="{{ $s }}" {{ ($specialty ?? '') === $s ? 'selected' : '' }}>{{ \App\Support\SiteText::translate($s) }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
-                                <label for="languageFilter" class="filter-label">Language</label>
+                                <label for="languageFilter" class="filter-label">{{ __('Language') }}</label>
                                 <select id="languageFilter" name="language" class="filter-select">
-                                    <option value="">All Languages</option>
+                                    <option value="">{{ __('All Languages') }}</option>
                                     @foreach($allLanguages as $l)
-                                        <option value="{{ $l }}" {{ ($language ?? '') === $l ? 'selected' : '' }}>{{ $l }}</option>
+                                        <option value="{{ $l }}" {{ ($language ?? '') === $l ? 'selected' : '' }}>{{ \App\Support\SiteText::translate($l) }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-2">
-                                <label for="modeFilter" class="filter-label">Mode</label>
+                                <label for="modeFilter" class="filter-label">{{ __('Mode') }}</label>
                                 <select id="modeFilter" name="mode" class="filter-select">
-                                    <option value="">All Modes</option>
+                                    <option value="">{{ __('All Modes') }}</option>
                                     @foreach($allModes as $m)
-                                        <option value="{{ $m }}" {{ ($mode ?? '') === $m ? 'selected' : '' }}>{{ $m }}</option>
+                                        <option value="{{ $m }}" {{ ($mode ?? '') === $m ? 'selected' : '' }}>{{ \App\Support\SiteText::translate($m) }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-2">
-                                <label for="stateFilter" class="filter-label">State</label>
+                                <label for="stateFilter" class="filter-label">{{ __('State') }}</label>
                                 <select id="stateFilter" name="state" class="filter-select">
-                                    <option value="">All States</option>
+                                    <option value="">{{ __('All States') }}</option>
                                     @foreach($allStates as $st)
-                                        <option value="{{ $st }}" {{ ($state ?? '') === $st ? 'selected' : '' }}>{{ $st }}</option>
+                                        <option value="{{ $st }}" {{ ($state ?? '') === $st ? 'selected' : '' }}>{{ \App\Support\SiteText::translate($st) }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-12 col-lg-2">
                                 <button type="submit" class="btn-filter-submit">
-                                    <i class="bi bi-funnel-fill"></i> Filter
+                                    <i class="bi bi-funnel-fill"></i> {{ __('Filter') }}
                                 </button>
                             </div>
                         </div>
 
                         @if(!empty($specialty) || !empty($language) || !empty($mode) || !empty($state))
                             <div class="filter-clear-wrap">
-                                <span>Showing filtered results ({{ $counselors->count() }})</span>
-                                <a href="{{ route('public.counselors') }}" class="btn-filter-clear">Clear filters</a>
+                                <span>{{ __('Showing filtered results (') }}{{ \App\Support\SiteText::translate($counselors->count()) }})</span>
+                                <a href="{{ route('public.counselors') }}" class="btn-filter-clear">{{ __('Clear filters') }}</a>
                             </div>
                         @endif
                     </form>
@@ -416,8 +416,8 @@
                 {{-- Counselor Cards Grid --}}
                 @if($counselors->isEmpty())
                     <div class="no-results-card">
-                        <p>No counselors match your selected filters.</p>
-                        <a href="{{ route('public.counselors') }}" class="btn-filter-clear">Clear filters</a>
+                        <p>{{ __('No counselors match your selected filters.') }}</p>
+                        <a href="{{ route('public.counselors') }}" class="btn-filter-clear">{{ __('Clear filters') }}</a>
                     </div>
                 @else
                     <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
@@ -433,17 +433,17 @@
                                 <div class="counselor-card">
                                     <div>
                                         <div class="counselor-card-header">
-                                            <div class="counselor-avatar">{{ $initials }}</div>
-                                            <span class="sample-profile-badge">Sample profile</span>
+                                            <div class="counselor-avatar">{{ \App\Support\SiteText::translate($initials) }}</div>
+                                            <span class="sample-profile-badge">{{ __('Sample profile') }}</span>
                                         </div>
 
                                         <h2 class="counselor-name">{{ $counselor->name }}</h2>
-                                        <div class="counselor-title">{{ $counselor->display_title ?? 'Counselor' }}</div>
+                                        <div class="counselor-title">{{ \App\Support\SiteText::translate($counselor->display_title ?? 'Counselor') }}</div>
 
                                         @if(!empty($counselor->specialties))
                                             <div class="counselor-specialties">
                                                 @foreach($counselor->specialties as $spec)
-                                                    <span class="specialty-chip">{{ $spec }}</span>
+                                                    <span class="specialty-chip">{{ \App\Support\SiteText::translate($spec) }}</span>
                                                 @endforeach
                                             </div>
                                         @endif
@@ -452,19 +452,19 @@
                                             @if(!empty($counselor->languages))
                                                 <div class="counselor-meta-item">
                                                     <i class="bi bi-translate"></i>
-                                                    <span>{{ implode(', ', $counselor->languages) }}</span>
+                                                    <span>{{ implode(', ', array_map([\App\Support\SiteText::class, 'translate'], $counselor->languages)) }}</span>
                                                 </div>
                                             @endif
                                             @if(!empty($counselor->session_modes))
                                                 <div class="counselor-meta-item">
                                                     <i class="bi bi-camera-video"></i>
-                                                    <span>{{ implode(', ', $counselor->session_modes) }}</span>
+                                                    <span>{{ implode(', ', array_map([\App\Support\SiteText::class, 'translate'], $counselor->session_modes)) }}</span>
                                                 </div>
                                             @endif
                                             @if(!empty($counselor->state))
                                                 <div class="counselor-meta-item">
                                                     <i class="bi bi-geo-alt"></i>
-                                                    <span>{{ $counselor->state }}</span>
+                                                    <span>{{ \App\Support\SiteText::translate($counselor->state) }}</span>
                                                 </div>
                                             @endif
                                         </div>
@@ -473,12 +473,12 @@
                                     <div class="counselor-card-footer">
                                         <div class="counselor-rate">
                                             @if(!is_null($counselor->rate_individual))
-                                                RM {{ number_format($counselor->rate_individual, 0) }}
-                                                <span class="counselor-rate-unit">per session</span>
+                                                RM {{ \App\Support\SiteText::translate(number_format($counselor->rate_individual, 0)) }}
+                                                <span class="counselor-rate-unit">{{ __('per session') }}</span>
                                             @endif
                                         </div>
                                         <a href="{{ url('/counselors/' . $counselor->id) }}" class="btn-view-profile">
-                                            View profile
+                                            {{ __('View profile') }}
                                         </a>
                                     </div>
                                 </div>

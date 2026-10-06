@@ -8,15 +8,15 @@
         {{-- Security badge --}}
         <div class="secure-badge">
             <i class="bi bi-shield-check"></i>
-            Your connection is 100% Secure
+            {{ __('Your connection is 100% Secure') }}
         </div>
 
         <div class="email-container">
 
             {{-- Left: email form --}}
             <div class="email-left">
-                <h2 class="email-heading">Please save your results below:</h2>
-                <p class="email-sub">Enter your email to view your personalized wellbeing report.</p>
+                <h2 class="email-heading">{{ __('Please save your results below:') }}</h2>
+                <p class="email-sub">{{ __('Enter your email to view your personalized wellbeing report.') }}</p>
 
                 <div class="email-form">
                     <input type="email" id="emailInput" class="email-input" placeholder="email@example.com">
@@ -24,17 +24,16 @@
                     <label class="agree-label">
                         <input type="checkbox" id="agreeCheck">
                         <span>
-                            I agree to receive my wellbeing results. Your data will be processed
-                            in accordance with our <a href="#">Privacy Policy</a>.
+                            {{ __('I agree to receive my wellbeing results. Your data will be processed in accordance with our') }} <a href="#">{{ __('Privacy Policy') }}</a>.
                         </span>
                     </label>
 
                     <button class="btn-view-results" id="btnView" onclick="goToResults()">
-                        View My Results <i class="bi bi-arrow-right"></i>
+                        {{ __('View My Results') }} <i class="bi bi-arrow-right"></i>
                     </button>
 
                     <p class="email-note" id="emailError" style="display:none; color:#c0392b; font-size:var(--text-sm); margin-top:0.5rem;">
-                        Please enter a valid email and tick the agreement.
+                        {{ __('Please enter a valid email and tick the agreement.') }}
                     </p>
                 </div>
             </div>
@@ -44,35 +43,35 @@
 
             {{-- Right: Werta stats --}}
             <div class="email-right">
-                <h3 class="stats-heading">Why Werta?</h3>
+                <h3 class="stats-heading">{{ __('Why Werta?') }}</h3>
 
                 <div class="stat-rows">
                     <div class="stat-row">
                         <div class="stat-icon"><i class="bi bi-journal-text"></i></div>
                         <div>
                             <p class="stat-num">12,480+</p>
-                            <p class="stat-desc">Assessments Taken</p>
+                            <p class="stat-desc">{{ __('Assessments Taken') }}</p>
                         </div>
                     </div>
                     <div class="stat-row">
                         <div class="stat-icon"><i class="bi bi-people"></i></div>
                         <div>
                             <p class="stat-num">10,200+</p>
-                            <p class="stat-desc">Satisfied Users</p>
+                            <p class="stat-desc">{{ __('Satisfied Users') }}</p>
                         </div>
                     </div>
                     <div class="stat-row">
                         <div class="stat-icon"><i class="bi bi-graph-up"></i></div>
                         <div>
                             <p class="stat-num">200+</p>
-                            <p class="stat-desc">Data Points Analyzed</p>
+                            <p class="stat-desc">{{ __('Data Points Analyzed') }}</p>
                         </div>
                     </div>
                     <div class="stat-row">
                         <div class="stat-icon"><i class="bi bi-star"></i></div>
                         <div>
                             <p class="stat-num">91.4%</p>
-                            <p class="stat-desc">Results Rated as Accurate</p>
+                            <p class="stat-desc">{{ __('Results Rated as Accurate') }}</p>
                         </div>
                     </div>
                 </div>

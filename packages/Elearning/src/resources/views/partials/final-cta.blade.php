@@ -15,27 +15,27 @@
         @if(!empty($statistics['certificates_issued']))
             <p class="el-final-cta-callback">
                 <i class="bi bi-patch-check-fill"></i>
-                {{ number_format($statistics['certificates_issued']) }} learners have already earned their certificate
+                {{ \App\Support\SiteText::translate(number_format($statistics['certificates_issued'])) }} {{ __('learners have already earned their certificate') }}
             </p>
         @endif
 
-        <div class="el-pill">Start Today</div>
+        <div class="el-pill">{{ __('Start Today') }}</div>
         <h2 class="el-heading el-heading--light" style="font-size:2.6rem;max-width:700px;margin:0 auto 1rem;">
-            Ready to Transform Your Future?
+            {{ __('Ready to Transform Your Future?') }}
         </h2>
         <p class="el-subtext el-subtext--light mx-auto" style="margin-bottom:2rem;">
-            Join thousands of learners who are building new skills, advancing their careers, and achieving their goals with Werta's expert-led courses.
+            {{ __('Join thousands of learners who are building new skills, advancing their careers, and achieving their goals with Werta\'s expert-led courses.') }}
         </p>
         <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
             <a href="#el-courses" class="el-btn-primary" style="padding:1rem 2.5rem;font-size:var(--text-md);">
-                <i class="bi bi-rocket-takeoff"></i> Get Started Now
+                <i class="bi bi-rocket-takeoff"></i> {{ __('Get Started Now') }}
             </a>
             <a href="#el-paths" class="el-btn-outline el-btn-outline--light" style="padding:1rem 2.5rem;font-size:var(--text-md);">
-                Explore Learning Paths
+                {{ __('Explore Learning Paths') }}
             </a>
         </div>
 
-        <p class="el-final-cta-note">No credit card required &middot; Learn at your own pace &middot; Cancel anytime</p>
+        <p class="el-final-cta-note">{{ __('No credit card required · Learn at your own pace · Cancel anytime') }}</p>
     </div>
 </section>
 

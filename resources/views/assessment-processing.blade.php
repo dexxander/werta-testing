@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
+    @include('partials.localization')
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Werta – Analyzing</title>
+    <title>{{ __('Werta – Analyzing') }}</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/Werta_Logo.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -119,22 +120,22 @@
         </div>
     </div>
 
-    <h1>Analyzing your responses…</h1>
-    <p class="sub">Please wait while we process your assessment.</p>
+    <h1>{{ __('Analyzing your responses…') }}</h1>
+    <p class="sub">{{ __('Please wait while we process your assessment.') }}</p>
 
     <div class="steps">
-        <div class="step" id="s1"><span class="step-dot"></span> Collecting your answers</div>
-        <div class="step" id="s2"><span class="step-dot"></span> Scoring across 6 dimensions</div>
-        <div class="step" id="s3"><span class="step-dot"></span> Identifying your personality profile</div>
-        <div class="step" id="s4"><span class="step-dot"></span> Generating your wellbeing summary</div>
-        <div class="step" id="s5"><span class="step-dot"></span> Preparing your report</div>
+        <div class="step" id="s1"><span class="step-dot"></span> {{ __('Collecting your answers') }}</div>
+        <div class="step" id="s2"><span class="step-dot"></span> {{ __('Scoring across 6 dimensions') }}</div>
+        <div class="step" id="s3"><span class="step-dot"></span> {{ __('Identifying your personality profile') }}</div>
+        <div class="step" id="s4"><span class="step-dot"></span> {{ __('Generating your wellbeing summary') }}</div>
+        <div class="step" id="s5"><span class="step-dot"></span> {{ __('Preparing your report') }}</div>
     </div>
 
     {{-- Fallback escape hatch if JS redirect or network fails --}}
     <div id="fallback-wrap" style="opacity: 0; pointer-events: none; transition: opacity 0.5s ease; margin-top: 1rem; text-align: center;">
-        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;">Taking longer than expected?</p>
+        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;">{{ __('Taking longer than expected?') }}</p>
         <a href="{{ url('/assessment/email') }}" style="display: inline-block; font-size: 0.875rem; font-weight: 700; color: var(--primary); text-decoration: underline; text-underline-offset: 4px; padding: 0.35rem 0.75rem; border-radius: 6px; transition: color 0.2s ease;">
-            Continue to Results &rarr;
+            {{ __('Continue to Results →') }}
         </a>
     </div>
 

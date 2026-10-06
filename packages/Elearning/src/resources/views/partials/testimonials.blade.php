@@ -2,9 +2,9 @@
 <section class="el-section bg-cream">
     <div class="el-container">
         <div class="text-center mb-5">
-            <div class="el-pill">Success Stories</div>
-            <h2 class="el-heading">What Our Students Say</h2>
-            <p class="el-subtext mx-auto">Hear from real students who have transformed their careers through our platform.</p>
+            <div class="el-pill">{{ __('Success Stories') }}</div>
+            <h2 class="el-heading">{{ __('What Our Students Say') }}</h2>
+            <p class="el-subtext mx-auto">{{ __('Hear from real students who have transformed their careers through our platform.') }}</p>
         </div>
 
         @if(count($testimonials ?? []) > 0)
@@ -17,7 +17,7 @@
                                     <i class="bi bi-star-fill" style="color:var(--gold);font-size:0.85rem;"></i>
                                 @endfor
                             </div>
-                            <p style="font-size:var(--text-base);color:var(--dark);line-height:1.7;margin-bottom:1.2rem;font-style:italic;">"{{ $testimonial['content'] }}"</p>
+                            <p style="font-size:var(--text-base);color:var(--dark);line-height:1.7;margin-bottom:1.2rem;font-style:italic;">"{{ \App\Support\SiteText::translate($testimonial['content']) }}"</p>
                             <div style="display:flex;align-items:center;gap:0.8rem;margin-top:auto;">
                                 @if(!empty($testimonial['avatar']))
                                     <img src="{{ asset($testimonial['avatar']) }}" alt="{{ $testimonial['name'] }}" style="width:40px;height:40px;border-radius:var(--radius-full);object-fit:cover;">
@@ -28,7 +28,7 @@
                                 @endif
                                 <div>
                                     <strong style="font-size:var(--text-sm);">{{ $testimonial['name'] }}</strong>
-                                    <p style="font-size:var(--text-xs);color:var(--muted);margin:0;">{{ $testimonial['role'] ?? 'Student' }}</p>
+                                    <p style="font-size:var(--text-xs);color:var(--muted);margin:0;">{{ \App\Support\SiteText::translate($testimonial['role'] ?? 'Student') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -39,8 +39,8 @@
             {{-- Empty State --}}
             <div class="el-empty-state">
                 <i class="bi bi-chat-square-quote"></i>
-                <h5>No Testimonials Yet</h5>
-                <p>Be the first to share your learning experience with the Werta community.</p>
+                <h5>{{ __('No Testimonials Yet') }}</h5>
+                <p>{{ __('Be the first to share your learning experience with the Werta community.') }}</p>
             </div>
         @endif
     </div>

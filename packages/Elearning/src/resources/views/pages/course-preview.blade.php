@@ -37,26 +37,26 @@
 <section class="el-section bg-cream-light" id="course-preview">
     <div class="el-container">
         <div class="mb-4">
-            <a href="{{ route('elearning.courses') }}" style="color:var(--primary);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> Back to Courses</a>
+            <a href="{{ route('elearning.courses') }}" style="color:var(--primary);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> {{ __('Back to Courses') }}</a>
         </div>
 
         <div class="row g-4 align-items-start">
             <div class="col-lg-7">
                 <div class="el-card">
-                    <div class="el-pill">Course Preview</div>
-                    <h2 class="el-heading">{{ $course_title }}</h2>
+                    <div class="el-pill">{{ __('Course Preview') }}</div>
+                    <h2 class="el-heading">{{ \App\Support\SiteText::translate($course_title) }}</h2>
                     @if($selected_course)
-                        <p class="el-subtext">Learn what this course covers before enrolling. The lessons are locked until enrollment is complete.</p>
+                        <p class="el-subtext">{{ __('Learn what this course covers before enrolling. The lessons are locked until enrollment is complete.') }}</p>
                         <div style="display:flex;gap:1rem;flex-wrap:wrap;color:var(--muted);font-size:var(--text-base);margin-top:1.5rem;">
-                            <span><i class="bi bi-person"></i> {{ $selected_course['instructor'] }}</span>
-                            <span><i class="bi bi-bar-chart"></i> {{ $selected_course['difficulty'] }}</span>
-                            <span><i class="bi bi-clock"></i> {{ $selected_course['duration'] }}</span>
+                            <span><i class="bi bi-person"></i> {{ \App\Support\SiteText::translate($selected_course['instructor']) }}</span>
+                            <span><i class="bi bi-bar-chart"></i> {{ \App\Support\SiteText::translate($selected_course['difficulty']) }}</span>
+                            <span><i class="bi bi-clock"></i> {{ \App\Support\SiteText::translate($selected_course['duration']) }}</span>
                         </div>
                     @else
                         <div class="el-empty-state">
                             <i class="bi bi-journal-bookmark"></i>
-                            <h5>Course Preview Coming Soon</h5>
-                            <p>This course is not available in the current catalog yet.</p>
+                            <h5>{{ __('Course Preview Coming Soon') }}</h5>
+                            <p>{{ __('This course is not available in the current catalog yet.') }}</p>
                         </div>
                     @endif
                 </div>
@@ -64,19 +64,19 @@
 
             <div class="col-lg-5">
                 <div class="el-card">
-                    <h5 style="font-weight:700;margin-bottom:1.2rem;">Topics Inside This Course</h5>
+                    <h5 style="font-weight:700;margin-bottom:1.2rem;">{{ __('Topics Inside This Course') }}</h5>
                     @if(count($course_topics) > 0)
                         <div style="display:flex;flex-direction:column;gap:0.65rem;">
                             @foreach($course_topics as $index => $topic)
                                 <button type="button" class="el-topic-preview" onclick="openEnrollmentRequiredModal()">
-                                    <span><i class="bi bi-lock-fill"></i> {{ $index + 1 }}. {{ $topic }}</span>
+                                    <span><i class="bi bi-lock-fill"></i> {{ \App\Support\SiteText::translate($index + 1) }}. {{ \App\Support\SiteText::translate($topic) }}</span>
                                     <i class="bi bi-chevron-right"></i>
                                 </button>
                             @endforeach
                         </div>
-                        <p style="font-size:var(--text-sm);color:var(--muted);margin:1.2rem 0 0;"><i class="bi bi-info-circle"></i> Preview only. Enroll to open lessons and start learning.</p>
+                        <p style="font-size:var(--text-sm);color:var(--muted);margin:1.2rem 0 0;"><i class="bi bi-info-circle"></i> {{ __('Preview only. Enroll to open lessons and start learning.') }}</p>
                     @else
-                        <p style="font-size:var(--text-base);color:var(--muted);margin:0;">Topics will appear here when this course is added to the catalog.</p>
+                        <p style="font-size:var(--text-base);color:var(--muted);margin:0;">{{ __('Topics will appear here when this course is added to the catalog.') }}</p>
                     @endif
                 </div>
             </div>
@@ -86,14 +86,14 @@
 
 <div id="enrollmentRequiredModal" class="el-modal-overlay">
     <div class="el-modal-content el-card">
-        <button class="el-modal-close" onclick="closeEnrollmentRequiredModal()" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+        <button class="el-modal-close" onclick="closeEnrollmentRequiredModal()" aria-label="{{ __('Close') }}"><i class="bi bi-x-lg"></i></button>
         <div class="text-center">
             <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
                 <i class="bi bi-lock-fill" style="font-size:2rem;color:var(--primary);"></i>
             </div>
-            <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Enrollment Required</h4>
-            <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">Please enroll in this course first to open this topic and start learning.</p>
-            <button type="button" onclick="closeEnrollmentRequiredModal()" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Got It</button>
+            <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">{{ __('Enrollment Required') }}</h4>
+            <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">{{ __('Please enroll in this course first to open this topic and start learning.') }}</p>
+            <button type="button" onclick="closeEnrollmentRequiredModal()" class="el-btn-primary" style="padding:0.75rem 1.5rem;">{{ __('Got It') }}</button>
         </div>
     </div>
 </div>

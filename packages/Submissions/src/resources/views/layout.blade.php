@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
+    @include('partials.localization')
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Submissions') — Werta</title>
+    <title>@yield('title', __('Submissions')) — Werta</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/Werta_Logo.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/Werta_Logo.png') }}">
 
@@ -17,6 +18,7 @@
     </style>
 </head>
 <body>
+    @include('partials.language-picker')
     @yield('content')
 </body>
 </html>

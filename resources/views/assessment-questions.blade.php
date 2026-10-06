@@ -11,12 +11,12 @@
                 @foreach(['Social','Thinking','Structure','Wellbeing','Stress','Growth'] as $i => $label)
                 <div class="step" id="step-{{ $i + 1 }}" data-step="{{ $i + 1 }}">
                     <span class="step-dot"><i class="bi bi-check-lg step-check"></i></span>
-                    <span class="step-label">{{ $label }}</span>
+                    <span class="step-label">{{ \App\Support\SiteText::translate($label) }}</span>
                 </div>
                 @endforeach
             </div>
             <div class="quiz-progress-inner">
-                <span class="progress-label"><span id="answeredCount">0</span> of 30 answered</span>
+                <span class="progress-label"><span id="answeredCount">0</span> {{ __('of 30 answered') }}</span>
                 <div class="progress-track">
                     <div class="progress-fill" id="progressFill" style="width:0%"></div>
                 </div>
@@ -29,9 +29,9 @@
 
             {{-- ═══════════════════ PAGE 1 — Social & Energy ═══════════════════ --}}
             <div class="quiz-page active" id="page-1">
-                <p class="quiz-section-pill">Section 1 of 6</p>
-                <h2 class="quiz-section-title">Social &amp; Energy</h2>
-                <p class="quiz-section-sub">How you interact with the world around you</p>
+                <p class="quiz-section-pill">{{ __('Section 1 of 6') }}</p>
+                <h2 class="quiz-section-title">{{ __('Social & Energy') }}</h2>
+                <p class="quiz-section-sub">{{ __('How you interact with the world around you') }}</p>
 
                 <div class="questions-list">
                     @foreach([
@@ -43,7 +43,7 @@
                     ] as $i => $q)
                     <div class="question-item" id="q-q1_{{ $i+1 }}">
                         <p class="question-text">
-                            <span class="q-num">{{ $i + 1 }}.</span> {{ $q }}
+                            <span class="q-num">{{ \App\Support\SiteText::translate($i + 1) }}.</span> {{ \App\Support\SiteText::translate($q) }}
                             <i class="bi bi-check-circle-fill q-answered-icon"></i>
                         </p>
                         <div class="likert-scale">
@@ -51,7 +51,7 @@
                             <label class="likert-option">
                                 <input type="radio" name="q1_{{ $i+1 }}" value="{{ $val+1 }}" onchange="onAnswer('q1_{{ $i+1 }}')">
                                 <span class="likert-dot"></span>
-                                <span class="likert-label">{{ $label }}</span>
+                                <span class="likert-label">{{ \App\Support\SiteText::translate($label) }}</span>
                             </label>
                             @endforeach
                         </div>
@@ -62,9 +62,9 @@
 
             {{-- ═══════════════════ PAGE 2 — Thinking & Decision Making ═══════════════════ --}}
             <div class="quiz-page" id="page-2">
-                <p class="quiz-section-pill">Section 2 of 6</p>
-                <h2 class="quiz-section-title">Thinking &amp; Decision Making</h2>
-                <p class="quiz-section-sub">How you process information and make decisions</p>
+                <p class="quiz-section-pill">{{ __('Section 2 of 6') }}</p>
+                <h2 class="quiz-section-title">{{ __('Thinking & Decision Making') }}</h2>
+                <p class="quiz-section-sub">{{ __('How you process information and make decisions') }}</p>
 
                 <div class="questions-list">
                     @foreach([
@@ -76,7 +76,7 @@
                     ] as $i => $q)
                     <div class="question-item" id="q-q2_{{ $i+1 }}">
                         <p class="question-text">
-                            <span class="q-num">{{ $i + 6 }}.</span> {{ $q }}
+                            <span class="q-num">{{ \App\Support\SiteText::translate($i + 6) }}.</span> {{ \App\Support\SiteText::translate($q) }}
                             <i class="bi bi-check-circle-fill q-answered-icon"></i>
                         </p>
                         <div class="likert-scale">
@@ -84,7 +84,7 @@
                             <label class="likert-option">
                                 <input type="radio" name="q2_{{ $i+1 }}" value="{{ $val+1 }}" onchange="onAnswer('q2_{{ $i+1 }}')">
                                 <span class="likert-dot"></span>
-                                <span class="likert-label">{{ $label }}</span>
+                                <span class="likert-label">{{ \App\Support\SiteText::translate($label) }}</span>
                             </label>
                             @endforeach
                         </div>
@@ -95,9 +95,9 @@
 
             {{-- ═══════════════════ PAGE 3 — Structure & Lifestyle ═══════════════════ --}}
             <div class="quiz-page" id="page-3">
-                <p class="quiz-section-pill">Section 3 of 6</p>
-                <h2 class="quiz-section-title">Structure &amp; Lifestyle</h2>
-                <p class="quiz-section-sub">How you organize your life and handle plans</p>
+                <p class="quiz-section-pill">{{ __('Section 3 of 6') }}</p>
+                <h2 class="quiz-section-title">{{ __('Structure & Lifestyle') }}</h2>
+                <p class="quiz-section-sub">{{ __('How you organize your life and handle plans') }}</p>
 
                 <div class="questions-list">
                     @foreach([
@@ -109,7 +109,7 @@
                     ] as $i => $q)
                     <div class="question-item" id="q-q3_{{ $i+1 }}">
                         <p class="question-text">
-                            <span class="q-num">{{ $i + 11 }}.</span> {{ $q }}
+                            <span class="q-num">{{ \App\Support\SiteText::translate($i + 11) }}.</span> {{ \App\Support\SiteText::translate($q) }}
                             <i class="bi bi-check-circle-fill q-answered-icon"></i>
                         </p>
                         <div class="likert-scale">
@@ -117,7 +117,7 @@
                             <label class="likert-option">
                                 <input type="radio" name="q3_{{ $i+1 }}" value="{{ $val+1 }}" onchange="onAnswer('q3_{{ $i+1 }}')">
                                 <span class="likert-dot"></span>
-                                <span class="likert-label">{{ $label }}</span>
+                                <span class="likert-label">{{ \App\Support\SiteText::translate($label) }}</span>
                             </label>
                             @endforeach
                         </div>
@@ -128,9 +128,9 @@
 
             {{-- ═══════════════════ PAGE 4 — Emotional Wellbeing ═══════════════════ --}}
             <div class="quiz-page" id="page-4">
-                <p class="quiz-section-pill">Section 4 of 6</p>
-                <h2 class="quiz-section-title">Emotional Wellbeing</h2>
-                <p class="quiz-section-sub">How you feel about yourself and your life right now</p>
+                <p class="quiz-section-pill">{{ __('Section 4 of 6') }}</p>
+                <h2 class="quiz-section-title">{{ __('Emotional Wellbeing') }}</h2>
+                <p class="quiz-section-sub">{{ __('How you feel about yourself and your life right now') }}</p>
 
                 <div class="questions-list">
                     @foreach([
@@ -142,7 +142,7 @@
                     ] as $i => $q)
                     <div class="question-item" id="q-q4_{{ $i+1 }}">
                         <p class="question-text">
-                            <span class="q-num">{{ $i + 16 }}.</span> {{ $q }}
+                            <span class="q-num">{{ \App\Support\SiteText::translate($i + 16) }}.</span> {{ \App\Support\SiteText::translate($q) }}
                             <i class="bi bi-check-circle-fill q-answered-icon"></i>
                         </p>
                         <div class="likert-scale">
@@ -150,7 +150,7 @@
                             <label class="likert-option">
                                 <input type="radio" name="q4_{{ $i+1 }}" value="{{ $val+1 }}" onchange="onAnswer('q4_{{ $i+1 }}')">
                                 <span class="likert-dot"></span>
-                                <span class="likert-label">{{ $label }}</span>
+                                <span class="likert-label">{{ \App\Support\SiteText::translate($label) }}</span>
                             </label>
                             @endforeach
                         </div>
@@ -161,9 +161,9 @@
 
             {{-- ═══════════════════ PAGE 5 — Stress & Coping ═══════════════════ --}}
             <div class="quiz-page" id="page-5">
-                <p class="quiz-section-pill">Section 5 of 6</p>
-                <h2 class="quiz-section-title">Stress &amp; Coping</h2>
-                <p class="quiz-section-sub">How you respond to pressure and challenges</p>
+                <p class="quiz-section-pill">{{ __('Section 5 of 6') }}</p>
+                <h2 class="quiz-section-title">{{ __('Stress & Coping') }}</h2>
+                <p class="quiz-section-sub">{{ __('How you respond to pressure and challenges') }}</p>
 
                 <div class="questions-list">
                     @foreach([
@@ -175,7 +175,7 @@
                     ] as $i => $q)
                     <div class="question-item" id="q-q5_{{ $i+1 }}">
                         <p class="question-text">
-                            <span class="q-num">{{ $i + 21 }}.</span> {{ $q }}
+                            <span class="q-num">{{ \App\Support\SiteText::translate($i + 21) }}.</span> {{ \App\Support\SiteText::translate($q) }}
                             <i class="bi bi-check-circle-fill q-answered-icon"></i>
                         </p>
                         <div class="likert-scale">
@@ -183,7 +183,7 @@
                             <label class="likert-option">
                                 <input type="radio" name="q5_{{ $i+1 }}" value="{{ $val+1 }}" onchange="onAnswer('q5_{{ $i+1 }}')">
                                 <span class="likert-dot"></span>
-                                <span class="likert-label">{{ $label }}</span>
+                                <span class="likert-label">{{ \App\Support\SiteText::translate($label) }}</span>
                             </label>
                             @endforeach
                         </div>
@@ -194,9 +194,9 @@
 
             {{-- ═══════════════════ PAGE 6 — Self-Awareness & Growth ═══════════════════ --}}
             <div class="quiz-page" id="page-6">
-                <p class="quiz-section-pill">Section 6 of 6</p>
-                <h2 class="quiz-section-title">Self-Awareness &amp; Growth</h2>
-                <p class="quiz-section-sub">How well you know yourself and your desire to grow</p>
+                <p class="quiz-section-pill">{{ __('Section 6 of 6') }}</p>
+                <h2 class="quiz-section-title">{{ __('Self-Awareness & Growth') }}</h2>
+                <p class="quiz-section-sub">{{ __('How well you know yourself and your desire to grow') }}</p>
 
                 <div class="questions-list">
                     @foreach([
@@ -208,7 +208,7 @@
                     ] as $i => $q)
                     <div class="question-item" id="q-q6_{{ $i+1 }}">
                         <p class="question-text">
-                            <span class="q-num">{{ $i + 26 }}.</span> {{ $q }}
+                            <span class="q-num">{{ \App\Support\SiteText::translate($i + 26) }}.</span> {{ \App\Support\SiteText::translate($q) }}
                             <i class="bi bi-check-circle-fill q-answered-icon"></i>
                         </p>
                         <div class="likert-scale">
@@ -216,7 +216,7 @@
                             <label class="likert-option">
                                 <input type="radio" name="q6_{{ $i+1 }}" value="{{ $val+1 }}" onchange="onAnswer('q6_{{ $i+1 }}')">
                                 <span class="likert-dot"></span>
-                                <span class="likert-label">{{ $label }}</span>
+                                <span class="likert-label">{{ \App\Support\SiteText::translate($label) }}</span>
                             </label>
                             @endforeach
                         </div>
@@ -227,16 +227,16 @@
 
             {{-- ── Navigation ── --}}
             <div class="quiz-nav">
-                <p class="quiz-nav-error" id="navError">Please answer all questions before continuing.</p>
+                <p class="quiz-nav-error" id="navError">{{ __('Please answer all questions before continuing.') }}</p>
                 <div class="quiz-nav-buttons">
                     <button class="btn-quiz-back" id="btnBack" onclick="changePage(-1)" style="display:none;">
-                        <i class="bi bi-arrow-left"></i> Back
+                        <i class="bi bi-arrow-left"></i> {{ __('Back') }}
                     </button>
                     <button class="btn-quiz-next" id="btnNext" onclick="attemptChangePage(1)">
-                        Next <i class="bi bi-arrow-right"></i>
+                        {{ __('Next') }} <i class="bi bi-arrow-right"></i>
                     </button>
                     <button class="btn-quiz-submit" id="btnSubmit" onclick="submitQuiz()" style="display:none;">
-                        Submit <i class="bi bi-check-lg"></i>
+                        {{ __('Submit') }} <i class="bi bi-check-lg"></i>
                     </button>
                 </div>
             </div>

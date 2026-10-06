@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
+use Tests\TestCase;
 
 class ViewSmokeTest extends TestCase
 {
@@ -12,6 +12,7 @@ class ViewSmokeTest extends TestCase
         parent::setUp();
         Artisan::call('migrate');
     }
+
     public function test_public_routes_return_ok()
     {
         $routes = [
@@ -141,11 +142,11 @@ class ViewSmokeTest extends TestCase
     public function test_navbar_renders_across_all_roles_on_public_pages()
     {
         $roleSessions = [
-            'anonymous'  => [],
-            'client'     => ['client_logged_in' => true, 'client_profile' => ['username' => 'Client User', 'picture' => 'bi-person-circle']],
-            'parent'     => ['parent_logged_in' => true, 'parent_profile' => ['username' => 'Parent User', 'picture' => 'bi-person-heart']],
-            'counselor'  => ['counselor_logged_in' => true, 'counselor_name' => 'Counselor User'],
-            'admin'      => ['staff_role' => 'admin'],
+            'anonymous' => [],
+            'client' => ['client_logged_in' => true, 'client_profile' => ['username' => 'Client User', 'picture' => 'bi-person-circle']],
+            'parent' => ['parent_logged_in' => true, 'parent_profile' => ['username' => 'Parent User', 'picture' => 'bi-person-heart']],
+            'counselor' => ['counselor_logged_in' => true, 'counselor_name' => 'Counselor User'],
+            'admin' => ['staff_role' => 'admin'],
             'superadmin' => ['staff_role' => 'superadmin'],
         ];
 
@@ -171,19 +172,19 @@ class ViewSmokeTest extends TestCase
 
         // Collapsed mobile container and destinations
         $response->assertSee('id="mobileNav"', false);
-        $response->assertSee('href="' . url('/counselors') . '"', false);
-        $response->assertSee('href="' . url('/assessment') . '"', false);
-        $response->assertSee('href="' . route('public.articles') . '"', false);
+        $response->assertSee('href="'.url('/counselors').'"', false);
+        $response->assertSee('href="'.url('/assessment').'"', false);
+        $response->assertSee('href="'.route('public.articles').'"', false);
         $response->assertSee('data-bs-target="#mobileElearningMenu"', false);
-        $response->assertSee('href="' . route('elearning.courses') . '"', false);
-        $response->assertSee('href="' . url('/about') . '"', false);
+        $response->assertSee('href="'.route('elearning.courses').'"', false);
+        $response->assertSee('href="'.url('/about').'"', false);
 
         // Anonymous account destinations
         $response->assertSee('data-bs-target="#mobileAccountMenu"', false);
-        $response->assertSee('href="' . url('/client/login') . '"', false);
-        $response->assertSee('href="' . url('/parent/login') . '"', false);
-        $response->assertSee('href="' . route('counselor.login') . '"', false);
-        $response->assertSee('href="' . url('/auth/register') . '"', false);
+        $response->assertSee('href="'.url('/client/login').'"', false);
+        $response->assertSee('href="'.url('/parent/login').'"', false);
+        $response->assertSee('href="'.route('counselor.login').'"', false);
+        $response->assertSee('href="'.url('/auth/register').'"', false);
 
         // Authenticated client sees dashboard and logout in mobile menu
         $authResponse = $this->withSession([
@@ -193,5 +194,61 @@ class ViewSmokeTest extends TestCase
         $authResponse->assertStatus(200);
         $authResponse->assertSee('href="/client/dashboard"', false);
         $authResponse->assertSee('href="/client/logout"', false);
+    }
+
+    public function test_visitor_can_switch_navbar_language_and_locale_is_saved(): void
+    {
+        $switchResponse = $this->from('/')->get(route('language.switch', 'ms'));
+
+        $switchResponse->assertRedirect('/');
+        $this->assertSame('ms', session('locale'));
+
+        $malayResponse = $this->get('/');
+        $malayResponse->assertOk();
+        $malayResponse->assertSee('Modul E-Pembelajaran');
+        $malayResponse->assertSee('Tentang Kami');
+        $malayResponse->assertSee('aria-current="true"', false);
+
+        $chineseResponse = $this->withSession(['locale' => 'zh'])->get('/');
+        $chineseResponse->assertOk();
+        $chineseResponse->assertSee('在线学习');
+        $chineseResponse->assertSee('关于我们');
+
+        $englishResponse = $this->withSession(['locale' => 'en'])->get('/');
+        $englishResponse->assertOk();
+        $englishResponse->assertSee('E-Learning Modules');
+        $englishResponse->assertSee('About');
+    }
+
+    public function test_unsupported_navbar_language_is_rejected(): void
+    {
+        $this->get('/language/fr')->assertNotFound();
+    }
+
+    public function test_navbar_language_is_detected_from_the_browser_on_first_visit(): void
+    {
+        $malayResponse = $this->withHeader('Accept-Language', 'ms-MY,ms;q=0.9,en;q=0.8')->get('/');
+        $malayResponse->assertOk();
+        $malayResponse->assertSee('Modul E-Pembelajaran');
+        $this->assertSame('ms', session('locale'));
+
+        $this->flushSession();
+
+        $chineseResponse = $this->withHeader('Accept-Language', 'zh-CN,zh;q=0.9,en;q=0.8')->get('/');
+        $chineseResponse->assertOk();
+        $chineseResponse->assertSee('在线学习');
+        $this->assertSame('zh', session('locale'));
+    }
+
+    public function test_saved_language_overrides_browser_detection(): void
+    {
+        $response = $this
+            ->withSession(['locale' => 'en'])
+            ->withHeader('Accept-Language', 'zh-CN,zh;q=0.9')
+            ->get('/');
+
+        $response->assertOk();
+        $response->assertSee('E-Learning Modules');
+        $this->assertSame('en', session('locale'));
     }
 }

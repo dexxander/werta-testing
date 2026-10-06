@@ -4,38 +4,38 @@
         <li class="nav-item">
             <a href="{{ route('elearning.overview') }}"
                class="nav-link {{ request()->routeIs('elearning.overview') ? 'active' : '' }}">
-                Overview
+                {{ __('Overview') }}
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('elearning.courses') }}"
                class="nav-link {{ request()->routeIs('elearning.courses') ? 'active' : '' }}">
-                Courses
+                {{ __('Courses') }}
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('elearning.paths') }}"
                class="nav-link {{ request()->routeIs('elearning.paths') ? 'active' : '' }}">
-                Learning Paths
+                {{ __('Learning Paths') }}
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('elearning.dashboard') }}"
                class="nav-link {{ request()->routeIs('elearning.dashboard') ? 'active' : '' }}">
-                Dashboard Preview
+                {{ __('Dashboard Preview') }}
             </a>
         </li>
 
         <li class="nav-item">
             <a href="{{ route('elearning.pricing') }}"
                class="nav-link {{ request()->routeIs('elearning.pricing') ? 'active' : '' }}">
-                Pricing
+                {{ __('Pricing') }}
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('elearning.faq') }}"
                class="nav-link {{ request()->routeIs('elearning.faq') ? 'active' : '' }}">
-                FAQ
+                {{ __('FAQ') }}
             </a>
         </li>
     </ul>

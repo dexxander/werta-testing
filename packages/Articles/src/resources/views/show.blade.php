@@ -9,7 +9,7 @@
         {{-- Back Button --}}
         <div class="mb-8">
             <a href="{{ route('public.articles') }}" class="back-link">
-                <i class="bi bi-arrow-left"></i> Back to Discovery Map
+                <i class="bi bi-arrow-left"></i> {{ __('Back to Discovery Map') }}
             </a>
         </div>
 
@@ -18,23 +18,23 @@
         ═══════════════════════════════════════════════════ --}}
         <header class="article-header">
             <div class="article-meta">
-                <span class="meta-tag">{{ strtoupper($article->access_type) }}</span>
+                <span class="meta-tag">{{ \App\Support\SiteText::translate(strtoupper($article->access_type)) }}</span>
                 <span class="meta-dot">•</span>
-                <span class="meta-read-time">{{ ucfirst($article->visibility) }}</span>
+                <span class="meta-read-time">{{ \App\Support\SiteText::translate(ucfirst($article->visibility)) }}</span>
             </div>
             
             <h1 class="article-title">{{ $article->title ?? 'Article not found' }}</h1>
-            <p class="article-subtitle">{{ $article->subtitle ?? '' }}</p>
+            <p class="article-subtitle">{{ \App\Support\SiteText::translate($article->subtitle ?? '') }}</p>
             
             <div class="article-author-row">
                 <div class="author-info">
                     <img src="{{ $article->author_avatar_url ?? 'https://ui-avatars.com/api/?name=Author&background=C4A840&color=fff' }}" alt="{{ $article->author_name ?? 'Author' }}" class="author-avatar">
                     <div>
-                        <div class="author-name">{{ $article->author_name ?? '' }}</div>
-                        <div class="author-title">{{ $article->author_title ?? '' }}</div>
+                        <div class="author-name">{{ \App\Support\SiteText::translate($article->author_name ?? '') }}</div>
+                        <div class="author-title">{{ \App\Support\SiteText::translate($article->author_title ?? '') }}</div>
                     </div>
                 </div>
-                <div class="article-date">{{ $article->date_label ?? '' }}</div>
+                <div class="article-date">{{ \App\Support\SiteText::translate($article->date_label ?? '') }}</div>
             </div>
         </header>
 
@@ -42,7 +42,7 @@
         @if($article && $article->image_url)
             <div class="article-featured-image">
                 <img src="{{ $article->image_url }}" alt="{{ $article->title }}">
-                <div class="image-caption">{{ $article->image_caption ?? '' }}</div>
+                <div class="image-caption">{{ \App\Support\SiteText::translate($article->image_caption ?? '') }}</div>
             </div>
         @endif
 
@@ -60,13 +60,13 @@
                 @if($article->file_path)
                     <div style="text-align: center; margin: 2rem 0;">
                         <a href="{{ asset('storage/' . $article->file_path) }}" target="_blank" class="btn-unlock-article" style="display: inline-block; text-decoration: none;">
-                            <i class="bi bi-file-earmark-pdf"></i> View Paper
+                            <i class="bi bi-file-earmark-pdf"></i> {{ __('View Paper') }}
                         </a>
                     </div>
                 @elseif($article->content)
                     <p style="white-space: pre-line;">{{ $article->content }}</p>
                 @else
-                    <p class="text-gray-400">This article isn't available yet.</p>
+                    <p class="text-gray-400">{{ __('This article isn\'t available yet.') }}</p>
                 @endif
             @else
                 {{-- Paid article: abstract only, rest is locked --}}
@@ -76,10 +76,10 @@
                         <div class="paywall-icon">
                             <i class="bi bi-star-fill text-gold"></i>
                         </div>
-                        <h3 class="paywall-title">This article is for Premium Members</h3>
-                        <p class="paywall-desc">Unlock the full content for RM {{ number_format($article->price, 2) }}.</p>
+                        <h3 class="paywall-title">{{ __('This article is for Premium Members') }}</h3>
+                        <p class="paywall-desc">{{ __('Unlock the full content for RM') }} {{ \App\Support\SiteText::translate(number_format($article->price, 2)) }}.</p>
                         <div class="paywall-actions">
-                            <a href="{{ route('public.articles.subscribe', ['slug' => $article->slug]) }}" class="btn-unlock" style="text-decoration: none; display: inline-block;">Unlock Full Access</a>
+                            <a href="{{ route('public.articles.subscribe', ['slug' => $article->slug]) }}" class="btn-unlock" style="text-decoration: none; display: inline-block;">{{ __('Unlock Full Access') }}</a>
                         </div>
                     </div>
                 </div>
@@ -90,11 +90,11 @@
              ENGAGEMENT & REACTIONS
         ═══════════════════════════════════════════════════ --}}
         <section class="article-engagement">
-            <h3 class="engagement-title">Did you find this helpful?</h3>
+            <h3 class="engagement-title">{{ __('Did you find this helpful?') }}</h3>
             <div class="reaction-buttons">
-                <button class="btn-reaction"><i class="bi bi-hand-thumbs-up"></i> Yes, very helpful</button>
-                <button class="btn-reaction"><i class="bi bi-hand-thumbs-down"></i> Not quite what I needed</button>
-                <button class="btn-share"><i class="bi bi-share"></i> Share</button>
+                <button class="btn-reaction"><i class="bi bi-hand-thumbs-up"></i> {{ __('Yes, very helpful') }}</button>
+                <button class="btn-reaction"><i class="bi bi-hand-thumbs-down"></i> {{ __('Not quite what I needed') }}</button>
+                <button class="btn-share"><i class="bi bi-share"></i> {{ __('Share') }}</button>
             </div>
         </section>
 
@@ -102,12 +102,12 @@
              COMMENTS SECTION
         ═══════════════════════════════════════════════════ --}}
         <section class="article-comments">
-            <h3 class="comments-header">Community Discussion ({{ $comments->count() ?? 0 }})</h3>
+            <h3 class="comments-header">{{ __('Community Discussion (') }}{{ \App\Support\SiteText::translate($comments->count() ?? 0) }})</h3>
             
             <div class="comment-input-area">
-                <textarea rows="3" placeholder="Share your thoughts on this topic..." class="comment-textarea"></textarea>
+                <textarea rows="3" placeholder="{{ __('Share your thoughts on this topic...') }}" class="comment-textarea"></textarea>
                 <div class="comment-actions">
-                    <button class="btn-post-comment">Post Comment</button>
+                    <button class="btn-post-comment">{{ __('Post Comment') }}</button>
                 </div>
             </div>
 
@@ -115,16 +115,16 @@
                 @forelse($comments as $comment)
                     <div class="comment-item">
                         <div class="comment-author-row">
-                            <div class="comment-avatar" style="background: var(--primary); color: #fff;">{{ substr($comment->author_name, 0, 1) }}</div>
+                            <div class="comment-avatar" style="background: var(--primary); color: #fff;">{{ \App\Support\SiteText::translate(substr($comment->author_name, 0, 1)) }}</div>
                             <div class="comment-meta">
-                                <div class="c-name">{{ $comment->author_name }}</div>
-                                <div class="c-time">{{ $comment->time_ago }}</div>
+                                <div class="c-name">{{ \App\Support\SiteText::translate($comment->author_name) }}</div>
+                                <div class="c-time">{{ \App\Support\SiteText::translate($comment->time_ago) }}</div>
                             </div>
                         </div>
-                        <p class="comment-text">{{ $comment->text }}</p>
+                        <p class="comment-text">{{ \App\Support\SiteText::translate($comment->text) }}</p>
                         <div class="comment-footer">
-                            <button class="c-action"><i class="bi bi-heart"></i> {{ $comment->likes ?? 0 }}</button>
-                            <button class="c-action"><i class="bi bi-reply"></i> Reply</button>
+                            <button class="c-action"><i class="bi bi-heart"></i> {{ \App\Support\SiteText::translate($comment->likes ?? 0) }}</button>
+                            <button class="c-action"><i class="bi bi-reply"></i> {{ __('Reply') }}</button>
                         </div>
 
                         @foreach(($comment->replies ?? []) as $reply)
@@ -134,14 +134,14 @@
                                         <i class="bi bi-patch-check"></i>
                                     </div>
                                     <div class="comment-meta">
-                                        <div class="c-name">{{ $reply->author_name }} @if($reply->is_author)<span class="author-badge">Author</span>@endif</div>
-                                        <div class="c-time">{{ $reply->time_ago }}</div>
+                                        <div class="c-name">{{ \App\Support\SiteText::translate($reply->author_name) }} @if($reply->is_author)<span class="author-badge">{{ __('Author') }}</span>@endif</div>
+                                        <div class="c-time">{{ \App\Support\SiteText::translate($reply->time_ago) }}</div>
                                     </div>
                                 </div>
-                                <p class="comment-text">{{ $reply->text }}</p>
+                                <p class="comment-text">{{ \App\Support\SiteText::translate($reply->text) }}</p>
                                 <div class="comment-footer">
-                                    <button class="c-action"><i class="bi bi-heart"></i> {{ $reply->likes ?? 0 }}</button>
-                                    <button class="c-action"><i class="bi bi-reply"></i> Reply</button>
+                                    <button class="c-action"><i class="bi bi-heart"></i> {{ \App\Support\SiteText::translate($reply->likes ?? 0) }}</button>
+                                    <button class="c-action"><i class="bi bi-reply"></i> {{ __('Reply') }}</button>
                                 </div>
                             </div>
                         @endforeach
@@ -150,7 +150,7 @@
                         <hr class="comment-divider">
                     @endif
                 @empty
-                    <p class="text-sm text-gray-400">No comments yet — be the first to share your thoughts.</p>
+                    <p class="text-sm text-gray-400">{{ __('No comments yet — be the first to share your thoughts.') }}</p>
                 @endforelse
             </div>
         </section>

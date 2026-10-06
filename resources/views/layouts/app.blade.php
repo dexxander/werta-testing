@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    @include('partials.localization')
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Werta</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/Werta_Logo.png') }}">
@@ -86,12 +87,14 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
+            gap: 0.5rem;
         }
 
         .navbar-brand-wrap {
             display: flex;
             align-items: center;
             text-decoration: none;
+            flex-shrink: 0;
         }
 
         .brand-title {
@@ -128,7 +131,7 @@
             font-size: var(--text-base);
             color: var(--dark);
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.55rem;
             border-radius: var(--radius-sm);
             font-weight: 500;
             transition: color 0.2s;
@@ -140,14 +143,14 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         .btn-account {
             background: var(--gold);
             color: var(--dark);
             border: none;
-            padding: 0.55rem 1.4rem;
+            padding: 0.55rem 0.8rem;
             border-radius: var(--radius-sm);
             font-weight: 600;
             font-size: var(--text-base-lg);
@@ -157,7 +160,7 @@
             gap: 6px;
             transition: background 0.2s;
             /* Keep navbar on a single line for long role labels */
-            max-width: 235px;
+            max-width: 160px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -511,14 +514,14 @@
         }
 
         /* ─── RESPONSIVE ────────────────────────────────── */
-        @media (min-width: 992px) {
+        @media (min-width: 1200px) {
             .mobile-nav-toggle,
             .mobile-nav-collapse {
                 display: none !important;
             }
         }
 
-        @media (max-width: 991px) {
+        @media (max-width: 1199px) {
             .navbar-inner { padding: 0.4rem 1.2rem; }
             .hero-heading { font-size: 2.5rem; }
             .nav-links, .nav-actions { display: none; }

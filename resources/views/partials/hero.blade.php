@@ -6,10 +6,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-7">
-                <h1 class="hero-heading">Mental Wellbeing,<br>With You Every Step</h1>
+                <h1 class="hero-heading">{{ __('Mental Wellbeing,') }}<br>{{ __('With You Every Step') }}</h1>
                 <div class="d-flex gap-3 flex-wrap">
-                    <a href="{{ url('/counselors') }}" class="btn-cta-filled">Find a Counselor</a>
-                    <a href="{{ url('/assessment') }}" class="btn-cta-outline">Take an Assessment</a>
+                    <a href="{{ url('/counselors') }}" class="btn-cta-filled">{{ __('Find a Counselor') }}</a>
+                    <a href="{{ url('/assessment') }}" class="btn-cta-outline">{{ __('Take an Assessment') }}</a>
                 </div>
             </div>
         </div>

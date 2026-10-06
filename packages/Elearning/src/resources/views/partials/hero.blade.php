@@ -17,37 +17,37 @@
     <div class="container" style="position:relative;z-index:2;">
         <div class="row align-items-center">
             <div class="col-lg-7 el-hero-copy">
-                <div class="el-pill">E-Learning Platform</div>
+                <div class="el-pill">{{ __('E-Learning Platform') }}</div>
                 <h1 class="hero-heading" style="font-size:3rem;margin-bottom:1.2rem;">
-                    Learn New Skills.<br><span style="color:var(--gold);">Earn</span> Real Certificates.
+                    {{ __('Learn New Skills.') }}<br><span style="color:var(--gold);">{{ __('Earn') }}</span> {{ __('Real Certificates.') }}
                 </h1>
                 <p style="font-size:1.1rem;color:rgba(255,255,255,0.75);line-height:1.8;max-width:520px;margin-bottom:0;">
-                    Self-paced courses taught by expert instructors — go from your first lesson to a certificate you can show off, on a schedule that works for you.
+                    {{ __('Self-paced courses taught by expert instructors — go from your first lesson to a certificate you can show off, on a schedule that works for you.') }}
                 </p>
 
                 <div class="el-hero-search">
-                    <input type="text" placeholder="Search for courses, topics, or skills...">
-                    <button><i class="bi bi-search"></i> Search</button>
+                    <input type="text" placeholder="{{ __('Search for courses, topics, or skills...') }}">
+                    <button><i class="bi bi-search"></i> {{ __('Search') }}</button>
                 </div>
 
                 @if(!empty($categories))
                     <div class="el-hero-chips">
-                        <span class="el-hero-chip-label">Popular:</span>
+                        <span class="el-hero-chip-label">{{ __('Popular:') }}</span>
                         @foreach($categories as $category)
-                            <a href="{{ $category['url'] ?? '#el-courses' }}" class="el-hero-chip">{{ $category['name'] }}</a>
+                            <a href="{{ $category['url'] ?? '#el-courses' }}" class="el-hero-chip">{{ \App\Support\SiteText::translate($category['name']) }}</a>
                         @endforeach
                     </div>
                 @endif
 
                 <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;align-items:center;">
-                    <a href="#el-courses" class="btn-cta-filled">Start Learning Free</a>
-                    <a href="#el-paths" class="btn-cta-outline">View Learning Paths</a>
+                    <a href="#el-courses" class="btn-cta-filled">{{ __('Start Learning Free') }}</a>
+                    <a href="#el-paths" class="btn-cta-outline">{{ __('View Learning Paths') }}</a>
                 </div>
 
                 @if(!empty($statistics['total_students']))
                     <p class="el-hero-trust">
                         <i class="bi bi-people-fill" style="color:var(--gold);"></i>
-                        Join {{ $statistics['total_students'] }} learners already growing their skills
+                        {{ __('Join') }} {{ \App\Support\SiteText::translate($statistics['total_students']) }} {{ __('learners already growing their skills') }}
                     </p>
                 @endif
             </div>
@@ -60,32 +60,32 @@
                         </div>
                         <div class="el-hero-card-body">
                             @if(!empty($continue_course))
-                                <span class="el-hero-card-tag">Continue learning</span>
-                                <h5>{{ $continue_course['title'] }}</h5>
-                                <p>with {{ $continue_course['instructor_name'] }}</p>
+                                <span class="el-hero-card-tag">{{ __('Continue learning') }}</span>
+                                <h5>{{ \App\Support\SiteText::translate($continue_course['title']) }}</h5>
+                                <p>{{ __('with') }} {{ \App\Support\SiteText::translate($continue_course['instructor_name']) }}</p>
 
                                 <div class="el-hero-card-progress">
                                     <div class="el-hero-card-progress-bar">
                                         <div class="el-hero-card-progress-fill" style="width: {{ $continue_course['progress_percent'] }}%;"></div>
                                     </div>
-                                    <span>{{ $continue_course['progress_percent'] }}% complete</span>
+                                    <span>{{ \App\Support\SiteText::translate($continue_course['progress_percent']) }}{{ __('% complete') }}</span>
                                 </div>
 
                                 @if(!empty($continue_course['next_lesson_title']))
                                     <div class="el-hero-card-next">
-                                        Next: {{ $continue_course['next_lesson_title'] }}
+                                        {{ __('Next:') }} {{ \App\Support\SiteText::translate($continue_course['next_lesson_title']) }}
                                     </div>
                                 @endif
 
                                 <a href="{{ $continue_course['resume_url'] ?? '#' }}" class="el-hero-card-btn">
-                                    Resume Lesson <i class="bi bi-arrow-right"></i>
+                                    {{ __('Resume Lesson') }} <i class="bi bi-arrow-right"></i>
                                 </a>
                             @else
-                                <span class="el-hero-card-tag">Get started</span>
-                                <h5>Your learning journey starts here</h5>
-                                <p>Browse courses and enrol in minutes — no experience needed.</p>
+                                <span class="el-hero-card-tag">{{ __('Get started') }}</span>
+                                <h5>{{ __('Your learning journey starts here') }}</h5>
+                                <p>{{ __('Browse courses and enrol in minutes — no experience needed.') }}</p>
                                 <a href="#el-courses" class="el-hero-card-btn">
-                                    Explore Courses <i class="bi bi-arrow-right"></i>
+                                    {{ __('Explore Courses') }} <i class="bi bi-arrow-right"></i>
                                 </a>
                             @endif
                         </div>
@@ -95,8 +95,8 @@
                         <div class="el-hero-badge el-hero-badge--top">
                             <i class="bi bi-patch-check-fill"></i>
                             <div>
-                                <strong>{{ $statistics['certificates_issued'] }}</strong>
-                                <span>Certificates issued</span>
+                                <strong>{{ \App\Support\SiteText::translate($statistics['certificates_issued']) }}</strong>
+                                <span>{{ __('Certificates issued') }}</span>
                             </div>
                         </div>
                     @endif

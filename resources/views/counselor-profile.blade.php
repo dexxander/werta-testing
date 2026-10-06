@@ -290,30 +290,30 @@
             <div class="profile-container-wrap">
                 <div class="back-nav-wrap">
                     <a href="{{ route('public.counselors') }}" class="back-nav-link">
-                        <i class="bi bi-arrow-left"></i> Back to counselors
+                        <i class="bi bi-arrow-left"></i> {{ __('Back to counselors') }}
                     </a>
                 </div>
 
                 <div class="sample-preview-banner">
                     <i class="bi bi-info-circle-fill"></i>
-                    <span>Preview: these are sample profiles, not real counselors. Booking opens soon.</span>
+                    <span>{{ __('Preview: these are sample profiles, not real counselors. Booking opens soon.') }}</span>
                 </div>
 
                 <div class="profile-card">
                     <div class="profile-header">
-                        <div class="profile-avatar">{{ $initials }}</div>
+                        <div class="profile-avatar">{{ \App\Support\SiteText::translate($initials) }}</div>
                         <div class="profile-header-info">
                             <div class="profile-top-row">
                                 <h1 class="profile-name">{{ $counselor->name }}</h1>
-                                <span class="sample-profile-badge">Sample profile</span>
+                                <span class="sample-profile-badge">{{ __('Sample profile') }}</span>
                             </div>
-                            <div class="profile-title">{{ $counselor->display_title ?? 'Counselor' }}</div>
+                            <div class="profile-title">{{ \App\Support\SiteText::translate($counselor->display_title ?? 'Counselor') }}</div>
                         </div>
                     </div>
 
                     @if(!empty($counselor->bio))
                         <div>
-                            <h2 class="profile-section-heading">About</h2>
+                            <h2 class="profile-section-heading">{{ __('About') }}</h2>
                             <p class="profile-bio">{{ $counselor->bio }}</p>
                         </div>
                     @endif
@@ -328,14 +328,14 @@
 
                     @if($hasDetails)
                         <div>
-                            <h2 class="profile-section-heading">Details &amp; Practice</h2>
+                            <h2 class="profile-section-heading">{{ __('Details & Practice') }}</h2>
                             <div class="profile-details-grid">
                                 @if(!empty($counselor->specialties) && count($counselor->specialties) > 0)
                                     <div class="profile-detail-item">
-                                        <span class="detail-label">Specialties</span>
+                                        <span class="detail-label">{{ __('Specialties') }}</span>
                                         <div class="detail-value">
                                             @foreach($counselor->specialties as $spec)
-                                                <span class="specialty-chip">{{ $spec }}</span>
+                                                <span class="specialty-chip">{{ \App\Support\SiteText::translate($spec) }}</span>
                                             @endforeach
                                         </div>
                                     </div>
@@ -343,40 +343,40 @@
 
                                 @if(!empty($counselor->years_experience))
                                     <div class="profile-detail-item">
-                                        <span class="detail-label">Experience</span>
+                                        <span class="detail-label">{{ __('Experience') }}</span>
                                         <div class="detail-value">
                                             <i class="bi bi-briefcase"></i>
-                                            <span>{{ $counselor->years_experience }} years in practice</span>
+                                            <span>{{ \App\Support\SiteText::translate($counselor->years_experience) }} {{ __('years in practice') }}</span>
                                         </div>
                                     </div>
                                 @endif
 
                                 @if(!empty($counselor->languages) && count($counselor->languages) > 0)
                                     <div class="profile-detail-item">
-                                        <span class="detail-label">Languages</span>
+                                        <span class="detail-label">{{ __('Languages') }}</span>
                                         <div class="detail-value">
                                             <i class="bi bi-translate"></i>
-                                            <span>{{ implode(', ', $counselor->languages) }}</span>
+                                            <span>{{ implode(', ', array_map([\App\Support\SiteText::class, 'translate'], $counselor->languages)) }}</span>
                                         </div>
                                     </div>
                                 @endif
 
                                 @if(!empty($counselor->session_modes) && count($counselor->session_modes) > 0)
                                     <div class="profile-detail-item">
-                                        <span class="detail-label">Session Modes</span>
+                                        <span class="detail-label">{{ __('Session Modes') }}</span>
                                         <div class="detail-value">
                                             <i class="bi bi-camera-video"></i>
-                                            <span>{{ implode(', ', $counselor->session_modes) }}</span>
+                                            <span>{{ implode(', ', array_map([\App\Support\SiteText::class, 'translate'], $counselor->session_modes)) }}</span>
                                         </div>
                                     </div>
                                 @endif
 
                                 @if(!empty($counselor->state))
                                     <div class="profile-detail-item">
-                                        <span class="detail-label">Location</span>
+                                        <span class="detail-label">{{ __('Location') }}</span>
                                         <div class="detail-value">
                                             <i class="bi bi-geo-alt"></i>
-                                            <span>{{ $counselor->state }}</span>
+                                            <span>{{ \App\Support\SiteText::translate($counselor->state) }}</span>
                                         </div>
                                     </div>
                                 @endif
@@ -387,16 +387,16 @@
                     <div class="profile-booking-bar">
                         @if(!is_null($counselor->rate_individual))
                             <div class="rate-wrap">
-                                <span class="rate-label">Individual Session Rate</span>
+                                <span class="rate-label">{{ __('Individual Session Rate') }}</span>
                                 <div class="rate-amount">
-                                    RM {{ number_format($counselor->rate_individual, 0) }}
-                                    <span class="rate-unit">per session</span>
+                                    RM {{ \App\Support\SiteText::translate(number_format($counselor->rate_individual, 0)) }}
+                                    <span class="rate-unit">{{ __('per session') }}</span>
                                 </div>
                             </div>
                         @endif
 
                         <button class="btn-book-disabled" disabled aria-disabled="true">
-                            <i class="bi bi-calendar-x"></i> Booking opens soon
+                            <i class="bi bi-calendar-x"></i> {{ __('Booking opens soon') }}
                         </button>
                     </div>
                 </div>

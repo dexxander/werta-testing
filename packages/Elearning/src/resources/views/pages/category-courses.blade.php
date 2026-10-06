@@ -8,17 +8,17 @@
     $category_courses = [
         [
             'id' => 101,
-            'title' => 'Mastering ' . $category_name,
+            'title' => __('Mastering :category', ['category' => \App\Support\SiteText::translate($category_name)]),
             'instructor' => 'James Carter',
             'difficulty' => 'Beginner',
             'rating' => '4.8',
             'duration' => '32h',
             'students' => 4210,
-            'topics' => ['Introduction to ' . $category_name, 'Core Concepts', 'Practical Techniques', 'Tools and Workflows', 'Final Project'],
+            'topics' => [__('Introduction to :category', ['category' => \App\Support\SiteText::translate($category_name)]), 'Core Concepts', 'Practical Techniques', 'Tools and Workflows', 'Final Project'],
         ],
         [
             'id' => 102,
-            'title' => 'Advanced Concepts in ' . $category_name,
+            'title' => __('Advanced Concepts in :category', ['category' => \App\Support\SiteText::translate($category_name)]),
             'instructor' => 'Priya Nair',
             'difficulty' => 'Advanced',
             'rating' => '4.9',
@@ -28,7 +28,7 @@
         ],
         [
             'id' => 103,
-            'title' => $category_name . ' for Professionals',
+            'title' => __(':category for Professionals', ['category' => \App\Support\SiteText::translate($category_name)]),
             'instructor' => 'Sarah Chen',
             'difficulty' => 'Intermediate',
             'rating' => '4.7',
@@ -43,9 +43,9 @@
 <section class="el-section bg-cream-light" id="category-courses">
     <div class="el-container">
         <div class="mb-5">
-            <a href="{{ route('elearning.courses') }}" style="color:var(--primary);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> Back to Courses</a>
-            <h2 class="el-heading mt-3">{{ $category_name }} Courses</h2>
-            <p class="el-subtext">Explore top-rated courses specifically tailored for {{ $category_name }}.</p>
+            <a href="{{ route('elearning.courses') }}" style="color:var(--primary);text-decoration:none;font-size:var(--text-base);font-weight:700;"><i class="bi bi-arrow-left"></i> {{ __('Back to Courses') }}</a>
+            <h2 class="el-heading mt-3">{{ \App\Support\SiteText::translate($category_name) }} {{ __('Courses') }}</h2>
+            <p class="el-subtext">{{ __('Explore top-rated courses specifically tailored for') }} {{ \App\Support\SiteText::translate($category_name) }}.</p>
         </div>
 
         @if(count($category_courses) > 0)
@@ -57,21 +57,21 @@
                                 <i class="bi bi-image" style="font-size:2rem;color:var(--gold);opacity:0.3;"></i>
                             </div>
                             <div style="display:flex;align-items:center;gap:6px;margin-bottom:0.6rem;">
-                                <span style="font-size:var(--text-xs);font-weight:700;background:rgba(196,168,64,0.15);color:var(--primary);padding:3px 10px;border-radius:4px;">{{ $course['difficulty'] }}</span>
+                                <span style="font-size:var(--text-xs);font-weight:700;background:rgba(196,168,64,0.15);color:var(--primary);padding:3px 10px;border-radius:4px;">{{ \App\Support\SiteText::translate($course['difficulty']) }}</span>
                             </div>
-                            <h5 style="font-weight:700;font-size:var(--text-md);margin-bottom:0.5rem;"><a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" style="color:inherit;text-decoration:none;">{{ $course['title'] }}</a></h5>
-                            <p style="font-size:var(--text-sm);color:var(--muted);margin-bottom:0.8rem;">{{ $course['instructor'] }}</p>
+                            <h5 style="font-weight:700;font-size:var(--text-md);margin-bottom:0.5rem;"><a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" style="color:inherit;text-decoration:none;">{{ \App\Support\SiteText::translate($course['title']) }}</a></h5>
+                            <p style="font-size:var(--text-sm);color:var(--muted);margin-bottom:0.8rem;">{{ \App\Support\SiteText::translate($course['instructor']) }}</p>
                             <div style="display:flex;align-items:center;gap:1rem;font-size:var(--text-sm);color:var(--muted);margin-bottom:1rem;">
-                                <span><i class="bi bi-star-fill" style="color:var(--gold);"></i> {{ $course['rating'] }}</span>
-                                <span><i class="bi bi-clock"></i> {{ $course['duration'] }}</span>
-                                <span><i class="bi bi-people"></i> {{ $course['students'] }}</span>
+                                <span><i class="bi bi-star-fill" style="color:var(--gold);"></i> {{ \App\Support\SiteText::translate($course['rating']) }}</span>
+                                <span><i class="bi bi-clock"></i> {{ \App\Support\SiteText::translate($course['duration']) }}</span>
+                                <span><i class="bi bi-people"></i> {{ \App\Support\SiteText::translate($course['students']) }}</span>
                             </div>
                             <div style="margin-top:auto;display:flex;gap:0.6rem;">
-                                <a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" class="el-btn-outline" style="width:100%;text-align:center;padding:0.65rem 0.8rem;">Preview Course</a>
+                                <a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" class="el-btn-outline" style="width:100%;text-align:center;padding:0.65rem 0.8rem;">{{ __('Preview Course') }}</a>
                                 @if(session('client_logged_in'))
-                                    <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
+                                    <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">{{ __('Enroll Now') }}</button>
                                 @else
-                                    <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">Enroll Now</button>
+                                    <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">{{ __('Enroll Now') }}</button>
                                 @endif
                             </div>
                         </div>
@@ -81,8 +81,8 @@
         @else
             <div class="el-empty-state">
                 <i class="bi bi-journal-bookmark"></i>
-                <h5>No Courses Available</h5>
-                <p>We are currently updating our catalog for {{ $category_name }}.</p>
+                <h5>{{ __('No Courses Available') }}</h5>
+                <p>{{ __('We are currently updating our catalog for') }} {{ \App\Support\SiteText::translate($category_name) }}.</p>
             </div>
         @endif
     </div>
@@ -97,21 +97,21 @@
                 <div style="width:64px;height:64px;background:rgba(40,199,64,0.15);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
                     <i class="bi bi-check-circle-fill" style="font-size:2rem;color:#28c740;"></i>
                 </div>
-                <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Enrolled Successfully!</h4>
-                <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">You have been enrolled in this course. Head to your dashboard to start learning.</p>
+                <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">{{ __('Enrolled Successfully!') }}</h4>
+                <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">{{ __('You have been enrolled in this course. Head to your dashboard to start learning.') }}</p>
                 <div style="display:flex;gap:1rem;justify-content:center;">
-                    <button onclick="closeElearningModal()" class="el-btn-outline" style="padding:0.75rem 1.5rem;">Close</button>
-                    <a href="{{ route('elearning.my-courses') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Go to My Courses</a>
+                    <button onclick="closeElearningModal()" class="el-btn-outline" style="padding:0.75rem 1.5rem;">{{ __('Close') }}</button>
+                    <a href="{{ route('elearning.my-courses') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">{{ __('Go to My Courses') }}</a>
                 </div>
             @else
                 <div style="width:64px;height:64px;background:rgba(196,168,64,0.15);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
                     <i class="bi bi-person-lock" style="font-size:2rem;color:var(--primary);"></i>
                 </div>
-                <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">Client Access Only</h4>
-                <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">Only Client accounts can enroll in courses. Please log in using a Client account to continue.</p>
+                <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">{{ __('Client Access Only') }}</h4>
+                <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">{{ __('Only Client accounts can enroll in courses. Please log in using a Client account to continue.') }}</p>
                 <div style="display:flex;gap:1rem;justify-content:center;">
-                    <button onclick="closeElearningModal()" class="el-btn-outline" style="padding:0.75rem 1.5rem;">Cancel</button>
-                    <a href="{{ url('/client/login') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">Client Login</a>
+                    <button onclick="closeElearningModal()" class="el-btn-outline" style="padding:0.75rem 1.5rem;">{{ __('Cancel') }}</button>
+                    <a href="{{ url('/client/login') }}" class="el-btn-primary" style="padding:0.75rem 1.5rem;">{{ __('Client Login') }}</a>
                 </div>
             @endif
         </div>

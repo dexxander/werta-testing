@@ -47,9 +47,9 @@
 <section class="el-section" style="background-color: var(--dark);" id="el-paths">
     <div class="el-container">
         <div class="text-center mb-5">
-            <div class="el-pill">Career Tracks</div>
-            <h2 class="el-heading el-heading--light">Learning Paths</h2>
-            <p class="el-subtext el-subtext--light mx-auto">Every track is a course-by-course climb — start at the bottom, build up one skill at a time, and graduate at the top.</p>
+            <div class="el-pill">{{ __('Career Tracks') }}</div>
+            <h2 class="el-heading el-heading--light">{{ __('Learning Paths') }}</h2>
+            <p class="el-subtext el-subtext--light mx-auto">{{ __('Every track is a course-by-course climb — start at the bottom, build up one skill at a time, and graduate at the top.') }}</p>
         </div>
 
         @if(!empty($learning_paths) && count($learning_paths) > 0)
@@ -59,11 +59,11 @@
                         @if(!empty($path['courses']))
                             <div class="el-roadmap-ladder">
                                 @foreach($path['courses'] as $course)
-                                    <div class="el-roadmap-course">{{ $course }}</div>
+                                    <div class="el-roadmap-course">{{ \App\Support\SiteText::translate($course) }}</div>
                                     <div class="el-roadmap-arrow"><i class="bi bi-chevron-up"></i></div>
                                 @endforeach
                                 <div class="el-roadmap-summit">
-                                    <i class="bi bi-mortarboard-fill"></i> {{ $path['name'] ?? '' }}
+                                    <i class="bi bi-mortarboard-fill"></i> {{ \App\Support\SiteText::translate($path['name'] ?? '') }}
                                 </div>
                             </div>
                         @else
@@ -72,9 +72,9 @@
                                 <div class="el-feature-icon mx-auto mb-3">
                                     <i class="bi bi-{{ $path['icon'] ?? 'signpost-2' }}"></i>
                                 </div>
-                                <h5 class="text-white mb-1">{{ $path['name'] ?? '' }}</h5>
+                                <h5 class="text-white mb-1">{{ \App\Support\SiteText::translate($path['name'] ?? '') }}</h5>
                                 <p class="mb-0" style="color: var(--muted); font-size: var(--text-sm);">
-                                    {{ $path['course_count'] ?? 0 }} courses
+                                    {{ \App\Support\SiteText::translate($path['course_count'] ?? 0) }} {{ __('courses') }}
                                 </p>
                             </div>
                         @endif
@@ -85,8 +85,8 @@
             {{-- Empty State: kept exactly as requested --}}
             <div class="el-empty-state el-empty-state--dark">
                 <i class="bi bi-signpost-split"></i>
-                <h5>Learning Paths Coming Soon</h5>
-                <p>We are designing structured career tracks to guide your learning journey. Stay tuned.</p>
+                <h5>{{ __('Learning Paths Coming Soon') }}</h5>
+                <p>{{ __('We are designing structured career tracks to guide your learning journey. Stay tuned.') }}</p>
             </div>
         @endif
     </div>

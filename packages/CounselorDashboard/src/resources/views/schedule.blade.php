@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="mb-6 sm:mb-8">
-    <h1 class="text-2xl sm:text-3xl font-bold text-dark">Schedule & Slots</h1>
-    <p class="text-sm text-gray-500 mt-1">Manage your weekly availability and upcoming client sessions.</p>
+    <h1 class="text-2xl sm:text-3xl font-bold text-dark">{{ __('Schedule & Slots') }}</h1>
+    <p class="text-sm text-gray-500 mt-1">{{ __('Manage your weekly availability and upcoming client sessions.') }}</p>
 </div>
 
 @include('counselor-dashboard::partials.sample-banner')
@@ -14,7 +14,7 @@
         
     <div class="bg-white rounded-2xl p-5 border border-gold/20 shadow-sm">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-base font-bold text-dark">{{ $month->format('F Y') }}</h2>
+            <h2 class="text-base font-bold text-dark">{{ \App\Support\SiteText::translate($month->translatedFormat('F Y')) }}</h2>
             <div class="flex gap-3 text-gray-400">
                 <a href="{{ route('counselor.schedule', ['month' => $prevMonth]) }}" class="hover:text-primary transition-colors"><i class="bi bi-chevron-left"></i></a>
                 <a href="{{ route('counselor.schedule', ['month' => $nextMonth]) }}" class="hover:text-primary transition-colors"><i class="bi bi-chevron-right"></i></a>
@@ -22,7 +22,7 @@
         </div>
         
         <div class="grid grid-cols-7 gap-1 text-center text-xs mb-2 font-bold text-gray-400 uppercase">
-            <div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div><div>Su</div>
+            <div>{{ __('Mo') }}</div><div>{{ __('Tu') }}</div><div>{{ __('We') }}</div><div>{{ __('Th') }}</div><div>{{ __('Fr') }}</div><div>{{ __('Sa') }}</div><div>{{ __('Su') }}</div>
         </div>
         
         <div class="grid grid-cols-7 gap-1 text-center text-sm">
@@ -37,7 +37,7 @@
                         @endphp
                         <div class="py-1.5 rounded-lg cursor-pointer transition-colors relative
                             {{ $isToday ? 'bg-gold text-dark font-bold shadow-sm' : 'hover:bg-cream hover:text-primary' }}">
-                            {{ $day->day }}
+                            {{ \App\Support\SiteText::translate($day->day) }}
                             @if($hasBooking)
                                 <span class="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 {{ $isToday ? 'bg-white' : 'bg-red-400' }} rounded-full"></span>
                             @endif
@@ -50,8 +50,8 @@
 
         <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-lg font-bold text-dark">Default Availability</h2>
-                <button class="text-sm font-semibold text-primary hover:text-primary-dark transition-colors">Save</button>
+                <h2 class="text-lg font-bold text-dark">{{ __('Default Availability') }}</h2>
+                <button class="text-sm font-semibold text-primary hover:text-primary-dark transition-colors">{{ __('Save') }}</button>
             </div>
 
             <div class="space-y-4">
@@ -62,7 +62,7 @@
                                 name="availability[{{ $dayItem->day }}][enabled]"
                                 {{ $dayItem->enabled ? 'checked' : '' }}
                                 class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary accent-primary">
-                            <span class="font-semibold text-sm text-gray-700">{{ $dayItem->day }}</span>
+                            <span class="font-semibold text-sm text-gray-700">{{ \App\Support\SiteText::translate($dayItem->day) }}</span>
                         </div>
                         @if($dayItem->enabled)
                             <div class="flex items-center gap-2 w-full text-sm text-gray-600">
@@ -71,7 +71,7 @@
                                 <input type="time" name="availability[{{ $dayItem->day }}][end]" value="{{ $dayItem->end }}" class="flex-1 min-w-0 border border-gray-200 rounded px-2 py-1 bg-white outline-none focus:border-primary">
                             </div>
                         @else
-                            <span class="text-sm font-medium text-gray-400 italic">Unavailable</span>
+                            <span class="text-sm font-medium text-gray-400 italic">{{ __('Unavailable') }}</span>
                         @endif
                     </div>
                 @endforeach
@@ -82,11 +82,11 @@
     <div class="xl:col-span-2 space-y-6">
         <div class="bg-white rounded-2xl p-6 border border-gold/20 shadow-sm">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-lg font-bold text-dark">Booked Slots</h2>
+                <h2 class="text-lg font-bold text-dark">{{ __('Booked Slots') }}</h2>
                 <div class="flex gap-2">
                     <select class="text-sm border border-gray-200 rounded-lg px-3 py-1.5 bg-gray-50 outline-none focus:border-primary">
-                        <option>Selected Day</option>
-                        <option>This Week</option>
+                        <option>{{ __('Selected Day') }}</option>
+                        <option>{{ __('This Week') }}</option>
                     </select>
                 </div>
             </div>
@@ -96,24 +96,24 @@
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl border border-gray-100 hover:border-gold/30 hover:shadow-sm transition-all gap-4">
                         <div class="flex items-start gap-4">
                             <div class="w-12 h-12 rounded-full bg-gold/10 text-primary flex flex-col items-center justify-center shrink-0">
-                                <span class="text-xs font-bold uppercase">{{ $slot->month_short }}</span>
-                                <span class="text-lg font-extrabold leading-none">{{ $slot->day }}</span>
+                                <span class="text-xs font-bold uppercase">{{ \App\Support\SiteText::translate($slot->month_short) }}</span>
+                                <span class="text-lg font-extrabold leading-none">{{ \App\Support\SiteText::translate($slot->day) }}</span>
                             </div>
                             <div>
-                                <h4 class="font-bold text-dark">{{ $slot->client_label }}</h4>
-                                <p class="text-xs text-gray-500 mt-1"><i class="bi bi-clock mr-1"></i> {{ $slot->time_range }}</p>
-                                <span class="inline-block mt-2 px-2 py-0.5 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase rounded">{{ $slot->session_type }}</span>
+                                <h4 class="font-bold text-dark">{{ \App\Support\SiteText::translate($slot->client_label) }}</h4>
+                                <p class="text-xs text-gray-500 mt-1"><i class="bi bi-clock mr-1"></i> {{ \App\Support\SiteText::translate($slot->time_range) }}</p>
+                                <span class="inline-block mt-2 px-2 py-0.5 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase rounded">{{ \App\Support\SiteText::translate($slot->session_type) }}</span>
                             </div>
                         </div>
                         <div class="flex gap-2 sm:flex-col sm:items-end">
-                            <button disabled title="Available when booking opens" class="px-4 py-1.5 bg-gray-100 text-gray-600 cursor-not-allowed text-sm font-semibold rounded-lg">Join Call</button>
-                            <button disabled title="Available when booking opens" class="px-4 py-1.5 bg-gray-100 text-gray-600 cursor-not-allowed text-sm font-semibold rounded-lg">Reschedule</button>
+                            <button disabled title="{{ __('Available when booking opens') }}" class="px-4 py-1.5 bg-gray-100 text-gray-600 cursor-not-allowed text-sm font-semibold rounded-lg">{{ __('Join Call') }}</button>
+                            <button disabled title="{{ __('Available when booking opens') }}" class="px-4 py-1.5 bg-gray-100 text-gray-600 cursor-not-allowed text-sm font-semibold rounded-lg">{{ __('Reschedule') }}</button>
                         </div>
                     </div>
                 @empty
                     <div class="text-center text-gray-400 py-12">
                         <i class="bi bi-calendar-x text-4xl block mb-2"></i>
-                        No booked slots for this day.
+                        {{ __('No booked slots for this day.') }}
                     </div>
                 @endforelse
             </div>

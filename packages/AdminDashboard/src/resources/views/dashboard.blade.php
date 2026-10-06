@@ -4,10 +4,10 @@
 <div>
     <div class="mb-6 sm:mb-8">
         <h1 class="text-2xl sm:text-3xl font-bold text-dark">
-            {{ $role === 'superadmin' ? 'Platform Administration' : 'Admin Overview' }}
+            {{ \App\Support\SiteText::translate($role === 'superadmin' ? 'Platform Administration' : 'Admin Overview') }}
         </h1>
         <p class="text-sm text-gray-500 mt-1">
-            {{ $role === 'superadmin' ? 'System-wide oversight and administrator management.' : 'Operational summary for counselors, clients, and platform activity.' }}
+            {{ \App\Support\SiteText::translate($role === 'superadmin' ? 'System-wide oversight and administrator management.' : 'Operational summary for counselors, clients, and platform activity.') }}
         </p>
     </div>
 
@@ -21,8 +21,8 @@
                 <i class="bi bi-person-badge text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Total Admins</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $totalAdmins }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Total Admins') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::translate($totalAdmins) }}</h3>
             </div>
         </div>
         @endif
@@ -32,8 +32,8 @@
                 <i class="bi bi-people text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Active Clients</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $activeClients }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Active Clients') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::translate($activeClients) }}</h3>
             </div>
         </div>
 
@@ -42,8 +42,8 @@
                 <i class="bi bi-patch-check text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Verified Counselors</p>
-                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ $verifiedCounselors }}</h3>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Verified Counselors') }}</p>
+                <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">{{ \App\Support\SiteText::translate($verifiedCounselors) }}</h3>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
                 <i class="bi bi-calendar-check text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">Sessions (MTD)</p>
+                <p class="text-[10px] sm:text-sm font-bold text-gray-500 uppercase tracking-wide">{{ __('Sessions (MTD)') }}</p>
                 <h3 class="text-lg sm:text-2xl font-extrabold text-dark mt-1">0</h3>
             </div>
         </div>
@@ -62,7 +62,7 @@
                 <i class="bi bi-exclamation-triangle text-xl sm:text-3xl"></i>
             </div>
             <div>
-                <p class="text-[10px] sm:text-sm font-bold text-red-500 uppercase tracking-wide">Active Crisis Flags</p>
+                <p class="text-[10px] sm:text-sm font-bold text-red-500 uppercase tracking-wide">{{ __('Active Crisis Flags') }}</p>
                 <h3 class="text-lg sm:text-2xl font-extrabold text-red-600 mt-1">0</h3>
             </div>
         </div>
@@ -74,21 +74,21 @@
         <!-- Counselor Applications -->
         <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm">
             <div class="flex justify-between items-center mb-4 sm:mb-6">
-                <h2 class="text-lg font-bold text-dark">Counselor Applications</h2>
-                <span class="text-xs font-bold uppercase tracking-wide bg-cream text-primary px-2.5 py-1 rounded-full">{{ $pendingCounselors }} Pending</span>
+                <h2 class="text-lg font-bold text-dark">{{ __('Counselor Applications') }}</h2>
+                <span class="text-xs font-bold uppercase tracking-wide bg-cream text-primary px-2.5 py-1 rounded-full">{{ \App\Support\SiteText::translate($pendingCounselors) }} {{ __('Pending') }}</span>
             </div>
             <div class="text-center text-gray-400 py-10">
                 <i class="bi bi-inbox text-4xl block mb-2"></i>
-                No pending applications.
+                {{ __('No pending applications.') }}
             </div>
         </div>
 
         <!-- System Alerts -->
         <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm">
-            <h2 class="text-lg font-bold text-dark mb-4 sm:mb-6">System Alerts</h2>
+            <h2 class="text-lg font-bold text-dark mb-4 sm:mb-6">{{ __('System Alerts') }}</h2>
             <div class="text-center text-gray-400 py-10">
                 <i class="bi bi-shield-check text-4xl block mb-2"></i>
-                No active alerts.
+                {{ __('No active alerts.') }}
             </div>
         </div>
     </div>
@@ -97,14 +97,14 @@
     <!-- Administrators quick panel — superadmin only -->
     <div class="bg-white rounded-2xl p-4 sm:p-6 border border-gold/20 shadow-sm mb-8">
         <div class="flex justify-between items-center mb-4 sm:mb-6">
-            <h2 class="text-lg font-bold text-dark">Administrator Accounts</h2>
+            <h2 class="text-lg font-bold text-dark">{{ __('Administrator Accounts') }}</h2>
             <a href="{{ url('/superadmin/administrators') }}" class="text-sm font-semibold text-primary hover:text-primary-dark">
-                Manage <i class="bi bi-arrow-right"></i>
+                {{ __('Manage') }} <i class="bi bi-arrow-right"></i>
             </a>
         </div>
         <div class="text-center text-gray-400 py-10">
             <i class="bi bi-person-badge text-4xl block mb-2"></i>
-            No administrator accounts yet.
+            {{ __('No administrator accounts yet.') }}
         </div>
     </div>
     @endif

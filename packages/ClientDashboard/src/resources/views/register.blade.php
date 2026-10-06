@@ -1,24 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+@include('partials.language-picker')
 <div style="min-height: 80vh; display: flex; align-items: center; justify-content: center; background: #fdfbf7;">
     <div style="background: #fff; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 100%; max-width: 500px;">
         
         <div style="text-align: center; margin-bottom: 2rem;">
-            <h2 style="font-family: 'IM Fell English', serif; font-weight: 700; color: #2c2416; margin-bottom: 0.5rem;">Join Werta</h2>
-            <p style="color: #6c757d; font-size: 0.95rem;">Create an account to get started.</p>
+            <h2 style="font-family: 'IM Fell English', serif; font-weight: 700; color: #2c2416; margin-bottom: 0.5rem;">{{ __('Join Werta') }}</h2>
+            <p style="color: #6c757d; font-size: 0.95rem;">{{ __('Create an account to get started.') }}</p>
         </div>
 
         @if(session('error'))
             <div style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; font-size: 0.9rem;">
-                {{ session('error') }}
+                {{ \App\Support\SiteText::translate(session('error')) }}
             </div>
         @endif
 
         <div style="background: #fdfaf4; border: 1px solid rgba(196, 168, 64, 0.35); border-left: 4px solid var(--primary); border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 0.75rem;">
             <i class="bi bi-info-circle-fill" style="color: var(--primary); font-size: 1.1rem; line-height: 1.4; flex-shrink: 0;"></i>
             <p style="margin: 0; font-size: 0.85rem; color: #6b6455; line-height: 1.45;">
-                Prototype preview — no account is created and no form details are saved. Please use test information only.
+                {{ __('Prototype preview — no account is created and no form details are saved. Please use test information only.') }}
             </p>
         </div>
 
@@ -26,49 +27,49 @@
             @csrf
             
             <div style="margin-bottom: 1.5rem;">
-                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">I am registering as a:</label>
+                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">{{ __('I am registering as a:') }}</label>
                 <div style="display: flex; gap: 1rem;">
                     <label style="flex: 1; border: 1px solid #ddd; border-radius: 6px; padding: 0.75rem; text-align: center; cursor: pointer; transition: all 0.2s;" id="label-parent">
                         <input type="radio" name="role" value="parent" style="display: none;" onchange="toggleRole('parent')">
                         <i class="bi bi-person-heart" style="font-size: 1.5rem; display: block; margin-bottom: 0.3rem;"></i>
-                        Parent
+                        {{ __('Parent') }}
                     </label>
                     <label style="flex: 1; border: 1px solid var(--primary); background: rgba(196,168,64,0.1); border-radius: 6px; padding: 0.75rem; text-align: center; cursor: pointer; transition: all 0.2s;" id="label-client">
                         <input type="radio" name="role" value="client" checked style="display: none;" onchange="toggleRole('client')">
                         <i class="bi bi-person" style="font-size: 1.5rem; display: block; margin-bottom: 0.3rem; color: var(--primary);"></i>
-                        <span style="color: var(--primary); font-weight: 600;">Client</span>
+                        <span style="color: var(--primary); font-weight: 600;">{{ __('Client') }}</span>
                     </label>
                 </div>
             </div>
 
             <div style="margin-bottom: 1.5rem;">
-                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">Full Name</label>
+                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">{{ __('Full Name') }}</label>
                 <input type="text" name="name" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 0.95rem;">
             </div>
 
             <div style="margin-bottom: 1.5rem;">
-                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">Email Address</label>
+                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">{{ __('Email Address') }}</label>
                 <input type="email" name="email" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 0.95rem;">
             </div>
 
             <div style="margin-bottom: 1.5rem;" id="ic-container">
-                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">Malaysian IC Number <span style="color: var(--primary);">*</span></label>
+                <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #2c2416;">{{ __('Malaysian IC Number') }} <span style="color: var(--primary);">*</span></label>
                 <input type="text" name="ic_number" id="ic_number" placeholder="YYMMDD-XX-XXXX" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; font-size: 0.95rem;">
-                <p style="font-size: 0.75rem; color: #6c757d; margin-top: 0.4rem;">Used to verify age. Clients must be at least 17 years old.</p>
+                <p style="font-size: 0.75rem; color: #6c757d; margin-top: 0.4rem;">{{ __('Used to verify age. Clients must be at least 17 years old.') }}</p>
                 <div id="ic-error" style="color: #dc3545; font-size: 0.8rem; margin-top: 0.4rem; display: none;"></div>
             </div>
 
             <button type="submit" style="width: 100%; padding: 0.85rem; background: #c4a840; color: #2C2416; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#7B6B35'; this.style.color='#ffffff'" onmouseout="this.style.background='#c4a840'; this.style.color='#2C2416'">
-                Create Account
+                {{ __('Create Account') }}
             </button>
             <p style="font-size: 0.78rem; color: #6b6455; text-align: center; margin-top: 0.75rem; margin-bottom: 0; line-height: 1.4;">
-                Prototype preview — no details are saved.
+                {{ __('Prototype preview — no details are saved.') }}
             </p>
         </form>
         
         <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
-            Already have an account? 
-            <a href="{{ url('/client/login') }}" style="color: var(--primary); text-decoration: none; font-weight: 600;">Sign In</a>
+            {{ __('Already have an account?') }}
+            <a href="{{ url('/client/login') }}" style="color: var(--primary); text-decoration: none; font-weight: 600;">{{ __('Sign In') }}</a>
         </div>
     </div>
 </div>
@@ -124,12 +125,12 @@
                 
                 if (currentYear - year < 17) {
                     e.preventDefault();
-                    document.getElementById('ic-error').innerText = 'You must be at least 17 years old to register as a client.';
+                    document.getElementById('ic-error').innerText = WertaI18n.t('You must be at least 17 years old to register as a client.');
                     document.getElementById('ic-error').style.display = 'block';
                 }
             } else {
                 e.preventDefault();
-                document.getElementById('ic-error').innerText = 'Please enter a valid IC number.';
+                document.getElementById('ic-error').innerText = WertaI18n.t('Please enter a valid IC number.');
                 document.getElementById('ic-error').style.display = 'block';
             }
         }

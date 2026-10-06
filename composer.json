@@ -29,6 +29,7 @@
             "ClientDashboard\\": "packages/ClientDashboard/src/",
             "CounselorDashboard\\": "packages/CounselorDashboard/src/",
             "Elearning\\": "packages/Elearning/src/",
+            "GuidanceCenter\\": "packages/GuidanceCenter/src/",
             "ParentDashboard\\": "packages/ParentDashboard/src/",
             "Submissions\\": "packages/Submissions/src/"
         }
