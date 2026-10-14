@@ -119,6 +119,9 @@ Route::middleware('web')->prefix('admin')->group(function () {
     Route::get('/analytics', function () use ($requireAdmin) {
         return $requireAdmin() ?? view('admindashboard::analytics', ['role' => 'admin']);
     })->name('admin.analytics');
+    Route::get('/revenue', function () use ($requireAdmin) {
+        return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\RevenueController::class)->index('admin');
+    })->name('admin.revenue');
     Route::get('/content', function () use ($requireAdmin) {
         return $requireAdmin() ?? view('admindashboard::content', ['role' => 'admin']);
     })->name('admin.content');
@@ -175,6 +178,9 @@ Route::middleware('web')->prefix('superadmin')->group(function () {
     Route::get('/analytics', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? view('admindashboard::analytics', ['role' => 'superadmin']);
     })->name('superadmin.analytics');
+    Route::get('/revenue', function () use ($requireSuperadmin) {
+        return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\RevenueController::class)->index('superadmin');
+    })->name('superadmin.revenue');
     Route::get('/content', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? view('admindashboard::content', ['role' => 'superadmin']);
     })->name('superadmin.content');

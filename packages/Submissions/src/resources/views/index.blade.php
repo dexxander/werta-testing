@@ -14,6 +14,9 @@
             <a href="{{ route('public.articles') }}" class="px-4 py-2 bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-sm font-semibold rounded-lg transition-colors">
                 <i class="bi bi-journal-text"></i> {{ __('Browse Articles') }}
             </a>
+            <a href="{{ route('submissions.earnings') }}" class="px-4 py-2 bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-sm font-semibold rounded-lg transition-colors">
+                <i class="bi bi-cash-coin"></i> {{ __('Earnings') }}
+            </a>
             <a href="{{ route('submissions.create') }}" class="px-4 py-2 bg-[#C4A840] hover:bg-[#7B6B35] text-white text-sm font-semibold rounded-lg transition-colors">
                 <i class="bi bi-plus-lg"></i> {{ __('Publish an Article') }}
             </a>

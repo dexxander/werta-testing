@@ -4,6 +4,7 @@ namespace Articles\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Articles\Support\MockBilling;
 use Submissions\Models\Submission;
 
 class ArticleController extends Controller
@@ -37,7 +38,12 @@ class ArticleController extends Controller
         // TODO: load real comments once a comments table exists for submissions
         $comments = collect();
 
-        return view('articles::show', compact('article', 'slug', 'comments'));
+        // DEMO: access is re-checked on every request (never a stored flag)
+        $viewer    = MockBilling::viewer();
+        $hasAccess = MockBilling::hasAccess($article);
+        $accessVia = MockBilling::accessVia($article);
+
+        return view('articles::show', compact('article', 'slug', 'comments', 'viewer', 'hasAccess', 'accessVia'));
     }
 
     public function subscribe($slug)
@@ -46,7 +52,14 @@ class ArticleController extends Controller
 
         $this->authorizeArticleView($article);
 
-        return view('articles::subscribe', compact('article'));
+        if ($article->access_type !== 'paid' || MockBilling::hasAccess($article)) {
+            return redirect()->route('public.articles.show', $article->slug);
+        }
+
+        $viewer = MockBilling::viewer();
+        $state  = MockBilling::state();
+
+        return view('articles::subscribe', compact('article', 'viewer', 'state'));
     }
 
     private function authorizeArticleView(Submission $article): void

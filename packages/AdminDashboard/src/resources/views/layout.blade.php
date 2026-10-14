@@ -83,6 +83,10 @@
                     <i class="bi bi-bar-chart-line text-lg"></i> {{ __('Analytics') }}
                 </a>
 
+                <a href="{{ url('/' . $role . '/revenue') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.revenue') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
+                    <i class="bi bi-cash-stack text-lg"></i> {{ __('Revenue') }}
+                </a>
+
                 <a href="{{ url('/' . $role . '/content') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.content') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
                     <i class="bi bi-file-earmark-text text-lg"></i> {{ __('Content') }}
                 </a>

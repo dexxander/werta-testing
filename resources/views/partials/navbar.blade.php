@@ -106,6 +106,7 @@
                     @if($canPublish)
                         <a href="{{ route('submissions.create') }}"><i class="bi bi-pencil-square"></i> {{ __('nav.publish_article') }}</a>
                         <a href="{{ route('submissions.index') }}"><i class="bi bi-folder2-open"></i> {{ __('nav.your_articles') }}</a>
+                        <a href="{{ route('mock.wallet') }}"><i class="bi bi-wallet2"></i> {{ __('Wallet & Library') }}</a>
                     @endif
                 </div>
             </li>
@@ -190,6 +191,7 @@
                         @if($canPublish)
                             <a href="{{ route('submissions.create') }}" class="mobile-sub-link">{{ __('nav.publish_article') }}</a>
                             <a href="{{ route('submissions.index') }}" class="mobile-sub-link">{{ __('nav.your_articles') }}</a>
+                            <a href="{{ route('mock.wallet') }}" class="mobile-sub-link">{{ __('Wallet & Library') }}</a>
                         @endif
                     </div>
                 </li>

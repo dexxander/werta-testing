@@ -49,14 +49,39 @@
         {{-- ═══════════════════════════════════════════════════
              ARTICLE CONTENT (With Premium Paywall)
         ═══════════════════════════════════════════════════ --}}
-        <article class="article-body">
+        @if(session('mock_ok'))
+            <div class="alert alert-success py-2 small">{{ __(session('mock_ok')) }}</div>
+        @endif
+        @if(session('mock_error'))
+            <div class="alert alert-danger py-2 small">{{ __(session('mock_error')) }}</div>
+        @endif
+
+        @if($article->access_type === 'paid' && $hasAccess)
+            <div style="background: var(--cream); border: 1px solid var(--gold); border-radius: var(--radius-lg); padding: .7rem 1rem; margin-bottom: 1.5rem; font-size: var(--text-base); color: var(--primary-dark);">
+                <i class="bi bi-unlock-fill"></i>
+                <strong>{{ __('Unlocked') }}</strong> —
+                @if($accessVia === 'author') {{ __('you are the author, so you read this free.') }}
+                @elseif($accessVia === 'purchased') {{ __('you bought this paper. It stays yours forever.') }}
+                @else {{ __('available through your subscription allowance.') }}
+                @endif
+                <span style="float:right; font-size: var(--text-xs); letter-spacing:1px; color: var(--muted);">{{ __('DEMO') }}</span>
+            </div>
+        @endif
+
+        <article class="article-body" @if($article->access_type === 'paid' && $hasAccess) style="position: relative;" @endif>
             @if($article->abstract)
                 <p class="lead" style="font-size: 1.05rem; color: var(--muted); font-style: italic; border-left: 3px solid var(--gold); padding-left: 1rem; margin-bottom: 2rem;">
                     {{ $article->abstract }}
                 </p>
             @endif
 
-            @if($article->access_type === 'free')
+            @if($article->access_type === 'free' || $hasAccess)
+                @if($article->access_type === 'paid' && $viewer)
+                    {{-- Per-reader watermark (demo of the anti-piracy deterrent) --}}
+                    <div aria-hidden="true" style="position: fixed; inset: 0; z-index: 5; pointer-events: none; display:flex; align-items:center; justify-content:center; transform: rotate(-24deg); font-size: 2.2rem; font-weight: 700; color: rgba(123,107,53,.09); text-align:center; line-height:1.6;">
+                        {{ $viewer[1] }} · {{ now()->format('d M Y H:i') }}<br>{{ __('Werta licensed copy') }}
+                    </div>
+                @endif
                 @if($article->file_path)
                     <div style="text-align: center; margin: 2rem 0;">
                         <a href="{{ asset('storage/' . $article->file_path) }}" target="_blank" class="btn-unlock-article" style="display: inline-block; text-decoration: none;">
@@ -76,8 +101,8 @@
                         <div class="paywall-icon">
                             <i class="bi bi-star-fill text-gold"></i>
                         </div>
-                        <h3 class="paywall-title">{{ __('This article is for Premium Members') }}</h3>
-                        <p class="paywall-desc">{{ __('Unlock the full content for RM') }} {{ \App\Support\SiteText::translate(number_format($article->price, 2)) }}.</p>
+                        <h3 class="paywall-title">{{ __('This is a premium paper') }}</h3>
+                        <p class="paywall-desc">{{ __('Buy it once for RM') }} {{ number_format($article->price, 2) }} {{ __('and keep it forever, or read it with a subscription (RM 15/month, 10 papers).') }}</p>
                         <div class="paywall-actions">
                             <a href="{{ route('public.articles.subscribe', ['slug' => $article->slug]) }}" class="btn-unlock" style="text-decoration: none; display: inline-block;">{{ __('Unlock Full Access') }}</a>
                         </div>
