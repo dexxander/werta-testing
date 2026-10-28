@@ -2,112 +2,261 @@
 
 @section('content')
     @include('partials.navbar')
+    @include('partials.werta-ui')
     @php
         use Articles\Support\MockBilling as MB;
+        use Articles\Support\Referrals;
         $subOn = $state['sub']['active'];
         $used  = count($state['sub']['used']);
-        $typeIcon = ['topup' => 'bi-plus-circle', 'purchase' => 'bi-bag-check', 'subscription' => 'bi-arrow-repeat', 'allowance' => 'bi-ticket-perforated'];
+        $balance = MB::balance($state);
+        $typeIcon = [
+            'topup' => 'bi-plus-circle', 'bonus' => 'bi-stars', 'promo' => 'bi-tag', 'referral' => 'bi-people',
+            'purchase' => 'bi-bag-check', 'gift' => 'bi-gift', 'gift_in' => 'bi-gift', 'subscription' => 'bi-arrow-repeat',
+            'allowance' => 'bi-ticket-perforated', 'expiry' => 'bi-hourglass-split',
+        ];
+        $shareUrl = $myCode ? route('mock.referral.link', $myCode) : null;
     @endphp
 
-    <div style="max-width: 900px; margin: 40px auto 70px; padding: 0 1.5rem;">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
-            <h1 style="font-family: 'IM Fell English', serif; font-size: 2.2rem; color: var(--dark); margin:0;">{{ __('Wallet & Library') }}</h1>
-            <span style="font-size: var(--text-xs); letter-spacing:1px; font-weight:700; color: var(--muted); background: var(--cream); border:1px solid var(--gold); border-radius: var(--radius-pill); padding:.2rem .8rem;">{{ __('DEMO — fake data, no real payment') }}</span>
+    <div class="wt-page">
+        <div class="wt-header">
+            <div>
+                <p class="wt-eyebrow">{{ __('Werta tokens') }}</p>
+                <h1 class="wt-title">{{ __('Wallet & Library') }}</h1>
+                <p class="wt-subtitle">{{ __('One wallet for everything on Werta. Tokens pay for papers, gifts and the subscription, and later courses and partner rewards.') }}</p>
+            </div>
+            <span class="wt-demo-tag"><i class="bi bi-info-circle"></i> {{ __('DEMO — fake data, no real payment') }}</span>
         </div>
 
-        @if(session('mock_ok'))<div class="alert alert-success py-2 small">{{ __(session('mock_ok')) }}</div>@endif
-        @if(session('mock_error'))<div class="alert alert-danger py-2 small">{{ __(session('mock_error')) }}</div>@endif
+        @include('partials.flash')
 
         @if(!$viewer)
-            <div style="background:#fff; border-radius: var(--radius-xl); box-shadow: var(--card-ring); padding:2.5rem; text-align:center;">
-                <i class="bi bi-person-lock" style="font-size:2rem; color: var(--gold);"></i>
-                <p class="mt-2">{{ __('Sign in to use the wallet.') }}</p>
-                <a href="{{ url('/client/login') }}" class="btn-cta-filled" style="text-decoration:none; display:inline-block;">{{ __('Sign in') }}</a>
+            <div class="wt-card text-center">
+                <i class="bi bi-person-lock" style="font-size: 2rem; color: var(--gold);"></i>
+                <h3 class="wt-section-title mt-2">{{ __('Sign in to use the wallet.') }}</h3>
+                <a href="{{ \App\Support\DemoAuth::enabled() ? route('demo.index') : url('/client/login') }}" class="wt-btn wt-btn--gold">{{ __('Sign in') }}</a>
             </div>
         @else
-            <div class="row g-4 mb-4">
-                {{-- Balance + top-up --}}
-                <div class="col-md-6">
-                    <div style="background: var(--dark); color: var(--cream); border-radius: var(--radius-xl); padding: 1.8rem; height:100%;">
-                        <div style="font-size: var(--text-xs); letter-spacing:1px; opacity:.7;">{{ strtoupper(__('Balance')) }} · {{ $viewer[1] }}</div>
-                        <div style="font-size: 2.8rem; font-weight:700; color: var(--gold);">{{ MB::rm($state['wallet']) }}</div>
-                        <div class="d-flex gap-2 flex-wrap mt-3">
-                            @foreach([10, 20, 50, 100] as $amt)
-                                <form method="POST" action="{{ route('mock.topup') }}" class="m-0">@csrf
-                                    <input type="hidden" name="amount" value="{{ $amt }}">
-                                    <button class="btn btn-sm" style="background: var(--gold); color: var(--dark); font-weight:700;">+ RM {{ $amt }}</button>
-                                </form>
-                            @endforeach
+            <div class="wt-grid wt-grid-2 wt-mb">
+                {{-- Balance --}}
+                <div class="wt-card wt-card--dark">
+                    <div class="wt-card-label">{{ __('Balance') }} · {{ $viewer[1] }}</div>
+                    <div class="wt-token" style="font-size: 3rem; color: var(--gold); line-height: 1.1;"><i class="bi bi-coin"></i> {{ $balance }}</div>
+                    <div style="opacity: .8;">{{ __('tokens · worth :rm', ['rm' => MB::rm(MB::tokensToSen($balance))]) }}</div>
+                    <div class="d-flex flex-wrap gap-4 mt-3">
+                        <div>
+                            <div class="wt-card-label">{{ __('Paid tokens') }}</div>
+                            <div class="fw-bold">{{ $state['paid'] }} <span class="wt-small" style="opacity: .7;">{{ __('never expire') }}</span></div>
                         </div>
-                        <div style="font-size: var(--text-xs); opacity:.6; margin-top:.8rem;">{{ __('Top up once, then buy small papers without a gateway fee each time.') }}</div>
+                        <div>
+                            <div class="wt-card-label">{{ __('Bonus tokens') }}</div>
+                            <div class="fw-bold">{{ $state['bonus'] }}
+                                @if($state['bonus'] > 0 && $state['bonus_expires'])
+                                    <span class="wt-small" style="opacity: .7;">{{ __('expire :date', ['date' => \Illuminate\Support\Carbon::parse($state['bonus_expires'])->translatedFormat('d M Y')]) }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wt-small mt-3" style="opacity: .7;">
+                        {{ trans_choice('Enough for :count premium paper.|Enough for :count premium papers.', intdiv($balance, MB::ARTICLE_TOKENS), ['count' => intdiv($balance, MB::ARTICLE_TOKENS)]) }}
+                        {{ __('Bonus tokens are spent first.') }}
                     </div>
                 </div>
 
                 {{-- Subscription --}}
-                <div class="col-md-6">
-                    <div style="background:#fff; border-radius: var(--radius-xl); box-shadow: var(--card-ring); padding: 1.8rem; height:100%;">
-                        <div style="font-size: var(--text-xs); letter-spacing:1px; font-weight:700; color: var(--muted);">{{ strtoupper(__('Subscription')) }}</div>
-                        @if($subOn)
-                            <div style="font-size:1.4rem; font-weight:700; color: var(--primary-dark);">{{ __('Active') }} <i class="bi bi-check-circle-fill" style="color: var(--gold);"></i></div>
-                            <div style="font-size: var(--text-base); color: var(--muted);">{{ __('Renews') }} {{ $state['sub']['renews'] }}</div>
-                            <div class="progress mt-3" style="height:10px;"><div class="progress-bar" style="width: {{ $used / MB::SUB_CAP * 100 }}%; background: var(--gold);"></div></div>
-                            <div style="font-size: var(--text-sm); margin-top:.3rem;">{{ __('Allowance used') }}: <strong>{{ $used }}/{{ MB::SUB_CAP }}</strong></div>
-                            <form method="POST" action="{{ route('mock.expire') }}" class="mt-3">@csrf
-                                <button class="btn btn-sm btn-outline-secondary">{{ __('Simulate expiry') }}</button>
-                            </form>
+                <div class="wt-card">
+                    <div class="wt-card-label">{{ __('Subscription') }}</div>
+                    @if($subOn)
+                        <div class="wt-stat-value is-gold">{{ __('Active') }} <i class="bi bi-check-circle-fill" style="color: var(--gold);"></i></div>
+                        <div class="wt-small wt-muted">{{ __('Renews :date', ['date' => \Illuminate\Support\Carbon::parse($state['sub']['renews'])->translatedFormat('d M Y')]) }}</div>
+                        <div class="wt-progress mt-3"><div class="wt-progress-fill" style="width: {{ $used / MB::SUB_CAP * 100 }}%"></div></div>
+                        <div class="wt-small mt-1">{{ __('Allowance used') }}: <strong>{{ $used }}/{{ MB::SUB_CAP }}</strong></div>
+                        <form method="POST" action="{{ route('mock.expire') }}" class="mt-3">@csrf
+                            <button class="wt-btn wt-btn--outline wt-btn--sm">{{ __('Simulate expiry') }}</button>
+                        </form>
+                    @else
+                        <div class="wt-stat-value" style="color: var(--muted);">{{ __('Not active') }}</div>
+                        <div class="wt-small wt-muted">{{ __(':n tokens (:price) a month · :cap papers', ['n' => MB::SUB_TOKENS, 'price' => MB::rm(MB::subPrice()), 'cap' => MB::SUB_CAP]) }}</div>
+                        <p class="wt-small wt-muted mt-2 mb-3">{{ __('Good for heavy readers. Papers read this way lock again when the subscription ends, and they earn the author nothing.') }}</p>
+                        <form method="POST" action="{{ route('mock.subscribe') }}">@csrf
+                            <button class="wt-btn wt-btn--dark wt-btn--sm" @disabled($balance < MB::SUB_TOKENS)>{{ __('Subscribe for :n tokens', ['n' => MB::SUB_TOKENS]) }}</button>
+                        </form>
+                        @if($used)<div class="wt-small mt-2 wt-muted">{{ __('Papers read via subscription are locked again.') }}</div>@endif
+                    @endif
+                </div>
+            </div>
+
+            {{-- Packs --}}
+            <h2 class="wt-section-title">{{ __('Top up') }}</h2>
+            <p class="wt-section-sub">{{ __('Every premium paper is :n tokens (:price). Buy 5 papers’ worth and get 1 free.', ['n' => MB::ARTICLE_TOKENS, 'price' => MB::rm(MB::articlePrice())]) }}</p>
+            <div class="wt-grid wt-grid-4 wt-mb">
+                @foreach(MB::PACKS as $id => $pack)
+                    @include('articles::partials.pack', ['id' => $id, 'pack' => $pack])
+                @endforeach
+            </div>
+
+            <div class="wt-grid wt-grid-2 wt-mb">
+                {{-- Promotions --}}
+                <div class="wt-card">
+                    <div class="wt-card-label">{{ __('Promotions') }}</div>
+                    <h3 class="wt-section-title" style="font-size: var(--text-xl);">{{ __('Offers for you') }}</h3>
+                    <form method="POST" action="{{ route('mock.promo') }}" class="wt-inline-form mb-3">@csrf
+                        <input type="text" name="code" class="wt-input" placeholder="{{ __('Enter a promo code') }}" aria-label="{{ __('Promo code') }}" required>
+                        <button class="wt-btn wt-btn--dark">{{ __('Apply') }}</button>
+                    </form>
+                    <div class="wt-stack">
+                        @foreach($promos as $p)
+                            @php $usedPromo = isset($state['promos'][$p['code']]); @endphp
+                            <div class="d-flex gap-3 align-items-start">
+                                <i class="bi {{ $p['type'] === 'bonus_pct' ? 'bi-graph-up-arrow' : 'bi-gift' }}" style="color: var(--gold); font-size: 1.3rem;"></i>
+                                <div class="flex-grow-1">
+                                    <div class="fw-bold">{{ __($p['title']) }} <span class="wt-code ms-1">{{ $p['code'] }}</span></div>
+                                    <div class="wt-small wt-muted">{{ __($p['desc']) }} {{ __('Ends :date.', ['date' => \Illuminate\Support\Carbon::parse($p['ends'])->translatedFormat('d M Y')]) }}</div>
+                                    @if($state['armed'] === $p['code'])
+                                        <span class="wt-badge wt-badge--green mt-1">{{ __('Ready for your next top-up') }}</span>
+                                    @endif
+                                </div>
+                                @if($usedPromo)
+                                    <span class="wt-badge wt-badge--grey">{{ __('Used') }}</span>
+                                @elseif(($p['new_users_only'] ?? false) && $state['topups'] > 0)
+                                    <span class="wt-badge wt-badge--grey">{{ __('New readers only') }}</span>
+                                @else
+                                    <form method="POST" action="{{ route('mock.promo') }}">@csrf
+                                        <input type="hidden" name="code" value="{{ $p['code'] }}">
+                                        <button class="wt-btn wt-btn--outline wt-btn--sm">{{ __('Use') }}</button>
+                                    </form>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="mt-4 pt-3" style="border-top: 1px solid rgba(123,107,53,.15);">
+                        <div class="wt-card-label">{{ __('Coming soon · partner rewards') }}</div>
+                        @foreach($partners as $p)
+                            <div class="d-flex gap-3 align-items-center mt-2 wt-muted">
+                                <i class="bi {{ str_contains($p['title'], 'café') ? 'bi-cup-hot' : 'bi-shop' }}" style="font-size: 1.2rem;"></i>
+                                <div class="flex-grow-1 wt-small"><strong>{{ __($p['title']) }}</strong> — {{ __($p['desc']) }} <span class="d-block">{{ __($p['partner']) }}</span></div>
+                                <span class="wt-badge wt-badge--grey">{{ __('Soon') }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                {{-- Referral --}}
+                <div class="wt-card">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
+                        <div class="wt-card-label">{{ __('Invite friends') }}</div>
+                        <span class="wt-badge wt-badge--yellow">{{ __('Rules in draft') }}</span>
+                    </div>
+                    <h3 class="wt-section-title" style="font-size: var(--text-xl);">{{ __('Share Werta, earn tokens') }}</h3>
+                    <p class="wt-small wt-muted">{{ __('When a friend joins with your code and makes their first top-up, you get :a bonus tokens and they get :b.', ['a' => Referrals::RULES['referrer_tokens'], 'b' => Referrals::RULES['referee_tokens']]) }}</p>
+                    <div class="wt-label mt-3">{{ __('Your code') }}</div>
+                    <div class="d-flex flex-wrap gap-2 align-items-center mb-2">
+                        <span class="wt-code" style="font-size: 1.1rem;">{{ $myCode }}</span>
+                        <button type="button" class="wt-btn wt-btn--ghost wt-btn--sm" onclick="navigator.clipboard && navigator.clipboard.writeText('{{ $shareUrl }}'); this.querySelector('span').textContent = WertaI18n.t('Link copied');">
+                            <i class="bi bi-link-45deg"></i> <span>{{ __('Copy invite link') }}</span>
+                        </button>
+                    </div>
+                    <div class="wt-help">{{ $shareUrl }}</div>
+
+                    <div class="mt-4 pt-3" style="border-top: 1px solid rgba(123,107,53,.15);">
+                        <div class="wt-label">{{ __('Were you invited?') }}</div>
+                        @if($referredByName)
+                            <div class="wt-small">
+                                {{ __('Invited by :name.', ['name' => $referredByName]) }}
+                                @if($state['ref_rewarded'])
+                                    <span class="wt-badge wt-badge--green">{{ __('Bonus paid') }}</span>
+                                @else
+                                    <span class="wt-badge wt-badge--yellow">{{ __('Bonus after first top-up') }}</span>
+                                @endif
+                            </div>
+                        @elseif($state['topups'] > 0)
+                            <div class="wt-small wt-muted">{{ __('Referral codes can only be added before your first top-up.') }}</div>
                         @else
-                            <div style="font-size:1.4rem; font-weight:700; color: var(--muted);">{{ __('Not active') }}</div>
-                            <div style="font-size: var(--text-base); color: var(--muted);">{{ MB::rm(MB::SUB_PRICE) }}/{{ __('month') }} · {{ MB::SUB_CAP }} {{ __('papers') }}</div>
-                            <form method="POST" action="{{ route('mock.subscribe') }}" class="mt-3">@csrf
-                                <button class="btn-cta-filled" style="border:none; cursor:pointer; padding:.55rem 1.4rem;">{{ __('Subscribe') }}</button>
+                            <form method="POST" action="{{ route('mock.referral') }}" class="wt-inline-form">@csrf
+                                <input type="text" name="code" value="{{ $prefill }}" class="wt-input" placeholder="{{ __('Friend’s code, e.g. WT-ABC123') }}" aria-label="{{ __('Referral code') }}" required>
+                                <button class="wt-btn wt-btn--outline">{{ __('Add') }}</button>
                             </form>
-                            @if($used)<div class="small mt-2" style="color: var(--muted);">{{ __('Papers read via subscription are locked again.') }}</div>@endif
+                            <div class="wt-help">{{ __('Demo: copy the code shown in another demo account’s wallet.') }}</div>
                         @endif
                     </div>
                 </div>
             </div>
 
             {{-- Library --}}
-            <h3 style="font-family:'IM Fell English',serif; color: var(--dark);">{{ __('My Library') }}</h3>
-            <div style="background:#fff; border-radius: var(--radius-lg); box-shadow: var(--card-ring); margin-bottom: 2rem;">
-                @forelse($library as $p)
-                    <a href="{{ route('public.articles.show', $p->slug) }}" class="d-flex justify-content-between align-items-center px-3 py-3 text-decoration-none border-bottom" style="color: var(--dark);">
-                        <span><i class="bi bi-bag-check" style="color: var(--gold);"></i> <strong>{{ $p->title }}</strong></span>
-                        <span class="small" style="color: var(--muted);">{{ __('Owned forever') }}</span>
+            <h2 class="wt-section-title">{{ __('My Library') }}</h2>
+            <div class="wt-list wt-mb">
+                @foreach($library as $item)
+                    <a href="{{ route('public.articles.show', $item->paper->slug) }}" class="wt-row">
+                        <span class="d-flex align-items-center gap-3 min-w-0">
+                            <i class="bi {{ $item->via === 'gift' ? 'bi-gift' : 'bi-bag-check' }}" style="color: var(--gold); font-size: 1.2rem;"></i>
+                            <span class="min-w-0">
+                                <span class="wt-row-title d-block text-truncate">{{ $item->paper->title }}</span>
+                                <span class="wt-row-meta">{{ $item->paper->author_name }}@if($item->paper->category_label) · {{ __($item->paper->category_label) }}@endif</span>
+                            </span>
+                        </span>
+                        <span class="wt-row-meta text-end">
+                            @if($item->via === 'gift')
+                                {{ __('Gift from :name', ['name' => $item->from]) }}
+                            @else
+                                {{ __('Owned forever') }}
+                            @endif
+                        </span>
                     </a>
-                @empty
-                @endforelse
+                @endforeach
                 @foreach($allowancePapers as $p)
-                    <a href="{{ route('public.articles.show', $p->slug) }}" class="d-flex justify-content-between align-items-center px-3 py-3 text-decoration-none border-bottom" style="color: var(--dark);">
-                        <span><i class="bi bi-ticket-perforated" style="color: var(--primary);"></i> <strong>{{ $p->title }}</strong></span>
+                    @continue(isset($state['purchases'][$p->slug]))
+                    <a href="{{ route('public.articles.show', $p->slug) }}" class="wt-row">
+                        <span class="d-flex align-items-center gap-3 min-w-0">
+                            <i class="bi bi-ticket-perforated" style="color: var(--primary); font-size: 1.2rem;"></i>
+                            <span class="wt-row-title text-truncate">{{ $p->title }}</span>
+                        </span>
                         @if($subOn)
-                            <span class="small" style="color: var(--muted);">{{ __('Via subscription') }}</span>
+                            <span class="wt-row-meta">{{ __('Via subscription') }}</span>
                         @else
-                            <span class="small" style="color:#a33;"><i class="bi bi-lock-fill"></i> {{ __('Locked — subscription ended') }}</span>
+                            <span class="wt-row-meta" style="color: #a33;"><i class="bi bi-lock-fill"></i> {{ __('Locked — subscription ended') }}</span>
                         @endif
                     </a>
                 @endforeach
                 @if($library->isEmpty() && $allowancePapers->isEmpty())
-                    <div class="p-4 text-center" style="color: var(--muted);">{{ __('Nothing here yet. Open a paid article to buy or unlock it.') }}
-                        <a href="{{ route('public.articles') }}">{{ __('Browse articles') }}</a></div>
+                    <div class="wt-empty">
+                        <i class="bi bi-journal-bookmark"></i>
+                        <p class="mb-2">{{ __('Nothing here yet. Open a premium article to read its free preview and unlock it.') }}</p>
+                        <a href="{{ route('public.articles') }}" class="wt-btn wt-btn--outline wt-btn--sm">{{ __('Browse articles') }}</a>
+                    </div>
                 @endif
             </div>
 
             {{-- Ledger --}}
-            <h3 style="font-family:'IM Fell English',serif; color: var(--dark);">{{ __('Transactions') }}</h3>
-            <div style="background:#fff; border-radius: var(--radius-lg); box-shadow: var(--card-ring);">
-                @foreach($state['ledger'] as $row)
-                    <div class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom small">
-                        <span><i class="bi {{ $typeIcon[$row['type']] ?? 'bi-dot' }}" style="color: var(--primary);"></i> {{ $row['desc'] }}
-                            <span style="color: var(--muted);">· {{ $row['at'] }}</span></span>
-                        <strong style="color: {{ $row['amount'] < 0 ? '#a33' : '#3a7d44' }};">
-                            {{ $row['amount'] == 0 ? __('Free') : ($row['amount'] > 0 ? '+' : '−') . MB::rm(abs($row['amount'])) }}</strong>
-                    </div>
-                @endforeach
+            <h2 class="wt-section-title">{{ __('Transactions') }}</h2>
+            <div class="wt-list" style="overflow-x: auto;">
+                <table class="wt-table">
+                    <thead>
+                        <tr>
+                            <th>{{ __('Activity') }}</th>
+                            <th class="wt-hide-sm">{{ __('Date') }}</th>
+                            <th class="wt-num">{{ __('Paid') }}</th>
+                            <th class="wt-num">{{ __('Bonus') }}</th>
+                            <th class="wt-num wt-hide-sm">{{ __('Payment') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($state['ledger'] as $row)
+                            <tr>
+                                <td><i class="bi {{ $typeIcon[$row['type']] ?? 'bi-dot' }}" style="color: var(--primary);"></i> {{ $row['desc'] }}</td>
+                                <td class="wt-hide-sm wt-muted wt-small">{{ $row['at'] }}</td>
+                                <td class="wt-num {{ $row['paid'] > 0 ? 'wt-plus' : ($row['paid'] < 0 ? 'wt-minus' : 'wt-muted') }}">{{ $row['paid'] == 0 ? '—' : ($row['paid'] > 0 ? '+' : '−') . abs($row['paid']) }}</td>
+                                <td class="wt-num {{ $row['bonus'] > 0 ? 'wt-plus' : ($row['bonus'] < 0 ? 'wt-minus' : 'wt-muted') }}">{{ $row['bonus'] == 0 ? '—' : ($row['bonus'] > 0 ? '+' : '−') . abs($row['bonus']) }}</td>
+                                <td class="wt-num wt-hide-sm">{{ $row['money'] ? MB::rm($row['money']) : '—' }}</td>
+                            </tr>
+                        @empty
+                            <tr><td colspan="5" class="wt-empty">{{ __('No transactions yet. Top up to get started.') }}</td></tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
 
             <form method="POST" action="{{ route('mock.reset') }}" class="mt-4 text-end">@csrf
-                <button class="btn btn-sm btn-link text-muted">{{ __('Reset demo data') }}</button>
+                <button class="wt-btn wt-btn--ghost wt-btn--sm">{{ __('Reset demo data') }}</button>
             </form>
         @endif
     </div>

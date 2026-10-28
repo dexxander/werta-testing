@@ -14,6 +14,9 @@ class SessionRoles
         'counselor_name',
         'staff_role',
         'staff_profile',
+        'reviewer_logged_in',
+        'reviewer_id',
+        'reviewer_name',
         'dev_bypass_session',
     ];
 

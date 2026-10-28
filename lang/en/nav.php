@@ -28,6 +28,13 @@ return [
     'admin_sign_in' => 'Admin Sign In',
     'superadmin_sign_in' => 'Superadmin Sign In',
     'register' => 'Register',
+    'wallet' => 'Wallet & Library',
+    'earnings' => 'Earnings',
+    'author_page' => 'My Author Page',
+    'reviewer_sign_in' => 'Reviewer Sign In',
+    'reviewer_dashboard' => 'Reviewer Dashboard',
+    'demo_switch' => 'Switch Demo Account',
+    'become_reviewer' => 'Become a Reviewer',
     'languages' => [
         'en' => 'BI',
         'ms' => 'BM',
@@ -44,5 +51,6 @@ return [
         'counselor' => 'Counselor',
         'client' => 'Client',
         'parent' => 'Parent',
+        'reviewer' => 'Reviewer',
     ],
 ];

@@ -1,22 +1,33 @@
 @php
-    $isLoggedIn = session('staff_role') || session('counselor_logged_in') || session('client_logged_in') || session('parent_logged_in');
+    $isReviewer = (bool) session('reviewer_logged_in');
+    $isLoggedIn = session('staff_role') || $isReviewer || session('counselor_logged_in') || session('client_logged_in') || session('parent_logged_in');
     $canPublish = session('counselor_logged_in') || session('client_logged_in') || session('parent_logged_in');
+    $demoLogin = \App\Support\DemoAuth::enabled();
+    $authorPageUrl = null;
     if ($isLoggedIn) {
         $staffRole = session('staff_role');
         $roleKey = $staffRole
-            ?: (session('counselor_logged_in') ? 'counselor' : (session('client_logged_in') ? 'client' : 'parent'));
+            ?: ($isReviewer ? 'reviewer' : (session('counselor_logged_in') ? 'counselor' : (session('client_logged_in') ? 'client' : 'parent')));
         $role = ucfirst($roleKey);
         $roleLabel = __('nav.roles.' . $roleKey);
         $dashboardUrl = $staffRole
             ? ($staffRole === 'superadmin' ? '/superadmin/dashboard' : '/admin/dashboard')
-            : (session('counselor_logged_in') ? route('counselor.dashboard') : (session('client_logged_in') ? '/client/dashboard' : '/parent/dashboard'));
+            : ($isReviewer ? route('reviewer.dashboard') : (session('counselor_logged_in') ? route('counselor.dashboard') : (session('client_logged_in') ? '/client/dashboard' : '/parent/dashboard')));
         $logoutUrl = $staffRole
             ? ($staffRole === 'superadmin' ? '/superadmin/logout' : '/admin/logout')
-            : (session('counselor_logged_in') ? route('counselor.logout') : (session('client_logged_in') ? '/client/logout' : '/parent/logout'));
-        $profile = session($staffRole ? 'staff_profile' : strtolower($role) . '_profile', [
-            'username' => session('counselor_logged_in') ? session('counselor_name', 'Counselor') : $role . ' User',
-            'picture' => $staffRole === 'superadmin' ? 'bi-shield-check' : ($staffRole ? 'bi-shield-lock' : (session('counselor_logged_in') ? 'bi-person-badge' : 'bi-person-circle'))
-        ]);
+            : ($isReviewer ? route('reviewer.logout') : (session('counselor_logged_in') ? route('counselor.logout') : (session('client_logged_in') ? '/client/logout' : '/parent/logout')));
+        $profile = $isReviewer
+            ? ['username' => session('reviewer_name', __('nav.roles.reviewer')), 'picture' => 'bi-patch-check']
+            : session($staffRole ? 'staff_profile' : strtolower($role) . '_profile', [
+                'username' => session('counselor_logged_in') ? session('counselor_name', 'Counselor') : $role . ' User',
+                'picture' => $staffRole === 'superadmin' ? 'bi-shield-check' : ($staffRole ? 'bi-shield-lock' : (session('counselor_logged_in') ? 'bi-person-badge' : 'bi-person-circle'))
+            ]);
+        // Some sessions store a profile without every key; fill the gaps.
+        $profile = array_merge(['username' => $role . ' User', 'picture' => 'bi-person-circle'], (array) $profile);
+        if ($canPublish && ($me = \App\Support\DemoAuth::current()) && \Illuminate\Support\Facades\Schema::hasTable('submissions')
+            && \Submissions\Models\Submission::published()->where('author_role', $me[0])->where('author_name', $me[1])->exists()) {
+            $authorPageUrl = route('public.authors.show', ['role' => $me[0], 'author' => \Illuminate\Support\Str::slug($me[1])]);
+        }
     }
     $currentLocale = app()->getLocale();
 @endphp
@@ -106,7 +117,8 @@
                     @if($canPublish)
                         <a href="{{ route('submissions.create') }}"><i class="bi bi-pencil-square"></i> {{ __('nav.publish_article') }}</a>
                         <a href="{{ route('submissions.index') }}"><i class="bi bi-folder2-open"></i> {{ __('nav.your_articles') }}</a>
-                        <a href="{{ route('mock.wallet') }}"><i class="bi bi-wallet2"></i> {{ __('Wallet & Library') }}</a>
+                        <a href="{{ route('submissions.earnings') }}"><i class="bi bi-cash-coin"></i> {{ __('nav.earnings') }}</a>
+                        <a href="{{ route('mock.wallet') }}"><i class="bi bi-wallet2"></i> {{ __('nav.wallet') }}</a>
                     @endif
                 </div>
             </li>
@@ -146,7 +158,16 @@
                     </button>
                     <div class="account-dropdown-menu">
                         <div class="account-dropdown-menu-inner">
-                            <a href="{{ $dashboardUrl }}"><i class="bi bi-speedometer2"></i> {{ __('nav.dashboard') }}</a>
+                            <a href="{{ $dashboardUrl }}"><i class="bi bi-speedometer2"></i> {{ $isReviewer ? __('nav.reviewer_dashboard') : __('nav.dashboard') }}</a>
+                            @if($canPublish)
+                                <a href="{{ route('mock.wallet') }}"><i class="bi bi-wallet2"></i> {{ __('nav.wallet') }}</a>
+                            @endif
+                            @if($authorPageUrl)
+                                <a href="{{ $authorPageUrl }}"><i class="bi bi-person-vcard"></i> {{ __('nav.author_page') }}</a>
+                            @endif
+                            @if($demoLogin)
+                                <a href="{{ route('demo.index') }}"><i class="bi bi-arrow-left-right"></i> {{ __('nav.demo_switch') }}</a>
+                            @endif
                             <hr class="divider">
                             <a href="{{ $logoutUrl }}"><i class="bi bi-box-arrow-right"></i> {{ __('nav.logout') }}</a>
                         </div>
@@ -162,6 +183,10 @@
                             <a href="{{ route('counselor.login') }}"><i class="bi bi-person-badge"></i> {{ __('nav.counselor_sign_in') }}</a>
                             <a href="{{ url('/admin/login') }}"><i class="bi bi-shield-lock"></i> {{ __('nav.admin_sign_in') }}</a>
                             <a href="{{ url('/superadmin/login') }}"><i class="bi bi-shield-check"></i> {{ __('nav.superadmin_sign_in') }}</a>
+                            <a href="{{ route('reviewer.login') }}"><i class="bi bi-patch-check"></i> {{ __('nav.reviewer_sign_in') }}</a>
+                            @if($demoLogin)
+                                <a href="{{ route('demo.index') }}"><i class="bi bi-arrow-left-right"></i> {{ __('nav.demo_switch') }}</a>
+                            @endif
                             <hr class="divider">
                             <a href="{{ url('/auth/register') }}"><i class="bi bi-person-plus"></i> {{ __('nav.register') }}</a>
                         </div>
@@ -191,7 +216,8 @@
                         @if($canPublish)
                             <a href="{{ route('submissions.create') }}" class="mobile-sub-link">{{ __('nav.publish_article') }}</a>
                             <a href="{{ route('submissions.index') }}" class="mobile-sub-link">{{ __('nav.your_articles') }}</a>
-                            <a href="{{ route('mock.wallet') }}" class="mobile-sub-link">{{ __('Wallet & Library') }}</a>
+                            <a href="{{ route('submissions.earnings') }}" class="mobile-sub-link">{{ __('nav.earnings') }}</a>
+                            <a href="{{ route('mock.wallet') }}" class="mobile-sub-link">{{ __('nav.wallet') }}</a>
                         @endif
                     </div>
                 </li>
@@ -234,7 +260,16 @@
                         <i class="bi bi-chevron-down sub-chevron"></i>
                     </button>
                     <div class="collapse mobile-sub-links" id="mobileAccountMenu">
-                        <a href="{{ $dashboardUrl }}" class="mobile-sub-link"><i class="bi bi-speedometer2"></i> {{ __('nav.dashboard') }}</a>
+                        <a href="{{ $dashboardUrl }}" class="mobile-sub-link"><i class="bi bi-speedometer2"></i> {{ $isReviewer ? __('nav.reviewer_dashboard') : __('nav.dashboard') }}</a>
+                        @if($canPublish)
+                            <a href="{{ route('mock.wallet') }}" class="mobile-sub-link"><i class="bi bi-wallet2"></i> {{ __('nav.wallet') }}</a>
+                        @endif
+                        @if($authorPageUrl)
+                            <a href="{{ $authorPageUrl }}" class="mobile-sub-link"><i class="bi bi-person-vcard"></i> {{ __('nav.author_page') }}</a>
+                        @endif
+                        @if($demoLogin)
+                            <a href="{{ route('demo.index') }}" class="mobile-sub-link"><i class="bi bi-arrow-left-right"></i> {{ __('nav.demo_switch') }}</a>
+                        @endif
                         <hr class="mobile-divider">
                         <a href="{{ $logoutUrl }}" class="mobile-sub-link"><i class="bi bi-box-arrow-right"></i> {{ __('nav.logout') }}</a>
                     </div>
@@ -251,6 +286,10 @@
                         <a href="{{ route('counselor.login') }}" class="mobile-sub-link"><i class="bi bi-person-badge"></i> {{ __('nav.counselor_sign_in') }}</a>
                         <a href="{{ url('/admin/login') }}" class="mobile-sub-link"><i class="bi bi-shield-lock"></i> {{ __('nav.admin_sign_in') }}</a>
                         <a href="{{ url('/superadmin/login') }}" class="mobile-sub-link"><i class="bi bi-shield-check"></i> {{ __('nav.superadmin_sign_in') }}</a>
+                        <a href="{{ route('reviewer.login') }}" class="mobile-sub-link"><i class="bi bi-patch-check"></i> {{ __('nav.reviewer_sign_in') }}</a>
+                        @if($demoLogin)
+                            <a href="{{ route('demo.index') }}" class="mobile-sub-link"><i class="bi bi-arrow-left-right"></i> {{ __('nav.demo_switch') }}</a>
+                        @endif
                         <hr class="mobile-divider">
                         <a href="{{ url('/auth/register') }}" class="mobile-sub-link"><i class="bi bi-person-plus"></i> {{ __('nav.register') }}</a>
                     </div>

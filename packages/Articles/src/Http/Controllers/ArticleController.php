@@ -2,31 +2,74 @@
 
 namespace Articles\Http\Controllers;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
+use App\Support\DemoAuth;
+use Articles\Support\DemoStats;
 use Articles\Support\MockBilling;
+use Articles\Support\Promotions;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Collection;
 use Submissions\Models\Submission;
 
 class ArticleController extends Controller
 {
     public function index(Request $request)
     {
-        $published = Submission::where('visibility', 'public')
-            ->where('status', 'published')
+        $published = Submission::published()
+            ->withCount(['reviews as completed_reviews_count' => fn ($q) => $q->where('status', 'completed')])
             ->latest('submitted_at')
             ->get();
 
-        $featuredArticle  = $published->first();
-        $moreArticles     = $published->skip(1);
+        // Featured: newest premium paper, else newest paper.
+        $featuredArticle = $published->firstWhere('access_type', 'paid') ?? $published->first();
+        $moreArticles = $published->reject(fn ($a) => $featuredArticle && $a->id === $featuredArticle->id)->take(8);
 
-        // TODO: build these out once categories/comments exist for submissions
-        $trendingComments = collect();
-        $categories       = collect();
-        $categoryArticles = collect();
+        $readers = fn (Submission $a) => MockBilling::totalSales($a) + DemoStats::subscriptionReads($a) + DemoStats::freeReads($a);
+        $popular = $published->sortByDesc($readers)->take(5)->values();
+        $bestSellers = $published->where('access_type', 'paid')
+            ->sortByDesc(fn ($a) => MockBilling::totalSales($a))->take(3)->pluck('slug')->all();
+
+        $categories = collect(Submission::CATEGORIES)
+            ->map(fn ($c, $key) => $c + ['key' => $key, 'count' => $published->where('category', $key)->count()]);
+        $categoryArticles = $published->groupBy('category');
+
+        // "All articles" list with filters (?q=&category=&access=&sort=)
+        $filters = [
+            'q'        => trim((string) $request->query('q', '')),
+            'category' => array_key_exists($request->query('category'), Submission::CATEGORIES) ? $request->query('category') : '',
+            'access'   => in_array($request->query('access'), ['free', 'paid'], true) ? $request->query('access') : '',
+            'sort'     => $request->query('sort') === 'popular' ? 'popular' : 'newest',
+        ];
+        $list = $this->filter($published, $filters, $readers);
+        $page = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 9;
+        $articles = new LengthAwarePaginator(
+            $list->forPage($page, $perPage)->values(), $list->count(), $perPage, $page,
+            ['path' => $request->url(), 'query' => $request->query(), 'fragment' => 'all-articles']
+        );
 
         return view('articles::index', compact(
-            'featuredArticle', 'trendingComments', 'categories', 'categoryArticles', 'moreArticles'
+            'featuredArticle', 'popular', 'bestSellers', 'categories', 'categoryArticles',
+            'moreArticles', 'articles', 'filters'
         ));
+    }
+
+    private function filter(Collection $published, array $f, callable $readers): Collection
+    {
+        $list = $published;
+        if ($f['q'] !== '') {
+            $q = mb_strtolower($f['q']);
+            $list = $list->filter(fn ($a) => str_contains(mb_strtolower($a->title . ' ' . $a->abstract . ' ' . $a->author_name), $q));
+        }
+        if ($f['category'] !== '') {
+            $list = $list->where('category', $f['category']);
+        }
+        if ($f['access'] !== '') {
+            $list = $list->where('access_type', $f['access']);
+        }
+
+        return $f['sort'] === 'popular' ? $list->sortByDesc($readers)->values() : $list->values();
     }
 
     public function show($slug)
@@ -42,53 +85,82 @@ class ArticleController extends Controller
         $viewer    = MockBilling::viewer();
         $hasAccess = MockBilling::hasAccess($article);
         $accessVia = MockBilling::accessVia($article);
+        $state     = MockBilling::state();
+        $purchase  = $state['purchases'][$article->slug] ?? null;
 
-        return view('articles::show', compact('article', 'slug', 'comments', 'viewer', 'hasAccess', 'accessVia'));
+        $reviews = $article->publicReviews()->latest('submitted_at')->get();
+        $anonymousReviews = $article->reviews()->where('status', 'completed')->count() - $reviews->count();
+
+        $authorPapers = Submission::published()
+            ->where('author_role', $article->author_role)
+            ->where('author_name', $article->author_name)
+            ->count();
+
+        // Locked text preview: first paragraphs only. The rest is never sent to the browser.
+        $preview = $this->previewParts($article);
+
+        return view('articles::show', compact(
+            'article', 'slug', 'comments', 'viewer', 'hasAccess', 'accessVia', 'state', 'purchase',
+            'reviews', 'anonymousReviews', 'authorPapers', 'preview'
+        ));
     }
 
+    /** Checkout: buy once, subscribe, or gift. Route name kept as public.articles.subscribe. */
     public function subscribe($slug)
     {
         $article = Submission::where('slug', $slug)->firstOrFail();
 
         $this->authorizeArticleView($article);
 
-        if ($article->access_type !== 'paid' || MockBilling::hasAccess($article)) {
-            return redirect()->route('public.articles.show', $article->slug);
+        $viewer    = MockBilling::viewer();
+        $state     = MockBilling::state();
+        $hasAccess = MockBilling::hasAccess($article);
+        $accessVia = MockBilling::accessVia($article);
+        $promos    = Promotions::live();
+
+        // People this reader can gift to: other demo readers, never themselves or the author.
+        $me = DemoAuth::key();
+        $recipients = collect(DemoAuth::readerAccounts())
+            ->reject(fn ($acc, $key) => $key === $me
+                || ($acc['role'] === $article->author_role && $acc['name'] === $article->author_name));
+
+        return view('articles::subscribe', compact('article', 'viewer', 'state', 'hasAccess', 'accessVia', 'promos', 'recipients'));
+    }
+
+    /**
+     * Split text content into the visible preview and a scrambled filler
+     * (made from the preview's own words) that is blurred under the paywall.
+     */
+    private function previewParts(Submission $article): array
+    {
+        $paragraphs = array_values(array_filter(array_map('trim', preg_split('/\n\s*\n/', (string) $article->content))));
+        if (! $paragraphs) {
+            return ['visible' => [], 'filler' => [], 'hidden' => 0];
         }
+        $show = count($paragraphs) > 2 ? 2 : 1;
+        $visible = array_slice($paragraphs, 0, $show);
+        $hidden = count($paragraphs) - $show;
 
-        $viewer = MockBilling::viewer();
-        $state  = MockBilling::state();
+        $words = preg_split('/\s+/', implode(' ', $visible));
+        mt_srand(crc32($article->slug));
+        $filler = [];
+        for ($i = 0; $i < max(3, $hidden); $i++) {
+            shuffle($words);
+            $filler[] = ucfirst(implode(' ', array_slice($words, 0, min(count($words), 55)))) . '.';
+        }
+        mt_srand();
 
-        return view('articles::subscribe', compact('article', 'viewer', 'state'));
+        return ['visible' => $visible, 'filler' => $filler, 'hidden' => $hidden];
     }
 
     private function authorizeArticleView(Submission $article): void
     {
         if ($article->status !== 'published' || $article->visibility === 'private') {
-            $viewer = $this->currentViewer();
+            $viewer = DemoAuth::current();
             abort_unless(
                 $viewer && $viewer[0] === $article->author_role && $viewer[1] === $article->author_name,
                 404
             );
         }
-    }
-
-    /**
-     * Same identity logic as SubmissionController::currentAuthor(),
-     * but returns null for guests instead of aborting.
-     * TODO: replace with auth()->user() once unified login exists.
-     */
-    private function currentViewer(): ?array
-    {
-        if (session('counselor_logged_in')) {
-            return ['counselor', session('counselor_name', 'Counselor')];
-        }
-        if (session('client_logged_in')) {
-            return ['client', session('client_profile.username', 'Client User')];
-        }
-        if (session('parent_logged_in')) {
-            return ['parent', session('parent_profile.username', 'Parent User')];
-        }
-        return null;
     }
 }

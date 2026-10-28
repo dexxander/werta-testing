@@ -12,4 +12,5 @@ return [
     GuidanceCenter\Providers\GuidanceCenterServiceProvider::class,
     CounselorDashboard\Providers\CounselorDashboardServiceProvider::class,
     Submissions\Providers\SubmissionsServiceProvider::class,
+    ReviewerDashboard\Providers\ReviewerDashboardServiceProvider::class,
 ];

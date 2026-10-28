@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <div class="mb-6 sm:mb-8">
-        <h1 class="text-2xl sm:text-3xl font-bold text-dark">{{ __('Settings') }}</h1>
+        <h1 class="font-display text-3xl sm:text-4xl text-dark">{{ __('Settings') }}</h1>
         <p class="text-sm text-gray-500 mt-1">{{ __('Manage your account preferences and platform configuration.') }}</p>
     </div>
 

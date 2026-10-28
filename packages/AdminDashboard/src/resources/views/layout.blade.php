@@ -9,13 +9,33 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Chart.js for charts (available if needed later) -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js for analytics charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     @include('partials.tailwind-dashboard-config')
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Great+Vibes&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Shared with the public site: serif display headings and the warm card ring */
+        .font-display { font-family: 'IM Fell English', serif; font-weight: 400; }
+        .card-ring { box-shadow: 0 0 0 1px rgba(87, 75, 34, 0.35), 0 8px 32px rgba(44, 36, 22, 0.07); }
+    </style>
+    <script>
+        // Werta chart defaults: brand palette (no teal), Lato, warm gridlines.
+        window.WertaChartColors = ['#C4A840', '#7B6B35', '#2C2416', '#B5654A', '#8A9A5B', '#D9C78A', '#574B22'];
+        window.wertaChart = function (id, config) {
+            const el = document.getElementById(id);
+            if (!el || !window.Chart) return null;
+            Chart.defaults.font.family = "'Lato', sans-serif";
+            Chart.defaults.color = '#6B6455';
+            Chart.defaults.plugins.legend.labels.boxWidth = 12;
+            Chart.defaults.plugins.legend.labels.boxHeight = 12;
+            config.options = Object.assign({ maintainAspectRatio: false }, config.options || {});
+            return new Chart(el, config);
+        };
+        window.wertaRm = v => 'RM ' + (v / 100).toLocaleString(undefined, { maximumFractionDigits: 0 });
+    </script>
 </head>
 <body class="bg-cream text-dark font-[Lato,sans-serif] antialiased flex flex-col h-screen overflow-hidden" x-data="{ sidebarOpen: window.innerWidth >= 1024 }">
     {{-- DEV BYPASS: Warning banner for dev-bypassed sessions --}}
@@ -77,6 +97,16 @@
 
                 <a href="{{ url('/' . $role . '/user-management') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.user-management') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
                     <i class="bi bi-people text-lg"></i> {{ __('User Management') }}
+                </a>
+
+                @php $pendingReviewerCount = \Illuminate\Support\Facades\Schema::hasTable('reviewers') ? \AdminDashboard\Models\Reviewer::where('status', 'pending')->count() : 0; @endphp
+                <a href="{{ url('/' . $role . '/reviews') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.reviews') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
+                    <i class="bi bi-journal-check text-lg"></i> {{ __('Article Reviews') }}
+                </a>
+
+                <a href="{{ url('/' . $role . '/reviewers') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.reviewers') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">
+                    <i class="bi bi-patch-check text-lg"></i> {{ __('Reviewers') }}
+                    @if($pendingReviewerCount)<span class="ml-auto text-[10px] font-bold bg-gold text-dark rounded-full px-2 py-0.5">{{ $pendingReviewerCount }}</span>@endif
                 </a>
 
                 <a href="{{ url('/' . $role . '/analytics') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg font-medium transition-colors {{ request()->routeIs($role . '.analytics') ? 'bg-gold/10 text-primary font-semibold' : 'text-gray-600 hover:bg-gray-50 hover:text-primary' }}">

@@ -2,39 +2,69 @@
 
 @section('content')
     @include('partials.navbar')
+    @php
+        use Articles\Support\MockBilling as MB;
+        $catPositions = [
+            'science'       => 'top: 22%; left: 24%;',
+            'social'        => 'top: 18%; left: 62%;',
+            'education'     => 'top: 46%; left: 84%;',
+            'mental-health' => 'top: 80%; left: 70%;',
+            'parenting'     => 'top: 82%; left: 32%;',
+            'career'        => 'top: 52%; left: 14%;',
+        ];
+    @endphp
 
     {{-- Main Articles Container --}}
     <main class="werta-articles-main">
-        
+
         {{-- ═══════════════════════════════════════════════════
-             TOP SECTION: PREMIUM FEATURE & TRENDING
+             TOP SECTION: FEATURED & POPULAR
         ═══════════════════════════════════════════════════ --}}
         <div class="articles-top-grid">
-            
-            {{-- Left: Featured Premium Article --}}
+
+            {{-- Left: Featured Article --}}
             @if($featuredArticle)
                 <section class="premium-featured-card group">
                     <div class="premium-badge">
-                        <i class="bi bi-star-fill"></i> {{ __('PREMIUM') }}
+                        @if($featuredArticle->access_type === 'paid')
+                            <i class="bi bi-star-fill"></i> {{ __('PREMIUM') }}
+                        @else
+                            {{ __('FREE') }}
+                        @endif
                     </div>
-                    
+
                     <div class="premium-image-wrapper">
                         <img src="https://ui-avatars.com/api/?name={{ urlencode($featuredArticle->title) }}&size=800&background=C4A840&color=fff" alt="{{ $featuredArticle->title }}">
                     </div>
-                    
+
                     <div class="premium-content">
                         <div class="article-meta">
-                            <span class="meta-tag">{{ \App\Support\SiteText::translate(strtoupper($featuredArticle->access_type)) }}</span>
-                            <span class="meta-dot">•</span>
-                            <span class="meta-read-time">{{ \App\Support\SiteText::translate($featuredArticle->author_name) }}</span>
+                            @if($featuredArticle->category_label)
+                                <a href="{{ route('public.articles', ['category' => $featuredArticle->category]) }}#all-articles" class="meta-tag text-decoration-none">{{ __($featuredArticle->category_label) }}</a>
+                                <span class="meta-dot">•</span>
+                            @endif
+                            <a href="{{ $featuredArticle->author_url }}" class="meta-read-time text-decoration-none">{{ $featuredArticle->author_name }}</a>
+                            @if($featuredArticle->completed_reviews_count > 0)
+                                <span class="meta-dot">•</span>
+                                <span class="meta-reviewed"><i class="bi bi-patch-check-fill"></i> {{ __('Peer reviewed') }}</span>
+                            @endif
                         </div>
-                        
+
                         <h1 class="article-headline group-hover-gold">{{ $featuredArticle->title }}</h1>
                         <p class="article-excerpt">{{ $featuredArticle->abstract }}</p>
-                        
-                        <a href="{{ route('public.articles.show', ['slug' => $featuredArticle->slug]) }}" class="btn-unlock-article" style="display: inline-block; text-decoration: none; text-align: center;">
-                            <i class="bi bi-lock-fill"></i> {{ __('Unlock Full Article') }}
-                        </a>
+
+                        <div class="d-flex flex-wrap align-items-center gap-3">
+                            <a href="{{ route('public.articles.show', ['slug' => $featuredArticle->slug]) }}" class="btn-unlock-article" style="display: inline-block; text-decoration: none; text-align: center;">
+                                @if($featuredArticle->access_type === 'paid')
+                                    <i class="bi bi-book"></i> {{ __('Read the free preview') }}
+                                @else
+                                    <i class="bi bi-book"></i> {{ __('Read article') }}
+                                @endif
+                            </a>
+                            @if($featuredArticle->access_type === 'paid')
+                                <span class="featured-price"><i class="bi bi-coin"></i> {{ __(':n tokens', ['n' => MB::ARTICLE_TOKENS]) }} · {{ MB::rm(MB::articlePrice()) }}</span>
+                            @endif
+                        </div>
                     </div>
                 </section>
             @else
@@ -43,78 +73,71 @@
                 </section>
             @endif
 
-            {{-- Right: Trending Conversations --}}
+            {{-- Right: Popular this month --}}
             <aside class="trending-sidebar">
                 <h2 class="sidebar-title">
-                    <i class="bi bi-graph-up-arrow" style="color: var(--primary);"></i> {{ __('Trending Conversations') }}
+                    <i class="bi bi-graph-up-arrow" style="color: var(--primary);"></i> {{ __('Popular this month') }}
                 </h2>
-                
+
                 <div class="trending-comments-list">
-                    @forelse($trendingComments as $comment)
-                        <div class="comment-item group">
-                            <div class="comment-header">
-                                <div class="comment-avatar" style="background: #C4A840; color: var(--dark);">{{ \App\Support\SiteText::translate(substr($comment->author_name, 0, 1)) }}</div>
-                                <span class="comment-author">{{ \App\Support\SiteText::translate($comment->author_name) }}</span>
-                                <span class="comment-time">{{ \App\Support\SiteText::translate($comment->time_ago) }}</span>
-                            </div>
-                            <p class="comment-text">{{ \App\Support\SiteText::translate($comment->text) }}</p>
-                            <a href="{{ route('public.articles.show', ['slug' => $comment->article_slug]) }}" class="comment-source group-hover-underline">{{ __('On:') }} {{ \App\Support\SiteText::translate($comment->article_title) }}</a>
-                        </div>
+                    @forelse($popular as $i => $item)
+                        <a href="{{ route('public.articles.show', ['slug' => $item->slug]) }}" class="popular-item group">
+                            <span class="popular-rank">{{ $i + 1 }}</span>
+                            <span class="popular-body">
+                                <span class="popular-title group-hover-gold">{{ $item->title }}</span>
+                                <span class="popular-meta">
+                                    {{ $item->author_name }}
+                                    @if($item->category_label) · {{ __($item->category_label) }} @endif
+                                    @if($item->access_type === 'paid') · <i class="bi bi-star-fill" style="color: var(--gold);"></i> @endif
+                                </span>
+                            </span>
+                        </a>
                         @if(!$loop->last)
                             <hr class="comment-divider">
                         @endif
                     @empty
-                        <p class="text-sm text-gray-400">{{ __('No trending conversations yet.') }}</p>
+                        <p class="text-sm text-gray-400">{{ __('No articles published yet.') }}</p>
                     @endforelse
                 </div>
+
+                <a href="{{ route('mock.wallet') }}" class="sidebar-token-note">
+                    <i class="bi bi-coin"></i>
+                    <span>{{ __('Every premium paper is :price. Top up 5 and get 1 free.', ['price' => MB::rm(MB::articlePrice())]) }}</span>
+                </a>
             </aside>
         </div>
 
         {{-- ═══════════════════════════════════════════════════
-             DISCOVERY MAP (Grid & Interactive Constellation)
+             DISCOVERY MAP (Categories)
         ═══════════════════════════════════════════════════ --}}
         <section class="discovery-map-section">
             <div class="discovery-header">
                 <div>
                     <h2 class="section-title">{{ __('Discovery Map') }}</h2>
-                    <p class="section-subtitle">{{ __('Explore the intersection of modern technology and mental wellbeing.') }}</p>
+                    <p class="section-subtitle">{{ __('Explore papers by field. Every category has the same fixed price.') }}</p>
                 </div>
-                
+
                 <button id="btn-toggle-map" onclick="toggleDiscoveryMap()" class="btn-interactive-view">
                     <i class="bi bi-diagram-3 mr-1"></i> <span id="map-btn-text">{{ __('Interactive View') }}</span>
                 </button>
             </div>
 
             <div id="map-grid-view" class="discovery-grid">
-                <div onclick="showResources('ai')" class="discovery-node hover-lift">
-                    <i class="bi bi-cpu text-accent text-3xl mb-2 block"></i>
-                    <h3>{{ __('AI Guided') }}</h3>
-                    <p>{{ \App\Support\SiteText::translate($categories['ai']['count'] ?? 0) }} {{ __('RESOURCES') }}</p>
-                </div>
-                <div onclick="showResources('iot')" class="discovery-node hover-lift">
-                    <i class="bi bi-smartwatch text-primary text-3xl mb-2 block"></i>
-                    <h3>{{ __('IoT Wellness') }}</h3>
-                    <p>{{ \App\Support\SiteText::translate($categories['iot']['count'] ?? 0) }} {{ __('RESOURCES') }}</p>
-                </div>
-                <div onclick="showResources('ar')" class="discovery-node hover-lift">
-                    <i class="bi bi-headset-vr text-dark text-3xl mb-2 block"></i>
-                    <h3>{{ __('AR Therapy') }}</h3>
-                    <p>{{ \App\Support\SiteText::translate($categories['ar']['count'] ?? 0) }} {{ __('RESOURCES') }}</p>
-                </div>
-                <div onclick="showResources('multilingual')" class="discovery-node hover-lift">
-                    <i class="bi bi-globe2 text-accent text-3xl mb-2 block"></i>
-                    <h3>{{ __('Multilingual') }}</h3>
-                    <p>{{ \App\Support\SiteText::translate($categories['multilingual']['count'] ?? 0) }} {{ __('RESOURCES') }}</p>
-                </div>
+                @foreach($categories as $cat)
+                    <div onclick="showResources('{{ $cat['key'] }}')" class="discovery-node hover-lift">
+                        <i class="bi {{ $cat['icon'] }} discovery-icon"></i>
+                        <h3>{{ __($cat['label']) }}</h3>
+                        <p>{{ $cat['count'] }} {{ __('RESOURCES') }}</p>
+                    </div>
+                @endforeach
             </div>
 
             <div id="map-interactive-view" class="interactive-constellation" style="display: none;">
-                
                 <svg class="constellation-lines" width="100%" height="100%">
-                    <line x1="50%" y1="50%" x2="25%" y2="25%" class="pulse-line" />
-                    <line x1="50%" y1="50%" x2="75%" y2="30%" class="pulse-line" />
-                    <line x1="50%" y1="50%" x2="30%" y2="75%" class="pulse-line" />
-                    <line x1="50%" y1="50%" x2="70%" y2="70%" class="pulse-line" />
+                    @foreach($catPositions as $pos)
+                        @php preg_match('/top: ([\d.]+)%; left: ([\d.]+)%/', $pos, $m); @endphp
+                        <line x1="50%" y1="50%" x2="{{ $m[2] }}%" y2="{{ $m[1] }}%" class="pulse-line" />
+                    @endforeach
                 </svg>
 
                 <div class="c-node center-hub">
@@ -122,84 +145,102 @@
                     <span>Werta<br>{{ __('Ecosystem') }}</span>
                 </div>
 
-                <div onclick="showResources('ai')" class="c-node satellite ai-node">
-                    <i class="bi bi-cpu"></i>
-                    <span>{{ __('AI Guided') }}</span>
-                </div>
-                <div onclick="showResources('iot')" class="c-node satellite iot-node">
-                    <i class="bi bi-smartwatch"></i>
-                    <span>{{ __('IoT Wellness') }}</span>
-                </div>
-                <div onclick="showResources('ar')" class="c-node satellite ar-node">
-                    <i class="bi bi-headset-vr"></i>
-                    <span>{{ __('AR Therapy') }}</span>
-                </div>
-                <div onclick="showResources('multilingual')" class="c-node satellite lang-node">
-                    <i class="bi bi-globe2"></i>
-                    <span>{{ __('Multilingual') }}</span>
-                </div>
+                @foreach($categories as $cat)
+                    <div onclick="showResources('{{ $cat['key'] }}')" class="c-node satellite" style="{{ $catPositions[$cat['key']] }}">
+                        <i class="bi {{ $cat['icon'] }}"></i>
+                        <span>{{ __($cat['label']) }}</span>
+                    </div>
+                @endforeach
             </div>
 
             <div id="dynamic-resource-panel" class="resource-panel" style="display: none;">
-                
-                <button onclick="closeResources()" class="btn-close-panel"><i class="bi bi-x-lg"></i></button>
+                <button onclick="closeResources()" class="btn-close-panel" aria-label="{{ __('Close') }}"><i class="bi bi-x-lg"></i></button>
 
-                <div id="list-ai" class="mini-card-grid resource-list">
-                    @forelse(($categoryArticles['ai'] ?? []) as $item)
-                        <a href="{{ route('public.articles.show', ['slug' => $item->slug]) }}" class="mini-card">
-                            <span class="mini-tag">{{ \App\Support\SiteText::translate(strtoupper($item->type)) }}</span>
-                            <h4>{{ $item->title }}</h4>
-                            <span class="mini-meta">{{ \App\Support\SiteText::translate($item->read_time) }} {{ __('MIN READ') }}</span>
-                        </a>
-                    @empty
-                        <p class="text-sm text-gray-400">{{ __('No resources yet.') }}</p>
-                    @endforelse
-                </div>
+                @foreach($categories as $cat)
+                    <div id="list-{{ $cat['key'] }}" class="resource-list" style="display: none;">
+                        <h3 class="panel-title"><i class="bi {{ $cat['icon'] }}" style="color: var(--primary);"></i> {{ __($cat['label']) }}</h3>
+                        <div class="mini-card-grid">
+                            @forelse(($categoryArticles[$cat['key']] ?? collect())->take(4) as $item)
+                                <a href="{{ route('public.articles.show', ['slug' => $item->slug]) }}" class="mini-card">
+                                    <span class="mini-tag">{{ $item->access_type === 'paid' ? __('PREMIUM') : __('FREE') }}</span>
+                                    <h4>{{ $item->title }}</h4>
+                                    <span class="mini-meta">{{ __('By') }} {{ $item->author_name }}</span>
+                                </a>
+                            @empty
+                                <p class="text-sm text-gray-400">{{ __('No resources yet.') }}</p>
+                            @endforelse
+                        </div>
+                        @if(($categoryArticles[$cat['key']] ?? collect())->count() > 0)
+                            <a href="{{ route('public.articles', ['category' => $cat['key']]) }}#all-articles" class="panel-see-all">{{ __('See all in :category', ['category' => __($cat['label'])]) }} <i class="bi bi-arrow-right"></i></a>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+        </section>
 
-                <div id="list-iot" class="mini-card-grid resource-list" style="display: none;">
-                    @forelse(($categoryArticles['iot'] ?? []) as $item)
-                        <a href="{{ route('public.articles.show', ['slug' => $item->slug]) }}" class="mini-card">
-                            <span class="mini-tag">{{ \App\Support\SiteText::translate(strtoupper($item->type)) }}</span>
-                            <h4>{{ $item->title }}</h4>
-                            <span class="mini-meta">{{ \App\Support\SiteText::translate($item->read_time) }} {{ __('MIN READ') }}</span>
-                        </a>
-                    @empty
-                        <p class="text-sm text-gray-400">{{ __('No resources yet.') }}</p>
-                    @endforelse
-                </div>
-
-                <div id="list-ar" class="mini-card-grid resource-list" style="display: none;">
-                    @forelse(($categoryArticles['ar'] ?? []) as $item)
-                        <a href="{{ route('public.articles.show', ['slug' => $item->slug]) }}" class="mini-card">
-                            <span class="mini-tag">{{ \App\Support\SiteText::translate(strtoupper($item->type)) }}</span>
-                            <h4>{{ $item->title }}</h4>
-                            <span class="mini-meta">{{ \App\Support\SiteText::translate($item->read_time) }} {{ __('MIN READ') }}</span>
-                        </a>
-                    @empty
-                        <p class="text-sm text-gray-400">{{ __('No resources yet.') }}</p>
-                    @endforelse
-                </div>
-
-                <div id="list-multilingual" class="mini-card-grid resource-list" style="display: none;">
-                    @forelse(($categoryArticles['multilingual'] ?? []) as $item)
-                        <a href="{{ route('public.articles.show', ['slug' => $item->slug]) }}" class="mini-card">
-                            <span class="mini-tag">{{ \App\Support\SiteText::translate(strtoupper($item->type)) }}</span>
-                            <h4>{{ $item->title }}</h4>
-                            <span class="mini-meta">{{ \App\Support\SiteText::translate($item->read_time) }} {{ __('MIN READ') }}</span>
-                        </a>
-                    @empty
-                        <p class="text-sm text-gray-400">{{ __('No resources yet.') }}</p>
-                    @endforelse
+        {{-- ═══════════════════════════════════════════════════
+             ALL ARTICLES (filterable)
+        ═══════════════════════════════════════════════════ --}}
+        <section id="all-articles" class="all-articles-section">
+            <div class="carousel-header">
+                <div>
+                    <h2 class="section-title mb-0">{{ __('All Articles') }}</h2>
+                    <p class="section-subtitle mb-0">{{ __(':n papers', ['n' => $articles->total()]) }}@if($filters['category']) · {{ __(\Submissions\Models\Submission::categoryLabel($filters['category'])) }}@endif</p>
                 </div>
             </div>
 
+            <form method="GET" action="{{ route('public.articles') }}#all-articles" class="article-filter-bar">
+                <div class="filter-search">
+                    <i class="bi bi-search"></i>
+                    <input type="search" name="q" value="{{ $filters['q'] }}" placeholder="{{ __('Search titles, topics or authors') }}" aria-label="{{ __('Search articles') }}">
+                </div>
+                <select name="access" class="filter-select-sm" aria-label="{{ __('Access') }}" onchange="this.form.submit()">
+                    <option value="">{{ __('Free and premium') }}</option>
+                    <option value="free" @selected($filters['access'] === 'free')>{{ __('Free only') }}</option>
+                    <option value="paid" @selected($filters['access'] === 'paid')>{{ __('Premium only') }}</option>
+                </select>
+                <select name="sort" class="filter-select-sm" aria-label="{{ __('Sort') }}" onchange="this.form.submit()">
+                    <option value="newest">{{ __('Newest') }}</option>
+                    <option value="popular" @selected($filters['sort'] === 'popular')>{{ __('Most popular') }}</option>
+                </select>
+                @if($filters['category'])<input type="hidden" name="category" value="{{ $filters['category'] }}">@endif
+                <button type="submit" class="btn-filter-go">{{ __('Search') }}</button>
+            </form>
+
+            <div class="category-chips">
+                <a href="{{ route('public.articles', array_filter(['q' => $filters['q'], 'access' => $filters['access'], 'sort' => $filters['sort'] === 'popular' ? 'popular' : null])) }}#all-articles"
+                   class="category-chip {{ $filters['category'] === '' ? 'is-active' : '' }}">{{ __('All categories') }}</a>
+                @foreach($categories as $cat)
+                    <a href="{{ route('public.articles', array_filter(['category' => $cat['key'], 'q' => $filters['q'], 'access' => $filters['access'], 'sort' => $filters['sort'] === 'popular' ? 'popular' : null])) }}#all-articles"
+                       class="category-chip {{ $filters['category'] === $cat['key'] ? 'is-active' : '' }}">
+                        <i class="bi {{ $cat['icon'] }}"></i> {{ __($cat['label']) }} <span class="chip-count">{{ $cat['count'] }}</span>
+                    </a>
+                @endforeach
+            </div>
+
+            @if($articles->count())
+                <div class="article-tile-grid">
+                    @foreach($articles as $article)
+                        @include('articles::partials.article-tile', ['article' => $article, 'bestSellers' => $bestSellers])
+                    @endforeach
+                </div>
+                @if($articles->hasPages())
+                    <div class="d-flex justify-content-center mt-4">{{ $articles->links('pagination::bootstrap-5') }}</div>
+                @endif
+            @else
+                <div class="no-results">
+                    <i class="bi bi-search"></i>
+                    <p>{{ __('No articles match these filters.') }}</p>
+                    <a href="{{ route('public.articles') }}#all-articles">{{ __('Clear filters') }}</a>
+                </div>
+            @endif
         </section>
 
         {{-- ═══════════════════════════════════════════════════
              MORE TO EXPLORE (Native JS Horizontal Carousel)
         ═══════════════════════════════════════════════════ --}}
         <section class="more-articles-section">
-            
+
             <div class="carousel-header">
                 <h2 class="section-title mb-0">{{ __('More to Explore') }}</h2>
                 <div class="carousel-controls">
@@ -211,7 +252,7 @@
                     </button>
                 </div>
             </div>
-            
+
             <div id="article-slider" class="carousel-container">
                 @forelse($moreArticles as $article)
                     <div onclick="window.location.href='{{ route('public.articles.show', ['slug' => $article->slug]) }}'" class="standard-article-card carousel-card group hover-lift">
@@ -219,15 +260,27 @@
                             <img src="https://ui-avatars.com/api/?name={{ urlencode($article->title) }}&size=400&background=C4A840&color=fff" alt="{{ $article->title }}">
                         </div>
                         <div class="card-content">
-                            <span class="card-category text-accent">{{ \App\Support\SiteText::translate(strtoupper($article->access_type)) }}</span>
+                            <span class="card-category text-accent">
+                                {{ $article->access_type === 'paid' ? __('PREMIUM') : __('FREE') }}@if($article->category_label) · {{ __($article->category_label) }}@endif
+                            </span>
                             <h3 class="card-title group-hover-gold">{{ $article->title }}</h3>
-                            <span class="card-read-time">{{ __('By') }} {{ \App\Support\SiteText::translate($article->author_name) }}</span>
+                            <span class="card-read-time">{{ __('By') }} {{ $article->author_name }}</span>
                         </div>
                     </div>
                 @empty
                     <p class="text-sm text-gray-400 px-2">{{ __('No articles published yet.') }}</p>
                 @endforelse
             </div>
+        </section>
+
+        {{-- Reviewer call-out --}}
+        <section class="reviewer-band">
+            <div>
+                <p class="reviewer-band-eyebrow">{{ __('Checked by professionals') }}</p>
+                <h2 class="reviewer-band-title">{{ __('Every paper is reviewed by verified experts before it is published.') }}</h2>
+                <p class="reviewer-band-text">{{ __('Psychologists, educators and health professionals evaluate accuracy, ethics and whether a paper is ready to be sold.') }}</p>
+            </div>
+            <a href="{{ route('reviewer.apply') }}" class="btn-unlock-article text-decoration-none">{{ __('Apply to become a reviewer') }}</a>
         </section>
 
     </main>
@@ -263,14 +316,14 @@
         // Shows the specific dynamic resource panel
         function showResources(category) {
             const panel = document.getElementById('dynamic-resource-panel');
-            
+
             // Hide all lists first
             document.querySelectorAll('.resource-list').forEach(el => el.style.display = 'none');
-            
+
             // Show the panel and the targeted list
             panel.style.display = 'block';
             document.getElementById('list-' + category).style.display = 'block';
-            
+
             // Smoothly scroll down so the user sees the newly opened panel
             panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
@@ -293,13 +346,11 @@
         .text-accent { color: var(--primary); }
         .text-primary { color: var(--primary); }
         .text-dark { color: var(--dark); }
-        
+
         .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         .group-hover-gold { transition: color 0.2s; }
         .group:hover .group-hover-gold { color: var(--primary); }
-        .group-hover-underline { transition: color 0.2s; }
-        .group:hover .group-hover-underline { text-decoration: underline; color: var(--primary); }
 
         /* Typography */
         .section-title {
@@ -324,7 +375,7 @@
             .articles-top-grid { grid-template-columns: 2fr 1fr; }
         }
 
-        /* Premium Card */
+        /* Featured Card */
         .premium-featured-card {
             background: var(--cream-light);
             box-shadow: var(--card-ring), var(--shadow-md);
@@ -358,21 +409,22 @@
             transition: transform 0.5s ease;
         }
         .premium-featured-card:hover .premium-image-wrapper img { transform: scale(1.05); }
-        
+
         .premium-content { padding: 2rem; }
         .article-meta {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             gap: 0.5rem;
             font-size: var(--text-sm);
             font-weight: 700;
             margin-bottom: 1rem;
         }
-        .meta-tag { color: var(--primary-dark); letter-spacing: 1px; }
+        .meta-tag { color: var(--primary-dark); letter-spacing: 1px; text-transform: uppercase; }
         .meta-dot { color: #ccc; }
         .meta-read-time { color: var(--muted); }
-        .meta-lang { background: var(--cream); padding: 2px 6px; border-radius: 4px; color: var(--muted); }
-        
+        .meta-reviewed { color: #3a7d44; }
+
         .article-headline {
             font-family: 'IM Fell English', serif;
             font-size: 2.5rem;
@@ -397,8 +449,10 @@
             transition: background 0.2s;
         }
         .btn-unlock-article:hover { background: var(--primary); color: #fff; }
+        .featured-price { font-size: var(--text-base); font-weight: 700; color: var(--primary-dark); }
+        .featured-price i { color: var(--gold); }
 
-        /* Trending Sidebar */
+        /* Popular Sidebar */
         .trending-sidebar {
             background: var(--cream);
             border-radius: 16px;
@@ -416,40 +470,17 @@
         .trending-comments-list {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
         }
-        .comment-header {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 0.5rem;
-        }
-        .comment-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: var(--radius-full);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: var(--text-sm);
-        }
-        .comment-author { font-weight: 700; font-size: var(--text-base); }
-        .comment-time { font-size: var(--text-xs); color: var(--muted); font-weight: 700; }
-        .comment-text {
-            font-size: var(--text-base);
-            color: var(--muted);
-            line-height: 1.5;
-            margin-bottom: 0.5rem;
-            font-style: italic;
-        }
-        .comment-source {
-            font-size: var(--text-sm);
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-decoration: none;
-        }
+        .popular-item { display: flex; gap: .9rem; align-items: flex-start; text-decoration: none; color: var(--dark); }
+        .popular-rank { font-family: 'IM Fell English', serif; font-size: 1.6rem; line-height: 1; color: var(--gold); min-width: 1.4rem; }
+        .popular-body { display: flex; flex-direction: column; gap: .2rem; }
+        .popular-title { font-weight: 700; font-size: var(--text-base); line-height: 1.35; }
+        .popular-meta { font-size: var(--text-sm); color: var(--muted); }
         .comment-divider { border: 0; border-top: 1px solid rgba(0,0,0,0.05); margin: 0; }
+        .sidebar-token-note { margin-top: auto; padding-top: 1.25rem; display: flex; gap: .6rem; align-items: flex-start; font-size: var(--text-sm); font-weight: 700; color: var(--primary-dark); text-decoration: none; }
+        .sidebar-token-note i { color: var(--gold); font-size: 1.1rem; }
+        .sidebar-token-note:hover { color: var(--primary); }
 
         /* ── DISCOVERY MAP ──────────────────────────────── */
         .discovery-map-section {
@@ -489,8 +520,8 @@
             gap: 1rem;
         }
         @media (min-width: 640px) { .discovery-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 992px) { .discovery-grid { grid-template-columns: repeat(4, 1fr); } }
-        
+        @media (min-width: 992px) { .discovery-grid { grid-template-columns: repeat(3, 1fr); } }
+
         .discovery-node {
             background: #fff;
             border: 1px solid rgba(0,0,0,0.05);
@@ -499,6 +530,7 @@
             text-align: center;
             cursor: pointer;
         }
+        .discovery-icon { font-size: 2rem; color: var(--primary); display: block; margin-bottom: .5rem; }
         .discovery-node h3 {
             font-family: 'IM Fell English', serif;
             font-size: 1.3rem;
@@ -509,6 +541,7 @@
             font-weight: 700;
             color: var(--muted);
             letter-spacing: 1px;
+            margin: 0;
         }
 
         /* ── CONSTELLATION MAP ──────────────────────────── */
@@ -527,7 +560,7 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .constellation-lines {
             position: absolute;
             top: 0; left: 0;
@@ -573,15 +606,17 @@
             transform: translate(-50%, -50%) scale(1.05);
         }
         .satellite {
-            width: 100px; height: 100px;
+            width: 104px; height: 104px;
             border: 2px solid var(--gold);
-            font-size: var(--text-sm);
+            font-size: var(--text-xs);
             font-weight: 700;
             color: var(--dark);
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
+            padding: 0 6px;
+            line-height: 1.2;
         }
         .satellite i {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin-bottom: 5px;
             color: var(--primary-dark);
         }
@@ -591,19 +626,10 @@
             color: var(--primary-dark);
             box-shadow: 0 15px 35px rgba(44, 36, 22, 0.12);
         }
-
-        .ai-node { top: 25%; left: 25%; }
-        .iot-node { top: 30%; left: 75%; }
-        .ar-node { top: 75%; left: 30%; }
-        .lang-node { top: 70%; left: 70%; }
-        
         @media (max-width: 640px) {
-            .ai-node { top: 15%; left: 25%; }
-            .iot-node { top: 20%; left: 80%; }
-            .ar-node { top: 85%; left: 25%; }
-            .lang-node { top: 80%; left: 80%; }
-            .satellite { width: 85px; height: 85px; font-size: var(--text-xs); }
-            .center-hub { width: 110px; height: 110px; font-size: var(--text-base); }
+            .satellite { width: 78px; height: 78px; font-size: .6rem; }
+            .satellite i { font-size: 1.1rem; }
+            .center-hub { width: 96px; height: 96px; font-size: var(--text-sm); }
         }
 
         /* ── IN-PAGE DYNAMIC RESOURCE PANEL ──────────────── */
@@ -632,17 +658,14 @@
             font-family: 'IM Fell English', serif;
             font-size: var(--text-3xl);
             color: var(--dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .panel-desc {
-            color: var(--muted);
-            font-size: 1.05rem;
-            margin-bottom: 2rem;
-        }
-        
+        .panel-see-all { display: inline-flex; align-items: center; gap: 6px; margin-top: 1.5rem; font-weight: 700; color: var(--primary-dark); text-decoration: none; }
+        .panel-see-all:hover { color: var(--primary); }
+
         /* Mini Cards inside the Panel */
         .mini-card-grid {
             display: grid;
@@ -685,6 +708,30 @@
             color: var(--muted);
         }
 
+        /* ── ALL ARTICLES ────────────────────────────────── */
+        .all-articles-section { margin-bottom: 4rem; scroll-margin-top: 90px; }
+        .article-filter-bar {
+            display: flex; flex-wrap: wrap; gap: .75rem; align-items: center;
+            background: #fff; border-radius: var(--radius-lg); box-shadow: var(--card-ring), var(--shadow-sm);
+            padding: 1rem; margin-bottom: 1rem;
+        }
+        .filter-search { flex: 1 1 260px; display: flex; align-items: center; gap: .5rem; background: var(--cream-light); border: 1px solid rgba(123,107,53,.25); border-radius: var(--radius-md); padding: 0 .8rem; }
+        .filter-search i { color: var(--muted); }
+        .filter-search input { border: none; background: transparent; outline: none; width: 100%; padding: .6rem 0; font-size: var(--text-base); color: var(--dark); }
+        .filter-select-sm { padding: .6rem .8rem; border-radius: var(--radius-md); border: 1px solid rgba(123,107,53,.25); background: var(--cream-light); color: var(--dark); font-size: var(--text-base); }
+        .btn-filter-go { background: var(--primary); color: #fff; border: none; padding: .6rem 1.3rem; border-radius: var(--radius-md); font-weight: 700; font-size: var(--text-base); cursor: pointer; }
+        .btn-filter-go:hover { background: var(--primary-dark); }
+        .category-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.75rem; }
+        .category-chip { display: inline-flex; align-items: center; gap: 6px; padding: .45rem .95rem; border-radius: var(--radius-pill); font-size: var(--text-sm); font-weight: 700; color: var(--primary-dark); background: #fff; box-shadow: inset 0 0 0 1px rgba(123,107,53,.3); text-decoration: none; transition: all .2s; }
+        .category-chip:hover { box-shadow: inset 0 0 0 1px var(--primary); color: var(--primary); }
+        .category-chip.is-active { background: var(--primary-dark); color: #fff; box-shadow: none; }
+        .chip-count { opacity: .65; font-weight: 400; }
+
+        .no-results { text-align: center; padding: 3rem 1rem; background: #fff; border-radius: var(--radius-lg); box-shadow: var(--card-ring); color: var(--muted); }
+        .no-results i { font-size: 2rem; color: var(--gold); display: block; margin-bottom: .5rem; }
+        .no-results a { color: var(--primary-dark); font-weight: 700; }
+        .pagination .page-link { color: var(--primary-dark); border-color: rgba(123,107,53,.25); }
+        .pagination .page-item.active .page-link { background: var(--primary-dark); border-color: var(--primary-dark); color: #fff; }
 
         /* ── INTERACTIVE CAROUSEL ────────────────────────────── */
         .carousel-header {
@@ -715,7 +762,7 @@
             color: var(--primary);
             transform: scale(1.05);
         }
-        
+
         /* The scrolling track */
         .carousel-container {
             display: flex;
@@ -723,11 +770,11 @@
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             padding-bottom: 1.5rem; /* Space for box-shadow on hover */
-            scrollbar-width: none; 
-            -ms-overflow-style: none; 
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
         .carousel-container::-webkit-scrollbar {
-            display: none; 
+            display: none;
         }
 
         .standard-article-card {
@@ -744,7 +791,7 @@
         }
         .carousel-card {
             flex: 0 0 300px;
-            scroll-snap-align: start; 
+            scroll-snap-align: start;
         }
         .card-image {
             height: 140px;
@@ -776,6 +823,19 @@
         .card-read-time {
             font-size: var(--text-sm);
             color: var(--muted);
+        }
+
+        /* ── REVIEWER BAND ─────────────────────────────────── */
+        .reviewer-band { margin-top: 3rem; background: var(--dark); color: var(--cream); border-radius: 16px; padding: 2.5rem; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; }
+        .reviewer-band > div { max-width: 640px; }
+        .reviewer-band-eyebrow { font-size: var(--text-sm); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+        .reviewer-band-title { font-family: 'IM Fell English', serif; font-size: var(--text-2xl); line-height: 1.25; margin-bottom: .6rem; color: #fff; }
+        .reviewer-band-text { color: rgba(245,239,224,.75); margin: 0; }
+        @media (max-width: 767px) {
+            .werta-articles-main { padding: 28px 1rem 60px; }
+            .article-headline { font-size: 2rem; }
+            .discovery-map-section { padding: 1.5rem; }
+            .resource-panel { padding: 1.5rem; }
         }
     </style>
 @endsection

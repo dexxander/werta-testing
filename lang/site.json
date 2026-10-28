@@ -4466,5 +4466,2593 @@
   "Unlock “:title”": [
     "Buka “:title”",
     "解锁《:title》"
+  ],
+  "+20% bonus tokens on your next top-up.": [
+    "+20% token bonus pada tambah nilai anda yang seterusnya.",
+    "下次充值可额外获得 20% 赠送代币。"
+  ],
+  "+:n this session": [
+    "+:n sesi ini",
+    "本次会话 +:n"
+  ],
+  "1 token = :sen sen": [
+    "1 token = :sen sen",
+    "1 代币 = :sen 仙"
+  ],
+  "1. Score five criteria": [
+    "1. Beri skor untuk lima kriteria",
+    "1. 按五项标准评分"
+  ],
+  "2. Recommend a decision": [
+    "2. Cadangkan keputusan",
+    "2. 建议审稿结论"
+  ],
+  "3. Decide if it is suitable to sell": [
+    "3. Tentukan sama ada sesuai dijual",
+    "3. 判断是否适合出售"
+  ],
+  "4. Conduct": [
+    "4. Etika",
+    "4. 行为准则"
+  ],
+  "50 bonus tokens, enough for your first premium paper.": [
+    "50 token bonus, cukup untuk artikel premium pertama anda.",
+    "50 个赠送代币，足够购买您的第一篇高级文章。"
+  ],
+  ":amount already withdrawn.": [
+    ":amount telah dikeluarkan.",
+    "已提现 :amount。"
+  ],
+  ":amount on hold for :d days.": [
+    ":amount ditahan selama :d hari.",
+    ":amount 将冻结 :d 天。"
+  ],
+  ":copies copies · :subs subscribers": [
+    ":copies salinan · :subs pelanggan",
+    ":copies 份 · :subs 位订阅者"
+  ],
+  ":copies of :need copies": [
+    ":copies daripada :need salinan",
+    ":copies / :need 份"
+  ],
+  ":count article|:count articles": [
+    ":count artikel|:count artikel",
+    ":count 篇文章|:count 篇文章"
+  ],
+  ":count category|:count categories": [
+    ":count kategori|:count kategori",
+    ":count 个类别|:count 个类别"
+  ],
+  ":count day|:count days": [
+    ":count hari|:count hari",
+    ":count 天|:count 天"
+  ],
+  ":count more pages in the full paper.": [
+    ":count halaman lagi dalam artikel penuh.",
+    "完整文章还有 :count 页。"
+  ],
+  ":count more paragraph in the full paper.|:count more paragraphs in the full paper.": [
+    ":count perenggan lagi dalam artikel penuh.|:count perenggan lagi dalam artikel penuh.",
+    "完整文章还有 :count 段。|完整文章还有 :count 段。"
+  ],
+  ":count paper|:count papers": [
+    ":count artikel|:count artikel",
+    ":count 篇|:count 篇"
+  ],
+  ":count published paper|:count published papers": [
+    ":count artikel diterbitkan|:count artikel diterbitkan",
+    ":count 篇已发表文章|:count 篇已发表文章"
+  ],
+  ":count reviewer chose to stay anonymous.|:count reviewers chose to stay anonymous.": [
+    ":count penilai memilih untuk kekal tanpa nama.|:count penilai memilih untuk kekal tanpa nama.",
+    ":count 位审稿人选择匿名。|:count 位审稿人选择匿名。"
+  ],
+  ":count reviewer is evaluating your paper.|:count reviewers are evaluating your paper.": [
+    ":count penilai sedang menilai artikel anda.|:count penilai sedang menilai artikel anda.",
+    ":count 位审稿人正在评审您的文章。|:count 位审稿人正在评审您的文章。"
+  ],
+  ":done completed · :open open": [
+    ":done selesai · :open terbuka",
+    "已完成 :done · 进行中 :open"
+  ],
+  ":done of :n reviews in": [
+    ":done daripada :n penilaian diterima",
+    "已收到 :done / :n 份评审"
+  ],
+  ":fee per accepted premium paper": [
+    ":fee bagi setiap artikel premium yang diterima",
+    "每篇获接受的高级文章 :fee"
+  ],
+  ":n copies": [
+    ":n salinan",
+    ":n 份"
+  ],
+  ":n copies at :rm": [
+    ":n salinan pada harga :rm",
+    ":n 份，每份 :rm"
+  ],
+  ":n copies · :rm": [
+    ":n salinan · :rm",
+    ":n 份 · :rm"
+  ],
+  ":n due within 7 days": [
+    ":n perlu disiapkan dalam 7 hari",
+    ":n 份需在 7 天内完成"
+  ],
+  ":n more copies to break even": [
+    ":n salinan lagi untuk pulang modal",
+    "再售出 :n 份即可回本"
+  ],
+  ":n papers": [
+    ":n artikel",
+    ":n 篇文章"
+  ],
+  ":n premium · :f free": [
+    ":n premium · :f percuma",
+    ":n 篇高级 · :f 篇免费"
+  ],
+  ":n subscribers": [
+    ":n pelanggan",
+    ":n 位订阅者"
+  ],
+  ":n subscription reads (unpaid)": [
+    ":n bacaan langganan (tidak dibayar)",
+    ":n 次订阅阅读（无收益）"
+  ],
+  ":n tokens": [
+    ":n token",
+    ":n 代币"
+  ],
+  ":n tokens (:price) a month · :cap papers": [
+    ":n token (:price) sebulan · :cap artikel",
+    "每月 :n 代币（:price）· :cap 篇文章"
+  ],
+  ":name already owns this paper.": [
+    ":name sudah memiliki artikel ini.",
+    ":name 已拥有这篇文章。"
+  ],
+  ":name is already assigned to this paper.": [
+    ":name sudah ditugaskan untuk artikel ini.",
+    ":name 已被指派审阅这篇文章。"
+  ],
+  ":name is now a verified reviewer.": [
+    ":name kini penilai yang disahkan.",
+    ":name 现已成为认证审稿人。"
+  ],
+  ":name pack (demo gateway)": [
+    "Pakej :name (gerbang demo)",
+    ":name 套餐（演示支付）"
+  ],
+  ":name was assigned to review “:title”.": [
+    ":name telah ditugaskan untuk menilai “:title”.",
+    "已指派 :name 审阅《:title》。"
+  ],
+  ":name was suspended and can no longer review.": [
+    ":name telah digantung dan tidak lagi boleh menilai.",
+    ":name 已被暂停，无法再审稿。"
+  ],
+  ":name's application was rejected.": [
+    "Permohonan :name telah ditolak.",
+    ":name 的申请已被拒绝。"
+  ],
+  ":p% of cash taken": [
+    ":p% daripada wang yang diterima",
+    "收款的 :p%"
+  ],
+  ":paid paid + :bonus bonus": [
+    ":paid berbayar + :bonus bonus",
+    "付费 :paid + 赠送 :bonus"
+  ],
+  ":price each": [
+    ":price setiap satu",
+    "每篇 :price"
+  ],
+  ":price · :n papers a month": [
+    ":price · :n artikel sebulan",
+    ":price · 每月 :n 篇"
+  ],
+  ":price · yours forever": [
+    ":price · milik anda selamanya",
+    ":price · 永久拥有"
+  ],
+  ":rm earned": [
+    ":rm diperoleh",
+    "已赚取 :rm"
+  ],
+  ":rm liability": [
+    "Liabiliti :rm",
+    "负债 :rm"
+  ],
+  ":rm owed to readers as unspent tokens": [
+    ":rm terhutang kepada pembaca sebagai token yang belum digunakan",
+    "以未使用代币形式欠读者 :rm"
+  ],
+  ":rm per accepted premium paper": [
+    ":rm bagi setiap artikel premium yang diterima",
+    "每篇获接受的高级文章 :rm"
+  ],
+  ":rm per copy, never from subscriptions": [
+    ":rm setiap salinan, tidak daripada langganan",
+    "每份 :rm，订阅不计"
+  ],
+  ":rm × :n copies": [
+    ":rm × :n salinan",
+    ":rm × :n 份"
+  ],
+  ":tokens tokens added (demo payment of :price).": [
+    ":tokens token ditambah (bayaran demo :price).",
+    "已添加 :tokens 代币（演示付款 :price）。"
+  ],
+  ":yes of :n reviewers say sell as premium": [
+    ":yes daripada :n penilai cadangkan dijual sebagai premium",
+    ":n 位审稿人中有 :yes 位建议作为高级文章出售"
+  ],
+  "A :fee publishing fee is charged only after your paper is accepted.": [
+    "Yuran penerbitan :fee hanya dikenakan selepas artikel anda diterima.",
+    "文章获接受后才收取 :fee 发表费。"
+  ],
+  "A premium paper by :name.": [
+    "Artikel premium oleh :name.",
+    ":name 撰写的高级文章。"
+  ],
+  "A referral code is already linked to your account.": [
+    "Kod rujukan sudah dipautkan pada akaun anda.",
+    "您的账户已绑定推荐码。"
+  ],
+  "Accept": [
+    "Terima",
+    "接受"
+  ],
+  "Accepted as a free article. An editor will publish it shortly.": [
+    "Diterima sebagai artikel percuma. Editor akan menerbitkannya tidak lama lagi.",
+    "已作为免费文章接受，编辑将很快发布。"
+  ],
+  "Accepted as a free article. No publish fee applies.": [
+    "Diterima sebagai artikel percuma. Tiada yuran penerbitan.",
+    "已作为免费文章接受，无需发表费。"
+  ],
+  "Accepted as a free article. Publish it when ready.": [
+    "Diterima sebagai artikel percuma. Terbitkan apabila sedia.",
+    "已作为免费文章接受，准备好即可发布。"
+  ],
+  "Accepted as premium. The author can now pay the publish fee.": [
+    "Diterima sebagai premium. Penulis kini boleh membayar yuran penerbitan.",
+    "已作为高级文章接受，作者现在可以支付发表费。"
+  ],
+  "Accepted as premium. Waiting for the author to pay the :fee publish fee.": [
+    "Diterima sebagai premium. Menunggu penulis membayar yuran penerbitan :fee.",
+    "已作为高级文章接受，等待作者支付 :fee 发表费。"
+  ],
+  "Accepted — going live soon": [
+    "Diterima — akan diterbitkan tidak lama lagi",
+    "已接受 — 即将上线"
+  ],
+  "Accepted — pay the :fee publish fee to go live.": [
+    "Diterima — bayar yuran penerbitan :fee untuk diterbitkan.",
+    "已接受 — 支付 :fee 发表费即可上线。"
+  ],
+  "Accepted — publish fee due": [
+    "Diterima — yuran penerbitan perlu dibayar",
+    "已接受 — 待付发表费"
+  ],
+  "Access ends when the subscription ends": [
+    "Akses tamat apabila langganan tamat",
+    "订阅结束后访问权限随之结束"
+  ],
+  "Accuracy and evidence": [
+    "Ketepatan dan bukti",
+    "准确性与证据"
+  ],
+  "Activity": [
+    "Aktiviti",
+    "活动"
+  ],
+  "Add": [
+    "Tambah",
+    "添加"
+  ],
+  "Add a short note (optional)": [
+    "Tambah nota ringkas (pilihan)",
+    "添加简短留言（可选）"
+  ],
+  "Admin: assign a reviewer to “Managing Exam Anxiety”, make a decision, then read Analytics and Revenue.": [
+    "Pentadbir: tugaskan penilai untuk “Managing Exam Anxiety”, buat keputusan, kemudian lihat Analitik dan Hasil.",
+    "管理员：为《Managing Exam Anxiety》指派审稿人并作出决定，然后查看数据分析和收入。"
+  ],
+  "All": [
+    "Semua",
+    "全部"
+  ],
+  "All Articles": [
+    "Semua Artikel",
+    "全部文章"
+  ],
+  "All analytics": [
+    "Semua analitik",
+    "全部数据分析"
+  ],
+  "All categories": [
+    "Semua kategori",
+    "全部类别"
+  ],
+  "All manuscripts by status": [
+    "Semua manuskrip mengikut status",
+    "按状态统计的全部稿件"
+  ],
+  "Allowance left": [
+    "Baki kuota",
+    "剩余额度"
+  ],
+  "Allowance used": [
+    "Kuota digunakan",
+    "已用额度"
+  ],
+  "Allowance used up this month.": [
+    "Kuota bulan ini telah habis.",
+    "本月额度已用完。"
+  ],
+  "An approved professional. Evaluates assigned manuscripts and decides if they are suitable to sell.": [
+    "Profesional yang diluluskan. Menilai manuskrip yang ditugaskan dan menentukan sama ada sesuai dijual.",
+    "经批准的专业人士。评审指派的稿件并判断是否适合出售。"
+  ],
+  "Analytics and Revenue": [
+    "Analitik dan Hasil",
+    "数据分析和收入"
+  ],
+  "Anonymous": [
+    "Tanpa nama",
+    "匿名"
+  ],
+  "Anyone can read it": [
+    "Sesiapa sahaja boleh membacanya",
+    "任何人都可以阅读"
+  ],
+  "Applied": [
+    "Memohon",
+    "申请日期"
+  ],
+  "Apply": [
+    "Guna",
+    "使用"
+  ],
+  "Apply to become a reviewer": [
+    "Mohon menjadi penilai",
+    "申请成为审稿人"
+  ],
+  "Apply to review": [
+    "Mohon untuk menilai",
+    "申请审稿"
+  ],
+  "Approved reviewer": [
+    "Penilai yang diluluskan",
+    "已批准的审稿人"
+  ],
+  "Are the facts right? Is advice in line with recognised practice? Are sources or experience made clear?": [
+    "Adakah faktanya betul? Adakah nasihat selaras dengan amalan yang diiktiraf? Adakah sumber atau pengalaman dinyatakan dengan jelas?",
+    "事实是否正确？建议是否符合公认做法？来源或经验是否交代清楚？"
+  ],
+  "Article Reviews": [
+    "Semakan Artikel",
+    "文章审核"
+  ],
+  "Article sales": [
+    "Jualan artikel",
+    "文章销售"
+  ],
+  "Assign": [
+    "Tugaskan",
+    "指派"
+  ],
+  "Assign a reviewer": [
+    "Tugaskan penilai",
+    "指派审稿人"
+  ],
+  "Assign verified reviewers, read their evaluations and make the final decision.": [
+    "Tugaskan penilai yang disahkan, baca penilaian mereka dan buat keputusan akhir.",
+    "指派认证审稿人，阅读评审意见并作出最终决定。"
+  ],
+  "Assigned": [
+    "Ditugaskan",
+    "已指派"
+  ],
+  "Assigned :date": [
+    "Ditugaskan :date",
+    "指派于 :date"
+  ],
+  "Assigned and completed reviews per reviewer": [
+    "Penilaian yang ditugaskan dan diselesaikan bagi setiap penilai",
+    "每位审稿人的指派与完成数量"
+  ],
+  "Assigned to you": [
+    "Ditugaskan kepada anda",
+    "指派给您"
+  ],
+  "Assigns reviewers, makes the final decision, approves reviewer applications, and reads the analytics.": [
+    "Menugaskan penilai, membuat keputusan akhir, meluluskan permohonan penilai dan membaca analitik.",
+    "指派审稿人、作出最终决定、审批审稿人申请并查看数据分析。"
+  ],
+  "At :rm per copy, each premium paper breaks even after :n copies.": [
+    "Pada :rm setiap salinan, setiap artikel premium pulang modal selepas :n salinan.",
+    "按每份 :rm 计算，每篇高级文章售出 :n 份即可回本。"
+  ],
+  "Author hidden for blind review": [
+    "Penulis disembunyikan untuk penilaian buta",
+    "盲审：作者信息已隐藏"
+  ],
+  "Author payouts": [
+    "Bayaran kepada penulis",
+    "作者分成"
+  ],
+  "Author payouts owed": [
+    "Bayaran penulis yang terhutang",
+    "应付作者分成"
+  ],
+  "Author requested: Free": [
+    "Permintaan penulis: Percuma",
+    "作者申请：免费"
+  ],
+  "Author requested: Premium": [
+    "Permintaan penulis: Premium",
+    "作者申请：高级"
+  ],
+  "Author studio": [
+    "Studio penulis",
+    "作者工作室"
+  ],
+  "Author: :rm per copy": [
+    "Penulis: :rm setiap salinan",
+    "作者：每份 :rm"
+  ],
+  "Author: check Your Articles and Earnings, then open your public author page and its chart.": [
+    "Penulis: semak Artikel Anda dan Pendapatan, kemudian buka halaman penulis awam dan cartanya.",
+    "作者：查看您的文章和收益，然后打开公开作者主页及其图表。"
+  ],
+  "Available to withdraw": [
+    "Boleh dikeluarkan",
+    "可提现金额"
+  ],
+  "Average days from assignment to evaluation": [
+    "Purata hari dari tugasan hingga penilaian",
+    "从指派到完成评审的平均天数"
+  ],
+  "Average review time": [
+    "Purata masa penilaian",
+    "平均审稿时间"
+  ],
+  "Average turnaround": [
+    "Purata masa penyelesaian",
+    "平均处理时间"
+  ],
+  "Back to article": [
+    "Kembali ke artikel",
+    "返回文章"
+  ],
+  "Back to review queue": [
+    "Kembali ke barisan penilaian",
+    "返回审稿队列"
+  ],
+  "Balance": [
+    "Baki",
+    "余额"
+  ],
+  "Based on :n completed review(s).": [
+    "Berdasarkan :n penilaian yang selesai.",
+    "基于 :n 份已完成的评审。"
+  ],
+  "Be specific and kind. Authors include students and parents.": [
+    "Bersikap spesifik dan baik. Penulis termasuk pelajar dan ibu bapa.",
+    "具体且友善。作者包括学生和家长。"
+  ],
+  "Best seller": [
+    "Terlaris",
+    "畅销"
+  ],
+  "Best sellers": [
+    "Paling laris",
+    "畅销文章"
+  ],
+  "Best value": [
+    "Nilai terbaik",
+    "最超值"
+  ],
+  "Better published free": [
+    "Lebih baik diterbitkan percuma",
+    "更适合免费发布"
+  ],
+  "Bonus": [
+    "Bonus",
+    "赠送"
+  ],
+  "Bonus after first top-up": [
+    "Bonus selepas tambah nilai pertama",
+    "首次充值后发放奖励"
+  ],
+  "Bonus paid": [
+    "Bonus dibayar",
+    "奖励已发放"
+  ],
+  "Bonus tokens": [
+    "Token bonus",
+    "赠送代币"
+  ],
+  "Bonus tokens are spent first.": [
+    "Token bonus digunakan dahulu.",
+    "优先使用赠送代币。"
+  ],
+  "Bought: :title": [
+    "Dibeli: :title",
+    "已购买：:title"
+  ],
+  "Buy 5 papers’ worth and get 1 free. Bonus tokens expire after :d days.": [
+    "Beli untuk 5 artikel dan dapat 1 percuma. Token bonus luput selepas :d hari.",
+    "购买 5 篇的额度即送 1 篇。赠送代币 :d 天后过期。"
+  ],
+  "By copies sold": [
+    "Mengikut salinan dijual",
+    "按售出份数"
+  ],
+  "Career": [
+    "Kerjaya",
+    "职业"
+  ],
+  "Checked by professionals": [
+    "Disemak oleh profesional",
+    "专业人士审核"
+  ],
+  "Checked for accuracy, clarity, relevance and ethics before publication.": [
+    "Disemak dari segi ketepatan, kejelasan, kerelevanan dan etika sebelum diterbitkan.",
+    "发表前已审核准确性、清晰度、相关性和伦理。"
+  ],
+  "Checkout": [
+    "Pembayaran",
+    "结账"
+  ],
+  "Choose a category": [
+    "Pilih kategori",
+    "选择类别"
+  ],
+  "Choose a demo account": [
+    "Pilih akaun demo",
+    "选择演示账户"
+  ],
+  "Choose someone else to receive the gift.": [
+    "Pilih orang lain untuk menerima hadiah.",
+    "请选择其他人接收礼物。"
+  ],
+  "Choose who to be": [
+    "Pilih peranan anda",
+    "选择您的身份"
+  ],
+  "Claims are correct and supported by evidence or recognised practice.": [
+    "Dakwaan betul dan disokong oleh bukti atau amalan yang diiktiraf.",
+    "论点正确，并有证据或公认做法支持。"
+  ],
+  "Clarity and structure": [
+    "Kejelasan dan struktur",
+    "清晰度与结构"
+  ],
+  "Coming soon · partner rewards": [
+    "Akan datang · ganjaran rakan kongsi",
+    "即将推出 · 合作伙伴奖励"
+  ],
+  "Comments to the author": [
+    "Ulasan kepada penulis",
+    "给作者的意见"
+  ],
+  "Completed reviews": [
+    "Penilaian selesai",
+    "已完成的评审"
+  ],
+  "Confidential": [
+    "Sulit",
+    "保密"
+  ],
+  "Confidential note to the editor": [
+    "Nota sulit kepada editor",
+    "给编辑的保密备注"
+  ],
+  "Continue as :role": [
+    "Teruskan sebagai :role",
+    "以:role身份继续"
+  ],
+  "Copies": [
+    "Salinan",
+    "份数"
+  ],
+  "Copies bought": [
+    "Salinan dibeli",
+    "购买份数"
+  ],
+  "Copies bought earn the author :rm each. Subscription and free reads are shown for reach.": [
+    "Setiap salinan dibeli memberi penulis :rm. Bacaan langganan dan percuma ditunjukkan untuk capaian.",
+    "每售出一份，作者获得 :rm。订阅和免费阅读仅用于展示覆盖面。"
+  ],
+  "Copies sold": [
+    "Salinan dijual",
+    "售出份数"
+  ],
+  "Copies sold per month": [
+    "Salinan dijual setiap bulan",
+    "每月售出份数"
+  ],
+  "Copies sold this month": [
+    "Salinan dijual bulan ini",
+    "本月售出份数"
+  ],
+  "Copies sold, all time": [
+    "Salinan dijual, sepanjang masa",
+    "累计售出份数"
+  ],
+  "Copy invite link": [
+    "Salin pautan jemputan",
+    "复制邀请链接"
+  ],
+  "Could a Form 4 student or a busy parent follow it? Is it well structured?": [
+    "Bolehkah pelajar Tingkatan 4 atau ibu bapa yang sibuk memahaminya? Adakah strukturnya baik?",
+    "中四学生或忙碌的家长能看懂吗？结构是否清晰？"
+  ],
+  "Crisis or safety information everyone should reach": [
+    "Maklumat krisis atau keselamatan yang perlu sampai kepada semua",
+    "人人都应获得的危机或安全信息"
+  ],
+  "DEMO": [
+    "DEMO",
+    "演示"
+  ],
+  "DEMO DATA": [
+    "DATA DEMO",
+    "演示数据"
+  ],
+  "DEMO DATA — live session activity on top of baseline figures": [
+    "DATA DEMO — aktiviti sesi langsung di atas angka asas",
+    "演示数据 — 基准数据叠加本次会话的实时活动"
+  ],
+  "DEMO DATA — session sales are live, the rest is baseline": [
+    "DATA DEMO — jualan sesi adalah langsung, selebihnya angka asas",
+    "演示数据 — 本次会话销售为实时数据，其余为基准数据"
+  ],
+  "DEMO — fake data, no real payment": [
+    "DEMO — data palsu, tiada bayaran sebenar",
+    "演示 — 模拟数据，无真实付款"
+  ],
+  "DEMO — local only": [
+    "DEMO — tempatan sahaja",
+    "演示 — 仅限本地"
+  ],
+  "DEMO — no real payment": [
+    "DEMO — tiada bayaran sebenar",
+    "演示 — 无真实付款"
+  ],
+  "Days": [
+    "Hari",
+    "天数"
+  ],
+  "Decided": [
+    "Telah diputuskan",
+    "已决定"
+  ],
+  "Decision": [
+    "Keputusan",
+    "决定"
+  ],
+  "Decision note": [
+    "Nota keputusan",
+    "决定备注"
+  ],
+  "Decline (conflict of interest or outside my expertise)": [
+    "Tolak (konflik kepentingan atau di luar kepakaran saya)",
+    "拒绝（存在利益冲突或超出我的专业范围）"
+  ],
+  "Decline any manuscript where you have a conflict of interest.": [
+    "Tolak sebarang manuskrip yang menimbulkan konflik kepentingan.",
+    "如有利益冲突，请拒绝审阅该稿件。"
+  ],
+  "Decline this review?": [
+    "Tolak penilaian ini?",
+    "确定拒绝此次评审吗？"
+  ],
+  "Declined": [
+    "Ditolak",
+    "已拒绝"
+  ],
+  "Demo accounts": [
+    "Akaun demo",
+    "演示账户"
+  ],
+  "Demo data reset.": [
+    "Data demo telah diset semula.",
+    "演示数据已重置。"
+  ],
+  "Demo: copy the code shown in another demo account’s wallet.": [
+    "Demo: salin kod yang dipaparkan dalam dompet akaun demo lain.",
+    "演示：复制另一个演示账户钱包中显示的推荐码。"
+  ],
+  "Demo: pick one of the demo accounts. The author still earns from gifts.": [
+    "Demo: pilih salah satu akaun demo. Penulis tetap memperoleh pendapatan daripada hadiah.",
+    "演示：选择一个演示账户。作者仍可从赠送中获得收益。"
+  ],
+  "Depth that goes well beyond free articles": [
+    "Kedalaman yang jauh melebihi artikel percuma",
+    "深度远超免费文章"
+  ],
+  "Details": [
+    "Butiran",
+    "详情"
+  ],
+  "Does it add something beyond common tips? Personal or local insight counts.": [
+    "Adakah ia menambah sesuatu melebihi tip biasa? Pandangan peribadi atau tempatan turut dikira.",
+    "是否超越了常见建议？个人或本地见解也算。"
+  ],
+  "Does it address a real need of Werta readers in Malaysia?": [
+    "Adakah ia menangani keperluan sebenar pembaca Werta di Malaysia?",
+    "是否回应了马来西亚 Werta 读者的真实需求？"
+  ],
+  "Double": [
+    "Berganda",
+    "双篇"
+  ],
+  "Due :date": [
+    "Tarikh akhir :date",
+    ":date 截止"
+  ],
+  "Due :date. Scores: 1 = poor, 5 = excellent.": [
+    "Tarikh akhir :date. Skor: 1 = lemah, 5 = cemerlang.",
+    ":date 截止。评分：1 = 差，5 = 优秀。"
+  ],
+  "Due in": [
+    "Tempoh",
+    "期限"
+  ],
+  "Due in :count day|Due in :count days": [
+    "Tamat dalam :count hari|Tamat dalam :count hari",
+    ":count 天后截止|:count 天后截止"
+  ],
+  "Earnings": [
+    "Pendapatan",
+    "收益"
+  ],
+  "Editor's decision": [
+    "Keputusan editor",
+    "编辑决定"
+  ],
+  "Editor's decision note": [
+    "Nota keputusan editor",
+    "编辑决定备注"
+  ],
+  "End of free preview": [
+    "Tamat pratonton percuma",
+    "免费试读结束"
+  ],
+  "Ends :date.": [
+    "Tamat :date.",
+    ":date 结束。"
+  ],
+  "Enough for :count premium paper.|Enough for :count premium papers.": [
+    "Cukup untuk :count artikel premium.|Cukup untuk :count artikel premium.",
+    "足够购买 :count 篇高级文章。|足够购买 :count 篇高级文章。"
+  ],
+  "Enter a promo code": [
+    "Masukkan kod promosi",
+    "输入优惠码"
+  ],
+  "Enter code": [
+    "Masukkan kod",
+    "输入代码"
+  ],
+  "Est. gateway fees": [
+    "Anggaran caj gerbang",
+    "预估支付手续费"
+  ],
+  "Ethics and safety": [
+    "Etika dan keselamatan",
+    "伦理与安全"
+  ],
+  "Evaluate each manuscript and say whether it is ready to publish, and whether it is good enough to sell.": [
+    "Nilai setiap manuskrip dan nyatakan sama ada ia sedia diterbitkan dan cukup baik untuk dijual.",
+    "评审每篇稿件，判断是否可以发表以及是否值得出售。"
+  ],
+  "Evaluation guidelines": [
+    "Garis panduan penilaian",
+    "评审指南"
+  ],
+  "Evaluation submitted for “:title”. The editor will make the final decision.": [
+    "Penilaian untuk “:title” telah dihantar. Editor akan membuat keputusan akhir.",
+    "《:title》的评审已提交，编辑将作出最终决定。"
+  ],
+  "Every paper here passed review by verified professionals before publication.": [
+    "Setiap artikel di sini telah disemak oleh profesional yang disahkan sebelum diterbitkan.",
+    "这里的每篇文章在发表前都经过认证专业人士审核。"
+  ],
+  "Every paper is reviewed by verified experts before it is published.": [
+    "Setiap artikel disemak oleh pakar yang disahkan sebelum diterbitkan.",
+    "每篇文章发表前都由认证专家审核。"
+  ],
+  "Every premium paper costs readers RM 5, and the author earns RM 1 per copy. Recommend premium only when the paper gives readers clear value they would pay for.": [
+    "Setiap artikel premium berharga RM 5 kepada pembaca dan penulis memperoleh RM 1 setiap salinan. Cadangkan premium hanya apabila artikel memberi nilai jelas yang sanggup dibayar oleh pembaca.",
+    "每篇高级文章售价 RM 5，作者每份获得 RM 1。只有当文章为读者提供值得付费的明确价值时，才建议设为高级。"
+  ],
+  "Every premium paper costs the same: :n tokens (:price).": [
+    "Setiap artikel premium berharga sama: :n token (:price).",
+    "每篇高级文章价格相同：:n 代币（:price）。"
+  ],
+  "Every premium paper is :n tokens (:price). Buy 5 papers’ worth and get 1 free.": [
+    "Setiap artikel premium bernilai :n token (:price). Beli untuk 5 artikel dan dapat 1 percuma.",
+    "每篇高级文章 :n 代币（:price）。购买 5 篇的额度即送 1 篇。"
+  ],
+  "Every premium paper is :price. Top up 5 and get 1 free.": [
+    "Setiap artikel premium berharga :price. Tambah nilai untuk 5 dan dapat 1 percuma.",
+    "每篇高级文章 :price。充值 5 篇送 1 篇。"
+  ],
+  "Every premium paper sells for :price (:n tokens), in any category.": [
+    "Setiap artikel premium dijual pada :price (:n token), dalam apa jua kategori.",
+    "任何类别的高级文章售价均为 :price（:n 代币）。"
+  ],
+  "Everything an admin sees, plus administrator accounts.": [
+    "Semua yang dilihat oleh pentadbir, serta akaun pentadbir.",
+    "包含管理员可见的全部内容，以及管理员账户管理。"
+  ],
+  "Everything you have evaluated, newest first.": [
+    "Semua yang telah anda nilai, terbaharu dahulu.",
+    "您评审过的全部稿件，按时间由新到旧。"
+  ],
+  "Exam season boost": [
+    "Galakan musim peperiksaan",
+    "考试季加码"
+  ],
+  "Explore papers by field. Every category has the same fixed price.": [
+    "Terokai artikel mengikut bidang. Setiap kategori mempunyai harga tetap yang sama.",
+    "按领域探索文章。所有类别价格统一。"
+  ],
+  "FREE": [
+    "PERCUMA",
+    "免费"
+  ],
+  "Fee pending": [
+    "Yuran belum dibayar",
+    "待付费用"
+  ],
+  "Fee recouped — profit :a": [
+    "Yuran telah pulang — untung :a",
+    "已回本 — 盈利 :a"
+  ],
+  "Field": [
+    "Bidang",
+    "领域"
+  ],
+  "Field you will review": [
+    "Bidang yang akan anda nilai",
+    "您将评审的领域"
+  ],
+  "Five + 1": [
+    "Lima + 1",
+    "五送一"
+  ],
+  "Fixed price for every premium paper": [
+    "Harga tetap untuk setiap artikel premium",
+    "所有高级文章统一价格"
+  ],
+  "For verified professionals who evaluate Werta articles.": [
+    "Untuk profesional disahkan yang menilai artikel Werta.",
+    "供评审 Werta 文章的认证专业人士使用。"
+  ],
+  "Free and premium": [
+    "Percuma dan premium",
+    "免费和高级"
+  ],
+  "Free only": [
+    "Percuma sahaja",
+    "仅免费"
+  ],
+  "Friend’s code, e.g. WT-ABC123": [
+    "Kod rakan, cth. WT-ABC123",
+    "好友推荐码，例如 WT-ABC123"
+  ],
+  "Full name": [
+    "Nama penuh",
+    "全名"
+  ],
+  "Gateway fees": [
+    "Caj gerbang",
+    "支付手续费"
+  ],
+  "Gift a paper to Parent User": [
+    "Hadiahkan artikel kepada Parent User",
+    "赠送一篇文章给 Parent User"
+  ],
+  "Gift from :name": [
+    "Hadiah daripada :name",
+    "来自 :name 的礼物"
+  ],
+  "Gift from :name: :title": [
+    "Hadiah daripada :name: :title",
+    "来自 :name 的礼物：:title"
+  ],
+  "Gift note": [
+    "Nota hadiah",
+    "礼物留言"
+  ],
+  "Gift sent. “:title” is now in :name's library.": [
+    "Hadiah dihantar. “:title” kini dalam pustaka :name.",
+    "礼物已送出。《:title》已加入 :name 的书库。"
+  ],
+  "Gift this paper": [
+    "Hadiahkan artikel ini",
+    "赠送这篇文章"
+  ],
+  "Gift to :name: :title": [
+    "Hadiah kepada :name: :title",
+    "赠送给 :name：:title"
+  ],
+  "Gifts": [
+    "Hadiah",
+    "赠送"
+  ],
+  "Give authors clear, kind feedback and flag safety concerns to editors.": [
+    "Beri maklum balas yang jelas dan baik kepada penulis serta maklumkan isu keselamatan kepada editor.",
+    "给作者清晰友善的反馈，并向编辑报告安全隐患。"
+  ],
+  "Good fit for premium": [
+    "Sesuai untuk premium",
+    "适合设为高级"
+  ],
+  "Good for heavy readers. Papers read this way lock again when the subscription ends, and they earn the author nothing.": [
+    "Sesuai untuk pembaca tegar. Artikel yang dibaca melalui langganan dikunci semula apabila langganan tamat dan tidak memberi pendapatan kepada penulis.",
+    "适合阅读量大的读者。通过订阅阅读的文章在订阅结束后会重新锁定，且不为作者带来收益。"
+  ],
+  "Has published premium papers. Sees the author studio, RM 1 per copy earnings and a public author page.": [
+    "Mempunyai artikel premium yang diterbitkan. Melihat studio penulis, pendapatan RM 1 setiap salinan dan halaman penulis awam.",
+    "已发表高级文章。可查看作者工作室、每份 RM 1 的收益以及公开作者主页。"
+  ],
+  "Highest qualification": [
+    "Kelayakan tertinggi",
+    "最高学历"
+  ],
+  "Honorarium earned": [
+    "Honorarium diperoleh",
+    "已获酬金"
+  ],
+  "How to score a manuscript and decide whether it should be sold.": [
+    "Cara memberi skor manuskrip dan menentukan sama ada ia patut dijual.",
+    "如何为稿件评分并判断是否应该出售。"
+  ],
+  "I have no conflict of interest with this manuscript or its author.": [
+    "Saya tiada konflik kepentingan dengan manuskrip ini atau penulisnya.",
+    "我与该稿件及其作者不存在利益冲突。"
+  ],
+  "I will review fairly, declare any conflict of interest, and keep manuscripts confidential.": [
+    "Saya akan menilai dengan adil, mengisytiharkan sebarang konflik kepentingan dan merahsiakan manuskrip.",
+    "我将公正审稿、申报任何利益冲突并对稿件保密。"
+  ],
+  "In review": [
+    "Dalam semakan",
+    "审核中"
+  ],
+  "Institution or practice": [
+    "Institusi atau amalan",
+    "所属机构或执业单位"
+  ],
+  "Invite friends": [
+    "Jemput rakan",
+    "邀请好友"
+  ],
+  "Invited by :name.": [
+    "Dijemput oleh :name.",
+    "由 :name 邀请。"
+  ],
+  "Is it safe and respectful? No identifying details, no harmful advice, and clear signposting to help.": [
+    "Adakah ia selamat dan menghormati? Tiada butiran pengenalan, tiada nasihat berbahaya dan panduan jelas untuk mendapatkan bantuan.",
+    "内容是否安全且尊重他人？不含可识别身份的信息、无有害建议，并清楚指引求助途径。"
+  ],
+  "Is it suitable to sell?": [
+    "Adakah ia sesuai dijual?",
+    "是否适合出售？"
+  ],
+  "Keep manuscripts confidential. Do not share or reuse them.": [
+    "Rahsiakan manuskrip. Jangan kongsi atau guna semula.",
+    "对稿件保密，不得分享或再利用。"
+  ],
+  "Keep reading this paper": [
+    "Teruskan membaca artikel ini",
+    "继续阅读这篇文章"
+  ],
+  "Know someone who needs this? Gift it for :n tokens. The author still earns from every gift.": [
+    "Kenal seseorang yang memerlukannya? Hadiahkan dengan :n token. Penulis tetap memperoleh pendapatan daripada setiap hadiah.",
+    "认识需要这篇文章的人吗？用 :n 代币赠送给对方。每次赠送作者仍可获得收益。"
+  ],
+  "Last six months, before author payouts and fees": [
+    "Enam bulan lepas, sebelum bayaran penulis dan caj",
+    "近六个月，未扣除作者分成和手续费"
+  ],
+  "Link copied": [
+    "Pautan disalin",
+    "链接已复制"
+  ],
+  "Loading paper…": [
+    "Memuatkan artikel…",
+    "正在加载文章…"
+  ],
+  "Loading preview…": [
+    "Memuatkan pratonton…",
+    "正在加载试读…"
+  ],
+  "Locked — subscription ended": [
+    "Dikunci — langganan tamat",
+    "已锁定 — 订阅已结束"
+  ],
+  "Major revisions": [
+    "Pindaan besar",
+    "大修"
+  ],
+  "Manuscript": [
+    "Manuskrip",
+    "稿件"
+  ],
+  "Matters to Werta readers in Malaysia today.": [
+    "Penting kepada pembaca Werta di Malaysia hari ini.",
+    "对当今马来西亚的 Werta 读者有意义。"
+  ],
+  "Mental Health": [
+    "Kesihatan Mental",
+    "心理健康"
+  ],
+  "Minimum withdrawal :min. Paid to your bank account.": [
+    "Pengeluaran minimum :min. Dibayar ke akaun bank anda.",
+    "最低提现 :min，打入您的银行账户。"
+  ],
+  "Minor revisions": [
+    "Pindaan kecil",
+    "小修"
+  ],
+  "Monthly allowance used up. Buy this paper instead.": [
+    "Kuota bulanan telah habis. Beli artikel ini sebagai ganti.",
+    "本月额度已用完，请改为购买这篇文章。"
+  ],
+  "Monthly revenue": [
+    "Hasil bulanan",
+    "月度收入"
+  ],
+  "Monthly subscription": [
+    "Langganan bulanan",
+    "月度订阅"
+  ],
+  "More options: subscription or gift": [
+    "Pilihan lain: langganan atau hadiah",
+    "更多选项：订阅或赠送"
+  ],
+  "Most popular": [
+    "Paling popular",
+    "最受欢迎"
+  ],
+  "My Library": [
+    "Pustaka Saya",
+    "我的书库"
+  ],
+  "My author page": [
+    "Halaman penulis saya",
+    "我的作者主页"
+  ],
+  "My public profile": [
+    "Profil awam saya",
+    "我的公开资料"
+  ],
+  "Named on article": [
+    "Dinamakan pada artikel",
+    "在文章中署名"
+  ],
+  "Need :n more tokens": [
+    "Perlu :n token lagi",
+    "还需 :n 代币"
+  ],
+  "Needs your action": [
+    "Perlu tindakan anda",
+    "需要您处理"
+  ],
+  "Net": [
+    "Bersih",
+    "净额"
+  ],
+  "Net platform revenue": [
+    "Hasil bersih platform",
+    "平台净收入"
+  ],
+  "Net platform revenue shown as a line": [
+    "Hasil bersih platform ditunjukkan sebagai garisan",
+    "平台净收入以折线显示"
+  ],
+  "Net revenue": [
+    "Hasil bersih",
+    "净收入"
+  ],
+  "Net revenue this month": [
+    "Hasil bersih bulan ini",
+    "本月净收入"
+  ],
+  "New readers only": [
+    "Pembaca baharu sahaja",
+    "仅限新读者"
+  ],
+  "New users by role": [
+    "Pengguna baharu mengikut peranan",
+    "按角色统计的新用户"
+  ],
+  "Newest": [
+    "Terbaharu",
+    "最新"
+  ],
+  "Next step": [
+    "Langkah seterusnya",
+    "下一步"
+  ],
+  "No approved reviewer accounts yet. Run the seeders first.": [
+    "Belum ada akaun penilai yang diluluskan. Jalankan seeder terlebih dahulu.",
+    "尚无已批准的审稿人账户，请先运行数据填充。"
+  ],
+  "No articles match these filters.": [
+    "Tiada artikel sepadan dengan penapis ini.",
+    "没有符合筛选条件的文章。"
+  ],
+  "No completed reviews yet.": [
+    "Belum ada penilaian yang selesai.",
+    "尚无已完成的评审。"
+  ],
+  "No manuscripts waiting. New assignments will appear here.": [
+    "Tiada manuskrip menunggu. Tugasan baharu akan dipaparkan di sini.",
+    "暂无待审稿件。新的指派会显示在这里。"
+  ],
+  "No paid papers yet. Submit a premium paper to start earning.": [
+    "Belum ada artikel berbayar. Hantar artikel premium untuk mula memperoleh pendapatan.",
+    "尚无付费文章。提交高级文章即可开始赚取收益。"
+  ],
+  "No premium papers waiting.": [
+    "Tiada artikel premium menunggu.",
+    "暂无待处理的高级文章。"
+  ],
+  "No premium papers yet.": [
+    "Belum ada artikel premium.",
+    "尚无高级文章。"
+  ],
+  "No public reviews yet.": [
+    "Belum ada penilaian awam.",
+    "尚无公开评审。"
+  ],
+  "No purchase needed. Anyone can read it.": [
+    "Tidak perlu membeli. Sesiapa sahaja boleh membacanya.",
+    "无需购买，任何人都可以阅读。"
+  ],
+  "No reviewer assigned yet": [
+    "Belum ada penilai ditugaskan",
+    "尚未指派审稿人"
+  ],
+  "No reviewers assigned yet.": [
+    "Belum ada penilai ditugaskan.",
+    "尚未指派审稿人。"
+  ],
+  "No reviewers in this list.": [
+    "Tiada penilai dalam senarai ini.",
+    "此列表中没有审稿人。"
+  ],
+  "No transactions yet. Top up to get started.": [
+    "Belum ada transaksi. Tambah nilai untuk bermula.",
+    "暂无交易记录。充值即可开始。"
+  ],
+  "No, publish it free": [
+    "Tidak, terbitkan secara percuma",
+    "否，免费发布"
+  ],
+  "Not active": [
+    "Tidak aktif",
+    "未启用"
+  ],
+  "Not approved": [
+    "Tidak diluluskan",
+    "未获批准"
+  ],
+  "Not enough tokens. Please top up your wallet.": [
+    "Token tidak mencukupi. Sila tambah nilai dompet anda.",
+    "代币不足，请为钱包充值。"
+  ],
+  "Not shown to the author": [
+    "Tidak ditunjukkan kepada penulis",
+    "不会向作者显示"
+  ],
+  "Not uploaded": [
+    "Tidak dimuat naik",
+    "未上传"
+  ],
+  "Note to the author": [
+    "Nota kepada penulis",
+    "给作者的备注"
+  ],
+  "Nothing here right now.": [
+    "Tiada apa-apa di sini buat masa ini.",
+    "这里暂时没有内容。"
+  ],
+  "Nothing here yet. Open a premium article to read its free preview and unlock it.": [
+    "Belum ada apa-apa. Buka artikel premium untuk membaca pratonton percuma dan membukanya.",
+    "这里还没有内容。打开一篇高级文章，先免费试读再解锁。"
+  ],
+  "Offers for you": [
+    "Tawaran untuk anda",
+    "为您准备的优惠"
+  ],
+  "Offers something new or useful beyond common advice.": [
+    "Menawarkan sesuatu yang baharu atau berguna melebihi nasihat biasa.",
+    "提供超越常见建议的新颖或实用内容。"
+  ],
+  "One click signs you in as any role. Your wallet, purchases and gifts stay in this browser while you switch, so you can follow one story from reader to author to admin.": [
+    "Satu klik untuk log masuk sebagai mana-mana peranan. Dompet, pembelian dan hadiah anda kekal dalam pelayar ini semasa bertukar, jadi anda boleh mengikuti satu aliran dari pembaca ke penulis hingga pentadbir.",
+    "一键以任意角色登录。切换角色时，钱包、购买记录和礼物都会保留在此浏览器中，方便您从读者、作者到管理员完整演示一个流程。"
+  ],
+  "One wallet for everything on Werta. Tokens pay for papers, gifts and the subscription, and later courses and partner rewards.": [
+    "Satu dompet untuk semua di Werta. Token digunakan untuk artikel, hadiah dan langganan, dan kemudian kursus serta ganjaran rakan kongsi.",
+    "一个钱包通用 Werta 全站。代币可用于购买文章、赠送和订阅，日后还可用于课程和合作伙伴奖励。"
+  ],
+  "Only the author can pay this fee.": [
+    "Hanya penulis boleh membayar yuran ini.",
+    "只有作者可以支付此费用。"
+  ],
+  "Open Wallet & Library to see gifts": [
+    "Buka Dompet & Pustaka untuk melihat hadiah",
+    "打开钱包与书库查看礼物"
+  ],
+  "Open a premium article": [
+    "Buka artikel premium",
+    "打开一篇高级文章"
+  ],
+  "Open in new tab": [
+    "Buka dalam tab baharu",
+    "在新标签页中打开"
+  ],
+  "Open reviews": [
+    "Buka semakan",
+    "打开审核"
+  ],
+  "Open the article to keep reading.": [
+    "Buka artikel untuk terus membaca.",
+    "打开文章继续阅读。"
+  ],
+  "Open the review queue": [
+    "Buka barisan penilaian",
+    "打开审稿队列"
+  ],
+  "Open uploaded paper": [
+    "Buka artikel yang dimuat naik",
+    "打开已上传的文章"
+  ],
+  "Open wallet": [
+    "Buka dompet",
+    "打开钱包"
+  ],
+  "Option 1 · Buy once": [
+    "Pilihan 1 · Beli sekali",
+    "选项 1 · 单次购买"
+  ],
+  "Option 2 · Subscribe": [
+    "Pilihan 2 · Langgan",
+    "选项 2 · 订阅"
+  ],
+  "Option 3 · Gift it": [
+    "Pilihan 3 · Hadiahkan",
+    "选项 3 · 赠送"
+  ],
+  "Optionally appear on the article as a named reviewer.": [
+    "Boleh memilih untuk dinamakan sebagai penilai pada artikel.",
+    "可选择以署名审稿人身份出现在文章中。"
+  ],
+  "Original research or rich case experience": [
+    "Kajian asli atau pengalaman kes yang kaya",
+    "原创研究或丰富的案例经验"
+  ],
+  "Originality": [
+    "Keaslian",
+    "原创性"
+  ],
+  "Other reads": [
+    "Bacaan lain",
+    "其他阅读"
+  ],
+  "Outstanding": [
+    "Belum digunakan",
+    "未使用"
+  ],
+  "Outstanding tokens are money readers have paid but not yet used": [
+    "Token belum digunakan ialah wang yang telah dibayar pembaca tetapi belum digunakan",
+    "未使用代币是读者已付款但尚未使用的金额"
+  ],
+  "Overdue": [
+    "Lewat tempoh",
+    "已逾期"
+  ],
+  "Overview charts": [
+    "Carta gambaran keseluruhan",
+    "概览图表"
+  ],
+  "Owed": [
+    "Terhutang",
+    "应付"
+  ],
+  "Owed vs paid out per month": [
+    "Terhutang berbanding dibayar setiap bulan",
+    "每月应付与已付对比"
+  ],
+  "Owed vs paid out. Payouts are held :d days, minimum :min.": [
+    "Terhutang berbanding dibayar. Bayaran ditahan :d hari, minimum :min.",
+    "应付与已付对比。分成冻结 :d 天，最低 :min。"
+  ],
+  "Owned forever": [
+    "Dimiliki selamanya",
+    "永久拥有"
+  ],
+  "PDF or image, max 5MB. Only admins can see it.": [
+    "PDF atau imej, maksimum 5MB. Hanya pentadbir boleh melihatnya.",
+    "PDF 或图片，最大 5MB。仅管理员可见。"
+  ],
+  "Pack bonus: :n free tokens": [
+    "Bonus pakej: :n token percuma",
+    "套餐赠送：:n 个免费代币"
+  ],
+  "Paid out": [
+    "Dibayar",
+    "已付"
+  ],
+  "Paid tokens": [
+    "Token berbayar",
+    "付费代币"
+  ],
+  "Paper file": [
+    "Fail artikel",
+    "文章文件"
+  ],
+  "Paper not approved.": [
+    "Artikel tidak diluluskan.",
+    "文章未获批准。"
+  ],
+  "Papers in review": [
+    "Artikel dalam semakan",
+    "审核中的文章"
+  ],
+  "Papers read via subscription are locked again.": [
+    "Artikel yang dibaca melalui langganan dikunci semula.",
+    "通过订阅阅读的文章已重新锁定。"
+  ],
+  "Papers reviewed": [
+    "Artikel yang dinilai",
+    "已评审的文章"
+  ],
+  "Parenting & Family": [
+    "Keibubapaan & Keluarga",
+    "育儿与家庭"
+  ],
+  "Parents": [
+    "Ibu bapa",
+    "家长"
+  ],
+  "Partner café (example)": [
+    "Kafe rakan kongsi (contoh)",
+    "合作咖啡馆（示例）"
+  ],
+  "Partner café voucher": [
+    "Baucar kafe rakan kongsi",
+    "合作咖啡馆礼券"
+  ],
+  "Partner meal deal": [
+    "Tawaran makanan rakan kongsi",
+    "合作餐厅优惠"
+  ],
+  "Partner restaurant (example)": [
+    "Restoran rakan kongsi (contoh)",
+    "合作餐厅（示例）"
+  ],
+  "Pay :fee (demo)": [
+    "Bayar :fee (demo)",
+    "支付 :fee（演示）"
+  ],
+  "Pay :fee fee": [
+    "Bayar yuran :fee",
+    "支付 :fee 费用"
+  ],
+  "Pay the publish fee in Your Articles": [
+    "Bayar yuran penerbitan dalam Artikel Anda",
+    "在您的文章中支付发表费"
+  ],
+  "Payment": [
+    "Bayaran",
+    "付款"
+  ],
+  "Peer reviewed": [
+    "Disemak rakan sejawat",
+    "同行评审"
+  ],
+  "Peer reviewed by verified professionals": [
+    "Disemak oleh profesional yang disahkan",
+    "经认证专业人士同行评审"
+  ],
+  "Personal stories shared to help others": [
+    "Kisah peribadi yang dikongsi untuk membantu orang lain",
+    "为帮助他人而分享的个人故事"
+  ],
+  "Platform net": [
+    "Bersih platform",
+    "平台净额"
+  ],
+  "Please sign in first.": [
+    "Sila log masuk dahulu.",
+    "请先登录。"
+  ],
+  "Popular this month": [
+    "Popular bulan ini",
+    "本月热门"
+  ],
+  "Practical programmes, toolkits or step-by-step guides": [
+    "Program praktikal, kit alat atau panduan langkah demi langkah",
+    "实用课程、工具包或分步指南"
+  ],
+  "Pre-selected from the reviewers’ sale verdicts.": [
+    "Dipilih terlebih dahulu berdasarkan pendapat penilai tentang jualan.",
+    "已根据审稿人的出售建议预先选择。"
+  ],
+  "Premium (:rm)": [
+    "Premium (:rm)",
+    "高级（:rm）"
+  ],
+  "Premium only": [
+    "Premium sahaja",
+    "仅高级"
+  ],
+  "Premium paper": [
+    "Artikel premium",
+    "高级文章"
+  ],
+  "Premium paper: :n tokens (:rm)": [
+    "Artikel premium: :n token (:rm)",
+    "高级文章：:n 代币（:rm）"
+  ],
+  "Premium papers sell for RM 5. Ask whether readers would pay for this, or whether it is better offered free.": [
+    "Artikel premium dijual pada RM 5. Tanya sama ada pembaca sanggup membayarnya, atau lebih baik ditawarkan percuma.",
+    "高级文章售价 RM 5。请思考读者是否愿意为此付费，还是免费提供更合适。"
+  ],
+  "Premium review queue": [
+    "Barisan semakan premium",
+    "高级文章审核队列"
+  ],
+  "Premium · :price": [
+    "Premium · :price",
+    "高级 · :price"
+  ],
+  "Professional registration no.": [
+    "No. pendaftaran profesional",
+    "专业注册编号"
+  ],
+  "Professional title": [
+    "Gelaran profesional",
+    "职业头衔"
+  ],
+  "Progress toward recouping the :fee publish fee": [
+    "Kemajuan untuk mendapatkan semula yuran penerbitan :fee",
+    "收回 :fee 发表费的进度"
+  ],
+  "Promo :code applied.": [
+    "Promosi :code digunakan.",
+    "优惠码 :code 已使用。"
+  ],
+  "Promo :code ready: +:p% on your next top-up": [
+    "Promosi :code sedia: +:p% pada tambah nilai seterusnya",
+    "优惠码 :code 已就绪：下次充值额外 +:p%"
+  ],
+  "Promo :code: +:n bonus tokens": [
+    "Promosi :code: +:n token bonus",
+    "优惠码 :code：+:n 赠送代币"
+  ],
+  "Promo :code: :n bonus tokens": [
+    "Promosi :code: :n token bonus",
+    "优惠码 :code：:n 赠送代币"
+  ],
+  "Promo and bonus cost": [
+    "Kos promosi dan bonus",
+    "促销与赠送成本"
+  ],
+  "Promo code": [
+    "Kod promosi",
+    "优惠码"
+  ],
+  "Promos, referrals and gifts": [
+    "Promosi, rujukan dan hadiah",
+    "优惠、推荐与赠送"
+  ],
+  "Promotions": [
+    "Promosi",
+    "促销活动"
+  ],
+  "Proof of credentials": [
+    "Bukti kelayakan",
+    "资质证明"
+  ],
+  "Proposed honorarium: RM 40 per completed review.": [
+    "Cadangan honorarium: RM 40 bagi setiap penilaian yang selesai.",
+    "拟定酬金：每完成一次评审 RM 40。"
+  ],
+  "Psychologists, counsellors, doctors, teachers and researchers with a recognised qualification in their field. A professional registration number speeds up verification.": [
+    "Ahli psikologi, kaunselor, doktor, guru dan penyelidik dengan kelayakan yang diiktiraf dalam bidang masing-masing. Nombor pendaftaran profesional mempercepatkan pengesahan.",
+    "在其领域拥有认可资质的心理学家、辅导员、医生、教师和研究人员。提供专业注册编号可加快审核。"
+  ],
+  "Psychologists, educators and health professionals evaluate accuracy, ethics and whether a paper is ready to be sold.": [
+    "Ahli psikologi, pendidik dan profesional kesihatan menilai ketepatan, etika dan sama ada artikel sedia untuk dijual.",
+    "心理学家、教育工作者和医疗专业人士会评估准确性、伦理以及文章是否适合出售。"
+  ],
+  "Public application form": [
+    "Borang permohonan awam",
+    "公开申请表"
+  ],
+  "Public profile": [
+    "Profil awam",
+    "公开资料"
+  ],
+  "Publish as": [
+    "Terbitkan sebagai",
+    "发布为"
+  ],
+  "Publish fee": [
+    "Yuran penerbitan",
+    "发表费"
+  ],
+  "Publish fee paid (demo). “:title” is now live.": [
+    "Yuran penerbitan dibayar (demo). “:title” kini diterbitkan.",
+    "发表费已支付（演示）。《:title》现已上线。"
+  ],
+  "Publish fee: :rm": [
+    "Yuran penerbitan: :rm",
+    "发表费：:rm"
+  ],
+  "Publish fees": [
+    "Yuran penerbitan",
+    "发表费"
+  ],
+  "Publish fees paid": [
+    "Yuran penerbitan dibayar",
+    "已付发表费"
+  ],
+  "Publish free": [
+    "Terbitkan percuma",
+    "免费发布"
+  ],
+  "Publish now": [
+    "Terbitkan sekarang",
+    "立即发布"
+  ],
+  "Published papers": [
+    "Artikel diterbitkan",
+    "已发表文章"
+  ],
+  "RM 1 per copy, all time": [
+    "RM 1 setiap salinan, sepanjang masa",
+    "每份 RM 1，累计"
+  ],
+  "Read article": [
+    "Baca artikel",
+    "阅读文章"
+  ],
+  "Read in the browser. Downloads are disabled for premium papers.": [
+    "Baca dalam pelayar. Muat turun dilumpuhkan untuk artikel premium.",
+    "请在浏览器中阅读。高级文章不提供下载。"
+  ],
+  "Read now": [
+    "Baca sekarang",
+    "立即阅读"
+  ],
+  "Read the free preview": [
+    "Baca pratonton percuma",
+    "免费试读"
+  ],
+  "Read with my subscription (:left of :cap left)": [
+    "Baca dengan langganan saya (baki :left daripada :cap)",
+    "使用我的订阅阅读（剩余 :left / :cap）"
+  ],
+  "Reader": [
+    "Pembaca",
+    "读者"
+  ],
+  "Reader and author": [
+    "Pembaca dan penulis",
+    "读者兼作者"
+  ],
+  "Reader: gift “Choosing a Career Path After SPM” to Parent User, and try the promo code WELCOME50.": [
+    "Pembaca: hadiahkan “Choosing a Career Path After SPM” kepada Parent User dan cuba kod promosi WELCOME50.",
+    "读者：将《Choosing a Career Path After SPM》赠送给 Parent User，并试用优惠码 WELCOME50。"
+  ],
+  "Reader: open “Mindfulness for Exam Season”, read the free first pages, then top up and unlock it.": [
+    "Pembaca: buka “Mindfulness for Exam Season”, baca halaman pertama secara percuma, kemudian tambah nilai dan buka kuncinya.",
+    "读者：打开《Mindfulness for Exam Season》，免费试读前几页，然后充值并解锁。"
+  ],
+  "Readers filter articles by category. The price is the same for every category.": [
+    "Pembaca menapis artikel mengikut kategori. Harga sama untuk setiap kategori.",
+    "读者可按类别筛选文章。所有类别价格相同。"
+  ],
+  "Readers sign in as a client, parent or counselor.": [
+    "Pembaca log masuk sebagai klien, ibu bapa atau kaunselor.",
+    "读者以客户、家长或辅导员身份登录。"
+  ],
+  "Readership by paper": [
+    "Bilangan pembaca mengikut artikel",
+    "各文章读者数"
+  ],
+  "Reads by subscribers earn you nothing.": [
+    "Bacaan oleh pelanggan tidak memberi anda pendapatan.",
+    "订阅者的阅读不会为您带来收益。"
+  ],
+  "Reads previews, tops up tokens, buys and gifts papers, uses promos and referrals.": [
+    "Membaca pratonton, menambah nilai token, membeli dan menghadiahkan artikel, menggunakan promosi dan rujukan.",
+    "试读文章、充值代币、购买和赠送文章，并使用优惠码和推荐。"
+  ],
+  "Ready for your next top-up": [
+    "Sedia untuk tambah nilai seterusnya",
+    "可用于下次充值"
+  ],
+  "Ready to publish": [
+    "Sedia untuk diterbitkan",
+    "可以发布"
+  ],
+  "Recently completed": [
+    "Baru diselesaikan",
+    "最近完成"
+  ],
+  "Recipient": [
+    "Penerima",
+    "接收人"
+  ],
+  "Recommendation": [
+    "Cadangan",
+    "建议"
+  ],
+  "Redemptions, all time": [
+    "Penebusan, sepanjang masa",
+    "累计使用次数"
+  ],
+  "Referral bonus (:name joined and topped up)": [
+    "Bonus rujukan (:name menyertai dan menambah nilai)",
+    "推荐奖励（:name 已注册并充值）"
+  ],
+  "Referral bonus (invited by :name)": [
+    "Bonus rujukan (dijemput oleh :name)",
+    "推荐奖励（由 :name 邀请）"
+  ],
+  "Referral code": [
+    "Kod rujukan",
+    "推荐码"
+  ],
+  "Referral code linked. Bonus arrives after your first top-up.": [
+    "Kod rujukan dipautkan. Bonus diberi selepas tambah nilai pertama anda.",
+    "推荐码已绑定。首次充值后发放奖励。"
+  ],
+  "Referral code linked. You both get bonus tokens after your first top-up.": [
+    "Kod rujukan dipautkan. Anda berdua mendapat token bonus selepas tambah nilai pertama anda.",
+    "推荐码已绑定。您首次充值后，双方都会获得赠送代币。"
+  ],
+  "Referral code saved. Sign in, then add it in your wallet before your first top-up.": [
+    "Kod rujukan disimpan. Log masuk, kemudian tambahkannya dalam dompet sebelum tambah nilai pertama.",
+    "推荐码已保存。请登录，并在首次充值前于钱包中添加。"
+  ],
+  "Referral codes can only be added before your first top-up.": [
+    "Kod rujukan hanya boleh ditambah sebelum tambah nilai pertama anda.",
+    "推荐码只能在首次充值前添加。"
+  ],
+  "Referral codes must be added before your first top-up.": [
+    "Kod rujukan mesti ditambah sebelum tambah nilai pertama anda.",
+    "推荐码必须在首次充值前添加。"
+  ],
+  "Referrals": [
+    "Rujukan",
+    "推荐"
+  ],
+  "Reg. no. :no": [
+    "No. daftar :no",
+    "注册号 :no"
+  ],
+  "Registration no.": [
+    "No. pendaftaran",
+    "注册编号"
+  ],
+  "Rejected or suspended": [
+    "Ditolak atau digantung",
+    "已拒绝或已暂停"
+  ],
+  "Released papers": [
+    "Artikel diterbitkan",
+    "已发布的文章"
+  ],
+  "Relevance to students and families": [
+    "Kerelevanan kepada pelajar dan keluarga",
+    "与学生和家庭的相关性"
+  ],
+  "Renews :date": [
+    "Diperbaharui :date",
+    ":date 续订"
+  ],
+  "Request revisions": [
+    "Minta pindaan",
+    "要求修改"
+  ],
+  "Requested changes": [
+    "Perubahan yang diminta",
+    "要求的修改"
+  ],
+  "Reset demo data": [
+    "Set semula data demo",
+    "重置演示数据"
+  ],
+  "Revenue": [
+    "Hasil",
+    "收入"
+  ],
+  "Revenue by source": [
+    "Hasil mengikut sumber",
+    "按来源划分的收入"
+  ],
+  "Review declined. The editor will assign someone else.": [
+    "Penilaian ditolak. Editor akan menugaskan orang lain.",
+    "已拒绝评审，编辑将另行指派。"
+  ],
+  "Review for Werta": [
+    "Menilai untuk Werta",
+    "为 Werta 审稿"
+  ],
+  "Review pipeline": [
+    "Aliran semakan",
+    "审核进度"
+  ],
+  "Review queue": [
+    "Barisan penilaian",
+    "审稿队列"
+  ],
+  "Review turnaround": [
+    "Masa penyelesaian penilaian",
+    "审稿周期"
+  ],
+  "Reviewed :date": [
+    "Dinilai :date",
+    "评审于 :date"
+  ],
+  "Reviewer": [
+    "Penilai",
+    "审稿人"
+  ],
+  "Reviewer :n": [
+    "Penilai :n",
+    "审稿人 :n"
+  ],
+  "Reviewer Dashboard": [
+    "Papan Pemuka Penilai",
+    "审稿人面板"
+  ],
+  "Reviewer Portal": [
+    "Portal Penilai",
+    "审稿人门户"
+  ],
+  "Reviewer Sign In": [
+    "Log Masuk Penilai",
+    "审稿人登录"
+  ],
+  "Reviewer Sign In - Werta": [
+    "Log Masuk Penilai - Werta",
+    "审稿人登录 - Werta"
+  ],
+  "Reviewer applications": [
+    "Permohonan penilai",
+    "审稿人申请"
+  ],
+  "Reviewer programme": [
+    "Program penilai",
+    "审稿人计划"
+  ],
+  "Reviewer sign in": [
+    "Log masuk penilai",
+    "审稿人登录"
+  ],
+  "Reviewer view: better published free.": [
+    "Pandangan penilai: lebih baik diterbitkan percuma.",
+    "审稿人意见：更适合免费发布。"
+  ],
+  "Reviewer view: suitable to sell as premium.": [
+    "Pandangan penilai: sesuai dijual sebagai premium.",
+    "审稿人意见：适合作为高级文章出售。"
+  ],
+  "Reviewer workload": [
+    "Beban kerja penilai",
+    "审稿人工作量"
+  ],
+  "Reviewer: evaluate “The Science of Teen Sleep Cycles” and mark whether it is suitable to sell.": [
+    "Penilai: nilai “The Science of Teen Sleep Cycles” dan tandakan sama ada ia sesuai dijual.",
+    "审稿人：评审《The Science of Teen Sleep Cycles》，并标明是否适合出售。"
+  ],
+  "Reviewers": [
+    "Penilai",
+    "审稿人"
+  ],
+  "Reviewers may recommend publishing it free instead.": [
+    "Penilai mungkin mencadangkan ia diterbitkan secara percuma.",
+    "审稿人可能建议改为免费发布。"
+  ],
+  "Reviews": [
+    "Penilaian",
+    "评审"
+  ],
+  "Reviews completed": [
+    "Penilaian diselesaikan",
+    "已完成评审"
+  ],
+  "Reviews per month": [
+    "Penilaian setiap bulan",
+    "每月评审数"
+  ],
+  "Revisions requested. The author can see the reviewers’ feedback.": [
+    "Pindaan diminta. Penulis boleh melihat maklum balas penilai.",
+    "已要求修改，作者可查看审稿人的反馈。"
+  ],
+  "Rules in draft": [
+    "Peraturan dalam draf",
+    "规则草案"
+  ],
+  "Safe, respectful, no identifying details, and points to help where needed.": [
+    "Selamat, menghormati, tiada butiran pengenalan dan menunjukkan bantuan apabila perlu.",
+    "安全、尊重他人、不含身份信息，并在需要时指引求助。"
+  ],
+  "Sale verdict": [
+    "Pendapat jualan",
+    "出售建议"
+  ],
+  "Sales by category": [
+    "Jualan mengikut kategori",
+    "按类别统计的销量"
+  ],
+  "Save decision": [
+    "Simpan keputusan",
+    "保存决定"
+  ],
+  "Say whether a premium paper is good enough to sell, or better published free.": [
+    "Nyatakan sama ada artikel premium cukup baik untuk dijual, atau lebih baik diterbitkan percuma.",
+    "判断高级文章是否值得出售，还是更适合免费发布。"
+  ],
+  "Science": [
+    "Sains",
+    "科学"
+  ],
+  "Score": [
+    "Skor",
+    "评分"
+  ],
+  "Score :s/5": [
+    "Skor :s/5",
+    "评分 :s/5"
+  ],
+  "Score each manuscript on accuracy, originality, clarity, relevance and ethics.": [
+    "Beri skor setiap manuskrip dari segi ketepatan, keaslian, kejelasan, kerelevanan dan etika.",
+    "从准确性、原创性、清晰度、相关性和伦理方面为每篇稿件评分。"
+  ],
+  "Search articles": [
+    "Cari artikel",
+    "搜索文章"
+  ],
+  "Search titles, topics or authors": [
+    "Cari tajuk, topik atau penulis",
+    "搜索标题、主题或作者"
+  ],
+  "Second reader for gifts and referrals. Has one accepted paper waiting for the RM 80 fee.": [
+    "Pembaca kedua untuk hadiah dan rujukan. Mempunyai satu artikel yang diterima dan menunggu yuran RM 80.",
+    "用于演示赠送和推荐的第二位读者。有一篇已接受的文章等待支付 RM 80 费用。"
+  ],
+  "See all": [
+    "Lihat semua",
+    "查看全部"
+  ],
+  "See all in :category": [
+    "Lihat semua dalam :category",
+    "查看:category的全部文章"
+  ],
+  "Select a manuscript to see its reviews.": [
+    "Pilih manuskrip untuk melihat penilaiannya.",
+    "选择一篇稿件查看其评审。"
+  ],
+  "Sell as premium": [
+    "Jual sebagai premium",
+    "作为高级文章出售"
+  ],
+  "Send gift": [
+    "Hantar hadiah",
+    "送出礼物"
+  ],
+  "Send this paper to someone else": [
+    "Hantar artikel ini kepada orang lain",
+    "将这篇文章送给他人"
+  ],
+  "Share Werta, earn tokens": [
+    "Kongsi Werta, dapatkan token",
+    "分享 Werta，赚取代币"
+  ],
+  "Short bio": [
+    "Biodata ringkas",
+    "简介"
+  ],
+  "Short introductions or general awareness pieces": [
+    "Pengenalan ringkas atau artikel kesedaran umum",
+    "简短介绍或一般性科普文章"
+  ],
+  "Show my name on the article as a reviewer if it is published.": [
+    "Paparkan nama saya sebagai penilai pada artikel jika ia diterbitkan.",
+    "如文章发表，在文章中署名为审稿人。"
+  ],
+  "Shown on article": [
+    "Dipaparkan pada artikel",
+    "在文章中显示"
+  ],
+  "Sign in": [
+    "Log masuk",
+    "登录"
+  ],
+  "Sign in as client": [
+    "Log masuk sebagai klien",
+    "以客户身份登录"
+  ],
+  "Sign in to continue": [
+    "Log masuk untuk meneruskan",
+    "登录以继续"
+  ],
+  "Sign in to use the wallet.": [
+    "Log masuk untuk menggunakan dompet.",
+    "登录以使用钱包。"
+  ],
+  "Sign-ups per month": [
+    "Pendaftaran setiap bulan",
+    "每月注册数"
+  ],
+  "Signed in": [
+    "Telah log masuk",
+    "已登录"
+  ],
+  "Signed in as a demo account.": [
+    "Log masuk sebagai akaun demo.",
+    "已以演示账户登录。"
+  ],
+  "Simulate expiry": [
+    "Simulasikan tamat tempoh",
+    "模拟到期"
+  ],
+  "Single": [
+    "Tunggal",
+    "单篇"
+  ],
+  "Six months of takings": [
+    "Kutipan enam bulan",
+    "六个月收入"
+  ],
+  "Six-month net: :rm": [
+    "Bersih enam bulan: :rm",
+    "六个月净额：:rm"
+  ],
+  "Social Sciences": [
+    "Sains Sosial",
+    "社会科学"
+  ],
+  "Soon": [
+    "Tidak lama lagi",
+    "即将推出"
+  ],
+  "Sort": [
+    "Susun",
+    "排序"
+  ],
+  "Start review": [
+    "Mula menilai",
+    "开始评审"
+  ],
+  "Stays in your library, even without a subscription": [
+    "Kekal dalam pustaka anda, walaupun tanpa langganan",
+    "即使没有订阅也会保留在您的书库中"
+  ],
+  "Submit an evaluation": [
+    "Hantar penilaian",
+    "提交评审"
+  ],
+  "Submit application": [
+    "Hantar permohonan",
+    "提交申请"
+  ],
+  "Submit evaluation": [
+    "Hantar penilaian",
+    "提交评审"
+  ],
+  "Submitted :date": [
+    "Dihantar :date",
+    "提交于 :date"
+  ],
+  "Submitted :date. Thank you.": [
+    "Dihantar :date. Terima kasih.",
+    "已于 :date 提交，谢谢。"
+  ],
+  "Subscribe for :n tokens": [
+    "Langgan dengan :n token",
+    "用 :n 代币订阅"
+  ],
+  "Subscription": [
+    "Langganan",
+    "订阅"
+  ],
+  "Subscription expired (simulated). Subscription-only papers are locked again.": [
+    "Langganan tamat (simulasi). Artikel melalui langganan sahaja dikunci semula.",
+    "订阅已到期（模拟）。仅通过订阅解锁的文章已重新锁定。"
+  ],
+  "Subscription reads do not pay the author": [
+    "Bacaan langganan tidak memberi bayaran kepada penulis",
+    "订阅阅读不向作者支付收益"
+  ],
+  "Subscription started (demo).": [
+    "Langganan bermula (demo).",
+    "订阅已开始（演示）。"
+  ],
+  "Subscription: :n tokens (:rm), :cap papers": [
+    "Langganan: :n token (:rm), :cap artikel",
+    "订阅：:n 代币（:rm），:cap 篇文章"
+  ],
+  "Subscriptions": [
+    "Langganan",
+    "订阅收入"
+  ],
+  "Suggested demo route": [
+    "Laluan demo yang dicadangkan",
+    "建议演示流程"
+  ],
+  "Suspend": [
+    "Gantung",
+    "暂停"
+  ],
+  "Swap 150 tokens for a drink voucher at a partner café.": [
+    "Tukar 150 token dengan baucar minuman di kafe rakan kongsi.",
+    "用 150 代币兑换合作咖啡馆的饮品券。"
+  ],
+  "Swap 200 tokens for a meal voucher at a partner restaurant.": [
+    "Tukar 200 token dengan baucar makanan di restoran rakan kongsi.",
+    "用 200 代币兑换合作餐厅的餐券。"
+  ],
+  "Ten + 2": [
+    "Sepuluh + 2",
+    "十送二"
+  ],
+  "Thank you. Your application was received. An admin will verify your credentials before you can review.": [
+    "Terima kasih. Permohonan anda telah diterima. Pentadbir akan mengesahkan kelayakan anda sebelum anda boleh menilai.",
+    "谢谢，我们已收到您的申请。管理员核实您的资质后，您即可开始审稿。"
+  ],
+  "That promo code is not valid right now.": [
+    "Kod promosi itu tidak sah buat masa ini.",
+    "该优惠码目前无效。"
+  ],
+  "That referral code was not found.": [
+    "Kod rujukan itu tidak dijumpai.",
+    "未找到该推荐码。"
+  ],
+  "The :fee fee is only charged after admin acceptance.": [
+    "Yuran :fee hanya dikenakan selepas diterima oleh pentadbir.",
+    "管理员接受后才收取 :fee 费用。"
+  ],
+  "The :fee fee is only requested after acceptance.": [
+    "Yuran :fee hanya diminta selepas diterima.",
+    "接受后才会收取 :fee 费用。"
+  ],
+  "The abstract and the first part of your paper are shown free as a preview.": [
+    "Abstrak dan bahagian awal artikel anda dipaparkan secara percuma sebagai pratonton.",
+    "摘要和文章开头部分将作为免费试读展示。"
+  ],
+  "The author already has free access to this paper.": [
+    "Penulis sudah mempunyai akses percuma kepada artikel ini.",
+    "作者本人已可免费阅读这篇文章。"
+  ],
+  "The author earns :rm from this copy": [
+    "Penulis memperoleh :rm daripada salinan ini",
+    "作者从这一份中获得 :rm"
+  ],
+  "The minimum withdrawal is :min.": [
+    "Pengeluaran minimum ialah :min.",
+    "最低提现金额为 :min。"
+  ],
+  "The paper could not be loaded. Run php artisan storage:link and refresh.": [
+    "Artikel tidak dapat dimuatkan. Jalankan php artisan storage:link dan muat semula.",
+    "文章无法加载。请运行 php artisan storage:link 后刷新。"
+  ],
+  "This article is free": [
+    "Artikel ini percuma",
+    "这篇文章免费"
+  ],
+  "This month (:month)": [
+    "Bulan ini (:month)",
+    "本月（:month）"
+  ],
+  "This paper has no publish fee due.": [
+    "Artikel ini tiada yuran penerbitan yang perlu dibayar.",
+    "这篇文章无需支付发表费。"
+  ],
+  "This paper is live.": [
+    "Artikel ini telah diterbitkan.",
+    "这篇文章已上线。"
+  ],
+  "This promo is for new readers only.": [
+    "Promosi ini untuk pembaca baharu sahaja.",
+    "此优惠仅限新读者。"
+  ],
+  "This review has already been submitted.": [
+    "Penilaian ini telah dihantar.",
+    "此评审已提交。"
+  ],
+  "Token sales, paper sales, subscriptions, publish fees and author payouts.": [
+    "Jualan token, jualan artikel, langganan, yuran penerbitan dan bayaran penulis.",
+    "代币销售、文章销售、订阅、发表费和作者分成。"
+  ],
+  "Token top-ups (cash in)": [
+    "Tambah nilai token (wang masuk)",
+    "代币充值（现金收入）"
+  ],
+  "Tokens outstanding": [
+    "Token belum digunakan",
+    "未使用代币"
+  ],
+  "Tokens sold": [
+    "Token dijual",
+    "售出代币"
+  ],
+  "Tokens sold, spent and outstanding": [
+    "Token dijual, digunakan dan belum digunakan",
+    "代币售出、使用与结余"
+  ],
+  "Tokens spent": [
+    "Token digunakan",
+    "已用代币"
+  ],
+  "Top articles": [
+    "Artikel teratas",
+    "热门文章"
+  ],
+  "Top authors": [
+    "Penulis teratas",
+    "热门作者"
+  ],
+  "Top up": [
+    "Tambah nilai",
+    "充值"
+  ],
+  "Top up :price": [
+    "Tambah nilai :price",
+    "充值 :price"
+  ],
+  "Top up and unlock": [
+    "Tambah nilai dan buka",
+    "充值并解锁"
+  ],
+  "Top up the Five + 1 pack": [
+    "Tambah nilai pakej Lima + 1",
+    "充值五送一套餐"
+  ],
+  "Top up tokens": [
+    "Tambah nilai token",
+    "充值代币"
+  ],
+  "Top-earning papers": [
+    "Artikel berpendapatan tertinggi",
+    "收入最高的文章"
+  ],
+  "Top-up pack mix": [
+    "Campuran pakej tambah nilai",
+    "充值套餐分布"
+  ],
+  "Total earned": [
+    "Jumlah diperoleh",
+    "累计收益"
+  ],
+  "Total readers": [
+    "Jumlah pembaca",
+    "总读者数"
+  ],
+  "Track every manuscript from submission to publication. Premium papers earn you :rm for every copy bought.": [
+    "Jejaki setiap manuskrip dari penghantaran hingga penerbitan. Artikel premium memberi anda :rm bagi setiap salinan dibeli.",
+    "跟踪每篇稿件从提交到发表的全过程。高级文章每售出一份，您可获得 :rm。"
+  ],
+  "Transactions": [
+    "Transaksi",
+    "交易记录"
+  ],
+  "Under review": [
+    "Dalam semakan",
+    "审核中"
+  ],
+  "Unknown top-up pack.": [
+    "Pakej tambah nilai tidak dikenali.",
+    "未知的充值套餐。"
+  ],
+  "Unlock for :n tokens": [
+    "Buka dengan :n token",
+    "用 :n 代币解锁"
+  ],
+  "Unlock the full paper for :n tokens (:price) and keep it forever.": [
+    "Buka artikel penuh dengan :n token (:price) dan simpan selamanya.",
+    "用 :n 代币（:price）解锁全文并永久保存。"
+  ],
+  "Unlocked": [
+    "Dibuka",
+    "已解锁"
+  ],
+  "Unlocked for :n tokens. This paper is yours to keep.": [
+    "Dibuka dengan :n token. Artikel ini milik anda.",
+    "已用 :n 代币解锁，这篇文章归您永久所有。"
+  ],
+  "Unlocked with your subscription allowance.": [
+    "Dibuka menggunakan kuota langganan anda.",
+    "已使用订阅额度解锁。"
+  ],
+  "Uploaded": [
+    "Dimuat naik",
+    "已上传"
+  ],
+  "Use": [
+    "Guna",
+    "使用"
+  ],
+  "Use 1 allowance to read": [
+    "Guna 1 kuota untuk membaca",
+    "使用 1 次额度阅读"
+  ],
+  "Use the confidential note for concerns only the editor should see.": [
+    "Gunakan nota sulit untuk isu yang hanya patut dilihat oleh editor.",
+    "仅编辑应知晓的问题，请写在保密备注中。"
+  ],
+  "Used": [
+    "Telah digunakan",
+    "已使用"
+  ],
+  "Used allowance: :title": [
+    "Kuota digunakan: :title",
+    "已使用额度：:title"
+  ],
+  "Verified": [
+    "Disahkan",
+    "已认证"
+  ],
+  "Verified reviewer": [
+    "Penilai disahkan",
+    "认证审稿人"
+  ],
+  "Verified since": [
+    "Disahkan sejak",
+    "认证时间"
+  ],
+  "Verify professional credentials before anyone can review articles.": [
+    "Sahkan kelayakan profesional sebelum sesiapa boleh menilai artikel.",
+    "在任何人审稿之前核实其专业资质。"
+  ],
+  "Via subscription": [
+    "Melalui langganan",
+    "通过订阅"
+  ],
+  "View author page": [
+    "Lihat halaman penulis",
+    "查看作者主页"
+  ],
+  "View live": [
+    "Lihat terbitan",
+    "查看上线页面"
+  ],
+  "View public page": [
+    "Lihat halaman awam",
+    "查看公开页面"
+  ],
+  "View the public page": [
+    "Lihat halaman awam",
+    "查看公开页面"
+  ],
+  "Wait for at least one completed review before deciding.": [
+    "Tunggu sekurang-kurangnya satu penilaian selesai sebelum membuat keputusan.",
+    "请至少等待一份评审完成后再作决定。"
+  ],
+  "Waiting for review": [
+    "Menunggu semakan",
+    "等待审核"
+  ],
+  "Wallet & Library": [
+    "Dompet & Pustaka",
+    "钱包与书库"
+  ],
+  "Welcome gift": [
+    "Hadiah alu-aluan",
+    "欢迎礼"
+  ],
+  "Welcome, :name": [
+    "Selamat datang, :name",
+    "欢迎，:name"
+  ],
+  "Well organised and easy for students and parents to follow.": [
+    "Teratur dan mudah difahami oleh pelajar dan ibu bapa.",
+    "结构清晰，学生和家长都容易理解。"
+  ],
+  "Were you invited?": [
+    "Adakah anda dijemput?",
+    "您是受邀加入的吗？"
+  ],
+  "Werta articles are read by students and families. Every paper is checked by a verified professional before it is published or sold.": [
+    "Artikel Werta dibaca oleh pelajar dan keluarga. Setiap artikel disemak oleh profesional yang disahkan sebelum diterbitkan atau dijual.",
+    "Werta 的文章由学生和家庭阅读。每篇文章在发表或出售前都由认证专业人士审核。"
+  ],
+  "Werta author": [
+    "Penulis Werta",
+    "Werta 作者"
+  ],
+  "Werta licensed copy": [
+    "Salinan berlesen Werta",
+    "Werta 授权副本"
+  ],
+  "Werta tokens": [
+    "Token Werta",
+    "Werta 代币"
+  ],
+  "What reviewers do": [
+    "Tugas penilai",
+    "审稿人的工作"
+  ],
+  "When a friend joins with your code and makes their first top-up, you get :a bonus tokens and they get :b.": [
+    "Apabila rakan menyertai dengan kod anda dan membuat tambah nilai pertama, anda mendapat :a token bonus dan mereka mendapat :b.",
+    "好友使用您的推荐码注册并完成首次充值后，您将获得 :a 个赠送代币，对方获得 :b 个。"
+  ],
+  "Where the money goes": [
+    "Ke mana wang pergi",
+    "资金去向"
+  ],
+  "Which packs readers buy": [
+    "Pakej yang dibeli pembaca",
+    "读者购买的套餐"
+  ],
+  "Who can apply": [
+    "Siapa boleh memohon",
+    "申请资格"
+  ],
+  "Withdraw :amount": [
+    "Keluarkan :amount",
+    "提现 :amount"
+  ],
+  "Withdrawal of :amount requested (demo). Payouts reach your bank in 3–5 working days.": [
+    "Pengeluaran :amount telah diminta (demo). Bayaran sampai ke bank anda dalam 3–5 hari bekerja.",
+    "已申请提现 :amount（演示）。款项将在 3–5 个工作日内到账。"
+  ],
+  "Writes about :topics.": [
+    "Menulis tentang :topics.",
+    "撰写主题：:topics。"
+  ],
+  "Written by": [
+    "Ditulis oleh",
+    "作者"
+  ],
+  "Yes, sell it as premium": [
+    "Ya, jual sebagai premium",
+    "是，作为高级文章出售"
+  ],
+  "You already have access": [
+    "Anda sudah mempunyai akses",
+    "您已拥有阅读权限"
+  ],
+  "You already own this paper.": [
+    "Anda sudah memiliki artikel ini.",
+    "您已拥有这篇文章。"
+  ],
+  "You can choose not to be named on the published article.": [
+    "Anda boleh memilih untuk tidak dinamakan pada artikel yang diterbitkan.",
+    "您可以选择不在已发表的文章中署名。"
+  ],
+  "You cannot use your own referral code.": [
+    "Anda tidak boleh menggunakan kod rujukan sendiri.",
+    "不能使用自己的推荐码。"
+  ],
+  "You declined this review.": [
+    "Anda telah menolak penilaian ini.",
+    "您已拒绝此次评审。"
+  ],
+  "You earn :rm for every copy bought or gifted.": [
+    "Anda memperoleh :rm bagi setiap salinan yang dibeli atau dihadiahkan.",
+    "每售出或赠送一份，您可获得 :rm。"
+  ],
+  "You earn :rm for every copy bought or gifted. Subscription reads earn nothing.": [
+    "Anda memperoleh :rm bagi setiap salinan yang dibeli atau dihadiahkan. Bacaan langganan tidak memberi pendapatan.",
+    "每售出或赠送一份，您可获得 :rm。订阅阅读不产生收益。"
+  ],
+  "You earn :rm per copy, so the fee is recovered after :n copies.": [
+    "Anda memperoleh :rm setiap salinan, jadi yuran pulang selepas :n salinan.",
+    "每份您可获得 :rm，售出 :n 份即可收回费用。"
+  ],
+  "You have :have tokens. This paper needs :need.": [
+    "Anda mempunyai :have token. Artikel ini memerlukan :need.",
+    "您有 :have 代币，这篇文章需要 :need。"
+  ],
+  "You have already used this promo code.": [
+    "Anda telah menggunakan kod promosi ini.",
+    "您已使用过此优惠码。"
+  ],
+  "You need a reader account to buy, subscribe or send a gift.": [
+    "Anda memerlukan akaun pembaca untuk membeli, melanggan atau menghantar hadiah.",
+    "您需要读者账户才能购买、订阅或赠送。"
+  ],
+  "You need an active subscription.": [
+    "Anda memerlukan langganan aktif.",
+    "您需要有效的订阅。"
+  ],
+  "You wrote this paper, so you can read it free.": [
+    "Anda menulis artikel ini, jadi anda boleh membacanya secara percuma.",
+    "这是您撰写的文章，可免费阅读。"
+  ],
+  "Your balance": [
+    "Baki anda",
+    "您的余额"
+  ],
+  "Your balance: :n tokens": [
+    "Baki anda: :n token",
+    "您的余额：:n 代币"
+  ],
+  "Your code": [
+    "Kod anda",
+    "您的推荐码"
+  ],
+  "Your evaluation": [
+    "Penilaian anda",
+    "您的评审"
+  ],
+  "Your paper was accepted. Pay the :fee publishing fee to put it on sale.": [
+    "Artikel anda telah diterima. Bayar yuran penerbitan :fee untuk mula menjualnya.",
+    "您的文章已被接受。支付 :fee 发表费即可上架销售。"
+  ],
+  "Your subscription is already active.": [
+    "Langganan anda sudah aktif.",
+    "您的订阅已生效。"
+  ],
+  "a gift from :name. It stays yours forever.": [
+    "hadiah daripada :name. Ia milik anda selamanya.",
+    "来自 :name 的礼物，永久归您所有。"
+  ],
+  "across your premium papers": [
+    "merangkumi artikel premium anda",
+    "您全部高级文章合计"
+  ],
+  "after payouts, fees and promos": [
+    "selepas bayaran penulis, caj dan promosi",
+    "扣除分成、手续费和促销后"
+  ],
+  "all time": [
+    "sepanjang masa",
+    "累计"
+  ],
+  "assigned to submitted": [
+    "dari tugasan hingga dihantar",
+    "从指派到提交"
+  ],
+  "author :rm": [
+    "penulis :rm",
+    "作者 :rm"
+  ],
+  "available through your subscription allowance.": [
+    "boleh dibaca melalui kuota langganan anda.",
+    "可通过您的订阅额度阅读。"
+  ],
+  "average review :d days": [
+    "purata penilaian :d hari",
+    "平均审稿 :d 天"
+  ],
+  "bonus": [
+    "bonus",
+    "赠送"
+  ],
+  "bonus expires :date": [
+    "bonus luput :date",
+    "赠送代币 :date 过期"
+  ],
+  "bonus tokens spent": [
+    "token bonus digunakan",
+    "已用赠送代币"
+  ],
+  "copies": [
+    "salinan",
+    "份"
+  ],
+  "copies, subscription and free reads": [
+    "salinan, bacaan langganan dan percuma",
+    "购买、订阅和免费阅读"
+  ],
+  "e.g. Clinical Psychologist": [
+    "cth. Ahli Psikologi Klinikal",
+    "例如：临床心理学家"
+  ],
+  "e.g. PhD Clinical Psychology": [
+    "cth. PhD Psikologi Klinikal",
+    "例如：临床心理学博士"
+  ],
+  "earned": [
+    "diperoleh",
+    "已赚取"
+  ],
+  "earnings minus fees": [
+    "pendapatan tolak yuran",
+    "收益减去费用"
+  ],
+  "expire :date": [
+    "luput :date",
+    ":date 过期"
+  ],
+  "good, but needs small, specific changes.": [
+    "baik, tetapi perlu perubahan kecil yang khusus.",
+    "质量不错，但需要少量具体修改。"
+  ],
+  "live on Werta": [
+    "diterbitkan di Werta",
+    "已在 Werta 上线"
+  ],
+  "month": [
+    "bulan",
+    "月"
+  ],
+  "never expire": [
+    "tidak luput",
+    "永不过期"
+  ],
+  "packs sold through the gateway": [
+    "pakej yang dijual melalui gerbang",
+    "通过支付网关售出的套餐"
+  ],
+  "premium papers at RM 5": [
+    "artikel premium pada RM 5",
+    "RM 5 的高级文章"
+  ],
+  "premium papers, including gifts": [
+    "artikel premium, termasuk hadiah",
+    "高级文章，含赠送"
+  ],
+  "promising, but needs substantial work before it can be judged again.": [
+    "berpotensi, tetapi perlu banyak penambahbaikan sebelum dinilai semula.",
+    "有潜力，但需大幅修改后才能再次评审。"
+  ],
+  "proposed RM 40 per review": [
+    "cadangan RM 40 setiap penilaian",
+    "拟定每次评审 RM 40"
+  ],
+  "ready to publish as it is, or with tiny edits.": [
+    "sedia diterbitkan seadanya, atau dengan suntingan kecil.",
+    "可直接发表，或只需极少修改。"
+  ],
+  "revisions or publish fee": [
+    "pindaan atau yuran penerbitan",
+    "修改或发表费"
+  ],
+  "tokens": [
+    "token",
+    "代币"
+  ],
+  "tokens · worth :rm": [
+    "token · bernilai :rm",
+    "代币 · 价值 :rm"
+  ],
+  "unsafe, inaccurate or not suitable for Werta readers.": [
+    "tidak selamat, tidak tepat atau tidak sesuai untuk pembaca Werta.",
+    "不安全、不准确或不适合 Werta 读者。"
+  ],
+  "waiting for verification": [
+    "menunggu pengesahan",
+    "等待核实"
+  ],
+  "with verified reviewers": [
+    "bersama penilai yang disahkan",
+    "由认证审稿人处理中"
+  ],
+  "you are the author, so you read this free.": [
+    "anda penulisnya, jadi anda membacanya secara percuma.",
+    "您是作者，可免费阅读。"
+  ],
+  "you bought this paper. It stays yours forever.": [
+    "anda telah membeli artikel ini. Ia milik anda selamanya.",
+    "您已购买这篇文章，永久归您所有。"
+  ],
+  "“:title” is now live.": [
+    "“:title” kini diterbitkan.",
+    "《:title》现已上线。"
+  ],
+  "★ = field matches the paper's category.": [
+    "★ = bidang sepadan dengan kategori artikel.",
+    "★ = 领域与文章类别一致。"
   ]
 }

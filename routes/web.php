@@ -14,6 +14,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+| DEMO ONLY: one-click sign-in as any persona for the monetisation demo.
+| Off unless APP_ENV=local (or DEMO_LOGIN=true). See config/dev.php.
+*/
+Route::get('/demo', function () {
+    abort_unless(\App\Support\DemoAuth::enabled(), 404);
+    $reviewers = \Illuminate\Support\Facades\Schema::hasTable('reviewers')
+        ? \AdminDashboard\Models\Reviewer::approved()->orderBy('name')->get()
+        : collect();
+
+    return view('demo', compact('reviewers'));
+})->name('demo.index');
+
+Route::post('/demo/{persona}', function (Request $request, string $persona) {
+    abort_unless(\App\Support\DemoAuth::enabled(), 404);
+    $reviewer = $persona === 'reviewer'
+        ? \AdminDashboard\Models\Reviewer::approved()->find($request->input('reviewer_id'))
+        : null;
+    $to = \App\Support\DemoAuth::loginAs($persona, $reviewer);
+    abort_if($to === null, 404);
+
+    return redirect($to)->with('mock_ok', __('Signed in as a demo account.'));
+})->whereIn('persona', ['client', 'parent', 'counselor', 'reviewer', 'admin', 'superadmin'])->name('demo.login');
+
 Route::get('/about', function () {
     return view('about');
 });

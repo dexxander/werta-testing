@@ -28,6 +28,13 @@ return [
     'admin_sign_in' => '管理员登录',
     'superadmin_sign_in' => '超级管理员登录',
     'register' => '注册',
+    'wallet' => '钱包与书库',
+    'earnings' => '收益',
+    'author_page' => '我的作者主页',
+    'reviewer_sign_in' => '审稿人登录',
+    'reviewer_dashboard' => '审稿人面板',
+    'demo_switch' => '切换演示账户',
+    'become_reviewer' => '成为审稿人',
     'languages' => [
         'en' => 'BI',
         'ms' => 'BM',
@@ -44,5 +51,6 @@ return [
         'counselor' => '辅导员',
         'client' => '客户',
         'parent' => '家长',
+        'reviewer' => '审稿人',
     ],
 ];

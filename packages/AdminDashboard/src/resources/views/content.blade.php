@@ -4,7 +4,7 @@
 <div>
     <div class="mb-6 sm:mb-8 flex justify-between items-end">
         <div>
-            <h1 class="text-2xl sm:text-3xl font-bold text-dark">{{ __('Content Management') }}</h1>
+            <h1 class="font-display text-3xl sm:text-4xl text-dark">{{ __('Content Management') }}</h1>
             <p class="text-sm text-gray-500 mt-1">{{ __('Manage articles, e-learning modules, and platform resources.') }}</p>
         </div>
         <button class="hidden sm:flex items-center gap-2 bg-gold hover:bg-primary text-dark hover:text-white px-4 py-2 rounded-lg font-semibold transition-colors shadow-sm">

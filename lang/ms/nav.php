@@ -28,6 +28,13 @@ return [
     'admin_sign_in' => 'Log Masuk Pentadbir',
     'superadmin_sign_in' => 'Log Masuk Pentadbir Utama',
     'register' => 'Daftar',
+    'wallet' => 'Dompet & Pustaka',
+    'earnings' => 'Pendapatan',
+    'author_page' => 'Halaman Penulis Saya',
+    'reviewer_sign_in' => 'Log Masuk Penilai',
+    'reviewer_dashboard' => 'Papan Pemuka Penilai',
+    'demo_switch' => 'Tukar Akaun Demo',
+    'become_reviewer' => 'Jadi Penilai',
     'languages' => [
         'en' => 'BI',
         'ms' => 'BM',
@@ -44,5 +51,6 @@ return [
         'counselor' => 'Kaunselor',
         'client' => 'Klien',
         'parent' => 'Ibu Bapa',
+        'reviewer' => 'Penilai',
     ],
 ];

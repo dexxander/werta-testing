@@ -31,7 +31,8 @@
             "Elearning\\": "packages/Elearning/src/",
             "GuidanceCenter\\": "packages/GuidanceCenter/src/",
             "ParentDashboard\\": "packages/ParentDashboard/src/",
-            "Submissions\\": "packages/Submissions/src/"
+            "Submissions\\": "packages/Submissions/src/",
+            "ReviewerDashboard\\": "packages/ReviewerDashboard/src/"
         }
     },
     "autoload-dev": {

@@ -99,6 +99,9 @@ class SiteText
             'Final review session. Discussed sustained boundary setting and communication habits.',
             'Progress reflection and maintenance planning.',
             'Discharge complete; client welcome to check in on an as-needed basis.',
+            // Articles, wallet and reviewer pages
+            ':count more pages in the full paper.', 'The paper could not be loaded. Run php artisan storage:link and refresh.',
+            'Link copied', 'Decline this review?',
         ];
 
         return array_intersect_key(self::catalog(), array_flip($keys));

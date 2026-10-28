@@ -39,7 +39,8 @@ class AuthController extends Controller
             session()->regenerate();
             session([
                 'counselor_logged_in' => true,
-                'counselor_name'      => $username, // TODO: use real display name from DB once auth is real
+                // Must match the seeded author_name so the author studio finds this counselor's papers.
+                'counselor_name'      => \App\Support\DemoAuth::ACCOUNTS['counselor'], // TODO: use real display name from DB once auth is real
             ]);
             return redirect()->route('counselor.dashboard');
         }

@@ -117,11 +117,37 @@ Route::middleware('web')->prefix('admin')->group(function () {
     });
 
     Route::get('/analytics', function () use ($requireAdmin) {
-        return $requireAdmin() ?? view('admindashboard::analytics', ['role' => 'admin']);
+        return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\AnalyticsController::class)->index('admin');
     })->name('admin.analytics');
     Route::get('/revenue', function () use ($requireAdmin) {
         return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\RevenueController::class)->index('admin');
     })->name('admin.revenue');
+
+    // Editorial review workflow and reviewer verification
+    Route::get('/reviews', function () use ($requireAdmin) {
+        return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\ArticleReviewController::class)->index('admin', request());
+    })->name('admin.reviews');
+    Route::post('/reviews/{submission}/assign', function ($submission) use ($requireAdmin) {
+        return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\ArticleReviewController::class)->assign('admin', request(), \Submissions\Models\Submission::findOrFail($submission));
+    })->name('admin.reviews.assign');
+    Route::post('/reviews/{submission}/decision', function ($submission) use ($requireAdmin) {
+        return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\ArticleReviewController::class)->decide('admin', request(), \Submissions\Models\Submission::findOrFail($submission));
+    })->name('admin.reviews.decision');
+    Route::post('/reviews/{submission}/publish', function ($submission) use ($requireAdmin) {
+        return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\ArticleReviewController::class)->publish('admin', \Submissions\Models\Submission::findOrFail($submission));
+    })->name('admin.reviews.publish');
+    Route::get('/reviewers', function () use ($requireAdmin) {
+        return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\ReviewerManagementController::class)->index('admin', request());
+    })->name('admin.reviewers');
+    Route::post('/reviewers/{reviewer}/approve', function ($reviewer) use ($requireAdmin) {
+        return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\ReviewerManagementController::class)->approve(\AdminDashboard\Models\Reviewer::findOrFail($reviewer));
+    })->name('admin.reviewers.approve');
+    Route::post('/reviewers/{reviewer}/reject', function ($reviewer) use ($requireAdmin) {
+        return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\ReviewerManagementController::class)->reject(\AdminDashboard\Models\Reviewer::findOrFail($reviewer));
+    })->name('admin.reviewers.reject');
+    Route::post('/reviewers/{reviewer}/suspend', function ($reviewer) use ($requireAdmin) {
+        return $requireAdmin() ?? app(\AdminDashboard\Http\Controllers\ReviewerManagementController::class)->suspend(\AdminDashboard\Models\Reviewer::findOrFail($reviewer));
+    })->name('admin.reviewers.suspend');
     Route::get('/content', function () use ($requireAdmin) {
         return $requireAdmin() ?? view('admindashboard::content', ['role' => 'admin']);
     })->name('admin.content');
@@ -176,11 +202,37 @@ Route::middleware('web')->prefix('superadmin')->group(function () {
     });
 
     Route::get('/analytics', function () use ($requireSuperadmin) {
-        return $requireSuperadmin() ?? view('admindashboard::analytics', ['role' => 'superadmin']);
+        return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\AnalyticsController::class)->index('superadmin');
     })->name('superadmin.analytics');
     Route::get('/revenue', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\RevenueController::class)->index('superadmin');
     })->name('superadmin.revenue');
+
+    // Editorial review workflow and reviewer verification
+    Route::get('/reviews', function () use ($requireSuperadmin) {
+        return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\ArticleReviewController::class)->index('superadmin', request());
+    })->name('superadmin.reviews');
+    Route::post('/reviews/{submission}/assign', function ($submission) use ($requireSuperadmin) {
+        return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\ArticleReviewController::class)->assign('superadmin', request(), \Submissions\Models\Submission::findOrFail($submission));
+    })->name('superadmin.reviews.assign');
+    Route::post('/reviews/{submission}/decision', function ($submission) use ($requireSuperadmin) {
+        return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\ArticleReviewController::class)->decide('superadmin', request(), \Submissions\Models\Submission::findOrFail($submission));
+    })->name('superadmin.reviews.decision');
+    Route::post('/reviews/{submission}/publish', function ($submission) use ($requireSuperadmin) {
+        return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\ArticleReviewController::class)->publish('superadmin', \Submissions\Models\Submission::findOrFail($submission));
+    })->name('superadmin.reviews.publish');
+    Route::get('/reviewers', function () use ($requireSuperadmin) {
+        return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\ReviewerManagementController::class)->index('superadmin', request());
+    })->name('superadmin.reviewers');
+    Route::post('/reviewers/{reviewer}/approve', function ($reviewer) use ($requireSuperadmin) {
+        return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\ReviewerManagementController::class)->approve(\AdminDashboard\Models\Reviewer::findOrFail($reviewer));
+    })->name('superadmin.reviewers.approve');
+    Route::post('/reviewers/{reviewer}/reject', function ($reviewer) use ($requireSuperadmin) {
+        return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\ReviewerManagementController::class)->reject(\AdminDashboard\Models\Reviewer::findOrFail($reviewer));
+    })->name('superadmin.reviewers.reject');
+    Route::post('/reviewers/{reviewer}/suspend', function ($reviewer) use ($requireSuperadmin) {
+        return $requireSuperadmin() ?? app(\AdminDashboard\Http\Controllers\ReviewerManagementController::class)->suspend(\AdminDashboard\Models\Reviewer::findOrFail($reviewer));
+    })->name('superadmin.reviewers.suspend');
     Route::get('/content', function () use ($requireSuperadmin) {
         return $requireSuperadmin() ?? view('admindashboard::content', ['role' => 'superadmin']);
     })->name('superadmin.content');
