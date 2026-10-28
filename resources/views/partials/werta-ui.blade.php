@@ -130,6 +130,12 @@
 
     .wt-code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 700; letter-spacing: 1.5px; background: var(--cream); border: 1px dashed var(--primary); border-radius: var(--radius-sm); padding: .3rem .7rem; color: var(--primary-dark); }
 
+    .manuscript h2 { font-family: 'IM Fell English', serif; font-size: var(--text-xl); color: var(--dark); margin: 1.6rem 0 .6rem; }
+    .manuscript > h2:first-child { margin-top: 0; }
+    .manuscript p { margin: 0 0 1rem; line-height: 1.75; }
+    .manuscript ul { margin: 0 0 1rem; padding-left: 1.3rem; }
+    .manuscript li { margin-bottom: .35rem; }
+
     @media (max-width: 767px) {
         .wt-page { padding-top: 28px; }
         .wt-title { font-size: 2.1rem; }

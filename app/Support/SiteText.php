@@ -101,7 +101,7 @@ class SiteText
             'Discharge complete; client welcome to check in on an as-needed basis.',
             // Articles, wallet and reviewer pages
             ':count more pages in the full paper.', 'The paper could not be loaded. Run php artisan storage:link and refresh.',
-            'Link copied', 'Decline this review?',
+            'Link copied', 'Decline this review?', ':count words', 'Replace what you have written with the template?',
         ];
 
         return array_intersect_key(self::catalog(), array_flip($keys));

@@ -16,6 +16,11 @@
     <style>
         .font-display { font-family: 'IM Fell English', serif; font-weight: 400; }
         .card-ring { box-shadow: 0 0 0 1px rgba(87, 75, 34, 0.35), 0 8px 32px rgba(44, 36, 22, 0.07); }
+        /* Manuscript text rendered by ContentRenderer */
+        .manuscript h2 { font-family: 'IM Fell English', serif; font-size: 1.5rem; line-height: 1.3; color: #2C2416; margin: 1.6rem 0 .5rem; }
+        .manuscript > h2:first-child { margin-top: 0; }
+        .manuscript p { margin: 0 0 1rem; }
+        .manuscript ul { list-style: disc; margin: 0 0 1rem; padding-left: 1.4rem; }
     </style>
 </head>
 <body class="bg-cream text-dark font-[Lato,sans-serif] antialiased flex flex-col h-screen overflow-hidden" x-data="{ sidebarOpen: window.innerWidth >= 1024 }">

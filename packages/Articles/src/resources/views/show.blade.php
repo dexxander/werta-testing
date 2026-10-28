@@ -103,7 +103,7 @@
                     </div>
                     <p class="pdf-note"><i class="bi bi-shield-lock"></i> {{ __('Read in the browser. Downloads are disabled for premium papers.') }}</p>
                 @elseif($article->content)
-                    <p style="white-space: pre-line;">{{ $article->content }}</p>
+                    <div class="manuscript-body">{{ \Submissions\Support\ContentRenderer::html($article->content) }}</div>
                 @else
                     <p class="text-muted">{{ __('This article isn\'t available yet.') }}</p>
                 @endif
@@ -115,9 +115,7 @@
                         <div id="pdf-pages"></div>
                     </div>
                 @else
-                    @foreach($preview['visible'] as $para)
-                        <p>{{ $para }}</p>
-                    @endforeach
+                    <div class="manuscript-body">{{ \Submissions\Support\ContentRenderer::render($preview['visible']) }}</div>
                 @endif
 
                 <div class="preview-locked">
@@ -408,6 +406,10 @@
             position: relative;
         }
         .article-body p { margin-bottom: 1.8rem; }
+        .article-body ul { margin: 0 0 1.8rem; padding-left: 1.4rem; }
+        .article-body li { margin-bottom: .5rem; }
+        .manuscript-body h2 { font-size: var(--text-2xl); margin: 2.4rem 0 .9rem; }
+        .manuscript-body > h2:first-child { margin-top: 0; }
         .abstract-block { background: var(--cream-light); border-left: 3px solid var(--gold); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 1.1rem 1.4rem; margin-bottom: 2.2rem; }
         .abstract-label { font-size: var(--text-xs); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: .3rem; }
         .abstract-block p { margin: 0; font-size: 1.05rem; font-style: italic; color: var(--muted); }

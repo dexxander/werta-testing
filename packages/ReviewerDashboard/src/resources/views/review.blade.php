@@ -45,7 +45,7 @@
                     <iframe src="{{ asset('storage/' . $s->file_path) }}" class="w-full rounded-lg ring-1 ring-primary-dark/20" style="height: 720px;" title="{{ __('Manuscript') }}"></iframe>
                 @else
                     <div class="text-[10px] font-bold uppercase tracking-[2px] text-primary mb-2">{{ __('Manuscript') }}</div>
-                    <div class="text-[15px] leading-8 text-dark/90 whitespace-pre-line">{{ $s->content }}</div>
+                    <div class="manuscript text-[15px] leading-8 text-dark/90">{{ \Submissions\Support\ContentRenderer::html($s->content) }}</div>
                 @endif
             </div>
         </div>

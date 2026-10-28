@@ -11,6 +11,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 use Submissions\Models\Submission;
+use Submissions\Support\ContentRenderer;
 
 class ArticleController extends Controller
 {
@@ -133,15 +134,25 @@ class ArticleController extends Controller
      */
     private function previewParts(Submission $article): array
     {
-        $paragraphs = array_values(array_filter(array_map('trim', preg_split('/\n\s*\n/', (string) $article->content))));
+        $blocks = ContentRenderer::blocks($article->content);
+        $paragraphs = array_values(array_filter($blocks, fn ($b) => ! ContentRenderer::isHeading($b)));
         if (! $paragraphs) {
             return ['visible' => [], 'filler' => [], 'hidden' => 0];
         }
-        $show = count($paragraphs) > 2 ? 2 : 1;
-        $visible = array_slice($paragraphs, 0, $show);
-        $hidden = count($paragraphs) - $show;
 
-        $words = preg_split('/\s+/', implode(' ', $visible));
+        // Show headings plus the first two paragraphs (one if the paper is very short).
+        $want = count($paragraphs) > 2 ? 2 : 1;
+        $visible = [];
+        $seen = 0;
+        foreach ($blocks as $block) {
+            $visible[] = $block;
+            if (! ContentRenderer::isHeading($block) && ++$seen === $want) {
+                break;
+            }
+        }
+        $hidden = count($paragraphs) - $want;
+
+        $words = preg_split('/\s+/', ContentRenderer::plain($visible));
         mt_srand(crc32($article->slug));
         $filler = [];
         for ($i = 0; $i < max(3, $hidden); $i++) {

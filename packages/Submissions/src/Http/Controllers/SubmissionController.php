@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Submissions\Models\Submission;
+use Submissions\Support\ManuscriptTemplates;
 
 class SubmissionController extends Controller
 {
@@ -58,7 +59,10 @@ class SubmissionController extends Controller
             return $this->signInRequired();
         }
 
-        return view('submissions::create');
+        return view('submissions::create', [
+            'templates'  => ManuscriptTemplates::all(),
+            'guidelines' => ManuscriptTemplates::guidelines(),
+        ]);
     }
 
     public function store(Request $request)
@@ -80,6 +84,10 @@ class SubmissionController extends Controller
 
         if (empty($data['content']) && ! $request->hasFile('paper_file')) {
             return back()->withInput()->withErrors('Please either write your content or upload a paper file.');
+        }
+
+        if (ManuscriptTemplates::hasPlaceholders($data['content'] ?? null)) {
+            return back()->withInput()->withErrors('Replace the template guidance in [square brackets] with your own writing.');
         }
 
         [$role, $name] = $author;

@@ -67,7 +67,7 @@
             @if($submission->file_path)
                 <a href="{{ asset('storage/' . $submission->file_path) }}" target="_blank" class="wt-btn wt-btn--outline wt-btn--sm"><i class="bi bi-file-earmark-pdf"></i> {{ __('Open uploaded paper') }}</a>
             @else
-                <p class="mb-0" style="white-space: pre-line;">{{ $submission->content }}</p>
+                <div class="manuscript">{{ \Submissions\Support\ContentRenderer::html($submission->content) }}</div>
             @endif
         </div>
 
