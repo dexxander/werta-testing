@@ -45,9 +45,39 @@
             </div>
         </div>
 
+        <div class="el-card mb-4" style="padding:1.25rem;">
+            <div class="row g-3 align-items-center">
+                <div class="col-lg-5">
+                    <label for="my-course-search" class="visually-hidden">Search enrolled courses</label>
+                    <div class="el-course-search" style="background:var(--cream);">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <input id="my-course-search" type="search" placeholder="Search your courses" aria-label="Search enrolled courses">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <select id="my-course-status" class="form-select" aria-label="Filter enrolled courses">
+                        <option value="all">All courses</option>
+                        <option value="active">In progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <div style="display:flex;align-items:center;gap:0.75rem;">
+                        <div style="width:42px;height:42px;border-radius:var(--radius-full);background:rgba(196,168,64,0.15);display:flex;align-items:center;justify-content:center;color:var(--primary);"><i class="bi bi-calendar-check"></i></div>
+                        <div style="flex:1;">
+                            <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);font-weight:700;"><span>Weekly study goal</span><span id="el-goal-count">0 / 5 lessons</span></div>
+                            <div style="height:6px;background:var(--cream);border-radius:var(--radius-pill);overflow:hidden;margin-top:0.45rem;"><div id="el-goal-progress" style="height:100%;width:0;background:var(--gold);border-radius:var(--radius-pill);transition:width 0.25s;"></div></div>
+                        </div>
+                        <button id="el-goal-add" type="button" class="el-btn-outline" style="padding:0.4rem 0.65rem;" aria-label="Log one completed lesson"><i class="bi bi-plus-lg"></i></button>
+                    </div>
+                </div>
+            </div>
+            <p id="el-my-course-count" class="el-course-result-count" aria-live="polite" style="margin-bottom:0;"></p>
+        </div>
+
         <div class="row g-4">
             @foreach($my_courses as $course)
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 el-my-course-card" data-course-title="{{ strtolower($course['title']) }}" data-course-status="{{ $course['progress'] == 100 ? 'completed' : 'active' }}">
                     <div class="el-card h-100 d-flex flex-column">
                         <div style="width:100%;height:160px;background:var(--cream);border-radius:var(--radius-md);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;">
                             <i class="bi bi-{{ $course['thumbnail_icon'] }}" style="font-size:3rem;color:var(--gold);opacity:0.3;"></i>
@@ -79,4 +109,41 @@
         </div>
     </div>
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const search = document.getElementById('my-course-search');
+        const status = document.getElementById('my-course-status');
+        const result = document.getElementById('el-my-course-count');
+        const cards = Array.from(document.querySelectorAll('.el-my-course-card'));
+        const goalCount = document.getElementById('el-goal-count');
+        const goalProgress = document.getElementById('el-goal-progress');
+        const goalKey = 'werta-elearning-weekly-goal';
+        let completedLessons = Math.min(Number(localStorage.getItem(goalKey) || 0), 5);
+
+        function renderGoal() {
+            goalCount.textContent = completedLessons + ' / 5 lessons';
+            goalProgress.style.width = (completedLessons / 5 * 100) + '%';
+        }
+        function filterCourses() {
+            const query = search.value.trim().toLowerCase();
+            const selected = status.value;
+            let visible = 0;
+            cards.forEach(function (card) {
+                const show = (!query || card.dataset.courseTitle.includes(query)) && (selected === 'all' || selected === card.dataset.courseStatus);
+                card.hidden = !show;
+                if (show) visible++;
+            });
+            result.textContent = visible + ' enrolled course' + (visible === 1 ? '' : 's') + ' shown';
+        }
+        search.addEventListener('input', filterCourses);
+        status.addEventListener('change', filterCourses);
+        document.getElementById('el-goal-add').addEventListener('click', function () {
+            completedLessons = completedLessons >= 5 ? 0 : completedLessons + 1;
+            localStorage.setItem(goalKey, completedLessons);
+            renderGoal();
+        });
+        renderGoal();
+        filterCourses();
+    });
+</script>
 @endsection
