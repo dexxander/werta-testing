@@ -10,7 +10,7 @@
         @if(count($featured_courses ?? []) > 0)
             <div class="row g-4">
                 @foreach($featured_courses as $course)
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-4 el-course-card" data-course-id="{{ $course['id'] ?? 0 }}" data-difficulty="{{ strtolower($course['difficulty'] ?? 'beginner') }}" data-search="{{ strtolower(($course['title'] ?? '') . ' ' . ($course['instructor'] ?? '') . ' ' . implode(' ', $course['topics'] ?? [])) }}">
                         <div class="el-card h-100 d-flex flex-column">
                             @if(!empty($course['image']))
                                 <img src="{{ asset($course['image']) }}" alt="{{ \App\Support\SiteText::translate($course['title']) }}" style="width:100%;height:180px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:1.2rem;">
@@ -22,7 +22,12 @@
                             <div style="display:flex;align-items:center;gap:6px;margin-bottom:0.6rem;">
                                 <span style="font-size:var(--text-xs);font-weight:700;background:rgba(196,168,64,0.15);color:var(--primary);padding:3px 10px;border-radius:4px;">{{ \App\Support\SiteText::translate($course['difficulty'] ?? 'Beginner') }}</span>
                             </div>
-                            <h5 style="font-weight:700;font-size:var(--text-md);margin-bottom:0.5rem;"><a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" style="color:inherit;text-decoration:none;">{{ \App\Support\SiteText::translate($course['title']) }}</a></h5>
+                            <div style="display:flex;justify-content:space-between;gap:0.5rem;align-items:flex-start;">
+                                <h5 style="font-weight:700;font-size:var(--text-md);margin-bottom:0.5rem;"><a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" style="color:inherit;text-decoration:none;">{{ \App\Support\SiteText::translate($course['title']) }}</a></h5>
+                                @if(request()->routeIs('elearning.courses'))
+                                    <button type="button" class="el-save-course" data-save-course="{{ $course['id'] ?? 0 }}" aria-label="Save course" aria-pressed="false"><i class="bi bi-bookmark" aria-hidden="true"></i></button>
+                                @endif
+                            </div>
                             <p style="font-size:var(--text-sm);color:var(--muted);margin-bottom:0.8rem;">{{ \App\Support\SiteText::translate($course['instructor'] ?? 'Instructor') }}</p>
                             @if(!empty($course['topics']))
                                 <div class="el-course-topics">

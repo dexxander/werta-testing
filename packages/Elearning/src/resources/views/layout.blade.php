@@ -73,6 +73,17 @@
         .el-card--dark { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); box-shadow: none; }
         .el-card--dark:hover { background: rgba(255,255,255,0.1); box-shadow: none; }
 
+        .el-course-toolbar { display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap; }
+        .el-course-search { flex:1 1 320px; display:flex; align-items:center; gap:0.65rem; background:var(--cream-light); border:1px solid rgba(123,107,53,0.2); border-radius:var(--radius-sm); padding:0.7rem 1rem; }
+        .el-course-search i { color:var(--primary); }
+        .el-course-search input, .el-course-filter select { border:0; background:transparent; color:var(--dark); font-size:var(--text-base); outline:none; width:100%; }
+        .el-course-filter { background:var(--cream-light); border:1px solid rgba(123,107,53,0.2); border-radius:var(--radius-sm); padding:0.7rem 1rem; min-width:150px; }
+        .el-saved-toggle { padding:0.7rem 1rem; white-space:nowrap; }
+        .el-saved-toggle.active, .el-save-course.is-saved { background:var(--primary); color:#fff; }
+        .el-course-result-count { color:var(--muted); font-size:var(--text-sm); margin:0.8rem 0 0; }
+        .el-save-course { border:0; background:rgba(196,168,64,0.12); color:var(--primary); border-radius:var(--radius-full); width:36px; height:36px; flex:0 0 auto; cursor:pointer; transition:all 0.2s; }
+        .el-save-course:hover { background:var(--gold); color:var(--dark); }
+
         /* ─── BUTTONS ────────────────────────────────────── */
         .el-btn-primary {
             background: var(--primary-dark); color: #fff; border: none; padding: 0.8rem 2rem;

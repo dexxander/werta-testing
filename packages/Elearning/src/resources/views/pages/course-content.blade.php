@@ -56,7 +56,7 @@
                         
                         <div style="display:flex;gap:1rem;">
                             <button class="el-btn-outline"><i class="bi bi-chevron-left"></i> {{ __('Previous') }}</button>
-                            <button class="el-btn-primary">{{ __('Next Lesson') }} <i class="bi bi-chevron-right"></i></button>
+                            <button class="el-btn-primary el-complete-lesson" type="button"><i class="bi bi-check2-circle"></i> {{ __('Mark lesson complete') }}</button>
                         </div>
                     </div>
                 </div>
@@ -90,8 +90,8 @@
                             <span>{{ __('Overall Progress') }}</span>
                             <span>{{ \App\Support\SiteText::translate($course_details['progress']) }}%</span>
                         </div>
-                        <div style="width:100%;height:6px;background:var(--cream);border-radius:var(--radius-pill);overflow:hidden;">
-                            <div style="width:{{ $course_details['progress'] }}%;height:100%;background:var(--gold);border-radius:var(--radius-pill);"></div>
+                            <div style="width:100%;height:6px;background:var(--cream);border-radius:var(--radius-pill);overflow:hidden;">
+                            <div id="el-lesson-progress" style="width:{{ $course_details['progress'] }}%;height:100%;background:var(--gold);border-radius:var(--radius-pill);"></div>
                         </div>
                     </div>
                     
@@ -104,7 +104,7 @@
                                 </div>
                                 <div style="padding:0.5rem 0;">
                                     @foreach($module['lessons'] as $lesson)
-                                        <div style="padding:0.75rem 1rem;font-size:var(--text-sm);display:flex;justify-content:space-between;align-items:center;border-left:2px solid {{ !empty($lesson['active']) ? 'var(--primary)' : 'transparent' }};background:{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }};cursor:pointer;" onmouseover="this.style.background='rgba(196,168,64,0.05)'" onmouseout="this.style.background='{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }}'">
+                                        <div class="el-lesson-row" data-lesson-title="{{ $lesson['title'] }}" style="padding:0.75rem 1rem;font-size:var(--text-sm);display:flex;justify-content:space-between;align-items:center;border-left:2px solid {{ !empty($lesson['active']) ? 'var(--primary)' : 'transparent' }};background:{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }};cursor:pointer;" onmouseover="this.style.background='rgba(196,168,64,0.05)'" onmouseout="this.style.background='{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }}'">
                                             <div style="display:flex;align-items:center;gap:0.75rem;">
                                                 @if(!empty($lesson['completed']))
                                                     <i class="bi bi-check-circle-fill" style="color:var(--success, #28a745);"></i>
@@ -127,4 +127,33 @@
         </div>
     </div>
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const key = 'werta-elearning-progress-{{ $course_id ?? 1 }}';
+        const completeButton = document.querySelector('.el-complete-lesson');
+        const currentTitle = @json($course_details['current_lesson']);
+        const rows = Array.from(document.querySelectorAll('.el-lesson-row'));
+        const progressBar = document.getElementById('el-lesson-progress');
+        const saved = JSON.parse(localStorage.getItem(key) || '[]');
+        const current = rows.find(function (row) { return row.dataset.lessonTitle === currentTitle; });
+
+        function updateProgress() {
+            const total = rows.length;
+            const done = rows.filter(function (row) { return saved.includes(row.dataset.lessonTitle); }).length;
+            if (progressBar && total) progressBar.style.width = Math.max({{ $course_details['progress'] }}, Math.round((done / total) * 100)) + '%';
+        }
+        if (saved.includes(currentTitle) && completeButton) {
+            completeButton.classList.add('is-complete');
+            completeButton.innerHTML = '<i class="bi bi-check-circle-fill"></i> Lesson completed';
+        }
+        if (completeButton) completeButton.addEventListener('click', function () {
+            if (!saved.includes(currentTitle)) saved.push(currentTitle);
+            localStorage.setItem(key, JSON.stringify(saved));
+            completeButton.classList.add('is-complete');
+            completeButton.innerHTML = '<i class="bi bi-check-circle-fill"></i> Lesson completed';
+            updateProgress();
+        });
+        updateProgress();
+    });
+</script>
 @endsection
