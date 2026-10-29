@@ -79,6 +79,47 @@
                         <p>{{ __('Make sure to download the starter files from the resources tab before proceeding with the coding exercises.') }}</p>
                     </div>
                 </div>
+
+                <div class="el-card" style="margin-top:1.5rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem;">
+                        <div>
+                            <div class="el-pill" style="margin-bottom:0.35rem;">Knowledge check</div>
+                            <h4 style="font-family:'IM Fell English',serif;margin:0;color:var(--dark);">Test your Flexbox understanding</h4>
+                        </div>
+                        <span id="el-quiz-status" style="font-size:var(--text-sm);font-weight:700;color:var(--muted);">Not attempted</span>
+                    </div>
+                    <form id="el-lesson-quiz">
+                        <fieldset style="border:0;padding:0;margin:0 0 1rem;">
+                            <legend style="font-size:var(--text-base);font-weight:700;margin-bottom:0.65rem;">1. Which property controls the main axis direction?</legend>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q1" value="a"> align-items</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q1" value="b"> flex-direction</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q1" value="c"> justify-content</label>
+                        </fieldset>
+                        <fieldset style="border:0;padding:0;margin:0 0 1rem;">
+                            <legend style="font-size:var(--text-base);font-weight:700;margin-bottom:0.65rem;">2. What does <code>justify-content: space-between</code> do?</legend>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q2" value="a"> Centers every item</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q2" value="b"> Adds equal space around items</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q2" value="c"> Places the first and last items at the edges</label>
+                        </fieldset>
+                        <fieldset style="border:0;padding:0;margin:0 0 1rem;">
+                            <legend style="font-size:var(--text-base);font-weight:700;margin-bottom:0.65rem;">3. Which property allows items to move onto multiple lines?</legend>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q3" value="a"> flex-wrap</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q3" value="b"> flex-grow</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q3" value="c"> order</label>
+                        </fieldset>
+                        <button class="el-btn-primary" type="submit">Submit quiz</button>
+                        <button class="el-btn-outline" id="el-quiz-reset" type="button" style="display:none;margin-left:0.5rem;">Retake</button>
+                        <p id="el-quiz-feedback" style="margin:1rem 0 0;color:var(--muted);" aria-live="polite"></p>
+                    </form>
+                </div>
+
+                <div class="el-card" style="margin-top:1.5rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;">
+                        <h4 style="font-family:'IM Fell English',serif;margin:0;color:var(--dark);">Private lesson notes</h4>
+                        <span id="el-notes-saved" style="font-size:var(--text-sm);color:var(--muted);">Autosaved</span>
+                    </div>
+                    <textarea id="el-lesson-notes" rows="5" placeholder="Write reflections, questions, or reminders for this lesson..." style="width:100%;border:1px solid rgba(123,107,53,0.2);border-radius:var(--radius-sm);padding:0.85rem;background:var(--cream-light);color:var(--dark);resize:vertical;"></textarea>
+                </div>
             </div>
             
             {{-- Sidebar / Syllabus --}}
@@ -136,6 +177,13 @@
         const progressBar = document.getElementById('el-lesson-progress');
         const saved = JSON.parse(localStorage.getItem(key) || '[]');
         const current = rows.find(function (row) { return row.dataset.lessonTitle === currentTitle; });
+        const quiz = document.getElementById('el-lesson-quiz');
+        const quizStatus = document.getElementById('el-quiz-status');
+        const quizFeedback = document.getElementById('el-quiz-feedback');
+        const quizReset = document.getElementById('el-quiz-reset');
+        const quizKey = 'werta-elearning-quiz-{{ $course_id ?? 1 }}';
+        const notes = document.getElementById('el-lesson-notes');
+        const notesKey = 'werta-elearning-notes-{{ $course_id ?? 1 }}-{{ md5($course_details['current_lesson']) }}';
 
         function updateProgress() {
             const total = rows.length;
@@ -154,6 +202,40 @@
             updateProgress();
         });
         updateProgress();
+
+        if (notes) {
+            notes.value = localStorage.getItem(notesKey) || '';
+            notes.addEventListener('input', function () {
+                localStorage.setItem(notesKey, notes.value);
+                document.getElementById('el-notes-saved').textContent = 'Saved just now';
+            });
+        }
+        const previousScore = localStorage.getItem(quizKey);
+        if (previousScore !== null) {
+            quizStatus.textContent = previousScore + '/3 passed';
+            quizFeedback.textContent = previousScore >= 2 ? 'Great work — this knowledge check is complete.' : 'Keep practising and try the quiz again.';
+            quizReset.style.display = 'inline-block';
+        }
+        quiz.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const answers = { q1: 'b', q2: 'c', q3: 'a' };
+            let score = 0;
+            Object.keys(answers).forEach(function (question) {
+                const selected = quiz.querySelector('input[name="' + question + '"]:checked');
+                if (selected && selected.value === answers[question]) score++;
+            });
+            localStorage.setItem(quizKey, score);
+            quizStatus.textContent = score + '/3 ' + (score >= 2 ? 'passed' : 'to review');
+            quizFeedback.textContent = score >= 2 ? 'Great work — this knowledge check is complete.' : 'Review the lesson and try again to reach the 2/3 pass mark.';
+            quizReset.style.display = 'inline-block';
+        });
+        quizReset.addEventListener('click', function () {
+            quiz.reset();
+            quizStatus.textContent = 'Not attempted';
+            quizFeedback.textContent = '';
+            quizReset.style.display = 'none';
+            localStorage.removeItem(quizKey);
+        });
     });
 </script>
 @endsection
