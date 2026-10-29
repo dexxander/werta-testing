@@ -275,6 +275,19 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .el-card, .el-cat-card, .el-pricing-card, .el-path-card, .el-bento-tile {
+            will-change: transform;
+        }
+        .el-feature-item:hover .el-feature-icon,
+        .el-cat-card:hover .el-cat-card-icon,
+        .el-stat-card:hover .el-stat-icon {
+            animation: elIconPulse 0.55s ease both;
+        }
+        .el-dash-progress-fill { transform-origin: left center; animation: elProgressReveal 1.2s 0.25s cubic-bezier(.22,1,.36,1) both; }
+        .el-hero-path path { stroke-dashoffset: 1200; animation: elPathDraw 2.2s 0.25s ease-out forwards; }
+        @keyframes elIconPulse { 0% { transform: scale(1); } 45% { transform: scale(1.12) rotate(-4deg); } 100% { transform: scale(1); } }
+        @keyframes elProgressReveal { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        @keyframes elPathDraw { to { stroke-dashoffset: 0; } }
         .el-hero-copy.el-animate-target { transform: translateX(-24px); }
         .el-hero-visual.el-animate-target { transform: translateX(24px); }
         .el-hero-copy.el-animate-target.el-animate-visible,
@@ -283,7 +296,9 @@
             #elearning-body,
             .el-animate-target,
             .el-hero-copy.el-animate-target,
-            .el-hero-visual.el-animate-target { transition: none; transform: none; opacity: 1; }
+            .el-hero-visual.el-animate-target,
+            .el-dash-progress-fill,
+            .el-hero-path path { transition: none; animation: none; transform: none; opacity: 1; }
         }
 
         /* ─── RESPONSIVE ──────────────────────────────────── */

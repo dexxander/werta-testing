@@ -1,87 +1,3 @@
-{{-- ============================================================
-     TEMP DUMMY DATA — FOR PREVIEW ONLY
-     This @php block overrides $featured_courses with fake data so
-     you can see the UI. It only exists in this file — your
-     controller's 'featured_courses' => [] empty state is untouched.
-
-     TO REMOVE: delete the entire @php ... @endphp block below
-     (from "TEMP DUMMY DATA START" to "TEMP DUMMY DATA END").
-     Once deleted, $featured_courses goes back to whatever the
-     controller actually passes in (currently an empty array).
-     ============================================================ --}}
-@php
-    // TEMP DUMMY DATA START
-    $featured_courses = [
-        [
-            'id' => 1,
-            'title' => 'Complete Web Development Bootcamp',
-            'instructor' => 'James Carter',
-            'difficulty' => 'Beginner',
-            'rating' => '4.8',
-            'duration' => '32h',
-            'students' => 4210,
-            'image' => null,
-            'topics' => ['HTML5 Foundations', 'CSS Layouts and Flexbox', 'Responsive Web Design', 'JavaScript Essentials', 'Building a Final Project'],
-        ],
-        [
-            'id' => 2,
-            'title' => 'Data Science & Machine Learning A-Z',
-            'instructor' => 'Priya Nair',
-            'difficulty' => 'Intermediate',
-            'rating' => '4.9',
-            'duration' => '28h',
-            'students' => 3185,
-            'image' => null,
-            'topics' => ['Python for Data Analysis', 'Statistics Fundamentals', 'Data Cleaning', 'Machine Learning Models', 'Model Evaluation'],
-        ],
-        [
-            'id' => 3,
-            'title' => 'UI/UX Design Fundamentals',
-            'instructor' => 'Sarah Chen',
-            'difficulty' => 'Beginner',
-            'rating' => '4.7',
-            'duration' => '18h',
-            'students' => 2674,
-            'image' => null,
-            'topics' => ['User Research', 'Personas and User Flows', 'Wireframing', 'Figma Prototyping', 'Usability Testing'],
-        ],
-        [
-            'id' => 4,
-            'title' => 'Digital Marketing Mastery',
-            'instructor' => 'Ahmad Faiz',
-            'difficulty' => 'Beginner',
-            'rating' => '4.6',
-            'duration' => '15h',
-            'students' => 1932,
-            'image' => null,
-            'topics' => ['Marketing Strategy', 'SEO Fundamentals', 'Content Marketing', 'Social Media Campaigns', 'Analytics and Reporting'],
-        ],
-        [
-            'id' => 5,
-            'title' => 'Advanced React & Next.js',
-            'instructor' => 'Elena Ruiz',
-            'difficulty' => 'Advanced',
-            'rating' => '4.9',
-            'duration' => '24h',
-            'students' => 1547,
-            'image' => null,
-            'topics' => ['React Architecture', 'Next.js Routing', 'Server Components', 'Data Fetching', 'Deployment'],
-        ],
-        [
-            'id' => 6,
-            'title' => 'Cybersecurity Essentials',
-            'instructor' => 'Marcus Lee',
-            'difficulty' => 'Intermediate',
-            'rating' => '4.8',
-            'duration' => '20h',
-            'students' => 2098,
-            'image' => null,
-            'topics' => ['Network Security', 'Threat Detection', 'Identity and Access', 'Incident Response', 'Security Best Practices'],
-        ],
-    ];
-    // TEMP DUMMY DATA END
-@endphp
-
 {{-- Featured Courses Section --}}
 <section class="el-section bg-cream-light" id="el-courses">
     <div class="el-container">
@@ -108,6 +24,13 @@
                             </div>
                             <h5 style="font-weight:700;font-size:var(--text-md);margin-bottom:0.5rem;"><a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" style="color:inherit;text-decoration:none;">{{ \App\Support\SiteText::translate($course['title']) }}</a></h5>
                             <p style="font-size:var(--text-sm);color:var(--muted);margin-bottom:0.8rem;">{{ \App\Support\SiteText::translate($course['instructor'] ?? 'Instructor') }}</p>
+                            @if(!empty($course['topics']))
+                                <div class="el-course-topics">
+                                    @foreach(array_slice($course['topics'], 0, 3) as $topic)
+                                        <span><i class="bi bi-check2"></i>{{ \App\Support\SiteText::translate($topic) }}</span>
+                                    @endforeach
+                                </div>
+                            @endif
                             <div style="display:flex;align-items:center;gap:1rem;font-size:var(--text-sm);color:var(--muted);margin-bottom:1rem;">
                                 <span><i class="bi bi-star-fill" style="color:var(--gold);"></i> {{ \App\Support\SiteText::translate($course['rating'] ?? '0.0') }}</span>
                                 <span><i class="bi bi-clock"></i> {{ \App\Support\SiteText::translate($course['duration'] ?? '0h') }}</span>
@@ -191,6 +114,9 @@
         box-shadow: 0 20px 60px rgba(44, 36, 22, 0.25);
     }
     .el-modal-overlay.active .el-modal-content { transform: translateY(0); }
+    .el-course-topics { display:grid; gap:0.35rem; margin:0 0 1rem; }
+    .el-course-topics span { color:var(--muted); font-size:var(--text-sm); display:flex; align-items:center; gap:0.4rem; }
+    .el-course-topics i { color:var(--primary); }
     .el-modal-close {
         position: absolute; top: 15px; right: 15px; background: none;
         border: none; color: var(--muted); font-size: var(--text-lg); cursor: pointer;

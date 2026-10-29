@@ -1,32 +1,3 @@
-{{-- ============================================================
-     TEMP DUMMY DATA — FOR PREVIEW ONLY
-     This @php block sets preview variables so you can see the
-     dashboard populated. Every place these variables are used below
-     falls back to a real empty state via `?? []` / `?? 0` / @if
-     checks — so deleting this block is the ONLY step needed to
-     revert. Nothing else in this file needs to change.
-
-     TO REMOVE: delete the entire @php ... @endphp block below
-     (from "TEMP DUMMY DATA START" to "TEMP DUMMY DATA END").
-     ============================================================ --}}
-@php
-    // TEMP DUMMY DATA START
-    $dashboard_courses = [
-        ['title' => 'Advanced React & Next.js', 'icon' => 'code-slash', 'progress' => 68, 'next_lesson' => 'Server Components'],
-        ['title' => 'UI/UX Design Fundamentals', 'icon' => 'palette2', 'progress' => 42, 'next_lesson' => 'Design Systems'],
-        ['title' => 'Data Visualization with Python', 'icon' => 'bar-chart-line', 'progress' => 15, 'next_lesson' => 'Intro to Matplotlib'],
-    ];
-    $dashboard_overall_progress = 54;
-    $dashboard_goals = [
-        ['label' => 'Complete 3 lessons', 'done' => true],
-        ['label' => 'Finish weekly quiz', 'done' => true],
-        ['label' => 'Submit project draft', 'done' => false],
-    ];
-    $dashboard_streak_days = 12;
-    $dashboard_streak_active_days = 5; // out of 7 this week
-    // TEMP DUMMY DATA END
-@endphp
-
 {{-- Student Dashboard Preview Section --}}
 <section class="el-section bg-cream">
     <div class="el-container">

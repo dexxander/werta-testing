@@ -1,29 +1,3 @@
-{{-- ============================================================
-     TEMP DUMMY DATA — FOR PREVIEW ONLY
-     This @php block overrides $categories with fake data so you can
-     see the UI. It only exists in this file — your controller's
-     'categories' => [] empty state is untouched.
-
-     TO REMOVE: delete the entire @php ... @endphp block below
-     (from "TEMP DUMMY DATA START" to "TEMP DUMMY DATA END").
-     Once deleted, $categories goes back to whatever the controller
-     actually passes in (currently an empty array).
-     ============================================================ --}}
-@php
-    // TEMP DUMMY DATA START
-    $categories = [
-        ['name' => 'Web Development', 'icon' => 'code-slash', 'course_count' => 128, 'url' => route('elearning.category', ['slug' => 'web-development'])],
-        ['name' => 'Data Science', 'icon' => 'bar-chart-line', 'course_count' => 94, 'url' => route('elearning.category', ['slug' => 'data-science'])],
-        ['name' => 'UI/UX Design', 'icon' => 'palette2', 'course_count' => 76, 'url' => route('elearning.category', ['slug' => 'ui-ux-design'])],
-        ['name' => 'Digital Marketing', 'icon' => 'megaphone', 'course_count' => 61, 'url' => route('elearning.category', ['slug' => 'digital-marketing'])],
-        ['name' => 'Business', 'icon' => 'briefcase', 'course_count' => 88, 'url' => route('elearning.category', ['slug' => 'business'])],
-        ['name' => 'Photography', 'icon' => 'camera', 'course_count' => 42, 'url' => route('elearning.category', ['slug' => 'photography'])],
-        ['name' => 'Mobile Development', 'icon' => 'phone', 'course_count' => 53, 'url' => route('elearning.category', ['slug' => 'mobile-development'])],
-        ['name' => 'Cybersecurity', 'icon' => 'shield-lock', 'course_count' => 37, 'url' => route('elearning.category', ['slug' => 'cybersecurity'])],
-    ];
-    // TEMP DUMMY DATA END
-@endphp
-
 {{-- Course Categories Section --}}
 <section class="el-section bg-cream">
     <div class="el-container">
