@@ -120,6 +120,27 @@
                     </div>
                     <textarea id="el-lesson-notes" rows="5" placeholder="Write reflections, questions, or reminders for this lesson..." style="width:100%;border:1px solid rgba(123,107,53,0.2);border-radius:var(--radius-sm);padding:0.85rem;background:var(--cream-light);color:var(--dark);resize:vertical;"></textarea>
                 </div>
+
+                <div class="el-card" style="margin-top:1.5rem;background:var(--dark);color:#fff;">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;">
+                        <div>
+                            <div class="el-pill" style="color:var(--gold);margin-bottom:0.35rem;">Focus mode</div>
+                            <h4 style="font-family:'IM Fell English',serif;margin:0;color:#fff;">Study session timer</h4>
+                            <p style="color:rgba(255,255,255,0.6);font-size:var(--text-sm);margin:0.4rem 0 0;">Keep a distraction-free rhythm while you learn.</p>
+                        </div>
+                        <span style="font-size:var(--text-sm);color:rgba(255,255,255,0.6);"><i class="bi bi-check-circle"></i> <span id="el-session-count">0</span> sessions</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;">
+                        <select id="el-timer-duration" style="border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.08);color:#fff;border-radius:var(--radius-sm);padding:0.55rem 0.7rem;">
+                            <option value="25">25 min focus</option>
+                            <option value="50">50 min focus</option>
+                            <option value="5">5 min quick start</option>
+                        </select>
+                        <strong id="el-timer-display" style="font-size:2rem;letter-spacing:2px;min-width:110px;">25:00</strong>
+                        <button id="el-timer-toggle" type="button" class="el-btn-primary" style="background:var(--gold);color:var(--dark);">Start focus</button>
+                        <button id="el-timer-reset" type="button" class="el-btn-outline el-btn-outline--light" style="padding:0.55rem 0.9rem;">Reset</button>
+                    </div>
+                </div>
             </div>
             
             {{-- Sidebar / Syllabus --}}
@@ -184,6 +205,14 @@
         const quizKey = 'werta-elearning-quiz-{{ $course_id ?? 1 }}';
         const notes = document.getElementById('el-lesson-notes');
         const notesKey = 'werta-elearning-notes-{{ $course_id ?? 1 }}-{{ md5($course_details['current_lesson']) }}';
+        const timerDisplay = document.getElementById('el-timer-display');
+        const timerToggle = document.getElementById('el-timer-toggle');
+        const timerReset = document.getElementById('el-timer-reset');
+        const timerDuration = document.getElementById('el-timer-duration');
+        const sessionCount = document.getElementById('el-session-count');
+        const sessionKey = 'werta-elearning-focus-sessions';
+        let timerSeconds = Number(timerDuration.value) * 60;
+        let timerInterval = null;
 
         function updateProgress() {
             const total = rows.length;
@@ -236,6 +265,49 @@
             quizReset.style.display = 'none';
             localStorage.removeItem(quizKey);
         });
+
+        function renderTimer() {
+            const minutes = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+            const seconds = String(timerSeconds % 60).padStart(2, '0');
+            timerDisplay.textContent = minutes + ':' + seconds;
+        }
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timerToggle.textContent = 'Start focus';
+        }
+        sessionCount.textContent = localStorage.getItem(sessionKey) || '0';
+        timerDuration.addEventListener('change', function () {
+            stopTimer();
+            timerSeconds = Number(this.value) * 60;
+            renderTimer();
+        });
+        timerToggle.addEventListener('click', function () {
+            if (timerInterval) {
+                stopTimer();
+                return;
+            }
+            timerToggle.textContent = 'Pause';
+            timerInterval = setInterval(function () {
+                timerSeconds--;
+                renderTimer();
+                if (timerSeconds <= 0) {
+                    stopTimer();
+                    const totalSessions = Number(localStorage.getItem(sessionKey) || 0) + 1;
+                    localStorage.setItem(sessionKey, totalSessions);
+                    sessionCount.textContent = totalSessions;
+                    alert('Focus session complete. Take a short break before continuing.');
+                    timerSeconds = Number(timerDuration.value) * 60;
+                    renderTimer();
+                }
+            }, 1000);
+        });
+        timerReset.addEventListener('click', function () {
+            stopTimer();
+            timerSeconds = Number(timerDuration.value) * 60;
+            renderTimer();
+        });
+        renderTimer();
     });
 </script>
 @endsection
