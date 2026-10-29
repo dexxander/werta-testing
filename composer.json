@@ -27,6 +27,7 @@
             "AdminDashboard\\": "packages/AdminDashboard/src/",
             "Articles\\": "packages/Articles/src/",
             "ClientDashboard\\": "packages/ClientDashboard/src/",
+            "CommunityForum\\": "packages/CommunityForum/src/",
             "CounselorDashboard\\": "packages/CounselorDashboard/src/",
             "Elearning\\": "packages/Elearning/src/",
             "GuidanceCenter\\": "packages/GuidanceCenter/src/",

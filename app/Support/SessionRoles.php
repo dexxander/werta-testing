@@ -6,6 +6,7 @@ class SessionRoles
 {
     // Role sessions must be strictly exclusive to prevent session stacking and privilege escalation.
     public const ALL_ROLE_KEYS = [
+        'community_owner_id',
         'client_logged_in',
         'client_profile',
         'parent_logged_in',

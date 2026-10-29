@@ -33,13 +33,6 @@ return [
         'latitude' => 5.9465602326633356,
         'longitude' => 116.07144517128678,
     ],
-    [
-        'name' => 'Angkasa Apartments, Block C',
-        'address' => 'Kampung Darau, 88400 Kota Kinabalu, Sabah',
-        'additional_details' => 'VR Counsellor',
-        'latitude' => 6.027276699059773,
-        'longitude' => 116.14190263234885,
-    ],
     ],
 
     'map' => [

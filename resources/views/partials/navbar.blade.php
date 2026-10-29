@@ -126,6 +126,7 @@
                 </div>
             </li>
 
+            <li><a href="{{ route('community.index') }}">{{ __('Community Forum') }}</a></li>
             <li><a href="{{ url('/about') }}">{{ __('nav.about') }}</a></li>
         </ul>
 
@@ -212,6 +213,7 @@
                     </div>
                 </li>
 
+                <li><a href="{{ route('community.index') }}" class="mobile-nav-link">{{ __('Community Forum') }}</a></li>
                 <li><a href="{{ url('/about') }}" class="mobile-nav-link">{{ __('nav.about') }}</a></li>
             </ul>
 

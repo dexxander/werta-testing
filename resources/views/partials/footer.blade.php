@@ -15,7 +15,7 @@
             <h4>{{ __('Platform') }}</h4>
             <a href="{{ url('/counselors') }}">{{ __('Find a Counselor') }}</a>
             <a href="{{ url('/assessment') }}">{{ __('Take an Assessment') }}</a>
-            <span style="display: inline-block; line-height: 1.4; font-size: var(--text-base); color: var(--muted, #6b6455); opacity: 0.65; cursor: default;">{{ __('Community Forum') }} <span style="font-size: 0.75em; font-style: italic;">{{ __('(coming soon)') }}</span></span>
+            <a href="{{ route('community.index') }}">{{ __('Community Forum') }}</a>
             <a href="{{ route('guidance-center.index') }}">{{ __('Guidance Center') }}</a>
         </div>
         <div class="footer-col">

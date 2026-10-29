@@ -50,6 +50,10 @@
                                 <i class="bi bi-info-circle" aria-hidden="true"></i>
                                 <p id="guidance-location-additional-details"></p>
                             </div>
+                            <a id="guidance-location-directions" class="guidance-directions" target="_blank" rel="noopener noreferrer">
+                                <i class="bi bi-sign-turn-right" aria-hidden="true"></i>
+                                {{ __('Take me there') }}
+                            </a>
                         </aside>
                     @endif
                 </div>
@@ -189,6 +193,21 @@
         .guidance-details { padding-top: 1.25rem; border-top: 1px solid rgba(123, 107, 53, 0.18); }
         .guidance-details p { margin: 0; white-space: pre-line; }
         .guidance-details[hidden] { display: none; }
+        .guidance-directions {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-sm);
+            background: var(--primary-dark);
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .guidance-directions:hover { background: var(--primary); color: #fff; }
+        .guidance-directions:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
 
         @media (max-width: 767.98px) {
             .guidance-center-hero { padding: 48px 0 40px; }
@@ -211,6 +230,7 @@
             const detailsAddress = document.getElementById('guidance-location-address');
             const detailsExtra = document.getElementById('guidance-location-extra');
             const detailsAdditional = document.getElementById('guidance-location-additional-details');
+            const directionsLink = document.getElementById('guidance-location-directions');
             const markerElements = [];
             let activeLocationIndex = null;
             const hasCoordinates = (location) => Number.isFinite(location.latitude)
@@ -292,6 +312,8 @@
                             detailsAddress.textContent = location.address;
                             detailsAdditional.textContent = location.additionalDetails;
                             detailsExtra.hidden = !location.additionalDetails;
+                            directionsLink.href = 'https://www.google.com/maps/dir/?api=1&destination='
+                                + encodeURIComponent(`${coordinates.latitude},${coordinates.longitude}`);
                             detailsPanel.hidden = false;
                             activeLocationIndex = index;
                             markerElement.setAttribute('aria-expanded', 'true');
