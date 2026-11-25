@@ -96,6 +96,7 @@
             outline: 3px solid rgba(196,168,64,.55); outline-offset: 3px;
         }
         .el-btn-primary:active, .el-btn-outline:active { transform: translateY(1px) scale(.985); }
+        .el-btn-primary:disabled, .el-btn-outline:disabled { opacity:.5;cursor:not-allowed;transform:none;box-shadow:none; }
 
         .el-btn-outline {
             background: var(--sand);
@@ -289,6 +290,9 @@
         .el-lesson-row:hover { transform:translateX(3px); }
         .el-module-toggle i { transition:transform .3s ease; }
         .el-module-toggle[aria-expanded="false"] i { transform:rotate(-90deg); }
+        .el-module-lessons { max-height:420px;opacity:1;overflow:hidden;padding:.5rem 0;transition:max-height .4s cubic-bezier(.22,1,.36,1),opacity .3s ease,padding .3s ease; }
+        .el-module-lessons.is-collapsed { max-height:0;opacity:0;padding-block:0; }
+        .el-module-toggle:focus-visible, .el-lesson-row:focus-visible, .el-topic-preview:focus-visible { outline:3px solid rgba(196,168,64,.65);outline-offset:2px; }
         .el-resource-row { display:flex;align-items:center;gap:.85rem;padding:.9rem 0;border-bottom:1px solid rgba(123,107,53,.12); }
         .el-resource-row > i { color:var(--primary);font-size:1.25rem; }
         .el-resource-row span { display:grid;flex:1; }

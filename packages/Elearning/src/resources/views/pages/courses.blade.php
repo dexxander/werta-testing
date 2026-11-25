@@ -45,9 +45,16 @@
             const savedToggle = document.getElementById('el-saved-toggle');
             const count = document.getElementById('el-course-result-count');
             const savedCount = document.getElementById('el-saved-count');
+            const emptyState = document.getElementById('el-course-empty');
             const cards = Array.from(document.querySelectorAll('.el-course-card'));
             const storageKey = 'werta-elearning-saved-courses';
-            let saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            let saved = [];
+            try {
+                const stored = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                saved = Array.isArray(stored) ? stored.map(String) : [];
+            } catch (error) {
+                localStorage.removeItem(storageKey);
+            }
 
             function renderSavedState() {
                 document.querySelectorAll('[data-save-course]').forEach(function (button) {
@@ -75,6 +82,7 @@
                     if (show) visible++;
                 });
                 count.textContent = visible + ' course' + (visible === 1 ? '' : 's') + ' shown';
+                if (emptyState) emptyState.hidden = visible > 0;
             }
 
             [search, difficulty, language].forEach(function (control) { control.addEventListener('input', filterCourses); });
@@ -84,15 +92,14 @@
                 this.querySelector('i').className = this.classList.contains('active') ? 'bi bi-bookmarks-fill' : 'bi bi-bookmark';
                 filterCourses();
             });
-            document.addEventListener('click', function (event) {
-                const button = event.target.closest('[data-save-course]');
-                if (!button) return;
-                event.preventDefault();
-                const id = String(button.dataset.saveCourse);
-                saved = saved.includes(id) ? saved.filter(function (item) { return item !== id; }) : saved.concat(id);
-                localStorage.setItem(storageKey, JSON.stringify(saved));
-                renderSavedState();
-                filterCourses();
+            document.querySelectorAll('[data-save-course]').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const id = String(button.dataset.saveCourse);
+                    saved = saved.includes(id) ? saved.filter(function (item) { return item !== id; }) : saved.concat(id);
+                    localStorage.setItem(storageKey, JSON.stringify(saved));
+                    renderSavedState();
+                    filterCourses();
+                });
             });
             renderSavedState();
             filterCourses();

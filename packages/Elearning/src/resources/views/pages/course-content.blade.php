@@ -175,11 +175,11 @@
                     <div>
                         @foreach($course_details['modules'] as $module)
                             <div style="margin-bottom:1rem;">
-                                <button type="button" class="el-module-toggle" aria-expanded="true" style="width:100%;text-align:left;font-weight:700;font-size:var(--text-base-lg);padding:0.75rem;background:var(--cream);border:0;border-radius:var(--radius-sm);display:flex;justify-content:space-between;align-items:center;color:var(--dark);">
+                                <button type="button" class="el-module-toggle" aria-expanded="true" aria-controls="el-module-lessons-{{ $loop->index }}" style="width:100%;text-align:left;font-weight:700;font-size:var(--text-base-lg);padding:0.75rem;background:var(--cream);border:0;border-radius:var(--radius-sm);display:flex;justify-content:space-between;align-items:center;color:var(--dark);">
                                     {{ \App\Support\SiteText::translate($module['title']) }}
                                     <i class="bi bi-chevron-down"></i>
                                 </button>
-                                <div class="el-module-lessons" style="padding:0.5rem 0;">
+                                <div id="el-module-lessons-{{ $loop->index }}" class="el-module-lessons" aria-hidden="false" style="padding:0.5rem 0;">
                                     @foreach($module['lessons'] as $lesson)
                                         <button type="button" class="el-lesson-row" data-lesson-title="{{ $lesson['title'] }}" data-duration="{{ $lesson['duration'] }}" data-completed="{{ !empty($lesson['completed']) ? 'true' : 'false' }}" aria-current="{{ !empty($lesson['active']) ? 'true' : 'false' }}" style="width:100%;text-align:left;padding:0.75rem 1rem;font-size:var(--text-sm);display:flex;justify-content:space-between;align-items:center;border:0;border-left:2px solid {{ !empty($lesson['active']) ? 'var(--primary)' : 'transparent' }};background:{{ !empty($lesson['active']) ? 'rgba(196,168,64,0.05)' : 'transparent' }};cursor:pointer;">
                                             <div style="display:flex;align-items:center;gap:0.75rem;">
@@ -207,11 +207,20 @@
 <script>
     function initElearningCourseContent() {
         const key = 'werta-elearning-progress-{{ $course_id ?? 1 }}';
+        const courseId = String(@json((string) ($course_id ?? 1)));
+        const courseTitle = @json($course_details['title']);
+        const courseInstructor = @json($course_details['instructor']);
         const completeButton = document.querySelector('.el-complete-lesson');
         let currentTitle = @json($course_details['current_lesson']);
         const rows = Array.from(document.querySelectorAll('.el-lesson-row'));
         const progressBar = document.getElementById('el-lesson-progress');
-        const saved = JSON.parse(localStorage.getItem(key) || '[]');
+        let saved = [];
+        try {
+            const storedProgress = JSON.parse(localStorage.getItem(key) || '[]');
+            saved = Array.isArray(storedProgress) ? storedProgress : [];
+        } catch (error) {
+            localStorage.removeItem(key);
+        }
         const quiz = document.getElementById('el-lesson-quiz');
         const quizStatus = document.getElementById('el-quiz-status');
         const quizFeedback = document.getElementById('el-quiz-feedback');
@@ -232,6 +241,22 @@
         });
 
         function saveProgress() { localStorage.setItem(key, JSON.stringify(saved)); }
+        function syncCourseProgress(progress) {
+            let courses = [];
+            try {
+                const storedCourses = JSON.parse(localStorage.getItem('werta-elearning-enrolled-courses') || '[]');
+                courses = Array.isArray(storedCourses) ? storedCourses : [];
+            } catch (error) {
+                localStorage.removeItem('werta-elearning-enrolled-courses');
+            }
+            let course = courses.find(function (item) { return String(item.id) === courseId; });
+            if (!course) {
+                course = { id: courseId, title: courseTitle, instructor: courseInstructor, icon: 'journal-bookmark' };
+                courses.push(course);
+            }
+            course.progress = progress;
+            localStorage.setItem('werta-elearning-enrolled-courses', JSON.stringify(courses));
+        }
         function selectLesson(row) {
             if (!row) return;
             currentTitle = row.dataset.lessonTitle;
@@ -249,6 +274,13 @@
             playerStatus.textContent = 'Lesson preview';
             document.getElementById('el-player-toggle').setAttribute('aria-pressed', 'false');
             document.getElementById('el-player-toggle').innerHTML = '<i class="bi bi-play-fill" aria-hidden="true"></i>';
+            const currentIndex = rows.indexOf(row);
+            document.getElementById('el-lesson-previous').disabled = currentIndex <= 0;
+            const nextButton = document.getElementById('el-lesson-next');
+            nextButton.disabled = rows.length === 0;
+            nextButton.innerHTML = currentIndex >= rows.length - 1
+                ? 'Finish course <i class="bi bi-check2-circle" aria-hidden="true"></i>'
+                : 'Next <i class="bi bi-chevron-right" aria-hidden="true"></i>';
         }
 
         function updateProgress() {
@@ -256,6 +288,7 @@
             const done = rows.filter(function (row) { return saved.includes(row.dataset.lessonTitle); }).length;
             const percent = total ? Math.round((done / total) * 100) : 0;
             if (progressBar) progressBar.style.width = percent + '%';
+            syncCourseProgress(percent);
             const progressLabel = document.getElementById('el-progress-label');
             if (progressLabel) progressLabel.textContent = percent + '%';
             rows.forEach(function (row) {
@@ -271,13 +304,21 @@
             completeButton.innerHTML = '<i class="bi bi-check-circle-fill"></i> Lesson completed';
         }
         if (completeButton) completeButton.addEventListener('click', function () {
-            if (!saved.includes(currentTitle)) saved.push(currentTitle);
-            localStorage.setItem(key, JSON.stringify(saved));
+            const isNewCompletion = !saved.includes(currentTitle);
+            if (isNewCompletion) saved.push(currentTitle);
+            saveProgress();
+            if (isNewCompletion) {
+                const goalKey = 'werta-elearning-weekly-goal';
+                const weeklyGoal = Math.min(Number(localStorage.getItem(goalKey) || 0) + 1, 5);
+                localStorage.setItem(goalKey, String(weeklyGoal));
+            }
             completeButton.classList.add('is-complete');
             completeButton.innerHTML = '<i class="bi bi-check-circle-fill"></i> Lesson completed';
             updateProgress();
         });
         updateProgress();
+        const initialRow = rows.find(function (row) { return row.dataset.lessonTitle === currentTitle; });
+        if (initialRow) selectLesson(initialRow);
 
         document.getElementById('el-lesson-previous').addEventListener('click', function () {
             const index = rows.findIndex(function (row) { return row.dataset.lessonTitle === currentTitle; });
@@ -295,8 +336,11 @@
         document.querySelectorAll('.el-module-toggle').forEach(function (button) {
             button.addEventListener('click', function () {
                 const expanded = button.getAttribute('aria-expanded') === 'true';
+                const panel = button.nextElementSibling;
                 button.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-                button.nextElementSibling.hidden = expanded;
+                panel.classList.toggle('is-collapsed', expanded);
+                panel.setAttribute('aria-hidden', expanded ? 'true' : 'false');
+                panel.inert = expanded;
             });
         });
         document.getElementById('el-player-toggle').addEventListener('click', function () {
@@ -328,7 +372,8 @@
             notes.value = localStorage.getItem(notesKey()) || '';
             notes.addEventListener('input', function () {
                 localStorage.setItem(notesKey(), notes.value);
-                document.getElementById('el-notes-saved').textContent = 'Saved just now';
+                const savedLabel = document.getElementById('el-notes-saved');
+                if (savedLabel) savedLabel.textContent = 'Saved just now';
             });
         }
         const previousScore = localStorage.getItem(quizKey);
@@ -400,6 +445,7 @@
             stopTimer();
             timerSeconds = Number(timerDuration.value) * 60;
             renderTimer();
+            document.getElementById('el-timer-status').textContent = 'Timer reset.';
         });
         renderTimer();
     }

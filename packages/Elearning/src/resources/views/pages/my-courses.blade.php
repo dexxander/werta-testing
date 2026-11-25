@@ -88,10 +88,10 @@
                         <div style="margin-bottom:1rem;">
                             <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);margin-bottom:0.4rem;font-weight:600;">
                                 <span>{{ __('Progress') }}</span>
-                                <span>{{ \App\Support\SiteText::translate($course['progress']) }}%</span>
+                                <span class="el-course-progress-label">{{ \App\Support\SiteText::translate($course['progress']) }}%</span>
                             </div>
                             <div style="width:100%;height:6px;background:var(--cream);border-radius:var(--radius-pill);overflow:hidden;">
-                                <div style="width:{{ $course['progress'] }}%;height:100%;background:var(--gold);border-radius:var(--radius-pill);"></div>
+                                <div class="el-course-progress-bar" style="width:{{ $course['progress'] }}%;height:100%;background:var(--gold);border-radius:var(--radius-pill);transition:width .45s cubic-bezier(.22,1,.36,1);"></div>
                             </div>
                         </div>
                         
@@ -121,9 +121,24 @@
         const goalKey = 'werta-elearning-weekly-goal';
         let completedLessons = Math.min(Number(localStorage.getItem(goalKey) || 0), 5);
 
-        const enrolledCourses = JSON.parse(localStorage.getItem('werta-elearning-enrolled-courses') || '[]');
+        let enrolledCourses = [];
+        try {
+            const storedCourses = JSON.parse(localStorage.getItem('werta-elearning-enrolled-courses') || '[]');
+            enrolledCourses = Array.isArray(storedCourses) ? storedCourses : [];
+        } catch (error) {
+            localStorage.removeItem('werta-elearning-enrolled-courses');
+        }
         enrolledCourses.forEach(function (course) {
-            if (cards.some(function (card) { return card.dataset.courseId === String(course.id); })) return;
+            const existingCard = cards.find(function (card) { return card.dataset.courseId === String(course.id); });
+            const progressPercent = Math.max(0, Math.min(100, Number(course.progress) || 0));
+            if (existingCard) {
+                existingCard.dataset.courseStatus = progressPercent >= 100 ? 'completed' : 'active';
+                const label = existingCard.querySelector('.el-course-progress-label');
+                const bar = existingCard.querySelector('.el-course-progress-bar');
+                if (label) label.textContent = progressPercent + '%';
+                if (bar) bar.style.width = progressPercent + '%';
+                return;
+            }
             const column = document.createElement('div');
             column.className = 'col-md-6 col-lg-4 el-my-course-card';
             column.dataset.courseId = String(course.id);
@@ -142,14 +157,14 @@
             instructor.textContent = 'Instructor: ' + (course.instructor || 'Werta instructor');
             const progress = document.createElement('div');
             progress.className = 'el-enrolled-course-progress';
-            progress.innerHTML = '<span>Progress</span><strong>' + Math.max(0, Math.min(100, Number(course.progress) || 0)) + '%</strong><div><i style="width:' + Math.max(0, Math.min(100, Number(course.progress) || 0)) + '%"></i></div>';
+            progress.innerHTML = '<span>Progress</span><strong>' + progressPercent + '%</strong><div><i style="width:' + progressPercent + '%"></i></div>';
             const resume = document.createElement('a');
             resume.className = 'el-btn-primary el-enrolled-course-resume';
             resume.href = '/elearning/course/' + encodeURIComponent(course.id) + '/content';
             resume.textContent = 'Start learning';
             card.append(icon, title, instructor, progress, resume);
             column.appendChild(card);
-            courseGrid.appendChild(column);
+            if (courseGrid) courseGrid.appendChild(column);
         });
         cards = Array.from(document.querySelectorAll('.el-my-course-card'));
 
