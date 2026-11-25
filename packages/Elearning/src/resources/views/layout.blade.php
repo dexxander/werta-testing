@@ -91,6 +91,11 @@
             display: inline-block; transition: background 0.2s, transform 0.15s; cursor: pointer;
         }
         .el-btn-primary:hover { background: var(--dark); color: #fff; transform: translateY(-1px); }
+        .el-btn-primary:focus-visible, .el-btn-outline:focus-visible, .el-tab-bar a:focus-visible,
+        .el-course-search:focus-within, .el-course-filter:focus-within {
+            outline: 3px solid rgba(196,168,64,.55); outline-offset: 3px;
+        }
+        .el-btn-primary:active, .el-btn-outline:active { transform: translateY(1px) scale(.985); }
 
         .el-btn-outline {
             background: var(--sand);
@@ -263,6 +268,43 @@
             .el-tab-bar a.nav-link { white-space: nowrap; padding: 1rem 0.85rem; }
         }
 
+        /* Elearning interaction polish */
+        .el-section { position: relative; isolation: isolate; }
+        .el-section > .el-container { position: relative; z-index: 1; }
+        .el-card, .el-cat-card, .el-pricing-card, .el-path-card, .el-course-search, .el-course-filter,
+        .el-faq-item, .el-topic-preview { transition-timing-function: cubic-bezier(.22,1,.36,1); }
+        .el-card { transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1), border-color .3s ease; }
+        .el-card:hover { transform: translateY(-6px); }
+        .el-course-search:focus-within, .el-course-filter:focus-within { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(196,168,64,.12); }
+        .el-tab-bar-wrap { backdrop-filter: blur(14px); background: rgba(248,245,237,.94); }
+        .el-tab-bar a.nav-link { position: relative; }
+        .el-tab-bar a.nav-link::after { content:''; position:absolute; left:1rem; right:1rem; bottom:0; height:2px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .35s cubic-bezier(.22,1,.36,1); }
+        .el-tab-bar a.nav-link:hover::after, .el-tab-bar a.nav-link.active::after { transform:scaleX(1); }
+        .el-animate-target { transition-timing-function: cubic-bezier(.22,1,.36,1); }
+        .el-course-card[hidden], .el-my-course-card[hidden] { display:none !important; }
+        .el-modal-overlay { overscroll-behavior:contain; }
+        .el-lesson-tabs .nav-link { transition: color .25s ease, border-color .25s ease, background .25s ease; }
+        .el-lesson-row { color:var(--muted); transition:background .25s ease, border-color .25s ease, color .25s ease, transform .25s ease; }
+        .el-lesson-row:hover, .el-lesson-row.is-active { background:rgba(196,168,64,.08) !important; color:var(--dark); }
+        .el-lesson-row:hover { transform:translateX(3px); }
+        .el-module-toggle i { transition:transform .3s ease; }
+        .el-module-toggle[aria-expanded="false"] i { transform:rotate(-90deg); }
+        .el-resource-row { display:flex;align-items:center;gap:.85rem;padding:.9rem 0;border-bottom:1px solid rgba(123,107,53,.12); }
+        .el-resource-row > i { color:var(--primary);font-size:1.25rem; }
+        .el-resource-row span { display:grid;flex:1; }
+        .el-resource-row small { color:var(--muted); }
+        .el-resource-type { color:var(--primary);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.08em; }
+        .el-enrolled-course-icon { height:150px;display:grid;place-items:center;background:radial-gradient(circle at 75% 25%,rgba(196,168,64,.24),transparent 30%),linear-gradient(135deg,var(--cream),#eee5d1);border-radius:var(--radius-md);margin-bottom:1rem;color:var(--primary);font-size:2.8rem; }
+        .el-enrolled-course-title { font-weight:700;font-size:1.1rem;margin-bottom:.3rem;color:var(--dark); }
+        .el-enrolled-course-instructor { font-size:var(--text-sm);color:var(--muted);margin:0 0 1rem; }
+        .el-enrolled-course-progress { display:grid;grid-template-columns:1fr auto;gap:.4rem;font-size:var(--text-sm);margin-bottom:1rem; }
+        .el-enrolled-course-progress div { grid-column:1 / -1;height:6px;border-radius:var(--radius-pill);background:var(--cream);overflow:hidden; }
+        .el-enrolled-course-progress i { display:block;height:100%;background:var(--gold);border-radius:inherit; }
+        .el-enrolled-course-resume { margin-top:auto;text-align:center; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+        }
+
         /* ─── PAGE TRANSITION (replaces the old tab-pane fade) ─ */
         #elearning-body {
             transition: opacity 0.4s ease, transform 0.4s ease;
@@ -342,6 +384,23 @@
     @include('partials.footer')
 
     <script>
+        window.enrollElearningCourse = function (button) {
+            const storageKey = 'werta-elearning-enrolled-courses';
+            const courses = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            const course = {
+                id: String(button.dataset.courseId),
+                title: button.dataset.courseTitle || 'New course',
+                instructor: button.dataset.courseInstructor || 'Werta instructor',
+                icon: button.dataset.courseIcon || 'journal-bookmark',
+                progress: 0
+            };
+            const existingIndex = courses.findIndex(function (item) { return String(item.id) === course.id; });
+            if (existingIndex === -1) courses.push(course);
+            localStorage.setItem(storageKey, JSON.stringify(courses));
+            const modal = document.getElementById('elearningSuccessModal') || document.getElementById('elearningEnrollModal');
+            if (modal) modal.classList.add('active');
+        };
+
         document.addEventListener('DOMContentLoaded', function () {
 
             // ─── Scroll reveal animations ───
@@ -385,6 +444,8 @@
 
             // ─── FAQ accordion (delegated so it survives content swaps) ───
             document.addEventListener('click', function (e) {
+                const modalOverlay = e.target.closest('.el-modal-overlay');
+                if (modalOverlay && e.target === modalOverlay) modalOverlay.classList.remove('active');
                 const btn = e.target.closest('.el-faq-question');
                 if (!btn) return;
 
@@ -398,6 +459,10 @@
                     answer.classList.add('open');
                     btn.classList.add('active');
                 }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') document.querySelectorAll('.el-modal-overlay.active').forEach(function (modal) { modal.classList.remove('active'); });
             });
 
             // ─── Smooth page-to-page transitions between elearning pages ───
@@ -426,7 +491,20 @@
                     const newTabBar = doc.querySelector('.el-tab-bar-wrap');
                     const newTitle = doc.querySelector('title');
 
-                    if (newBody) document.getElementById('elearning-body').innerHTML = newBody.innerHTML;
+                    if (newBody) {
+                        const activeBody = document.getElementById('elearning-body');
+                        activeBody.innerHTML = newBody.innerHTML;
+                        // Scripts created through innerHTML stay inert. Recreate page-local scripts so
+                        // filters, course controls, and modal actions initialize after tab navigation.
+                        activeBody.querySelectorAll('script').forEach(function (oldScript) {
+                            const freshScript = document.createElement('script');
+                            Array.from(oldScript.attributes).forEach(function (attribute) {
+                                freshScript.setAttribute(attribute.name, attribute.value);
+                            });
+                            freshScript.textContent = oldScript.textContent;
+                            oldScript.replaceWith(freshScript);
+                        });
+                    }
 
                     const currentTabBar = document.querySelector('.el-tab-bar-wrap');
                     if (newTabBar && currentTabBar) {
@@ -441,6 +519,7 @@
                     if (pushState) window.history.pushState({}, '', url);
 
                     initElearningAnimations();
+                    window.dispatchEvent(new CustomEvent('elearning:page-ready'));
 
                     const freshBody = document.getElementById('elearning-body');
                     if (!prefersReducedMotion) {

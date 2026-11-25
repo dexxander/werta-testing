@@ -25,10 +25,10 @@
                     {{ __('Self-paced courses taught by expert instructors — go from your first lesson to a certificate you can show off, on a schedule that works for you.') }}
                 </p>
 
-                <div class="el-hero-search">
-                    <input type="text" placeholder="{{ __('Search for courses, topics, or skills...') }}">
-                    <button><i class="bi bi-search"></i> {{ __('Search') }}</button>
-                </div>
+                <form class="el-hero-search" action="{{ route('elearning.courses') }}" method="GET" role="search">
+                    <input type="search" name="q" placeholder="{{ __('Search for courses, topics, or skills...') }}" aria-label="{{ __('Search courses') }}">
+                    <button type="submit"><i class="bi bi-search"></i> {{ __('Search') }}</button>
+                </form>
 
                 @if(!empty($categories))
                     <div class="el-hero-chips">

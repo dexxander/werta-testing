@@ -69,7 +69,7 @@
                             <div style="margin-top:auto;display:flex;gap:0.6rem;">
                                 <a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" class="el-btn-outline" style="width:100%;text-align:center;padding:0.65rem 0.8rem;">{{ __('Preview Course') }}</a>
                                 @if(session('client_logged_in'))
-                                    <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">{{ __('Enroll Now') }}</button>
+                                    <button type="button" onclick="enrollElearningCourse(this)" data-course-id="{{ $course['id'] }}" data-course-title="{{ $course['title'] }}" data-course-instructor="{{ $course['instructor'] }}" data-course-icon="journal-bookmark" class="el-btn-primary" style="width:100%;text-align:center;border:none;">{{ __('Enroll Now') }}</button>
                                 @else
                                     <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;">{{ __('Enroll Now') }}</button>
                                 @endif

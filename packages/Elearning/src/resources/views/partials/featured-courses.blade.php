@@ -10,13 +10,13 @@
         @if(count($featured_courses ?? []) > 0)
             <div class="row g-4">
                 @foreach($featured_courses as $course)
-                    <div class="col-md-6 col-lg-4 el-course-card" data-course-id="{{ $course['id'] ?? 0 }}" data-difficulty="{{ strtolower($course['difficulty'] ?? 'beginner') }}" data-search="{{ strtolower(($course['title'] ?? '') . ' ' . ($course['instructor'] ?? '') . ' ' . implode(' ', $course['topics'] ?? [])) }}">
+                    <div class="col-md-6 col-lg-4 el-course-card" data-course-id="{{ $course['id'] ?? 0 }}" data-difficulty="{{ strtolower($course['difficulty'] ?? 'beginner') }}" data-language="{{ strtolower($course['language'] ?? 'english') }}" data-search="{{ strtolower(($course['title'] ?? '') . ' ' . ($course['instructor'] ?? '') . ' ' . implode(' ', $course['topics'] ?? [])) }}">
                         <div class="el-card h-100 d-flex flex-column">
                             @if(!empty($course['image']))
                                 <img src="{{ asset($course['image']) }}" alt="{{ \App\Support\SiteText::translate($course['title']) }}" style="width:100%;height:180px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:1.2rem;">
                             @else
                                 <div style="width:100%;height:180px;background:var(--cream);border-radius:var(--radius-md);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;">
-                                    <i class="bi bi-image" style="font-size:2rem;color:var(--gold);opacity:0.3;"></i>
+                                    <i class="bi bi-{{ $course['icon'] ?? 'journal-bookmark' }}" style="font-size:3rem;color:var(--primary);opacity:0.68;"></i>
                                 </div>
                             @endif
                             <div style="display:flex;align-items:center;gap:6px;margin-bottom:0.6rem;">
@@ -29,6 +29,7 @@
                                 @endif
                             </div>
                             <p style="font-size:var(--text-sm);color:var(--muted);margin-bottom:0.8rem;">{{ \App\Support\SiteText::translate($course['instructor'] ?? 'Instructor') }}</p>
+                            <span style="font-size:var(--text-xs);color:var(--muted);margin-bottom:0.8rem;"><i class="bi bi-translate"></i> {{ \App\Support\SiteText::translate($course['language'] ?? 'English') }}</span>
                             @if(!empty($course['topics']))
                                 <div class="el-course-topics">
                                     @foreach(array_slice($course['topics'], 0, 3) as $topic)
@@ -45,7 +46,7 @@
                                 <div style="display:flex;gap:0.6rem;align-items:center;">
                                     <a href="{{ route('elearning.course-preview', ['id' => $course['id'] ?? 0]) }}" class="el-btn-outline" style="width:100%;text-align:center;padding:0.65rem 0.8rem;">{{ __('Preview Course') }}</a>
                                     @if(session('client_logged_in'))
-                                        <button onclick="openElearningSuccessModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;padding:0.8rem;">{{ __('Enroll') }}</button>
+                                        <button type="button" onclick="enrollElearningCourse(this)" data-course-id="{{ $course['id'] ?? 0 }}" data-course-title="{{ $course['title'] ?? '' }}" data-course-instructor="{{ $course['instructor'] ?? '' }}" data-course-icon="{{ $course['icon'] ?? 'journal-bookmark' }}" class="el-btn-primary" style="width:100%;text-align:center;border:none;padding:0.8rem;">{{ __('Enroll') }}</button>
                                     @else
                                         <button onclick="openElearningModal()" class="el-btn-primary" style="width:100%;text-align:center;border:none;padding:0.8rem;">{{ __('Enroll') }}</button>
                                     @endif
@@ -54,6 +55,11 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            <div id="el-course-empty" class="el-empty-state mt-4" hidden>
+                <i class="bi bi-search"></i>
+                <h5>{{ __('No matching courses') }}</h5>
+                <p>{{ __('Try adjusting your search or filters to find a course.') }}</p>
             </div>
         @else
             {{-- Empty State --}}

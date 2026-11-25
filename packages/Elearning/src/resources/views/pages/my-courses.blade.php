@@ -77,7 +77,7 @@
 
         <div class="row g-4">
             @foreach($my_courses as $course)
-                <div class="col-md-6 col-lg-4 el-my-course-card" data-course-title="{{ strtolower($course['title']) }}" data-course-status="{{ $course['progress'] == 100 ? 'completed' : 'active' }}">
+                <div class="col-md-6 col-lg-4 el-my-course-card" data-course-id="{{ $course['id'] }}" data-course-title="{{ strtolower($course['title']) }}" data-course-status="{{ $course['progress'] == 100 ? 'completed' : 'active' }}">
                     <div class="el-card h-100 d-flex flex-column">
                         <div style="width:100%;height:160px;background:var(--cream);border-radius:var(--radius-md);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;">
                             <i class="bi bi-{{ $course['thumbnail_icon'] }}" style="font-size:3rem;color:var(--gold);opacity:0.3;"></i>
@@ -110,19 +110,55 @@
     </div>
 </section>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    function initMyCourses() {
         const search = document.getElementById('my-course-search');
         const status = document.getElementById('my-course-status');
         const result = document.getElementById('el-my-course-count');
-        const cards = Array.from(document.querySelectorAll('.el-my-course-card'));
+        let cards = Array.from(document.querySelectorAll('.el-my-course-card'));
+        const courseGrid = document.querySelector('#my-courses .row.g-4:last-child');
         const goalCount = document.getElementById('el-goal-count');
         const goalProgress = document.getElementById('el-goal-progress');
         const goalKey = 'werta-elearning-weekly-goal';
         let completedLessons = Math.min(Number(localStorage.getItem(goalKey) || 0), 5);
 
+        const enrolledCourses = JSON.parse(localStorage.getItem('werta-elearning-enrolled-courses') || '[]');
+        enrolledCourses.forEach(function (course) {
+            if (cards.some(function (card) { return card.dataset.courseId === String(course.id); })) return;
+            const column = document.createElement('div');
+            column.className = 'col-md-6 col-lg-4 el-my-course-card';
+            column.dataset.courseId = String(course.id);
+            column.dataset.courseTitle = String(course.title || '').toLowerCase();
+            column.dataset.courseStatus = Number(course.progress) >= 100 ? 'completed' : 'active';
+            const card = document.createElement('div');
+            card.className = 'el-card h-100 d-flex flex-column';
+            const icon = document.createElement('div');
+            icon.className = 'el-enrolled-course-icon';
+            icon.innerHTML = '<i class="bi bi-' + String(course.icon || 'journal-bookmark').replace(/[^a-z0-9-]/gi, '') + '" aria-hidden="true"></i>';
+            const title = document.createElement('h5');
+            title.className = 'el-enrolled-course-title';
+            title.textContent = course.title || 'New course';
+            const instructor = document.createElement('p');
+            instructor.className = 'el-enrolled-course-instructor';
+            instructor.textContent = 'Instructor: ' + (course.instructor || 'Werta instructor');
+            const progress = document.createElement('div');
+            progress.className = 'el-enrolled-course-progress';
+            progress.innerHTML = '<span>Progress</span><strong>' + Math.max(0, Math.min(100, Number(course.progress) || 0)) + '%</strong><div><i style="width:' + Math.max(0, Math.min(100, Number(course.progress) || 0)) + '%"></i></div>';
+            const resume = document.createElement('a');
+            resume.className = 'el-btn-primary el-enrolled-course-resume';
+            resume.href = '/elearning/course/' + encodeURIComponent(course.id) + '/content';
+            resume.textContent = 'Start learning';
+            card.append(icon, title, instructor, progress, resume);
+            column.appendChild(card);
+            courseGrid.appendChild(column);
+        });
+        cards = Array.from(document.querySelectorAll('.el-my-course-card'));
+
         function renderGoal() {
             goalCount.textContent = completedLessons + ' / 5 lessons';
             goalProgress.style.width = (completedLessons / 5 * 100) + '%';
+            const addButton = document.getElementById('el-goal-add');
+            addButton.disabled = completedLessons >= 5;
+            addButton.setAttribute('aria-label', completedLessons >= 5 ? 'Weekly study goal complete' : 'Log one completed lesson');
         }
         function filterCourses() {
             const query = search.value.trim().toLowerCase();
@@ -138,12 +174,14 @@
         search.addEventListener('input', filterCourses);
         status.addEventListener('change', filterCourses);
         document.getElementById('el-goal-add').addEventListener('click', function () {
-            completedLessons = completedLessons >= 5 ? 0 : completedLessons + 1;
+            completedLessons = Math.min(completedLessons + 1, 5);
             localStorage.setItem(goalKey, completedLessons);
             renderGoal();
         });
         renderGoal();
         filterCourses();
-    });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initMyCourses);
+    else initMyCourses();
 </script>
 @endsection

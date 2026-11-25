@@ -23,7 +23,7 @@
                                     <li><i class="bi bi-check-circle-fill"></i> {{ \App\Support\SiteText::translate($feature) }}</li>
                                 @endforeach
                             </ul>
-                            <a href="{{ route('elearning.checkout') }}" class="{{ !empty($plan['recommended']) ? 'el-btn-primary' : 'el-btn-outline' }}" style="width:100%;text-align:center;">
+                            <a href="{{ route('elearning.checkout', ['plan' => strtolower($plan['name'])]) }}" class="{{ !empty($plan['recommended']) ? 'el-btn-primary' : 'el-btn-outline' }}" style="width:100%;text-align:center;">
                                 {{ __($plan['name'] === 'Free' ? 'Get Started' : 'Subscribe Now') }}
                             </a>
                         </div>

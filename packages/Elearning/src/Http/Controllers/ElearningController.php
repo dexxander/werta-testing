@@ -53,7 +53,13 @@ class ElearningController extends Controller
 
     public function checkout()
     {
-        return view('elearning::pages.checkout', $this->sharedData());
+        $data = $this->sharedData();
+        $planKey = strtolower((string) request()->query('plan', 'pro'));
+        $selectedPlan = collect($data['pricing_plans'])->first(function ($plan) use ($planKey) {
+            return strtolower($plan['name']) === $planKey;
+        }) ?? $data['pricing_plans'][1];
+
+        return view('elearning::pages.checkout', $data + ['selected_plan' => $selectedPlan]);
     }
 
     public function pricing()
@@ -98,12 +104,12 @@ class ElearningController extends Controller
                 'resume_url' => route('elearning.course-content', ['id' => 5]),
             ],
             'featured_courses' => [
-                ['id' => 1, 'title' => 'Complete Web Development Bootcamp', 'instructor' => 'James Carter', 'difficulty' => 'Beginner', 'rating' => '4.8', 'duration' => '32h', 'students' => 4210, 'icon' => 'code-slash', 'topics' => ['HTML & CSS foundations', 'Responsive layouts', 'JavaScript essentials', 'React components', 'Portfolio project']],
-                ['id' => 2, 'title' => 'Data Science & Machine Learning', 'instructor' => 'Priya Nair', 'difficulty' => 'Intermediate', 'rating' => '4.9', 'duration' => '28h', 'students' => 3185, 'icon' => 'bar-chart-line', 'topics' => ['Python analysis', 'Statistics', 'Data cleaning', 'Model training', 'Model evaluation']],
-                ['id' => 3, 'title' => 'UI/UX Design Fundamentals', 'instructor' => 'Sarah Chen', 'difficulty' => 'Beginner', 'rating' => '4.7', 'duration' => '18h', 'students' => 2674, 'icon' => 'palette2', 'topics' => ['User research', 'Information architecture', 'Wireframing', 'Figma prototyping', 'Usability testing']],
-                ['id' => 4, 'title' => 'Digital Marketing Mastery', 'instructor' => 'Ahmad Faiz', 'difficulty' => 'Beginner', 'rating' => '4.6', 'duration' => '15h', 'students' => 1932, 'icon' => 'megaphone', 'topics' => ['Marketing strategy', 'SEO fundamentals', 'Content planning', 'Campaigns', 'Analytics']],
-                ['id' => 5, 'title' => 'Advanced React & Next.js', 'instructor' => 'Elena Ruiz', 'difficulty' => 'Advanced', 'rating' => '4.9', 'duration' => '24h', 'students' => 1547, 'icon' => 'layers', 'topics' => ['React architecture', 'Next.js routing', 'Server components', 'Data fetching', 'Deployment']],
-                ['id' => 6, 'title' => 'Cybersecurity Essentials', 'instructor' => 'Marcus Lee', 'difficulty' => 'Intermediate', 'rating' => '4.8', 'duration' => '20h', 'students' => 2098, 'icon' => 'shield-lock', 'topics' => ['Network security', 'Threat detection', 'Identity & access', 'Incident response', 'Security practices']],
+                ['id' => 1, 'title' => 'Complete Web Development Bootcamp', 'instructor' => 'James Carter', 'difficulty' => 'Beginner', 'language' => 'English', 'rating' => '4.8', 'duration' => '32h', 'students' => 4210, 'icon' => 'code-slash', 'topics' => ['HTML & CSS foundations', 'Responsive layouts', 'JavaScript essentials', 'React components', 'Portfolio project']],
+                ['id' => 2, 'title' => 'Data Science & Machine Learning', 'instructor' => 'Priya Nair', 'difficulty' => 'Intermediate', 'language' => 'English', 'rating' => '4.9', 'duration' => '28h', 'students' => 3185, 'icon' => 'bar-chart-line', 'topics' => ['Python analysis', 'Statistics', 'Data cleaning', 'Model training', 'Model evaluation']],
+                ['id' => 3, 'title' => 'UI/UX Design Fundamentals', 'instructor' => 'Sarah Chen', 'difficulty' => 'Beginner', 'language' => 'English', 'rating' => '4.7', 'duration' => '18h', 'students' => 2674, 'icon' => 'palette2', 'topics' => ['User research', 'Information architecture', 'Wireframing', 'Figma prototyping', 'Usability testing']],
+                ['id' => 4, 'title' => 'Digital Marketing Mastery', 'instructor' => 'Ahmad Faiz', 'difficulty' => 'Beginner', 'language' => 'Malay', 'rating' => '4.6', 'duration' => '15h', 'students' => 1932, 'icon' => 'megaphone', 'topics' => ['Marketing strategy', 'SEO fundamentals', 'Content planning', 'Campaigns', 'Analytics']],
+                ['id' => 5, 'title' => 'Advanced React & Next.js', 'instructor' => 'Elena Ruiz', 'difficulty' => 'Advanced', 'language' => 'English', 'rating' => '4.9', 'duration' => '24h', 'students' => 1547, 'icon' => 'layers', 'topics' => ['React architecture', 'Next.js routing', 'Server components', 'Data fetching', 'Deployment']],
+                ['id' => 6, 'title' => 'Cybersecurity Essentials', 'instructor' => 'Marcus Lee', 'difficulty' => 'Intermediate', 'language' => 'Chinese', 'rating' => '4.8', 'duration' => '20h', 'students' => 2098, 'icon' => 'shield-lock', 'topics' => ['Network security', 'Threat detection', 'Identity & access', 'Incident response', 'Security practices']],
             ],
             'learning_paths' => [
                 ['name' => 'Full Stack Developer', 'url' => route('elearning.category', ['slug' => 'web-development']), 'courses' => ['Programming Foundations', 'HTML & CSS', 'JavaScript', 'React', 'Backend APIs', 'Capstone project']],

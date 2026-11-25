@@ -58,7 +58,7 @@
 
 {{-- Count-up animation, respects reduced-motion and only runs once per element --}}
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    function initElearningCounters() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const counters = document.querySelectorAll('.el-stat-number[data-count-to]');
 
@@ -99,5 +99,7 @@
         } else {
             counters.forEach(function (el) { animateCount(el); });
         }
-    });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initElearningCounters);
+    else initElearningCounters();
 </script>
