@@ -10,7 +10,7 @@
         @if(count($featured_courses ?? []) > 0)
             <div class="row g-4">
                 @foreach($featured_courses as $course)
-                    <div class="col-md-6 col-lg-4 el-course-card" data-course-id="{{ $course['id'] ?? 0 }}" data-difficulty="{{ strtolower($course['difficulty'] ?? 'beginner') }}" data-language="{{ strtolower($course['language'] ?? 'english') }}" data-search="{{ strtolower(($course['title'] ?? '') . ' ' . ($course['instructor'] ?? '') . ' ' . implode(' ', $course['topics'] ?? [])) }}">
+                    <div class="col-md-6 col-lg-4 el-course-card" data-course-id="{{ $course['id'] ?? 0 }}" data-difficulty="{{ strtolower($course['difficulty'] ?? 'beginner') }}" data-language="{{ strtolower($course['language'] ?? 'english') }}" data-rating="{{ $course['rating'] ?? 0 }}" data-students="{{ $course['students'] ?? 0 }}" data-title="{{ strtolower($course['title'] ?? '') }}" data-search="{{ strtolower(($course['title'] ?? '') . ' ' . ($course['instructor'] ?? '') . ' ' . implode(' ', $course['topics'] ?? [])) }}">
                         <div class="el-card h-100 d-flex flex-column">
                             @if(!empty($course['image']))
                                 <img src="{{ asset($course['image']) }}" alt="{{ \App\Support\SiteText::translate($course['title']) }}" style="width:100%;height:180px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:1.2rem;">

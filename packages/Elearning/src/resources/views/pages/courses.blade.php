@@ -26,9 +26,18 @@
                         <option value="chinese">Chinese</option>
                     </select>
                 </label>
+                <label class="el-course-filter">
+                    <span class="visually-hidden">Sort courses</span>
+                    <select id="el-course-sort" aria-label="Sort courses">
+                        <option value="popular">Most popular</option>
+                        <option value="rating">Highest rated</option>
+                        <option value="title">Course name</option>
+                    </select>
+                </label>
                 <button id="el-saved-toggle" class="el-btn-outline el-saved-toggle" type="button" aria-pressed="false">
                     <i class="bi bi-bookmark" aria-hidden="true"></i> Saved courses <span id="el-saved-count">0</span>
                 </button>
+                <button id="el-course-clear" class="el-btn-outline el-saved-toggle" type="button">Clear filters</button>
             </div>
             <p id="el-course-result-count" class="el-course-result-count" aria-live="polite"></p>
         </div>
@@ -42,7 +51,9 @@
             const search = document.getElementById('el-course-search');
             const difficulty = document.getElementById('el-course-difficulty');
             const language = document.getElementById('el-course-language');
+            const sort = document.getElementById('el-course-sort');
             const savedToggle = document.getElementById('el-saved-toggle');
+            const clearButton = document.getElementById('el-course-clear');
             const count = document.getElementById('el-course-result-count');
             const savedCount = document.getElementById('el-saved-count');
             const emptyState = document.getElementById('el-course-empty');
@@ -71,6 +82,7 @@
                 const query = search.value.trim().toLowerCase();
                 const level = difficulty.value;
                 const selectedLanguage = language.value;
+                const sortBy = sort.value;
                 let visible = 0;
                 cards.forEach(function (card) {
                     const matchesQuery = !query || card.dataset.search.includes(query);
@@ -81,16 +93,35 @@
                     card.closest('[class*="col-"]').hidden = !show;
                     if (show) visible++;
                 });
+                const grid = cards[0] && cards[0].parentElement;
+                if (grid) {
+                    cards.sort(function (a, b) {
+                        if (sortBy === 'rating') return Number(b.dataset.rating) - Number(a.dataset.rating);
+                        if (sortBy === 'title') return a.dataset.title.localeCompare(b.dataset.title);
+                        return Number(b.dataset.students) - Number(a.dataset.students);
+                    }).forEach(function (card) { grid.appendChild(card); });
+                }
                 count.textContent = visible + ' course' + (visible === 1 ? '' : 's') + ' shown';
                 if (emptyState) emptyState.hidden = visible > 0;
             }
 
-            [search, difficulty, language].forEach(function (control) { control.addEventListener('input', filterCourses); });
+            [search, difficulty, language, sort].forEach(function (control) { control.addEventListener('input', filterCourses); control.addEventListener('change', filterCourses); });
             savedToggle.addEventListener('click', function () {
                 this.classList.toggle('active');
                 this.setAttribute('aria-pressed', this.classList.contains('active') ? 'true' : 'false');
                 this.querySelector('i').className = this.classList.contains('active') ? 'bi bi-bookmarks-fill' : 'bi bi-bookmark';
                 filterCourses();
+            });
+            clearButton.addEventListener('click', function () {
+                search.value = '';
+                difficulty.value = 'all';
+                language.value = 'all';
+                sort.value = 'popular';
+                savedToggle.classList.remove('active');
+                savedToggle.setAttribute('aria-pressed', 'false');
+                savedToggle.querySelector('i').className = 'bi bi-bookmark';
+                filterCourses();
+                search.focus();
             });
             document.querySelectorAll('[data-save-course]').forEach(function (button) {
                 button.addEventListener('click', function () {

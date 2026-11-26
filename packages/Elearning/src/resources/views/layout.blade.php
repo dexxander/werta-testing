@@ -249,7 +249,7 @@
         /* ─── TAB NAVIGATION (now links between real pages) ─ */
         .el-tab-bar-wrap {
             background: var(--cream); border-bottom: 1px solid rgba(123,107,53,0.15);
-            position: sticky; top: 0; z-index: 20;
+            position: sticky; top: var(--el-site-nav-height, 0px); z-index: 999;
         }
         .el-tab-bar {
             max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex;
@@ -267,6 +267,7 @@
         @media (max-width: 767px) {
             .el-tab-bar { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; }
             .el-tab-bar a.nav-link { white-space: nowrap; padding: 1rem 0.85rem; }
+            .el-tab-bar { scrollbar-width: thin; scrollbar-color: var(--gold) transparent; }
         }
 
         /* Elearning interaction polish */
@@ -407,6 +408,18 @@
 
         document.addEventListener('DOMContentLoaded', function () {
 
+            // Keep the secondary navigation directly below the sticky site header.
+            const siteNavbar = document.querySelector('.site-navbar');
+            function syncElearningNavOffset() {
+                if (!siteNavbar) return;
+                document.documentElement.style.setProperty('--el-site-nav-height', siteNavbar.getBoundingClientRect().height + 'px');
+            }
+            syncElearningNavOffset();
+            window.addEventListener('resize', syncElearningNavOffset, { passive: true });
+            if (siteNavbar && 'ResizeObserver' in window) {
+                new ResizeObserver(syncElearningNavOffset).observe(siteNavbar);
+            }
+
             // ─── Scroll reveal animations ───
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             let animationObserver = null;
@@ -538,7 +551,9 @@
 
                     const tabBarEl = document.querySelector('.el-tab-bar-wrap');
                     if (tabBarEl) {
-                        window.scrollTo({ top: tabBarEl.offsetTop, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+                        const headerHeight = siteNavbar ? siteNavbar.getBoundingClientRect().height : 0;
+                        const targetTop = Math.max(0, tabBarEl.getBoundingClientRect().top + window.scrollY - headerHeight);
+                        window.scrollTo({ top: targetTop, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
                     }
 
                     isNavigating = false;
