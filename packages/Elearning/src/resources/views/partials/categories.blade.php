@@ -25,8 +25,9 @@
             {{-- Empty State --}}
             <div class="el-empty-state">
                 <i class="bi bi-grid-3x3-gap"></i>
-                <h5>{{ __('Categories Coming Soon') }}</h5>
-                <p>{{ __('We are curating our course library. Check back soon for a wide range of topics to explore.') }}</p>
+                <h5>{{ __('No categories are available') }}</h5>
+                <p>{{ __('Browse all courses to find a subject that fits your learning goals.') }}</p>
+                <a href="{{ route('elearning.courses') }}" class="el-btn-outline">{{ __('Browse courses') }}</a>
             </div>
         @endif
     </div>

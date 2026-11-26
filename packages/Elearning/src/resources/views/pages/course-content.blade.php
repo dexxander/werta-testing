@@ -1,36 +1,18 @@
 @extends('elearning::layout')
 
 @section('elearning-body')
-@php
-    // TEMP DUMMY DATA START
-    $course_details = [
-        'title' => __('Web Development Bootcamp - Module :number', ['number' => $course_id ?? 1]),
-        'instructor' => 'Dr. Alan Smith',
-        'progress' => 65,
-        'current_lesson' => 'Understanding CSS Flexbox',
-        'modules' => [
-            [
-                'title' => 'Module 1: HTML Basics',
-                'completed' => true,
-                'lessons' => [
-                    ['title' => 'Introduction to HTML5', 'duration' => '15:00', 'completed' => true],
-                    ['title' => 'Semantic Elements', 'duration' => '22:30', 'completed' => true]
-                ]
-            ],
-            [
-                'title' => 'Module 2: Advanced CSS',
-                'completed' => false,
-                'lessons' => [
-                    ['title' => 'Understanding CSS Flexbox', 'duration' => '28:15', 'completed' => false, 'active' => true],
-                    ['title' => 'CSS Grid Layouts', 'duration' => '35:00', 'completed' => false],
-                    ['title' => 'Responsive Design', 'duration' => '40:20', 'completed' => false]
-                ]
-            ]
-        ]
-    ];
-    // TEMP DUMMY DATA END
-@endphp
-
+@if(empty($course_found))
+<section class="el-section bg-cream-light">
+    <div class="el-container">
+        <div class="el-empty-state">
+            <i class="bi bi-journal-x"></i>
+            <h2>{{ __('Course not found') }}</h2>
+            <p>{{ __('This lesson workspace is not available. Browse the course catalog to choose a course.') }}</p>
+            <a href="{{ route('elearning.courses') }}" class="el-btn-primary">{{ __('Browse courses') }}</a>
+        </div>
+    </div>
+</section>
+@else
 <section class="el-section bg-cream-light" style="padding-top:2rem;padding-bottom:2rem;">
     <div class="el-container">
         
@@ -42,12 +24,12 @@
             {{-- Main Content Area --}}
             <div class="col-lg-8">
                 <div class="el-card" style="padding:0;overflow:hidden;margin-bottom:1.5rem;">
-                    {{-- Video Placeholder --}}
                     <div id="el-lesson-player" style="width:100%;aspect-ratio:16/9;background:radial-gradient(circle at 70% 25%,rgba(196,168,64,.2),transparent 30%),linear-gradient(135deg,#211f1a,#51452d);display:flex;align-items:center;justify-content:center;position:relative;">
-                        <button id="el-player-toggle" type="button" aria-label="Play lesson preview" aria-pressed="false" style="width:84px;height:84px;border:1px solid rgba(255,255,255,.35);border-radius:50%;background:rgba(255,255,255,.1);color:var(--gold);font-size:2.6rem;display:grid;place-items:center;backdrop-filter:blur(8px);transition:transform .3s,background .3s;">
-                            <i class="bi bi-play-fill" aria-hidden="true"></i>
-                        </button>
-                        <span id="el-player-status" style="position:absolute;top:1rem;left:1rem;color:rgba(255,255,255,.75);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;">Lesson preview</span>
+                        <div style="text-align:center;color:rgba(255,255,255,.86);padding:1.5rem;">
+                            <i class="bi bi-journal-richtext" style="font-size:3rem;color:var(--gold);display:block;margin-bottom:.75rem;" aria-hidden="true"></i>
+                            <strong>{{ __('Lesson workspace') }}</strong>
+                            <span style="display:block;color:rgba(255,255,255,.6);font-size:var(--text-sm);margin-top:.35rem;">{{ __('Read the lesson, use the resources, and track your progress below.') }}</span>
+                        </div>
                         <div style="position:absolute;bottom:1rem;left:1rem;color:#fff;font-size:var(--text-sm);background:rgba(0,0,0,0.5);padding:0.2rem 0.6rem;border-radius:4px;">
                             <span id="el-player-lesson-title">{{ \App\Support\SiteText::translate($course_details['current_lesson']) }}</span>
                         </div>
@@ -62,6 +44,7 @@
                             <button class="el-btn-primary el-complete-lesson" type="button"><i class="bi bi-check2-circle"></i> {{ __('Mark lesson complete') }}</button>
                             <button id="el-lesson-next" class="el-btn-outline" type="button">{{ __('Next') }} <i class="bi bi-chevron-right"></i></button>
                         </div>
+                        <p id="el-lesson-status" role="status" aria-live="polite" style="min-height:1.4rem;color:var(--muted);font-size:var(--text-sm);margin:1rem 0 0;"></p>
                     </div>
                 </div>
                 
@@ -79,47 +62,47 @@
                         </li>
                     </ul>
                     <div id="el-panel-overview" class="el-lesson-panel" role="tabpanel" aria-labelledby="el-tab-overview" style="color:var(--muted);font-size:var(--text-base-lg);line-height:1.6;">
-                        <p>{{ __('In this lesson, you will learn the core concepts behind flexible layouts using CSS Flexbox. We will cover flex containers, flex items, main and cross axis alignments, and responsive behaviors.') }}</p>
-                        <p>{{ __('Make sure to download the starter files from the resources tab before proceeding with the coding exercises.') }}</p>
+                        <p>{{ __('This lesson is part of') }} <strong>{{ \App\Support\SiteText::translate($course_details['title']) }}</strong>. {{ __('Work through the topic, review its resources, and write down one practical takeaway before continuing.') }}</p>
+                        <p><strong>{{ __('Current topic:') }}</strong> {{ \App\Support\SiteText::translate($course_details['current_lesson']) }}</p>
                     </div>
                     <div id="el-panel-resources" class="el-lesson-panel" role="tabpanel" aria-labelledby="el-tab-resources" hidden style="color:var(--muted);line-height:1.7;">
-                        <h5 style="color:var(--dark);font-weight:700;">Lesson resources</h5>
-                        <div class="el-resource-row"><i class="bi bi-file-earmark-text"></i><span><strong>Flexbox quick reference</strong><small>CSS properties covered in this lesson</small></span><span class="el-resource-type">Reading</span></div>
-                        <div class="el-resource-row"><i class="bi bi-code-square"></i><span><strong>Starter layout exercise</strong><small>Practice the examples from the lesson</small></span><span class="el-resource-type">Practice</span></div>
+                        <h5 style="color:var(--dark);font-weight:700;">{{ __('Lesson resources') }}</h5>
+                        <div class="el-resource-row"><i class="bi bi-file-earmark-text"></i><span><strong>{{ __('Topic review') }}</strong><small>{{ __('Review the key ideas from') }} {{ \App\Support\SiteText::translate($course_details['current_lesson']) }}</small></span><span class="el-resource-type">{{ __('Reading') }}</span></div>
+                        <div class="el-resource-row"><i class="bi bi-code-square"></i><span><strong>{{ __('Practice activity') }}</strong><small>{{ __('Apply this topic and record your result in your lesson notes.') }}</small></span><span class="el-resource-type">{{ __('Practice') }}</span></div>
                     </div>
                     <div id="el-panel-qa" class="el-lesson-panel" role="tabpanel" aria-labelledby="el-tab-qa" hidden style="color:var(--muted);line-height:1.7;">
-                        <h5 style="color:var(--dark);font-weight:700;">Questions for this lesson</h5>
-                        <p>Use your private notes below to capture questions to revisit with your instructor.</p>
-                        <button type="button" class="el-btn-outline" id="el-qa-notes">Add a question to my notes</button>
+                        <h5 style="color:var(--dark);font-weight:700;">{{ __('Questions for this lesson') }}</h5>
+                        <p>{{ __('Use your private notes below to capture questions to revisit with your instructor.') }}</p>
+                        <button type="button" class="el-btn-outline" id="el-qa-notes">{{ __('Add a question to my notes') }}</button>
                     </div>
                 </div>
 
                 <div class="el-card" style="margin-top:1.5rem;">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem;">
                         <div>
-                            <div class="el-pill" style="margin-bottom:0.35rem;">Knowledge check</div>
-                            <h4 style="font-family:'IM Fell English',serif;margin:0;color:var(--dark);">Test your Flexbox understanding</h4>
+                            <div class="el-pill" style="margin-bottom:0.35rem;">{{ __('Knowledge check') }}</div>
+                            <h4 style="font-family:'IM Fell English',serif;margin:0;color:var(--dark);">{{ __('Check your understanding') }}</h4>
                         </div>
                         <span id="el-quiz-status" style="font-size:var(--text-sm);font-weight:700;color:var(--muted);">Not attempted</span>
                     </div>
                     <form id="el-lesson-quiz">
                         <fieldset style="border:0;padding:0;margin:0 0 1rem;">
-                            <legend style="font-size:var(--text-base);font-weight:700;margin-bottom:0.65rem;">1. Which property controls the main axis direction?</legend>
-                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q1" value="a"> align-items</label>
-                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q1" value="b"> flex-direction</label>
-                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q1" value="c"> justify-content</label>
+                            <legend style="font-size:var(--text-base);font-weight:700;margin-bottom:0.65rem;">1. {{ __('What is a useful way to retain a new concept?') }}</legend>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q1" value="a"> {{ __('Read it once and move on') }}</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q1" value="b"> {{ __('Practise recalling or applying it') }}</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q1" value="c"> {{ __('Skip the examples') }}</label>
                         </fieldset>
                         <fieldset style="border:0;padding:0;margin:0 0 1rem;">
-                            <legend style="font-size:var(--text-base);font-weight:700;margin-bottom:0.65rem;">2. What does <code>justify-content: space-between</code> do?</legend>
-                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q2" value="a"> Centers every item</label>
-                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q2" value="b"> Adds equal space around items</label>
-                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q2" value="c"> Places the first and last items at the edges</label>
+                            <legend style="font-size:var(--text-base);font-weight:700;margin-bottom:0.65rem;">2. {{ __('What should you do when an example is unclear?') }}</legend>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q2" value="a"> {{ __('Inspect it and try a small variation') }}</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q2" value="b"> {{ __('Ignore it') }}</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q2" value="c"> {{ __('Guess without checking') }}</label>
                         </fieldset>
                         <fieldset style="border:0;padding:0;margin:0 0 1rem;">
-                            <legend style="font-size:var(--text-base);font-weight:700;margin-bottom:0.65rem;">3. Which property allows items to move onto multiple lines?</legend>
-                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q3" value="a"> flex-wrap</label>
-                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q3" value="b"> flex-grow</label>
-                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q3" value="c"> order</label>
+                            <legend style="font-size:var(--text-base);font-weight:700;margin-bottom:0.65rem;">3. {{ __('What is a helpful next step after a lesson?') }}</legend>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q3" value="a"> {{ __('Forget the topic until later') }}</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q3" value="b"> {{ __('Write a takeaway and practise it') }}</label>
+                            <label style="display:block;margin:0.4rem 0;"><input type="radio" name="q3" value="c"> {{ __('Skip the review') }}</label>
                         </fieldset>
                         <button class="el-btn-primary" type="submit">Submit quiz</button>
                         <button class="el-btn-outline" id="el-quiz-reset" type="button" style="display:none;margin-left:0.5rem;">Retake</button>
@@ -130,9 +113,13 @@
                 <div class="el-card" style="margin-top:1.5rem;">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;">
                         <h4 style="font-family:'IM Fell English',serif;margin:0;color:var(--dark);">Private lesson notes</h4>
-                        <span id="el-notes-saved" style="font-size:var(--text-sm);color:var(--muted);">Autosaved</span>
+                        <div style="display:flex;align-items:center;gap:.75rem;">
+                            <span id="el-notes-saved" style="font-size:var(--text-sm);color:var(--muted);">Autosaved</span>
+                            <button type="button" id="el-notes-download" class="el-btn-outline" style="padding:.4rem .7rem;font-size:var(--text-sm);"><i class="bi bi-download" aria-hidden="true"></i> {{ __('Download notes') }}</button>
+                        </div>
                     </div>
                     <textarea id="el-lesson-notes" rows="5" placeholder="Write reflections, questions, or reminders for this lesson..." style="width:100%;border:1px solid rgba(123,107,53,0.2);border-radius:var(--radius-sm);padding:0.85rem;background:var(--cream-light);color:var(--dark);resize:vertical;"></textarea>
+                    <p id="el-notes-download-status" role="status" aria-live="polite" style="font-size:var(--text-sm);color:var(--muted);margin:.5rem 0 0;"></p>
                 </div>
 
                 <div class="el-card" style="margin-top:1.5rem;background:var(--dark);color:#fff;">
@@ -207,12 +194,16 @@
 <script>
     function initElearningCourseContent() {
         const key = 'werta-elearning-progress-{{ $course_id ?? 1 }}';
+        const lastLessonKey = 'werta-elearning-last-lesson-{{ $course_id ?? 1 }}';
         const courseId = String(@json((string) ($course_id ?? 1)));
         const courseTitle = @json($course_details['title']);
         const courseInstructor = @json($course_details['instructor']);
         const completeButton = document.querySelector('.el-complete-lesson');
-        let currentTitle = @json($course_details['current_lesson']);
+        let currentTitle = localStorage.getItem(lastLessonKey) || @json($course_details['current_lesson']);
         const rows = Array.from(document.querySelectorAll('.el-lesson-row'));
+        if (!rows.some(function (row) { return row.dataset.lessonTitle === currentTitle; })) {
+            currentTitle = rows[0] ? rows[0].dataset.lessonTitle : '';
+        }
         const progressBar = document.getElementById('el-lesson-progress');
         let saved = [];
         try {
@@ -260,6 +251,7 @@
         function selectLesson(row) {
             if (!row) return;
             currentTitle = row.dataset.lessonTitle;
+            localStorage.setItem(lastLessonKey, currentTitle);
             document.getElementById('el-current-lesson-title').textContent = currentTitle;
             document.getElementById('el-player-lesson-title').textContent = currentTitle;
             rows.forEach(function (item) {
@@ -270,16 +262,13 @@
             completeButton.classList.toggle('is-complete', completed);
             completeButton.innerHTML = completed ? '<i class="bi bi-check-circle-fill"></i> Lesson completed' : '<i class="bi bi-check2-circle"></i> Mark lesson complete';
             notes.value = localStorage.getItem(notesKey()) || '';
-            const playerStatus = document.getElementById('el-player-status');
-            playerStatus.textContent = 'Lesson preview';
-            document.getElementById('el-player-toggle').setAttribute('aria-pressed', 'false');
-            document.getElementById('el-player-toggle').innerHTML = '<i class="bi bi-play-fill" aria-hidden="true"></i>';
             const currentIndex = rows.indexOf(row);
             document.getElementById('el-lesson-previous').disabled = currentIndex <= 0;
             const nextButton = document.getElementById('el-lesson-next');
-            nextButton.disabled = rows.length === 0;
+            const courseComplete = rows.length > 0 && rows.every(function (item) { return saved.includes(item.dataset.lessonTitle); });
+            nextButton.disabled = rows.length === 0 || courseComplete;
             nextButton.innerHTML = currentIndex >= rows.length - 1
-                ? 'Finish course <i class="bi bi-check2-circle" aria-hidden="true"></i>'
+                ? (courseComplete ? 'Course completed <i class="bi bi-check2-circle" aria-hidden="true"></i>' : 'Complete final lesson <i class="bi bi-check2-circle" aria-hidden="true"></i>')
                 : 'Next <i class="bi bi-chevron-right" aria-hidden="true"></i>';
         }
 
@@ -298,6 +287,17 @@
                     icon.style.color = saved.includes(row.dataset.lessonTitle) ? 'var(--success, #28a745)' : (row.dataset.lessonTitle === currentTitle ? 'var(--primary)' : 'var(--muted)');
                 }
             });
+            const currentIndex = rows.findIndex(function (row) { return row.dataset.lessonTitle === currentTitle; });
+            const nextButton = document.getElementById('el-lesson-next');
+            const courseComplete = total > 0 && done === total;
+            if (courseComplete) {
+                nextButton.disabled = true;
+                nextButton.innerHTML = 'Course completed <i class="bi bi-check2-circle" aria-hidden="true"></i>';
+                document.getElementById('el-lesson-status').textContent = 'Course complete. Your progress is saved in this browser.';
+            } else if (currentIndex === rows.length - 1) {
+                nextButton.disabled = false;
+                nextButton.innerHTML = 'Complete final lesson <i class="bi bi-check2-circle" aria-hidden="true"></i>';
+            }
         }
         if (saved.includes(currentTitle) && completeButton) {
             completeButton.classList.add('is-complete');
@@ -315,6 +315,10 @@
             completeButton.classList.add('is-complete');
             completeButton.innerHTML = '<i class="bi bi-check-circle-fill"></i> Lesson completed';
             updateProgress();
+            const allComplete = rows.length > 0 && rows.every(function (row) { return saved.includes(row.dataset.lessonTitle); });
+            document.getElementById('el-lesson-status').textContent = allComplete
+                ? 'Course complete. Your progress is saved in this browser.'
+                : 'Lesson complete. Your progress is saved in this browser.';
         });
         updateProgress();
         const initialRow = rows.find(function (row) { return row.dataset.lessonTitle === currentTitle; });
@@ -343,12 +347,6 @@
                 panel.inert = expanded;
             });
         });
-        document.getElementById('el-player-toggle').addEventListener('click', function () {
-            const playing = this.getAttribute('aria-pressed') !== 'true';
-            this.setAttribute('aria-pressed', playing ? 'true' : 'false');
-            this.innerHTML = playing ? '<i class="bi bi-pause-fill" aria-hidden="true"></i>' : '<i class="bi bi-play-fill" aria-hidden="true"></i>';
-            document.getElementById('el-player-status').textContent = playing ? 'Preview playing' : 'Lesson preview';
-        });
         document.querySelectorAll('.el-lesson-tabs [data-panel]').forEach(function (tab) {
             tab.addEventListener('click', function () {
                 document.querySelectorAll('.el-lesson-tabs [data-panel]').forEach(function (item) {
@@ -376,15 +374,26 @@
                 if (savedLabel) savedLabel.textContent = 'Saved just now';
             });
         }
+        document.getElementById('el-notes-download').addEventListener('click', function () {
+            const content = courseTitle + '\n' + currentTitle + '\n\n' + notes.value;
+            const file = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(file);
+            const download = document.createElement('a');
+            download.href = url;
+            download.download = currentTitle.replace(/[^a-z0-9-_]+/gi, '-').toLowerCase() + '-notes.txt';
+            download.click();
+            window.setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+            document.getElementById('el-notes-download-status').textContent = 'Notes downloaded.';
+        });
         const previousScore = localStorage.getItem(quizKey);
         if (previousScore !== null) {
-            quizStatus.textContent = previousScore + '/3 passed';
+            quizStatus.textContent = previousScore + '/3 ' + (previousScore >= 2 ? 'passed' : 'to review');
             quizFeedback.textContent = previousScore >= 2 ? 'Great work — this knowledge check is complete.' : 'Keep practising and try the quiz again.';
             quizReset.style.display = 'inline-block';
         }
         quiz.addEventListener('submit', function (event) {
             event.preventDefault();
-            const answers = { q1: 'b', q2: 'c', q3: 'a' };
+            const answers = { q1: 'b', q2: 'a', q3: 'b' };
             let score = 0;
             Object.keys(answers).forEach(function (question) {
                 const selected = quiz.querySelector('input[name="' + question + '"]:checked');
@@ -452,4 +461,5 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initElearningCourseContent);
     else initElearningCourseContent();
 </script>
+@endif
 @endsection

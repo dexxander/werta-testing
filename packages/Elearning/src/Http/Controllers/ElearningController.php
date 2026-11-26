@@ -38,12 +38,50 @@ class ElearningController extends Controller
 
     public function courseContent($id)
     {
-        return view('elearning::pages.course-content', $this->sharedData() + ['course_id' => $id]);
+        $data = $this->sharedData();
+        $course = $this->courseById($id, $data);
+        $lessons = array_map(function ($title, $index) {
+            return ['title' => $title, 'duration' => '15:00', 'completed' => false, 'active' => $index === 0];
+        }, $course['topics'] ?? ['Course overview'], array_keys($course['topics'] ?? ['Course overview']));
+        $courseDetails = $course ? [
+            'title' => $course['title'],
+            'instructor' => $course['instructor'],
+            'progress' => 0,
+            'current_lesson' => $lessons[0]['title'] ?? 'Course overview',
+            'modules' => [['title' => 'Course lessons', 'lessons' => $lessons]],
+        ] : [
+            'title' => 'Course not found', 'instructor' => 'Werta Learning', 'progress' => 0,
+            'current_lesson' => '', 'modules' => [],
+        ];
+
+        return view('elearning::pages.course-content', $data + [
+            'course_id' => $id,
+            'course_details' => $courseDetails,
+            'course_found' => (bool) $course,
+        ]);
     }
 
     public function coursePreview($id)
     {
-        return view('elearning::pages.course-preview', $this->sharedData() + ['course_id' => $id]);
+        $data = $this->sharedData();
+        return view('elearning::pages.course-preview', $data + [
+            'course_id' => $id,
+            'selected_course' => $this->courseById($id, $data),
+        ]);
+    }
+
+    private function courseById($id, array $data): ?array
+    {
+        $course = collect($data['featured_courses'])->firstWhere('id', (int) $id);
+        if ($course) return $course;
+
+        $categoryCourses = [
+            101 => ['title' => 'Mastering Category Fundamentals', 'instructor' => 'James Carter', 'difficulty' => 'Beginner', 'duration' => '32h', 'topics' => ['Introduction and Core Concepts', 'Practical Techniques', 'Tools and Workflows', 'Common Mistakes', 'Final Project']],
+            102 => ['title' => 'Advanced Category Concepts', 'instructor' => 'Priya Nair', 'difficulty' => 'Advanced', 'duration' => '28h', 'topics' => ['Advanced Foundations', 'Professional Workflows', 'Problem Solving', 'Industry Case Studies', 'Capstone Assessment']],
+            103 => ['title' => 'Category for Professionals', 'instructor' => 'Sarah Chen', 'difficulty' => 'Intermediate', 'duration' => '18h', 'topics' => ['Professional Essentials', 'Planning and Strategy', 'Collaboration', 'Quality Standards', 'Portfolio Project']],
+        ];
+
+        return isset($categoryCourses[(int) $id]) ? ['id' => (int) $id] + $categoryCourses[(int) $id] : null;
     }
 
     public function categoryCourses($slug)
@@ -77,8 +115,8 @@ class ElearningController extends Controller
      * all live in the shared layout and need this on every route, so it's
      * simplest to always pass the full set rather than slicing it per page.
      *
-     * Currently utilizing empty arrays to represent data-driven empty states
-     * as requested. In the future, these can be populated from the database models.
+     * This module currently uses sample catalog data so every e-learning page
+     * has a complete, navigable experience without requiring a populated database.
      */
     private function sharedData(): array
     {
@@ -129,9 +167,9 @@ class ElearningController extends Controller
                 ['title' => 'Community Contributor', 'icon' => 'chat-heart', 'description' => 'Get recognised for meaningful peer feedback and helpful discussion contributions.'],
             ],
             'dashboard_courses' => [
-                ['title' => 'Advanced React & Next.js', 'icon' => 'layers', 'progress' => 68, 'next_lesson' => 'Building resilient data-fetching flows'],
-                ['title' => 'UI/UX Design Fundamentals', 'icon' => 'palette2', 'progress' => 42, 'next_lesson' => 'Design systems in practice'],
-                ['title' => 'Data Visualisation with Python', 'icon' => 'bar-chart-line', 'progress' => 15, 'next_lesson' => 'Your first Matplotlib dashboard'],
+                ['id' => 5, 'title' => 'Advanced React & Next.js', 'icon' => 'layers', 'progress' => 68, 'next_lesson' => 'Building resilient data-fetching flows'],
+                ['id' => 3, 'title' => 'UI/UX Design Fundamentals', 'icon' => 'palette2', 'progress' => 42, 'next_lesson' => 'Design systems in practice'],
+                ['id' => 2, 'title' => 'Data Science & Machine Learning', 'icon' => 'bar-chart-line', 'progress' => 15, 'next_lesson' => 'Your first Matplotlib dashboard'],
             ],
             'dashboard_overall_progress' => 54,
             'dashboard_goals' => [

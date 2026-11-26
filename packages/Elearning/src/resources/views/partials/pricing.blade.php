@@ -33,8 +33,9 @@
         @else
             <div class="el-empty-state">
                 <i class="bi bi-credit-card"></i>
-                <h5>{{ __('Pricing Coming Soon') }}</h5>
-                <p>{{ __('We are finalising our pricing plans. Check back soon for flexible options.') }}</p>
+                <h5>{{ __('No plans are available') }}</h5>
+                <p>{{ __('You can still explore the courses currently available in the catalog.') }}</p>
+                <a href="{{ route('elearning.courses') }}" class="el-btn-outline">{{ __('Browse courses') }}</a>
             </div>
         @endif
     </div>

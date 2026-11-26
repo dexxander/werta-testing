@@ -40,8 +40,9 @@
             {{-- Empty State: kept exactly as requested --}}
             <div class="el-empty-state el-empty-state--dark">
                 <i class="bi bi-signpost-split"></i>
-                <h5>{{ __('Learning Paths Coming Soon') }}</h5>
-                <p>{{ __('We are designing structured career tracks to guide your learning journey. Stay tuned.') }}</p>
+                <h5>{{ __('No learning paths are available') }}</h5>
+                <p>{{ __('Explore the course catalog and build a learning plan from the courses available now.') }}</p>
+                <a href="{{ route('elearning.courses') }}" class="el-btn-outline el-btn-outline--light">{{ __('Browse courses') }}</a>
             </div>
         @endif
     </div>

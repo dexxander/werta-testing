@@ -1,36 +1,9 @@
 @extends('elearning::layout')
 
 @section('elearning-body')
-{{--
-    TEMP DUMMY DATA — FOR PREVIEW ONLY
-    This catalog supplements the temporary course cards with preview topics.
-    If the block is removed, the page still renders a safe empty-state preview.
---}}
 @php
-    // Safe default when the temporary catalog below is removed.
-    $preview_courses = [];
-@endphp
-
-@php
-    // TEMP DUMMY DATA START
-    $preview_courses = [
-        1 => ['title' => 'Complete Web Development Bootcamp', 'instructor' => 'James Carter', 'difficulty' => 'Beginner', 'duration' => '32h', 'topics' => ['HTML5 Foundations', 'CSS Layouts and Flexbox', 'Responsive Web Design', 'JavaScript Essentials', 'Building a Final Project']],
-        2 => ['title' => 'Data Science & Machine Learning A-Z', 'instructor' => 'Priya Nair', 'difficulty' => 'Intermediate', 'duration' => '28h', 'topics' => ['Python for Data Analysis', 'Statistics Fundamentals', 'Data Cleaning', 'Machine Learning Models', 'Model Evaluation']],
-        3 => ['title' => 'UI/UX Design Fundamentals', 'instructor' => 'Sarah Chen', 'difficulty' => 'Beginner', 'duration' => '18h', 'topics' => ['User Research', 'Personas and User Flows', 'Wireframing', 'Figma Prototyping', 'Usability Testing']],
-        4 => ['title' => 'Digital Marketing Mastery', 'instructor' => 'Ahmad Faiz', 'difficulty' => 'Beginner', 'duration' => '15h', 'topics' => ['Marketing Strategy', 'SEO Fundamentals', 'Content Marketing', 'Social Media Campaigns', 'Analytics and Reporting']],
-        5 => ['title' => 'Advanced React & Next.js', 'instructor' => 'Elena Ruiz', 'difficulty' => 'Advanced', 'duration' => '24h', 'topics' => ['React Architecture', 'Next.js Routing', 'Server Components', 'Data Fetching', 'Deployment']],
-        6 => ['title' => 'Cybersecurity Essentials', 'instructor' => 'Marcus Lee', 'difficulty' => 'Intermediate', 'duration' => '20h', 'topics' => ['Network Security', 'Threat Detection', 'Identity and Access', 'Incident Response', 'Security Best Practices']],
-        101 => ['title' => 'Mastering Category Fundamentals', 'instructor' => 'James Carter', 'difficulty' => 'Beginner', 'duration' => '32h', 'topics' => ['Introduction and Core Concepts', 'Practical Techniques', 'Tools and Workflows', 'Common Mistakes', 'Final Project']],
-        102 => ['title' => 'Advanced Category Concepts', 'instructor' => 'Priya Nair', 'difficulty' => 'Advanced', 'duration' => '28h', 'topics' => ['Advanced Foundations', 'Professional Workflows', 'Problem Solving', 'Industry Case Studies', 'Capstone Assessment']],
-        103 => ['title' => 'Category for Professionals', 'instructor' => 'Sarah Chen', 'difficulty' => 'Intermediate', 'duration' => '18h', 'topics' => ['Professional Essentials', 'Planning and Strategy', 'Collaboration', 'Quality Standards', 'Portfolio Project']],
-    ];
-    // TEMP DUMMY DATA END
-
-@endphp
-
-@php
-    $selected_course = $preview_courses[(int) ($course_id ?? 0)] ?? null;
-    $course_title = $selected_course['title'] ?? 'Course Preview';
+    $selected_course = $selected_course ?? null;
+    $course_title = $selected_course['title'] ?? 'Course not found';
     $course_topics = $selected_course['topics'] ?? [];
 @endphp
 
@@ -52,11 +25,20 @@
                             <span><i class="bi bi-bar-chart"></i> {{ \App\Support\SiteText::translate($selected_course['difficulty']) }}</span>
                             <span><i class="bi bi-clock"></i> {{ \App\Support\SiteText::translate($selected_course['duration']) }}</span>
                         </div>
+                        <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem;">
+                            @if(session('client_logged_in'))
+                                <button type="button" onclick="enrollElearningCourse(this)" data-course-id="{{ $selected_course['id'] }}" data-course-title="{{ $selected_course['title'] }}" data-course-instructor="{{ $selected_course['instructor'] }}" data-course-icon="{{ $selected_course['icon'] ?? 'journal-bookmark' }}" class="el-btn-primary">{{ __('Enroll in this course') }}</button>
+                            @else
+                                <a href="{{ url('/client/login') }}" class="el-btn-primary">{{ __('Log in to enroll') }}</a>
+                            @endif
+                            <a href="{{ route('elearning.course-content', ['id' => $course_id]) }}" class="el-btn-outline">{{ __('Open lesson workspace') }}</a>
+                        </div>
                     @else
                         <div class="el-empty-state">
                             <i class="bi bi-journal-bookmark"></i>
-                            <h5>{{ __('Course Preview Coming Soon') }}</h5>
-                            <p>{{ __('This course is not available in the current catalog yet.') }}</p>
+                            <h5>{{ __('Course not found') }}</h5>
+                            <p>{{ __('This course is not in the current catalog. Browse available courses to continue.') }}</p>
+                            <a href="{{ route('elearning.courses') }}" class="el-btn-outline">{{ __('Browse courses') }}</a>
                         </div>
                     @endif
                 </div>
@@ -68,15 +50,15 @@
                     @if(count($course_topics) > 0)
                         <div style="display:flex;flex-direction:column;gap:0.65rem;">
                             @foreach($course_topics as $index => $topic)
-                                <button type="button" class="el-topic-preview" onclick="openEnrollmentRequiredModal()">
+                                <button type="button" class="el-topic-preview" onclick="openCourseTopic({{ (int) $course_id }})">
                                     <span><i class="bi bi-lock-fill"></i> {{ \App\Support\SiteText::translate($index + 1) }}. {{ \App\Support\SiteText::translate($topic) }}</span>
                                     <i class="bi bi-chevron-right"></i>
                                 </button>
                             @endforeach
                         </div>
-                        <p style="font-size:var(--text-sm);color:var(--muted);margin:1.2rem 0 0;"><i class="bi bi-info-circle"></i> {{ __('Preview only. Enroll to open lessons and start learning.') }}</p>
+                        <p style="font-size:var(--text-sm);color:var(--muted);margin:1.2rem 0 0;"><i class="bi bi-info-circle"></i> {{ __('Select a topic to continue to the lesson workspace. Enroll first to save it to My Courses.') }}</p>
                     @else
-                        <p style="font-size:var(--text-base);color:var(--muted);margin:0;">{{ __('Topics will appear here when this course is added to the catalog.') }}</p>
+                        <p style="font-size:var(--text-base);color:var(--muted);margin:0;">{{ __('This course has no topic list yet. Browse the catalog for courses with a full outline.') }}</p>
                     @endif
                 </div>
             </div>
@@ -94,6 +76,20 @@
             <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">{{ __('Enrollment Required') }}</h4>
             <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">{{ __('Please enroll in this course first to open this topic and start learning.') }}</p>
             <button type="button" onclick="closeEnrollmentRequiredModal()" class="el-btn-primary" style="padding:0.75rem 1.5rem;">{{ __('Got It') }}</button>
+        </div>
+    </div>
+</div>
+<div id="elearningSuccessModal" class="el-modal-overlay">
+    <div class="el-modal-content el-card">
+        <button type="button" class="el-modal-close" onclick="closeElearningSuccessModal()" aria-label="{{ __('Close') }}"><i class="bi bi-x-lg"></i></button>
+        <div class="text-center">
+            <div style="width:64px;height:64px;background:rgba(40,199,64,0.15);border-radius:var(--radius-full);display:grid;place-items:center;margin:0 auto 1.5rem;"><i class="bi bi-check-circle-fill" style="font-size:2rem;color:#28c740;"></i></div>
+            <h4 style="font-family:'IM Fell English',serif;font-weight:700;color:var(--dark);margin-bottom:1rem;">{{ __('Enrolled Successfully!') }}</h4>
+            <p style="color:var(--muted);font-size:var(--text-base-lg);margin-bottom:2rem;">{{ __('Your course is saved in My Courses. Open the lesson workspace whenever you are ready to learn.') }}</p>
+            <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
+                <button type="button" onclick="closeElearningSuccessModal()" class="el-btn-outline">{{ __('Keep browsing') }}</button>
+                <a href="{{ route('elearning.my-courses') }}" class="el-btn-primary">{{ __('Go to My Courses') }}</a>
+            </div>
         </div>
     </div>
 </div>
@@ -115,7 +111,16 @@
 </style>
 
 <script>
-    function openEnrollmentRequiredModal() { document.getElementById('enrollmentRequiredModal').classList.add('active'); }
+    function openCourseTopic(courseId) {
+        let enrolled = [];
+        try { enrolled = JSON.parse(localStorage.getItem('werta-elearning-enrolled-courses') || '[]'); } catch (error) { localStorage.removeItem('werta-elearning-enrolled-courses'); }
+        if (Array.isArray(enrolled) && enrolled.some(function (course) { return String(course.id) === String(courseId); })) {
+            window.location.href = '{{ url('/elearning/course') }}/' + encodeURIComponent(courseId) + '/content';
+            return;
+        }
+        document.getElementById('enrollmentRequiredModal').classList.add('active');
+    }
     function closeEnrollmentRequiredModal() { document.getElementById('enrollmentRequiredModal').classList.remove('active'); }
+    function closeElearningSuccessModal() { document.getElementById('elearningSuccessModal').classList.remove('active'); }
 </script>
 @endsection

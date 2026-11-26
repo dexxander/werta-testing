@@ -1,37 +1,6 @@
 @extends('elearning::layout')
 
 @section('elearning-body')
-@php
-    // TEMP DUMMY DATA START
-    $my_courses = [
-        [
-            'id' => 1,
-            'title' => 'Web Development Bootcamp',
-            'instructor' => 'Dr. Alan Smith',
-            'progress' => 65,
-            'last_accessed' => '2 hours ago',
-            'thumbnail_icon' => 'code-slash'
-        ],
-        [
-            'id' => 2,
-            'title' => 'Advanced Data Science',
-            'instructor' => 'Sarah Johnson',
-            'progress' => 30,
-            'last_accessed' => '1 day ago',
-            'thumbnail_icon' => 'bar-chart-line'
-        ],
-        [
-            'id' => 3,
-            'title' => 'UI/UX Principles',
-            'instructor' => 'Michael Chen',
-            'progress' => 100,
-            'last_accessed' => '1 week ago',
-            'thumbnail_icon' => 'palette2'
-        ]
-    ];
-    // TEMP DUMMY DATA END
-@endphp
-
 <section class="el-section bg-cream-light" id="my-courses">
     <div class="el-container">
         <div class="mb-5 d-flex justify-content-between align-items-end">
@@ -67,45 +36,25 @@
                         <div style="flex:1;">
                             <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);font-weight:700;"><span>Weekly study goal</span><span id="el-goal-count">0 / 5 lessons</span></div>
                             <div style="height:6px;background:var(--cream);border-radius:var(--radius-pill);overflow:hidden;margin-top:0.45rem;"><div id="el-goal-progress" style="height:100%;width:0;background:var(--gold);border-radius:var(--radius-pill);transition:width 0.25s;"></div></div>
+                            <small style="display:block;color:var(--muted);margin-top:.35rem;">Progress updates when you complete a lesson.</small>
                         </div>
-                        <button id="el-goal-add" type="button" class="el-btn-outline" style="padding:0.4rem 0.65rem;" aria-label="Log one completed lesson"><i class="bi bi-plus-lg"></i></button>
                     </div>
                 </div>
             </div>
             <p id="el-my-course-count" class="el-course-result-count" aria-live="polite" style="margin-bottom:0;"></p>
         </div>
 
-        <div class="row g-4">
-            @foreach($my_courses as $course)
-                <div class="col-md-6 col-lg-4 el-my-course-card" data-course-id="{{ $course['id'] }}" data-course-title="{{ strtolower($course['title']) }}" data-course-status="{{ $course['progress'] == 100 ? 'completed' : 'active' }}">
-                    <div class="el-card h-100 d-flex flex-column">
-                        <div style="width:100%;height:160px;background:var(--cream);border-radius:var(--radius-md);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;">
-                            <i class="bi bi-{{ $course['thumbnail_icon'] }}" style="font-size:3rem;color:var(--gold);opacity:0.3;"></i>
-                        </div>
-                        <h5 style="font-weight:700;font-size:1.1rem;margin-bottom:0.3rem;">{{ \App\Support\SiteText::translate($course['title']) }}</h5>
-                        <p style="font-size:var(--text-sm);color:var(--muted);margin-bottom:1rem;">{{ __('Instructor:') }} {{ \App\Support\SiteText::translate($course['instructor']) }}</p>
-                        
-                        <div style="margin-bottom:1rem;">
-                            <div style="display:flex;justify-content:space-between;font-size:var(--text-sm);margin-bottom:0.4rem;font-weight:600;">
-                                <span>{{ __('Progress') }}</span>
-                                <span class="el-course-progress-label">{{ \App\Support\SiteText::translate($course['progress']) }}%</span>
-                            </div>
-                            <div style="width:100%;height:6px;background:var(--cream);border-radius:var(--radius-pill);overflow:hidden;">
-                                <div class="el-course-progress-bar" style="width:{{ $course['progress'] }}%;height:100%;background:var(--gold);border-radius:var(--radius-pill);transition:width .45s cubic-bezier(.22,1,.36,1);"></div>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;">
-                            <span style="font-size:var(--text-sm);color:var(--muted);"><i class="bi bi-clock-history"></i> {{ \App\Support\SiteText::translate($course['last_accessed']) }}</span>
-                            @if($course['progress'] == 100)
-                                <a href="{{ route('elearning.course-content', ['id' => $course['id']]) }}" class="el-btn-outline" style="padding:0.4rem 1rem;font-size:0.85rem;">{{ __('Review') }}</a>
-                            @else
-                                <a href="{{ route('elearning.course-content', ['id' => $course['id']]) }}" class="el-btn-primary" style="padding:0.4rem 1rem;font-size:0.85rem;">{{ __('Resume') }}</a>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+        <div id="el-my-course-grid" class="row g-4"></div>
+        <div id="el-my-courses-empty" class="el-empty-state">
+            <i class="bi bi-journal-plus"></i>
+            <h5>{{ __('No enrolled courses yet') }}</h5>
+            <p>{{ __('Enroll in a course and it will be saved here with your progress.') }}</p>
+            <a href="{{ route('elearning.courses') }}" class="el-btn-primary">{{ __('Browse courses') }}</a>
+        </div>
+        <div id="el-my-courses-no-match" class="el-empty-state" hidden>
+            <i class="bi bi-search"></i>
+            <h5>{{ __('No matching courses') }}</h5>
+            <p>{{ __('Try another search or choose a different progress filter.') }}</p>
         </div>
     </div>
 </section>
@@ -115,7 +64,9 @@
         const status = document.getElementById('my-course-status');
         const result = document.getElementById('el-my-course-count');
         let cards = Array.from(document.querySelectorAll('.el-my-course-card'));
-        const courseGrid = document.querySelector('#my-courses .row.g-4:last-child');
+        const courseGrid = document.getElementById('el-my-course-grid');
+        const emptyState = document.getElementById('el-my-courses-empty');
+        const noMatchState = document.getElementById('el-my-courses-no-match');
         const goalCount = document.getElementById('el-goal-count');
         const goalProgress = document.getElementById('el-goal-progress');
         const goalKey = 'werta-elearning-weekly-goal';
@@ -161,7 +112,7 @@
             const resume = document.createElement('a');
             resume.className = 'el-btn-primary el-enrolled-course-resume';
             resume.href = '/elearning/course/' + encodeURIComponent(course.id) + '/content';
-            resume.textContent = 'Start learning';
+            resume.textContent = progressPercent >= 100 ? 'Review course' : (progressPercent > 0 ? 'Resume learning' : 'Start learning');
             card.append(icon, title, instructor, progress, resume);
             column.appendChild(card);
             if (courseGrid) courseGrid.appendChild(column);
@@ -171,9 +122,6 @@
         function renderGoal() {
             goalCount.textContent = completedLessons + ' / 5 lessons';
             goalProgress.style.width = (completedLessons / 5 * 100) + '%';
-            const addButton = document.getElementById('el-goal-add');
-            addButton.disabled = completedLessons >= 5;
-            addButton.setAttribute('aria-label', completedLessons >= 5 ? 'Weekly study goal complete' : 'Log one completed lesson');
         }
         function filterCourses() {
             const query = search.value.trim().toLowerCase();
@@ -185,14 +133,11 @@
                 if (show) visible++;
             });
             result.textContent = visible + ' enrolled course' + (visible === 1 ? '' : 's') + ' shown';
+            emptyState.hidden = cards.length > 0;
+            noMatchState.hidden = cards.length === 0 || visible > 0;
         }
         search.addEventListener('input', filterCourses);
         status.addEventListener('change', filterCourses);
-        document.getElementById('el-goal-add').addEventListener('click', function () {
-            completedLessons = Math.min(completedLessons + 1, 5);
-            localStorage.setItem(goalKey, completedLessons);
-            renderGoal();
-        });
         renderGoal();
         filterCourses();
     }

@@ -3,8 +3,8 @@
     <div class="el-container">
         <div class="text-center mb-5">
             <div class="el-pill">{{ __('Your Learning Hub') }}</div>
-            <h2 class="el-heading">{{ __('Student Dashboard Preview') }}</h2>
-            <p class="el-subtext mx-auto">{{ __('A premium dashboard experience to track your learning journey, goals, and achievements.') }}</p>
+            <h2 class="el-heading">{{ __('Your Learning Dashboard') }}</h2>
+            <p class="el-subtext mx-auto">{{ __('Track your courses, weekly goals, and learning progress in one place.') }}</p>
         </div>
 
         <div class="el-dashboard-mock">
@@ -27,7 +27,7 @@
                             @if(!empty($dashboard_courses))
                                 <div class="el-dash-course-list">
                                     @foreach($dashboard_courses as $index => $course)
-                                        <div class="el-dash-course" style="cursor:pointer;" onclick="window.location.href='{{ route('elearning.course-content', ['id' => $index + 1]) }}'">
+                                        <a href="{{ route('elearning.course-content', ['id' => $course['id'] ?? ($index + 1)]) }}" class="el-dash-course" style="cursor:pointer;color:inherit;text-decoration:none;">
                                             <div class="el-feature-icon el-dash-course-icon">
                                                 <i class="bi bi-{{ $course['icon'] ?? 'journal-text' }}"></i>
                                             </div>
@@ -43,7 +43,7 @@
                                                     <p class="el-dash-course-next">{{ __('Next:') }} {{ \App\Support\SiteText::translate($course['next_lesson']) }}</p>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </a>
                                     @endforeach
                                 </div>
                             @else

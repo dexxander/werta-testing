@@ -24,7 +24,8 @@
                     <div class="el-empty-state">
                         <i class="bi bi-question-circle"></i>
                         <h5>{{ __('No FAQs Available Yet') }}</h5>
-                        <p>{{ __('We are preparing helpful answers. Please contact support for any questions in the meantime.') }}</p>
+                        <p>{{ __('Contact support if you need help with courses, learning progress, or your account.') }}</p>
+                        <a href="{{ route('elearning.courses') }}" class="el-btn-outline">{{ __('Browse courses') }}</a>
                     </div>
                 @endif
             </div>

@@ -22,7 +22,7 @@
         <li class="nav-item">
             <a href="{{ route('elearning.dashboard') }}"
                class="nav-link {{ request()->routeIs('elearning.dashboard') ? 'active' : '' }}" @if(request()->routeIs('elearning.dashboard')) aria-current="page" @endif>
-                {{ __('Dashboard Preview') }}
+                {{ __('Dashboard') }}
             </a>
         </li>
 

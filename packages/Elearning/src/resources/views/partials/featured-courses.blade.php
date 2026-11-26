@@ -65,8 +65,8 @@
             {{-- Empty State --}}
             <div class="el-empty-state">
                 <i class="bi bi-journal-bookmark"></i>
-                <h5>{{ __('No Courses Available Yet') }}</h5>
-                <p>{{ __('Our team is working hard to bring you the best courses. Stay tuned for exciting learning opportunities.') }}</p>
+                <h5>{{ __('No courses match this catalog yet') }}</h5>
+                <p>{{ __('Choose another category or check back after the catalog is refreshed.') }}</p>
             </div>
         @endif
     </div>

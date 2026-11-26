@@ -70,7 +70,8 @@
             <div class="el-empty-state">
                 <i class="bi bi-award"></i>
                 <h5>{{ __('No Certificates Yet') }}</h5>
-                <p>{{ __('Start your learning journey today. Your earned certificates and achievements will appear here.') }}</p>
+                <p>{{ __('Complete a course to earn a certificate and achievement for your learning record.') }}</p>
+                <a href="{{ route('elearning.courses') }}" class="el-btn-outline">{{ __('Browse courses') }}</a>
             </div>
         @endif
     </div>

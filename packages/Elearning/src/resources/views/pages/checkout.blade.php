@@ -11,8 +11,8 @@
     <div class="el-container">
         
         <div class="mb-4 text-center">
-            <h2 class="el-heading">{{ __('Checkout Preview') }}</h2>
-            <p class="el-subtext">{{ __('Review the') }} {{ \App\Support\SiteText::translate($selected_plan['name']) }} {{ __('plan checkout flow.') }}</p>
+            <h2 class="el-heading">{{ __('Choose Your Plan') }}</h2>
+            <p class="el-subtext">{{ __('Confirm') }} {{ \App\Support\SiteText::translate($selected_plan['name']) }} {{ __('for this browser-based learning demo.') }}</p>
         </div>
 
         <div class="row g-4 justify-content-center">
@@ -20,11 +20,15 @@
             <div class="col-lg-6">
                 <div class="el-card">
                     <h5 style="font-weight:700;margin-bottom:1rem;border-bottom:2px solid var(--cream);padding-bottom:1rem;">{{ __('Checkout details') }}</h5>
-                    <p style="color:var(--muted);font-size:var(--text-sm);margin-bottom:1.5rem;">{{ __('Payment processing is not connected in this preview. No card details are collected and no charge will be made.') }}</p>
+                    <p style="color:var(--muted);font-size:var(--text-sm);margin-bottom:1.5rem;">{{ __('This demo saves your plan choice in this browser. It does not collect payment details or charge you.') }}</p>
                     
                     <form id="el-demo-checkout">
-                        <button type="submit" class="el-btn-primary" style="width:100%;padding:0.85rem;font-size:var(--text-md);">{{ __('Continue') }}</button>
+                        <button type="submit" class="el-btn-primary" style="width:100%;padding:0.85rem;font-size:var(--text-md);">{{ __('Save plan selection') }}</button>
                         <p id="el-checkout-status" role="status" aria-live="polite" style="margin:1rem 0 0;color:var(--muted);font-size:var(--text-sm);"></p>
+                        <div id="el-checkout-success" hidden style="margin-top:1rem;">
+                            <a href="{{ route('elearning.courses') }}" class="el-btn-outline">{{ __('Browse courses') }}</a>
+                            <a href="{{ route('elearning.my-courses') }}" class="el-btn-primary">{{ __('Open My Courses') }}</a>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -49,7 +53,7 @@
                     </div>
                     
                     <div style="margin-top:2rem;font-size:var(--text-sm);color:rgba(255,255,255,0.5);text-align:center;">
-                        <i class="bi bi-info-circle-fill"></i> {{ __('Payment provider not connected') }}
+                        <i class="bi bi-info-circle-fill"></i> {{ __('No payment is collected in this demo') }}
                     </div>
                 </div>
             </div>
@@ -60,9 +64,22 @@
     function initElearningCheckout() {
         const form = document.getElementById('el-demo-checkout');
         if (!form) return;
+        const selectedPlan = @json($selected_plan['name']);
+        try {
+            const savedPlan = JSON.parse(localStorage.getItem('werta-elearning-selected-plan') || 'null');
+            if (savedPlan && savedPlan.name === selectedPlan) {
+                document.getElementById('el-checkout-status').textContent = selectedPlan + ' is saved as your selected plan in this browser. No payment was taken.';
+                document.getElementById('el-checkout-success').hidden = false;
+            }
+        } catch (error) {
+            localStorage.removeItem('werta-elearning-selected-plan');
+        }
         form.addEventListener('submit', function (event) {
             event.preventDefault();
-            document.getElementById('el-checkout-status').textContent = 'The ' + @json($selected_plan['name']) + ' checkout preview is ready. Payment processing is not connected, so no payment was taken and no plan access changed.';
+            const plan = @json(['name' => $selected_plan['name'], 'price' => $selected_plan['price'], 'period' => $selected_plan['period']]);
+            localStorage.setItem('werta-elearning-selected-plan', JSON.stringify({ ...plan, selectedAt: new Date().toISOString() }));
+            document.getElementById('el-checkout-status').textContent = plan.name + ' is saved as your selected plan in this browser. No payment was taken.';
+            document.getElementById('el-checkout-success').hidden = false;
         });
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initElearningCheckout);

@@ -2,7 +2,7 @@
 
 @section('elearning-body')
 @php
-    // TEMP DUMMY DATA START
+    // Curated sample courses for this category page.
     $category_name = ucwords(str_replace('-', ' ', $category_slug ?? 'Category'));
     
     $category_courses = [
@@ -37,7 +37,6 @@
             'topics' => ['Professional Essentials', 'Planning and Strategy', 'Collaboration', 'Quality Standards', 'Portfolio Project'],
         ]
     ];
-    // TEMP DUMMY DATA END
 @endphp
 
 <section class="el-section bg-cream-light" id="category-courses">

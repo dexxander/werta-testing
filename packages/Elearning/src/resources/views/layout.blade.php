@@ -391,7 +391,13 @@
     <script>
         window.enrollElearningCourse = function (button) {
             const storageKey = 'werta-elearning-enrolled-courses';
-            const courses = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            let courses = [];
+            try {
+                const stored = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                courses = Array.isArray(stored) ? stored : [];
+            } catch (error) {
+                localStorage.removeItem(storageKey);
+            }
             const course = {
                 id: String(button.dataset.courseId),
                 title: button.dataset.courseTitle || 'New course',
@@ -404,6 +410,7 @@
             localStorage.setItem(storageKey, JSON.stringify(courses));
             const modal = document.getElementById('elearningSuccessModal') || document.getElementById('elearningEnrollModal');
             if (modal) modal.classList.add('active');
+            else window.location.href = '{{ route('elearning.my-courses') }}';
         };
 
         document.addEventListener('DOMContentLoaded', function () {
